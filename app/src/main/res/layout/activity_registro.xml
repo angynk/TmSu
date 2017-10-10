@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.transmilenio.transmisurvey.activites.RegistroActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nuevoRegistro"
+        style="@style/AppTheme.Banner"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/button_nuevoRegistro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:src="@mipmap/ic_checked"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tituloPanel"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+
+            <Button
+                android:id="@+id/button_llegada"
+                style="@style/AppTheme.ButtonObtDatos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="22dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="31dp"
+                android:text="@string/llegada" />
+
+            <TextView
+                android:id="@+id/textView_llegada"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="103dp"
+                android:layout_marginRight="103dp"
+                android:layout_marginTop="44dp"
+                android:text="" />
+
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                android:id="@+id/spinner_estacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:layout_toEndOf="@+id/button_llegada"
+                android:layout_toRightOf="@+id/button_llegada" />
+
+            <TextView
+                android:id="@+id/textView_estacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/estacion"
+                style="@style/AppTheme.Encabezado"
+                android:layout_alignBottom="@+id/spinner_estacion"
+                android:layout_alignLeft="@+id/button_llegada"
+                android:layout_alignStart="@+id/button_llegada" />
+
+            <TextView
+                android:id="@+id/textView_bajan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="42dp"
+                android:text="@string/bajan"
+                style="@style/AppTheme.Encabezado"
+                android:layout_below="@+id/textView_estacion"
+                android:layout_alignLeft="@+id/textView_estacion"
+                android:layout_alignStart="@+id/textView_estacion" />
+
+            <EditText
+                android:id="@+id/editText_bajan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:layout_alignBaseline="@+id/textView_bajan"
+                android:layout_alignBottom="@+id/textView_bajan"
+                android:layout_alignLeft="@+id/spinner_estacion"
+                android:layout_alignStart="@+id/spinner_estacion"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <EditText
+                android:id="@+id/editText_suben"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:layout_centerVertical="true"
+                android:layout_alignLeft="@+id/editText_bajan"
+                android:layout_alignStart="@+id/editText_bajan"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:id="@+id/textView_suben"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/suben"
+                style="@style/AppTheme.Encabezado"
+                android:layout_alignBaseline="@+id/editText_suben"
+                android:layout_alignBottom="@+id/editText_suben"
+                android:layout_alignLeft="@+id/textView_bajan"
+                android:layout_alignStart="@+id/textView_bajan" />
+
+            <EditText
+                android:id="@+id/editText_quedan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:layout_below="@+id/editText_suben"
+                android:layout_alignLeft="@+id/editText_suben"
+                android:layout_alignStart="@+id/editText_suben"
+                android:layout_marginTop="26dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:id="@+id/textView_quedan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quedan"
+                style="@style/AppTheme.Encabezado"
+                android:layout_alignBaseline="@+id/editText_quedan"
+                android:layout_alignBottom="@+id/editText_quedan"
+                android:layout_alignLeft="@+id/textView_suben"
+                android:layout_alignStart="@+id/textView_suben" />
+
+            <Button
+                android:id="@+id/button_salida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/salida"
+                android:layout_below="@+id/editText_quedan"
+                android:layout_toLeftOf="@+id/editText_quedan"
+                android:layout_toStartOf="@+id/editText_quedan"
+                android:layout_marginTop="17dp"
+                style="@style/AppTheme.ButtonObtDatos"/>
+
+            <TextView
+                android:id="@+id/textView_salida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_alignBaseline="@+id/button_salida"
+                android:layout_alignBottom="@+id/button_salida"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="89dp"
+                android:layout_marginEnd="89dp" />
+
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+</RelativeLayout>

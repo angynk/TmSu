@@ -1,0 +1,38 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+
+
+    </style>
+
+    <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@color/colorButtonNormal</item>
+        <item name="android:textColor">@color/colorTextButton</item>
+    </style>
+
+    <style name="AppTheme.ButtonObtDatos" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorTextButton</item>
+    </style>
+
+    <style name="AppTheme.Banner" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:background">@color/colorButtonNormal</item>
+        <item name="android:textColor">@color/colorTextButton</item>
+
+    </style>
+
+    <style name="AppTheme.Encabezado">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>
