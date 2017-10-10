@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import com.bumptech.glide.Glide;
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.models.Opcion;
 
@@ -64,8 +65,8 @@ public class OpcionAdapter extends RecyclerView.Adapter<OpcionAdapter.MyViewHold
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Opcion album = albumList.get(position);
         holder.title.setText(album.getName());
-
-           }
+        Glide.with(mContext).load(album.getThumbnail()).into(holder.thumbnail);
+    }
 
 
     @Override
