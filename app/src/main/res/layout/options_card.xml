@@ -20,8 +20,9 @@
 
             <ImageView
                 android:id="@+id/thumbnail"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="@dimen/album_cover_height"
+                android:layout_centerHorizontal="true"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:scaleType="fitXY"/>

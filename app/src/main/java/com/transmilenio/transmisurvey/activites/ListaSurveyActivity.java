@@ -1,11 +1,17 @@
 package com.transmilenio.transmisurvey.activites;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
+import android.support.v4.app.TaskStackBuilder;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.adapters.RegistroAdapter;
@@ -25,13 +31,20 @@ public class ListaSurveyActivity extends AppCompatActivity {
     private Realm realm;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_survey);
         bindUI();
         realm = Realm.getDefaultInstance();
+
+
     }
+
+
+
 
     private void bindUI() {
         encuestas = new ArrayList<>();
@@ -59,5 +72,7 @@ public class ListaSurveyActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 }

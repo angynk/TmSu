@@ -23,9 +23,6 @@
             android:name=".activites.SurveyActivity"
             android:parentActivityName=".activites.ListaSurveyActivity"
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activites.ListaSurveyActivity" />
 
         </activity>
         <activity
@@ -34,7 +31,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activites.SurveyActivity" />
+                android:value=".activites.ListaSurveyActivity" />
         </activity>
         <activity
             android:name=".activites.RegistroActivity"
@@ -51,7 +48,7 @@
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activites.MainActivity" />
+                android:value=".activites.MainActivity"  />
         </activity>
     </application>
 

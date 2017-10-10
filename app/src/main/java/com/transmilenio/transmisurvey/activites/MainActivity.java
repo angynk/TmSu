@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.adapters.OpcionAdapter;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         albumList = new ArrayList<>();
+
+
 
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);

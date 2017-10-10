@@ -4,9 +4,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -51,23 +54,24 @@ public class SurveyActivity extends AppCompatActivity {
 
         bindUI();
         bindEventos();
-
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
 
     }
 
-//    @Override
-//    protected void onSaveInstanceState(Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//        outState.putString("someVarA", editTextNumBuses.getText().toString());
-//    }
-//
-//    @Override
-//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-//        super.onRestoreInstanceState(savedInstanceState);
-//        String buses = savedInstanceState.getString("someVarA");
-//        editTextNumBuses.setText(buses);
-//    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Toast.makeText(getApplicationContext(),"Back button clicked", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
 
 
     private void bindEventos() {
@@ -88,7 +92,7 @@ public class SurveyActivity extends AppCompatActivity {
                     Intent intent = new Intent(SurveyActivity.this,ListaRegistrosActivity.class);
                     intent.putExtra("idEncuesta",  idEncuesta);
                     startActivity(intent);
-//                    finish();
+                    finish();
                 }
             }
         });
