@@ -4,6 +4,7 @@ package com.transmilenio.transmisurvey.activites;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.adapters.RegistroAdapter;
+import com.transmilenio.transmisurvey.fragments.AlertGuardarDatos;
 import com.transmilenio.transmisurvey.models.Cuadro;
 import com.transmilenio.transmisurvey.models.Registro;
 
@@ -29,6 +31,9 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
     private RegistroAdapter registroAdapter;
     private RealmResults<Registro> registros;
     private int  idEncuesta ;
+
+    //For dialog fragment
+    FragmentManager fm = getSupportFragmentManager();
 
     private Realm realm;
 
@@ -92,10 +97,24 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
         buttonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ListaRegistrosActivity.this, MainActivity.class);
-                startActivity(intent);
+                AlertGuardarDatos dFragment = newInstance(idEncuesta);
+                // Show DialogFragment
+                dFragment.show(fm, "Salir de Encuesta");
+//                Intent intent = new Intent(ListaRegistrosActivity.this, MainActivity.class);
+//                startActivity(intent);
             }
         });
+    }
+
+    public static AlertGuardarDatos newInstance(int id) {
+        AlertGuardarDatos f = new AlertGuardarDatos();
+
+        // Supply num input as an argument.
+        Bundle args = new Bundle();
+        args.putInt("idEncuesta", id);
+        f.setArguments(args);
+
+        return f;
     }
 
     @Override

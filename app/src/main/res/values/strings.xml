@@ -18,8 +18,12 @@
     <string name="bajan">Se Bajan</string>
     <string name="suben">Se Suben</string>
     <string name="quedan">Se Quedan</string>
+    <string name="text_salir_encuesta">Salir de Encuesta</string>
 
-    <string name="button_guardar">Guardar</string>
+    <string name="button_finalizar">Finalizar</string>
+    <string name="button_guardar">Guardar Cambios</string>
+    <string name="button_ignorar">Ignorar Cambios</string>
+    <string name="button_cancelar">Cancelar</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

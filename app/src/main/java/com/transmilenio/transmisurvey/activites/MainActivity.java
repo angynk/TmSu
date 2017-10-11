@@ -10,10 +10,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.adapters.OpcionAdapter;
+import com.transmilenio.transmisurvey.models.Cuadro;
+import com.transmilenio.transmisurvey.models.Encuesta;
 import com.transmilenio.transmisurvey.models.Opcion;
+import com.transmilenio.transmisurvey.models.Registro;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.realm.Realm;
+import io.realm.RealmList;
+import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,10 +28,19 @@ public class MainActivity extends AppCompatActivity {
     private OpcionAdapter adapter;
     private List<Opcion> albumList;
 
+    private Realm realm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        realm = Realm.getDefaultInstance();
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+           eliminarEncuesta( (int) extras.get("idEncuesta"));
+        }
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -40,6 +56,21 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         prepareAlbums();
+    }
+
+    private void eliminarEncuesta(final int idEncuesta) {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                //Eliminar Encuesta y Registros
+                RealmResults<Cuadro> rows = realm.where(Cuadro.class).equalTo("id",idEncuesta).findAll();
+                for(Cuadro cuadro: rows){
+                    RealmList<Registro> registros = cuadro.getRegistros();
+                    registros.deleteAllFromRealm();
+                }
+                rows.deleteAllFromRealm();
+            }
+        });
     }
 
     @Override

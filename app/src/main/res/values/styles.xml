@@ -38,6 +38,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="AppTheme.ButtonDialog" parent="Base.Widget.AppCompat.Button">
+        <item name="android:background">@color/colorButtonDialog</item>
+        <item name="android:textColor">@color/colorTextButton</item>
+    </style>
+
 
 
 </resources>
