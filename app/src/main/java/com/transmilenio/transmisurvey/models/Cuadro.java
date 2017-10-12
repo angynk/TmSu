@@ -2,6 +2,8 @@ package com.transmilenio.transmisurvey.models;
 
 import com.transmilenio.transmisurvey.app.MyApplication;
 
+import java.util.Date;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -12,18 +14,21 @@ public class Cuadro extends RealmObject {
 
     @PrimaryKey
     private int id;
+    @Required
     private String fecha;
     private String diaSemana;
     private String servicio;
     private String numBus;
     private int recorrido;
+    private Date now;
+    private String nombreEncuesta;
 
     private RealmList<Registro> registros;
 
     public Cuadro() {
     }
 
-    public Cuadro(String fecha, String diaSemana, String servicio, String numBus, int recorrido) {
+    public Cuadro(String fecha, String diaSemana, String servicio, String numBus, int recorrido,String nombreEncuesta) {
         this.fecha = fecha;
         this.diaSemana = diaSemana;
         this.servicio = servicio;
@@ -31,6 +36,8 @@ public class Cuadro extends RealmObject {
         this.recorrido = recorrido;
         this.id = MyApplication.cuadroID.incrementAndGet();
         this.registros = new RealmList<Registro>();
+        this.now = new Date();
+        this.nombreEncuesta = nombreEncuesta;
     }
 
     public int getId() {
@@ -85,5 +92,21 @@ public class Cuadro extends RealmObject {
 
     public void setRegistros(RealmList<Registro> registros) {
         this.registros = registros;
+    }
+
+    public Date getNow() {
+        return now;
+    }
+
+    public void setNow(Date now) {
+        this.now = now;
+    }
+
+    public String getNombreEncuesta() {
+        return nombreEncuesta;
+    }
+
+    public void setNombreEncuesta(String nombreEncuesta) {
+        this.nombreEncuesta = nombreEncuesta;
     }
 }

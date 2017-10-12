@@ -16,6 +16,7 @@
     <dimen name="songs_count">12dp</dimen>
 
     <dimen name="text_titulo_lista">18dp</dimen>
+    <dimen name="text_fecha_lista">14dp</dimen>
     <dimen name="height_list_view">60dp</dimen>
 
 </resources>

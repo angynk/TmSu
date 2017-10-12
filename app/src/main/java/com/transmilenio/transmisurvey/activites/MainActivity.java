@@ -83,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
                 if(position==0){
                     Intent intent = new Intent(MainActivity.this,ListaSurveyActivity.class);
                     startActivity(intent);
+                }else if(position==1){
+                    Intent intent = new Intent(MainActivity.this,ListaSurveyEditActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -112,6 +115,12 @@ public class MainActivity extends AppCompatActivity {
         albumList.add(a);
 
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 
 }

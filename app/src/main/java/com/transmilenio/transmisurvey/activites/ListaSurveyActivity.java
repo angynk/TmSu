@@ -63,6 +63,8 @@ public class ListaSurveyActivity extends AppCompatActivity {
                 Encuesta value = (Encuesta)adapter.getItemAtPosition(position);
                 if(value.getNombre().equals("Ascensos y Descensos Troncal")){
                     Intent intent = new Intent(ListaSurveyActivity.this, SurveyActivity.class);
+                    intent.putExtra("nombre","Ascensos y Descensos Troncal");
+                    intent.putExtra("tipo","Nuevo");
                     startActivity(intent);
                 }else{
                             realm.beginTransaction();
@@ -74,5 +76,11 @@ public class ListaSurveyActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 }

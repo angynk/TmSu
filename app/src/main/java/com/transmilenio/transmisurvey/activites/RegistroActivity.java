@@ -172,5 +172,11 @@ public class RegistroActivity extends AppCompatActivity  {
         return lista;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
+    }
+
 
 }

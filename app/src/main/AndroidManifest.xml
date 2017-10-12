@@ -22,9 +22,7 @@
         <activity
             android:name=".activites.SurveyActivity"
             android:parentActivityName=".activites.ListaSurveyActivity"
-            android:screenOrientation="portrait" >
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activites.ListaRegistrosActivity"
             android:parentActivityName=".activites.SurveyActivity"
@@ -36,19 +34,27 @@
         <activity
             android:name=".activites.RegistroActivity"
             android:parentActivityName=".activites.ListaRegistrosActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activites.ListaRegistrosActivity" />
         </activity>
-
         <activity
             android:name=".activites.ListaSurveyActivity"
             android:parentActivityName=".activites.MainActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activites.MainActivity"  />
+                android:value=".activites.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".activites.ListaSurveyEditActivity"
+            android:parentActivityName=".activites.MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activites.MainActivity" />
         </activity>
     </application>
 

@@ -68,7 +68,8 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Toast.makeText(getApplicationContext(),"Back button clicked", Toast.LENGTH_SHORT).show();
+                AlertGuardarDatos dFragment = newInstance(idEncuesta);
+                dFragment.show(fm, "Salir de Encuesta");
                 break;
         }
         return true;
@@ -98,10 +99,7 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
             @Override
             public void onClick(View v) {
                 AlertGuardarDatos dFragment = newInstance(idEncuesta);
-                // Show DialogFragment
                 dFragment.show(fm, "Salir de Encuesta");
-//                Intent intent = new Intent(ListaRegistrosActivity.this, MainActivity.class);
-//                startActivity(intent);
             }
         });
     }
@@ -122,5 +120,10 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
         registroAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
+    }
 
 }

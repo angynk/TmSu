@@ -31,6 +31,7 @@ import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmList;
+import io.realm.RealmResults;
 
 
 public class SurveyActivity extends AppCompatActivity {
@@ -40,6 +41,10 @@ public class SurveyActivity extends AppCompatActivity {
    private EditText editTextNumBuses, editTextRecorrido;
    private Button buttonContinuar;
    private Realm realm;
+    private String nombreEncuesta;
+    private String tipoEncuesta;
+    private int idEncuesta;
+    private  Cuadro encuesta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,30 +52,32 @@ public class SurveyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_survey);
 
         realm = Realm.getDefaultInstance();
-
-//        realm.beginTransaction();
-//        realm.deleteAll();
-//        realm.commitTransaction();
-
         bindUI();
         bindEventos();
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        tipoEncuesta = "Nuevo";
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            tipoEncuesta =(String) extras.get("tipo");
+            if (tipoEncuesta.equals("Nuevo")){
+                nombreEncuesta = (String) extras.get("nombre");
+            }else{
+                idEncuesta = (int) extras.get("id");
+                escribirInformacionActual();
+            }
+        }
+
+
 
 
     }
 
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Toast.makeText(getApplicationContext(),"Back button clicked", Toast.LENGTH_SHORT).show();
-                break;
-        }
-        return true;
+    private void escribirInformacionActual() {
+        encuesta = realm.where(Cuadro.class).equalTo("id",idEncuesta).findFirst();
+        editTextNumBuses.setText(encuesta.getNumBus());
+        editTextRecorrido.setText(encuesta.getRecorrido());
+        textFecha.setText(encuesta.getFecha());
+        //servicios.set
     }
 
 
@@ -88,7 +95,12 @@ public class SurveyActivity extends AppCompatActivity {
                         || textFecha.toString().trim().equals("")){
                         Toast.makeText(SurveyActivity.this,"Complete todos los campos",Toast.LENGTH_LONG).show();
                 }else{
-                    int  idEncuesta = crearObjetoInfoBase();
+                    if(tipoEncuesta.equals("Nuevo")){
+                        idEncuesta = crearObjetoInfoBase(new Cuadro());
+                    }else{
+                        idEncuesta = crearObjetoInfoBase(encuesta);
+                    }
+
                     Intent intent = new Intent(SurveyActivity.this,ListaRegistrosActivity.class);
                     intent.putExtra("idEncuesta",  idEncuesta);
                     startActivity(intent);
@@ -102,19 +114,30 @@ public class SurveyActivity extends AppCompatActivity {
 
 
 
-    private int crearObjetoInfoBase(){
-        Cuadro cuadro = new Cuadro();
+    private int crearObjetoInfoBase(final Cuadro cuadro){
+
+
+
         cuadro.setServicio(servicios.getSelectedItem().toString());
         cuadro.setDiaSemana(diaSemana.getSelectedItem().toString());
-        cuadro.setFecha(textFecha.toString());
+        cuadro.setFecha(textFecha.getText().toString());
         cuadro.setNumBus(editTextNumBuses.getText().toString());
         cuadro.setRecorrido(Integer.parseInt(editTextRecorrido.getText().toString()));
         cuadro.setRegistros(new RealmList<Registro>());
+        cuadro.setNombreEncuesta(nombreEncuesta);
 
-        realm.beginTransaction();
-        realm.copyToRealm(cuadro);
-        realm.commitTransaction();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.copyToRealm(cuadro);
+            }
+        });
 
+//        realm.beginTransaction();
+//        realm.insert(cuadro);
+//      //  realm.copyToRealm(cuadro);
+//        realm.commitTransaction();
+        realm.where(Cuadro.class).findAll();
         return cuadro.getId();
 
 //        return 0;
@@ -183,5 +206,11 @@ public class SurveyActivity extends AppCompatActivity {
         list.add("H17");
         list.add("L80");
         return list;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 }
