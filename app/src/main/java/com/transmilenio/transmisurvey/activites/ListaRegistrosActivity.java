@@ -31,6 +31,7 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
     private RegistroAdapter registroAdapter;
     private RealmResults<Registro> registros;
     private int  idEncuesta ;
+    private String tipoEncuesta;
 
     //For dialog fragment
     FragmentManager fm = getSupportFragmentManager();
@@ -44,6 +45,7 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
         Bundle extras = getIntent().getExtras();
         if(extras != null){
             idEncuesta = (int) extras.get("idEncuesta");
+            tipoEncuesta = (String) extras.get("tipo");
         }
 
         //DB
@@ -68,7 +70,7 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                AlertGuardarDatos dFragment = newInstance(idEncuesta);
+                AlertGuardarDatos dFragment = newInstance(idEncuesta,tipoEncuesta);
                 dFragment.show(fm, "Salir de Encuesta");
                 break;
         }
@@ -98,18 +100,19 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
         buttonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertGuardarDatos dFragment = newInstance(idEncuesta);
+                AlertGuardarDatos dFragment = newInstance(idEncuesta,tipoEncuesta);
                 dFragment.show(fm, "Salir de Encuesta");
             }
         });
     }
 
-    public static AlertGuardarDatos newInstance(int id) {
+    public static AlertGuardarDatos newInstance(int id,String tipoEncuesta) {
         AlertGuardarDatos f = new AlertGuardarDatos();
 
         // Supply num input as an argument.
         Bundle args = new Bundle();
         args.putInt("idEncuesta", id);
+        args.putString("tipo", tipoEncuesta);
         f.setArguments(args);
 
         return f;

@@ -23,6 +23,7 @@ public class AlertGuardarDatos extends DialogFragment {
 
     private Button buttonGuardar,buttonCancelar,buttonIgnorar;
     private int idEncuesta;
+    private String tipoEncuesta;
 
 
     @Override
@@ -31,6 +32,7 @@ public class AlertGuardarDatos extends DialogFragment {
         View rootView = inflater.inflate(R.layout.dialogguardar, container,
                 false);
         idEncuesta =  getArguments().getInt("idEncuesta");
+        tipoEncuesta = getArguments().getString("tipo");
         return rootView;
     }
 
@@ -60,6 +62,10 @@ public class AlertGuardarDatos extends DialogFragment {
                 startActivity(intent);
             }
         });
+
+        if(!tipoEncuesta.equals("Nuevo")){
+            buttonIgnorar.setVisibility(View.GONE);
+        }
 
         buttonIgnorar.setOnClickListener(new View.OnClickListener() {
             @Override

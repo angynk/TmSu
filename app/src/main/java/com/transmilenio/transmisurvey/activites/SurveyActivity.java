@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,10 +42,10 @@ public class SurveyActivity extends AppCompatActivity {
    private EditText editTextNumBuses, editTextRecorrido;
    private Button buttonContinuar;
    private Realm realm;
-    private String nombreEncuesta;
-    private String tipoEncuesta;
-    private int idEncuesta;
-    private  Cuadro encuesta;
+   private String nombreEncuesta;
+   private String tipoEncuesta;
+   private int idEncuesta;
+   private  Cuadro encuesta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +76,10 @@ public class SurveyActivity extends AppCompatActivity {
     private void escribirInformacionActual() {
         encuesta = realm.where(Cuadro.class).equalTo("id",idEncuesta).findFirst();
         editTextNumBuses.setText(encuesta.getNumBus());
-        editTextRecorrido.setText(encuesta.getRecorrido());
+        editTextRecorrido.setText(Integer.toString(encuesta.getRecorrido()));
         textFecha.setText(encuesta.getFecha());
-        //servicios.set
+        servicios.setSelection(getIndex(servicios, encuesta.getServicio()));
+        diaSemana.setSelection(getIndex(diaSemana, encuesta.getDiaSemana()));
     }
 
 
@@ -96,13 +98,15 @@ public class SurveyActivity extends AppCompatActivity {
                         Toast.makeText(SurveyActivity.this,"Complete todos los campos",Toast.LENGTH_LONG).show();
                 }else{
                     if(tipoEncuesta.equals("Nuevo")){
-                        idEncuesta = crearObjetoInfoBase(new Cuadro());
+                        Cuadro cuadro = new Cuadro();
+                        idEncuesta = crearObjetoInfoBase(cuadro);
                     }else{
                         idEncuesta = crearObjetoInfoBase(encuesta);
                     }
 
                     Intent intent = new Intent(SurveyActivity.this,ListaRegistrosActivity.class);
                     intent.putExtra("idEncuesta",  idEncuesta);
+                    intent.putExtra("tipo",tipoEncuesta);
                     startActivity(intent);
                     finish();
                 }
@@ -116,31 +120,20 @@ public class SurveyActivity extends AppCompatActivity {
 
     private int crearObjetoInfoBase(final Cuadro cuadro){
 
-
-
+        realm.beginTransaction();
         cuadro.setServicio(servicios.getSelectedItem().toString());
         cuadro.setDiaSemana(diaSemana.getSelectedItem().toString());
         cuadro.setFecha(textFecha.getText().toString());
         cuadro.setNumBus(editTextNumBuses.getText().toString());
         cuadro.setRecorrido(Integer.parseInt(editTextRecorrido.getText().toString()));
-        cuadro.setRegistros(new RealmList<Registro>());
-        cuadro.setNombreEncuesta(nombreEncuesta);
+        if(tipoEncuesta.endsWith("Nuevo")){
+            cuadro.setRegistros(new RealmList<Registro>());
+            cuadro.setNombreEncuesta(nombreEncuesta);
+        }
 
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                realm.copyToRealm(cuadro);
-            }
-        });
-
-//        realm.beginTransaction();
-//        realm.insert(cuadro);
-//      //  realm.copyToRealm(cuadro);
-//        realm.commitTransaction();
-        realm.where(Cuadro.class).findAll();
+        realm.copyToRealmOrUpdate(cuadro);
+        realm.commitTransaction();
         return cuadro.getId();
-
-//        return 0;
     }
 
     private void bindUI() {
@@ -178,6 +171,21 @@ public class SurveyActivity extends AppCompatActivity {
         servicios.setTitle("Seleccione Uno");
         servicios.setPositiveButton("OK");
 
+
+    }
+
+
+    // Change selection in Spinner by Value
+    private int getIndex(Spinner spinner, String myString){
+
+        int index = 0;
+
+        for (int i=0;i<spinner.getCount();i++){
+            if (spinner.getItemAtPosition(i).equals(myString)){
+                index = i;
+            }
+        }
+        return index;
     }
 
 

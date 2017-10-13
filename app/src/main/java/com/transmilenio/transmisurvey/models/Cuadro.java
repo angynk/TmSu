@@ -26,6 +26,7 @@ public class Cuadro extends RealmObject {
     private RealmList<Registro> registros;
 
     public Cuadro() {
+        this.id = MyApplication.cuadroID.incrementAndGet();
     }
 
     public Cuadro(String fecha, String diaSemana, String servicio, String numBus, int recorrido,String nombreEncuesta) {

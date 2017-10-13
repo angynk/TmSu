@@ -62,8 +62,8 @@ public class SurveyEditAdapter extends BaseAdapter {
         }
 
         Cuadro encuesta = lista.get(position);
-        vh.titulo.setText(encuesta.getNombreEncuesta());
-        vh.fecha.setText(encuesta.getFecha());
+        vh.titulo.setText(encuesta.getNombreEncuesta()+" - "+encuesta.getServicio());
+        vh.fecha.setText("No."+encuesta.getRecorrido()+" - "+encuesta.getFecha());
 
         return convertView;
     }

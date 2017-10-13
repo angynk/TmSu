@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if(extras != null){
-           eliminarEncuesta( (int) extras.get("idEncuesta"));
+               eliminarEncuesta( (int) extras.get("idEncuesta"));
         }
 
 
