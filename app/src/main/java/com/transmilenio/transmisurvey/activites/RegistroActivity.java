@@ -101,6 +101,8 @@ public class RegistroActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 agregarRegistro();
                 Intent intent = new Intent(RegistroActivity.this, ListaRegistrosActivity.class);
+                intent.putExtra("idEncuesta",idCuadroEncuesta);
+                intent.putExtra("tipo","Nuevo");
                 startActivity(intent);
             }
         });

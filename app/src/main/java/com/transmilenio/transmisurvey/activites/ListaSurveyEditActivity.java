@@ -60,7 +60,6 @@ public class ListaSurveyEditActivity extends AppCompatActivity implements RealmC
                 intent.putExtra("id",value.getId());
                 intent.putExtra("tipo","Edicion");
                 startActivity(intent);
-
             }
         });
 

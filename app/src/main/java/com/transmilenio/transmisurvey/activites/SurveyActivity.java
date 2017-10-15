@@ -97,14 +97,17 @@ public class SurveyActivity extends AppCompatActivity {
                         || textFecha.toString().trim().equals("")){
                         Toast.makeText(SurveyActivity.this,"Complete todos los campos",Toast.LENGTH_LONG).show();
                 }else{
+                    Intent intent = null;
                     if(tipoEncuesta.equals("Nuevo")){
                         Cuadro cuadro = new Cuadro();
                         idEncuesta = crearObjetoInfoBase(cuadro);
+                        intent = new Intent(SurveyActivity.this,ListaRegistrosActivity.class);
                     }else{
                         idEncuesta = crearObjetoInfoBase(encuesta);
+                        intent = new Intent(SurveyActivity.this,ListaRegistrosEditActivity.class);
                     }
 
-                    Intent intent = new Intent(SurveyActivity.this,ListaRegistrosActivity.class);
+
                     intent.putExtra("idEncuesta",  idEncuesta);
                     intent.putExtra("tipo",tipoEncuesta);
                     startActivity(intent);
