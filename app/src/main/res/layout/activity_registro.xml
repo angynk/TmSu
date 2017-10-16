@@ -41,7 +41,7 @@
             android:paddingRight="16dp">
 
 
-            <Button
+            <ImageButton
                 android:id="@+id/button_llegada"
                 style="@style/AppTheme.ButtonObtDatos"
                 android:layout_width="wrap_content"
@@ -52,18 +52,17 @@
                 android:layout_marginLeft="22dp"
                 android:layout_marginStart="22dp"
                 android:layout_marginTop="31dp"
-                android:text="@string/llegada" />
+                android:src="@mipmap/ic_clock"/>
 
             <TextView
                 android:id="@+id/textView_llegada"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="103dp"
-                android:layout_marginRight="103dp"
-                android:layout_marginTop="44dp"
-                android:text="" />
+                android:layout_marginTop="14dp"
+                android:text="@string/llegada"
+                android:layout_alignTop="@+id/button_llegada"
+                android:layout_alignLeft="@+id/textView_salida"
+                android:layout_alignStart="@+id/textView_salida" />
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/spinner_estacion"
@@ -99,6 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:maxLength="3"
                 android:inputType="number"
                 android:layout_alignBaseline="@+id/textView_bajan"
                 android:layout_alignBottom="@+id/textView_bajan"
@@ -112,6 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:maxLength="3"
                 android:inputType="number"
                 android:layout_centerVertical="true"
                 android:layout_alignLeft="@+id/editText_bajan"
@@ -135,6 +136,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:maxLength="3"
                 android:inputType="number"
                 android:layout_below="@+id/editText_suben"
                 android:layout_alignLeft="@+id/editText_suben"
@@ -154,28 +156,28 @@
                 android:layout_alignLeft="@+id/textView_suben"
                 android:layout_alignStart="@+id/textView_suben" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/button_salida"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/salida"
                 android:layout_below="@+id/editText_quedan"
                 android:layout_toLeftOf="@+id/editText_quedan"
                 android:layout_toStartOf="@+id/editText_quedan"
                 android:layout_marginTop="17dp"
+                android:src="@mipmap/ic_clock"
                 style="@style/AppTheme.ButtonObtDatos"/>
 
             <TextView
                 android:id="@+id/textView_salida"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:layout_alignBaseline="@+id/button_salida"
+                android:text="@string/salida"
                 android:layout_alignBottom="@+id/button_salida"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="89dp"
-                android:layout_marginEnd="89dp" />
+                android:layout_toRightOf="@+id/button_salida"
+                android:layout_toEndOf="@+id/button_salida"
+                android:layout_marginLeft="14dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginBottom="14dp" />
 
 
         </RelativeLayout>

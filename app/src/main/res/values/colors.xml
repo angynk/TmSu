@@ -9,6 +9,7 @@
     <color name="colorList">#80a556</color>
 
     <color name="colorButtonNormal">#757575</color>
+    <color name="colorButtonObt">#f75959</color>
     <color name="colorTextButton">#FFFFFF</color>
 
     <color name="colorButtonDialog">#829685</color>

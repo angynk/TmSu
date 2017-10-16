@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +36,7 @@ public class RegistroActivity extends AppCompatActivity  {
 
     private SearchableSpinner estacion;
     private List<String> diasSemana;
-    private Button buttonLlegada, buttonSalida;
+    private ImageButton buttonLlegada, buttonSalida;
     private TextView textLlegada,textSalida;
     private EditText seBajan,seSuben,seQuedan;
     private FloatingActionButton buttonNuevo;
@@ -64,8 +65,8 @@ public class RegistroActivity extends AppCompatActivity  {
     }
 
     private void bindUI() {
-        buttonLlegada = (Button) findViewById(R.id.button_llegada);
-        buttonSalida = (Button) findViewById(R.id.button_salida);
+        buttonLlegada = (ImageButton) findViewById(R.id.button_llegada);
+        buttonSalida = (ImageButton) findViewById(R.id.button_salida);
         textLlegada = (TextView) findViewById(R.id.textView_llegada);
         textSalida = (TextView) findViewById(R.id.textView_salida);
         seBajan = (EditText) findViewById(R.id.editText_bajan);

@@ -7,13 +7,14 @@
     <string name="diaSemana">Día Semana</string>
     <string name="servicio">Servicio</string>
     <string name="numBus">Número Bus</string>
+    <string name="text_num_puerta">Número Puerta</string>
     <string name="recorrido">Recorrido</string>
     <string name="infoBase">Información Base</string>
     <string name="listRegistro">Registros Encuesta</string>
     <string name="banner_encuestas">Encuestas</string>
     <string name="nuevoRegistro">Nuevo Registro</string>
-    <string name="llegada">Llegada</string>
-    <string name="salida">Salida</string>
+    <string name="llegada">Hora Llegada</string>
+    <string name="salida">Hora Salida</string>
     <string name="estacion">Estación</string>
     <string name="bajan">Se Bajan</string>
     <string name="suben">Se Suben</string>

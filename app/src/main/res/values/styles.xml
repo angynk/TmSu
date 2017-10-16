@@ -20,7 +20,7 @@
     </style>
 
     <style name="AppTheme.ButtonObtDatos" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:background">@color/colorButtonObt</item>
         <item name="android:textColor">@color/colorTextButton</item>
     </style>
 

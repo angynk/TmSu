@@ -39,7 +39,7 @@ public class SurveyActivity extends AppCompatActivity {
 
    private SearchableSpinner diaSemana,servicios;
    private TextView textFecha;
-   private EditText editTextNumBuses, editTextRecorrido;
+   private EditText editTextNumBuses, editTextRecorrido, editTextNumPuerta;
    private Button buttonContinuar;
    private Realm realm;
    private String nombreEncuesta;
@@ -77,6 +77,7 @@ public class SurveyActivity extends AppCompatActivity {
         encuesta = realm.where(Cuadro.class).equalTo("id",idEncuesta).findFirst();
         editTextNumBuses.setText(encuesta.getNumBus());
         editTextRecorrido.setText(Integer.toString(encuesta.getRecorrido()));
+        editTextNumPuerta.setText(Integer.toString(encuesta.getRecorrido()));
         textFecha.setText(encuesta.getFecha());
         servicios.setSelection(getIndex(servicios, encuesta.getServicio()));
         diaSemana.setSelection(getIndex(diaSemana, encuesta.getDiaSemana()));
@@ -128,6 +129,7 @@ public class SurveyActivity extends AppCompatActivity {
         cuadro.setDiaSemana(diaSemana.getSelectedItem().toString());
         cuadro.setFecha(textFecha.getText().toString());
         cuadro.setNumBus(editTextNumBuses.getText().toString());
+        cuadro.setNumPuerta(Integer.parseInt(editTextNumPuerta.getText().toString()));
         cuadro.setRecorrido(Integer.parseInt(editTextRecorrido.getText().toString()));
         if(tipoEncuesta.endsWith("Nuevo")){
             cuadro.setRegistros(new RealmList<Registro>());
@@ -143,6 +145,7 @@ public class SurveyActivity extends AppCompatActivity {
         textFecha = (TextView) findViewById(R.id.text_fecha);
         editTextNumBuses = (EditText) findViewById(R.id.editText_numBus);
         editTextRecorrido = (EditText) findViewById(R.id.editText_recorrido);
+        editTextNumPuerta = (EditText) findViewById(R.id.editText_num_puerta);
         buttonContinuar = (Button) findViewById(R.id.button_continuar);
 
         agregarItemsListas();

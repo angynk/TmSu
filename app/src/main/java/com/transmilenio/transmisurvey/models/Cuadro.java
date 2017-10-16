@@ -20,6 +20,7 @@ public class Cuadro extends RealmObject {
     private String servicio;
     private String numBus;
     private int recorrido;
+    private int numPuerta;
     private Date now;
     private String nombreEncuesta;
 
@@ -109,5 +110,13 @@ public class Cuadro extends RealmObject {
 
     public void setNombreEncuesta(String nombreEncuesta) {
         this.nombreEncuesta = nombreEncuesta;
+    }
+
+    public int getNumPuerta() {
+        return numPuerta;
+    }
+
+    public void setNumPuerta(int numPuerta) {
+        this.numPuerta = numPuerta;
     }
 }
