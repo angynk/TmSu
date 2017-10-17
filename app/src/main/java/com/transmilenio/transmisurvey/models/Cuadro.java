@@ -6,6 +6,7 @@ import java.util.Date;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
 
@@ -21,6 +22,10 @@ public class Cuadro extends RealmObject {
     private String numBus;
     private int recorrido;
     private int numPuerta;
+
+    @Ignore
+    private boolean isSelected;
+
     private Date now;
     private String nombreEncuesta;
 
@@ -118,5 +123,13 @@ public class Cuadro extends RealmObject {
 
     public void setNumPuerta(int numPuerta) {
         this.numPuerta = numPuerta;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }
