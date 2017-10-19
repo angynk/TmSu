@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.transmilenio.transmisurvey.R;
-import com.transmilenio.transmisurvey.models.Cuadro;
+import com.transmilenio.transmisurvey.models.db.Cuadro;
 
 import java.util.ArrayList;
 

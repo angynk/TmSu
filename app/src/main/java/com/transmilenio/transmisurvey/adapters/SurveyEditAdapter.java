@@ -8,10 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.transmilenio.transmisurvey.R;
-import com.transmilenio.transmisurvey.models.Cuadro;
-import com.transmilenio.transmisurvey.models.Encuesta;
-
-import java.util.List;
+import com.transmilenio.transmisurvey.models.db.Cuadro;
 
 import io.realm.RealmResults;
 

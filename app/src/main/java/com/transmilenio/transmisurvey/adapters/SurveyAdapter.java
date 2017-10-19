@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.transmilenio.transmisurvey.R;
 
 
-import com.transmilenio.transmisurvey.models.Encuesta;
+import com.transmilenio.transmisurvey.models.db.Encuesta;
 
 import java.util.List;
 

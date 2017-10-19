@@ -2,8 +2,8 @@ package com.transmilenio.transmisurvey.app;
 
 import android.app.Application;
 
-import com.transmilenio.transmisurvey.models.Cuadro;
-import com.transmilenio.transmisurvey.models.Registro;
+import com.transmilenio.transmisurvey.models.db.Cuadro;
+import com.transmilenio.transmisurvey.models.db.Registro;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

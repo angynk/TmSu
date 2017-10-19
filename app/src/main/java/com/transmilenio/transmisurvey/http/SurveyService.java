@@ -1,6 +1,7 @@
 package com.transmilenio.transmisurvey.http;
 
-import com.transmilenio.transmisurvey.models.Resultado;
+import com.transmilenio.transmisurvey.models.db.Resultado;
+import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -12,6 +13,6 @@ import retrofit2.http.POST;
 
 public interface SurveyService {
 
-    @POST("test/new/")
-    Call<Resultado> sendSurvey(@Body String res);
+    @POST("survey/new/")
+    Call<Resultado> sendSurvey(@Body CuadroEncuesta res);
 }

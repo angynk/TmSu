@@ -14,7 +14,7 @@ import java.util.List;
 
 import com.bumptech.glide.Glide;
 import com.transmilenio.transmisurvey.R;
-import com.transmilenio.transmisurvey.models.Opcion;
+import com.transmilenio.transmisurvey.models.db.Opcion;
 
 
 public class OpcionAdapter extends RecyclerView.Adapter<OpcionAdapter.MyViewHolder> {

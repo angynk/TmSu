@@ -1,4 +1,4 @@
-package com.transmilenio.transmisurvey.models;
+package com.transmilenio.transmisurvey.models.db;
 
 /**
  * Created by nataly on 05/10/2017.

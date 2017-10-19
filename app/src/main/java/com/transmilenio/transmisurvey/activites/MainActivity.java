@@ -6,14 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.adapters.OpcionAdapter;
-import com.transmilenio.transmisurvey.models.Cuadro;
-import com.transmilenio.transmisurvey.models.Encuesta;
-import com.transmilenio.transmisurvey.models.Opcion;
-import com.transmilenio.transmisurvey.models.Registro;
+import com.transmilenio.transmisurvey.models.db.Cuadro;
+import com.transmilenio.transmisurvey.models.db.Opcion;
+import com.transmilenio.transmisurvey.models.db.Registro;
 
 import java.util.ArrayList;
 import java.util.List;

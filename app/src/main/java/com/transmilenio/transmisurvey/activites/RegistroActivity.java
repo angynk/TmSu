@@ -4,22 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import com.transmilenio.transmisurvey.R;
-import com.transmilenio.transmisurvey.adapters.RegistroAdapter;
-import com.transmilenio.transmisurvey.models.Cuadro;
-import com.transmilenio.transmisurvey.models.Encuesta;
-import com.transmilenio.transmisurvey.models.Registro;
+import com.transmilenio.transmisurvey.models.db.Cuadro;
+import com.transmilenio.transmisurvey.models.db.Registro;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,9 +22,6 @@ import java.util.Date;
 import java.util.List;
 
 import io.realm.Realm;
-import io.realm.RealmChangeListener;
-import io.realm.RealmList;
-import io.realm.RealmResults;
 
 
 public class RegistroActivity extends AppCompatActivity  {

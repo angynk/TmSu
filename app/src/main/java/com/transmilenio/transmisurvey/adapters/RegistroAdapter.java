@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.transmilenio.transmisurvey.R;
-import com.transmilenio.transmisurvey.models.Registro;
+import com.transmilenio.transmisurvey.models.db.Registro;
 
 import java.util.List;
 

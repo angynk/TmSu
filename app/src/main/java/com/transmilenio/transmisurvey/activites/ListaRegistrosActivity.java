@@ -11,18 +11,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.adapters.RegistroAdapter;
 import com.transmilenio.transmisurvey.fragments.AlertGuardarDatos;
-import com.transmilenio.transmisurvey.models.Cuadro;
-import com.transmilenio.transmisurvey.models.Registro;
+import com.transmilenio.transmisurvey.models.db.Cuadro;
+import com.transmilenio.transmisurvey.models.db.Registro;
 
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmList;
-import io.realm.RealmResults;
 
 public class ListaRegistrosActivity extends AppCompatActivity implements RealmChangeListener<RealmList<Registro>> {
 

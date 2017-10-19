@@ -1,4 +1,4 @@
-package com.transmilenio.transmisurvey.models;
+package com.transmilenio.transmisurvey.models.db;
 
 import com.transmilenio.transmisurvey.app.MyApplication;
 
