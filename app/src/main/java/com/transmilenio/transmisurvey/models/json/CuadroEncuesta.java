@@ -13,6 +13,7 @@ public class CuadroEncuesta implements Serializable {
     private String num_bus;
     private int recorrido;
     private int num_puerta;
+    private int id_realm;
 
     private List<RegistroEncuesta> registros;
 
@@ -81,5 +82,13 @@ public class CuadroEncuesta implements Serializable {
 
     public void setRegistros(List<RegistroEncuesta> registros) {
         this.registros = registros;
+    }
+
+    public int getId_realm() {
+        return id_realm;
+    }
+
+    public void setId_realm(int id_realm) {
+        this.id_realm = id_realm;
     }
 }

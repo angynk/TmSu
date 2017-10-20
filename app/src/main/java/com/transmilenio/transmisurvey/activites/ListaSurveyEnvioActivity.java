@@ -1,6 +1,9 @@
 
 package com.transmilenio.transmisurvey.activites;
 
+import android.app.ProgressDialog;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,13 +14,16 @@ import android.widget.Toast;
 
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.adapters.SurveySendAdapter;
+import com.transmilenio.transmisurvey.http.API;
 import com.transmilenio.transmisurvey.http.SurveyService;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Registro;
 import com.transmilenio.transmisurvey.models.db.Resultado;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
+import com.transmilenio.transmisurvey.models.json.EncuestasTerminadas;
 import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -62,12 +68,9 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
         buttonEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                surveyAdapter.getSelectedItems();
                 enviarDatosEncuesta();
             }
         });
-
-//        listView.setOnItemClickListener(onItemClickListener());
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
@@ -84,33 +87,57 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
 
     private void enviarDatosEncuesta() {
         ArrayList<Cuadro> selectedItems = surveyAdapter.getSelectedItems();
+        progressDoalog = new ProgressDialog(ListaSurveyEnvioActivity.this);
+        progressDoalog.setMessage("Its loading....");
+        progressDoalog.setTitle("ProgressDialog bar example");
+        progressDoalog.setCanceledOnTouchOutside(false);
+        progressDoalog.show();
+
+        EncuestasTerminadas encuestas = new EncuestasTerminadas();
+        ArrayList<CuadroEncuesta> valores = new ArrayList<>();
         for(Cuadro cuadro:selectedItems){
-            enviarEncuesta(cuadro);
+            valores.add(fromCuadroToJson(cuadro));
         }
+        encuestas.setEncuestas(valores);
+        enviarEncuesta(encuestas);
+
+    }
+
+    ProgressDialog progressDoalog;
+
+
+    private void enviarEncuesta(final EncuestasTerminadas encuestas) {
+        SurveyService surveyService = API.getApi().create(SurveyService.class);
+        Call<List<Resultado>> call = surveyService.sendSurvey(encuestas);
+               call.enqueue(new Callback<List<Resultado>>() {
+            @Override
+            public void onResponse(Call<List<Resultado>> call, Response<List<Resultado>> response) {
+                List<Resultado> resultado = response.body();
+                eliminarResultados(resultado);
+                progressDoalog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<List<Resultado>> call, Throwable t) {
+                progressDoalog.dismiss();
+            }
+        });
+
+
 
 
     }
 
-    private void enviarEncuesta(Cuadro cuadro) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/TmAPI/") // Localhost para android
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        SurveyService surveyService = retrofit.create(SurveyService.class);
-        CuadroEncuesta request = fromCuadroToJson(cuadro);
-        Call<Resultado> call = surveyService.sendSurvey(request);
-        call.enqueue(new Callback<Resultado>() {
-            @Override
-            public void onResponse(Call<Resultado> call, Response<Resultado> response) {
-                Resultado resultado = response.body();
-                Toast.makeText(ListaSurveyEnvioActivity.this,resultado.getMensaje(),Toast.LENGTH_LONG);
+    private void eliminarResultados(List<Resultado> resultado) {
+        for(Resultado resul:resultado){
+            if(resul.getId()!=-1){
+                Cuadro cuadro = realm.where(Cuadro.class).equalTo("id", resul.getId()).findFirst();
+                realm.beginTransaction();
+                cuadro.deleteFromRealm();
+                realm.commitTransaction();
             }
-
-            @Override
-            public void onFailure(Call<Resultado> call, Throwable t) {
-                Toast.makeText(ListaSurveyEnvioActivity.this,"No funciono",Toast.LENGTH_LONG);
-            }
-        });
+        }
+        surveyAdapter.setSelectedItems(new ArrayList<Cuadro>());
     }
 
     private CuadroEncuesta fromCuadroToJson(Cuadro cuadro) {
@@ -122,6 +149,7 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
         request.setFecha_encuesta(cuadro.getFecha());
         request.setRecorrido(cuadro.getRecorrido());
         request.setServicio(cuadro.getServicio());
+        request.setId_realm(cuadro.getId());
 
         List<RegistroEncuesta> listaRegistros = new ArrayList<>();
         for(Registro registro: cuadro.getRegistros()){

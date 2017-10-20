@@ -79,7 +79,6 @@ public class SurveySendAdapter  extends BaseAdapter {
 //                View tempview = (View) vh.selection.getTag(R.integer.btnplusview);
 //                TextView tv = (TextView) tempview.findViewById(R.id.animal);
                 Integer pos = (Integer)  vh.selection.getTag();
-                Toast.makeText(context, "Checkbox "+pos+" clicked!", Toast.LENGTH_SHORT).show();
                 Cuadro cuadro = lista.get(pos);
                 if(selectedItems.contains(cuadro)){
                     selectedItems.remove(cuadro);
