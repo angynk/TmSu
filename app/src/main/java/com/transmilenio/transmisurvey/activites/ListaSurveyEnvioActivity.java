@@ -1,9 +1,12 @@
 
 package com.transmilenio.transmisurvey.activites;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -88,8 +91,8 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
     private void enviarDatosEncuesta() {
         ArrayList<Cuadro> selectedItems = surveyAdapter.getSelectedItems();
         progressDoalog = new ProgressDialog(ListaSurveyEnvioActivity.this);
-        progressDoalog.setMessage("Its loading....");
-        progressDoalog.setTitle("ProgressDialog bar example");
+        progressDoalog.setMessage("Enviando....");
+        progressDoalog.setTitle("Encuestas");
         progressDoalog.setCanceledOnTouchOutside(false);
         progressDoalog.show();
 
@@ -115,17 +118,29 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
                 List<Resultado> resultado = response.body();
                 eliminarResultados(resultado);
                 progressDoalog.dismiss();
+                showAlertDialog("Encuestas Enviadas");
             }
 
             @Override
             public void onFailure(Call<List<Resultado>> call, Throwable t) {
                 progressDoalog.dismiss();
+                showAlertDialog("Encuestas No Enviadas");
             }
         });
 
+    }
 
 
-
+    private void showAlertDialog(String mensaje){
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Resultados del Envio");
+        alertDialog.setMessage(mensaje);
+        alertDialog.setButton(Dialog.BUTTON_POSITIVE,"ACEPTAR", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog,int which) {
+                finish();
+            }
+        });
+        alertDialog.show();
     }
 
     private void eliminarResultados(List<Resultado> resultado) {
