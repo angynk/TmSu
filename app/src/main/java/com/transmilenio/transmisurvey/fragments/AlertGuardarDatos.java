@@ -14,6 +14,8 @@ import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.activites.ListaRegistrosActivity;
 import com.transmilenio.transmisurvey.activites.MainActivity;
 import com.transmilenio.transmisurvey.activites.RegistroActivity;
+import com.transmilenio.transmisurvey.models.util.ExtrasID;
+import com.transmilenio.transmisurvey.models.util.Mensajes;
 
 /**
  * Created by nataly on 10/10/2017.
@@ -31,8 +33,8 @@ public class AlertGuardarDatos extends DialogFragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.dialogguardar, container,
                 false);
-        idEncuesta =  getArguments().getInt("idEncuesta");
-        tipoEncuesta = getArguments().getString("tipo");
+        idEncuesta =  getArguments().getInt(ExtrasID.EXTRA_ID_ENCUESTA);
+        tipoEncuesta = getArguments().getString(ExtrasID.EXTRA_TIPO);
         return rootView;
     }
 
@@ -41,7 +43,7 @@ public class AlertGuardarDatos extends DialogFragment {
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getDialog().setTitle("Salir de Encuesta");
+        getDialog().setTitle(Mensajes.MSG_SALIR_ENCUESTA);
 
         buttonGuardar = (Button) view.findViewById(R.id.button_guardar_alert);
         buttonCancelar = (Button) view.findViewById(R.id.button_cancelar_alert);
@@ -63,7 +65,7 @@ public class AlertGuardarDatos extends DialogFragment {
             }
         });
 
-        if(!tipoEncuesta.equals("Nuevo")){
+        if(!tipoEncuesta.equals(ExtrasID.VALOR_NUEVO)){
             buttonIgnorar.setVisibility(View.GONE);
         }
 
@@ -71,7 +73,7 @@ public class AlertGuardarDatos extends DialogFragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(view.getContext(), MainActivity.class);
-                intent.putExtra("idEncuesta",  idEncuesta);
+                intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 startActivity(intent);
             }
         });

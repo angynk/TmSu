@@ -12,6 +12,8 @@ import com.transmilenio.transmisurvey.adapters.OpcionAdapter;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Opcion;
 import com.transmilenio.transmisurvey.models.db.Registro;
+import com.transmilenio.transmisurvey.models.util.ExtrasID;
+import com.transmilenio.transmisurvey.models.util.Mensajes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private OpcionAdapter adapter;
-    private List<Opcion> albumList;
+    private List<Opcion> opcionesList;
 
     private Realm realm;
 
@@ -32,28 +34,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         realm = Realm.getDefaultInstance();
+        validarExtras();
+        bindUI();
+        cargarOpciones();
+    }
 
-        Bundle extras = getIntent().getExtras();
-        if(extras != null){
-               eliminarEncuesta( (int) extras.get("idEncuesta"));
-        }
 
-
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+    private void bindUI(){
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_main);
         recyclerView.setHasFixedSize(true);
-        albumList = new ArrayList<>();
-
-
-
-
+        opcionesList = new ArrayList<>();
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        adapter = new OpcionAdapter(this, albumList);
+        adapter = new OpcionAdapter(this, opcionesList);
         recyclerView.setAdapter(adapter);
+    }
 
-        prepareAlbums();
+
+    //Validacion de datos entre actividades
+    private void validarExtras(){
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            eliminarEncuesta( (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA));
+        }
     }
 
     private void eliminarEncuesta(final int idEncuesta) {
@@ -93,27 +97,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    /**
-     * Adding few albums for testing
-     */
-    private void prepareAlbums() {
+    //Cargar opciones
+    private void cargarOpciones() {
         int[] covers = new int[]{
                 R.mipmap.ic_new,
                 R.mipmap.ic_edit,
                 R.mipmap.ic_send,
                 R.mipmap.ic_settings};
 
-        Opcion a = new Opcion("Nueva Encuesta", covers[0]);
-        albumList.add(a);
+        Opcion a = new Opcion(Mensajes.OPCION_NUEVA, covers[0]);
+        opcionesList.add(a);
 
-        a = new Opcion("Editar Encuesta", covers[1]);
-        albumList.add(a);
+        a = new Opcion(Mensajes.OPCION_EDITAR, covers[1]);
+        opcionesList.add(a);
 
-        a = new Opcion("Enviar Encuesta", covers[2]);
-        albumList.add(a);
+        a = new Opcion(Mensajes.OPCION_ENVIAR, covers[2]);
+        opcionesList.add(a);
 
-        a = new Opcion("Configuración", covers[3]);
-        albumList.add(a);
+        a = new Opcion(Mensajes.OPCION_CONFIG, covers[3]);
+        opcionesList.add(a);
 
         adapter.notifyDataSetChanged();
     }

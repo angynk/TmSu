@@ -17,6 +17,8 @@ import com.transmilenio.transmisurvey.adapters.RegistroAdapter;
 import com.transmilenio.transmisurvey.fragments.AlertGuardarDatos;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Registro;
+import com.transmilenio.transmisurvey.models.util.ExtrasID;
+import com.transmilenio.transmisurvey.models.util.Mensajes;
 
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
@@ -41,25 +43,21 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_registros);
-
-
-        //DB
         realm = Realm.getDefaultInstance();
+        validarExtras();
+        bindUI();
+        setActionBarBotton();
+    }
 
-
+    private void validarExtras(){
         Bundle extras = getIntent().getExtras();
         if(extras != null){
-            idEncuesta = (int) extras.get("idEncuesta");
-            tipoEncuesta = (String) extras.get("tipo");
+            idEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
+            tipoEncuesta = (String) extras.get(ExtrasID.EXTRA_TIPO);
             Cuadro cuadro =  realm.where(Cuadro.class).equalTo("id",idEncuesta).findFirst();
             registros = cuadro.getRegistros();
         }
         registros.addChangeListener(this);
-        bindUI();
-        setActionBarBotton();
-
-
-
     }
 
     private void setActionBarBotton() {
@@ -73,7 +71,7 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
         switch (item.getItemId()) {
             case android.R.id.home:
                 AlertGuardarDatos dFragment = newInstance(idEncuesta,tipoEncuesta);
-                dFragment.show(fm, "Salir de Encuesta");
+                dFragment.show(fm, Mensajes.MSG_SALIR_ENCUESTA);
                 break;
         }
         return true;
@@ -81,8 +79,6 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
 
 
     private void bindUI() {
-
-
         buttonAdd = (FloatingActionButton) findViewById(R.id.button_nuevo);
         buttonGuardar = (Button) findViewById(R.id.button_guardar);
 
@@ -94,7 +90,7 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListaRegistrosActivity.this, RegistroActivity.class);
-                intent.putExtra("idEncuesta",  idEncuesta);
+                intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 startActivity(intent);
             }
         });
@@ -103,7 +99,7 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
             @Override
             public void onClick(View v) {
                 AlertGuardarDatos dFragment = newInstance(idEncuesta,tipoEncuesta);
-                dFragment.show(fm, "Salir de Encuesta");
+                dFragment.show(fm, Mensajes.MSG_SALIR_ENCUESTA);
             }
         });
     }
@@ -113,8 +109,8 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
 
         // Supply num input as an argument.
         Bundle args = new Bundle();
-        args.putInt("idEncuesta", id);
-        args.putString("tipo", tipoEncuesta);
+        args.putInt(ExtrasID.EXTRA_ID_ENCUESTA, id);
+        args.putString(ExtrasID.EXTRA_TIPO, tipoEncuesta);
         f.setArguments(args);
 
         return f;

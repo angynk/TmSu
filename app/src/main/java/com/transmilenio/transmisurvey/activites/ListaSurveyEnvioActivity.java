@@ -25,10 +25,9 @@ import com.transmilenio.transmisurvey.models.db.Resultado;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 import com.transmilenio.transmisurvey.models.json.EncuestasTerminadas;
 import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
+import com.transmilenio.transmisurvey.models.util.Mensajes;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.ArrayList;;
 import java.util.List;
 
 import io.realm.Realm;
@@ -37,8 +36,6 @@ import io.realm.RealmResults;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ListaSurveyEnvioActivity extends AppCompatActivity implements RealmChangeListener<RealmResults<Cuadro>> {
 
@@ -47,7 +44,6 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
     private SurveySendAdapter surveyAdapter;
     private RealmResults<Cuadro> encuestas;
 
-    private ArrayList<Cuadro> modelArrayList;
     private Realm realm;
 
     @Override
@@ -91,8 +87,8 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
     private void enviarDatosEncuesta() {
         ArrayList<Cuadro> selectedItems = surveyAdapter.getSelectedItems();
         progressDoalog = new ProgressDialog(ListaSurveyEnvioActivity.this);
-        progressDoalog.setMessage("Enviando....");
-        progressDoalog.setTitle("Encuestas");
+        progressDoalog.setMessage(Mensajes.MSG_ENVIANDO);
+        progressDoalog.setTitle(Mensajes.MSG_ENCUESTA);
         progressDoalog.setCanceledOnTouchOutside(false);
         progressDoalog.show();
 
@@ -118,13 +114,13 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
                 List<Resultado> resultado = response.body();
                 eliminarResultados(resultado);
                 progressDoalog.dismiss();
-                showAlertDialog("Encuestas Enviadas");
+                showAlertDialog(Mensajes.MSG_ENCUESTAS_ENVIADAS);
             }
 
             @Override
             public void onFailure(Call<List<Resultado>> call, Throwable t) {
                 progressDoalog.dismiss();
-                showAlertDialog("Encuestas No Enviadas");
+                showAlertDialog(Mensajes.MSG_ENCUESTAS_NO_ENVIADAS);
             }
         });
 
@@ -133,9 +129,9 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
 
     private void showAlertDialog(String mensaje){
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle("Resultados del Envio");
+        alertDialog.setTitle(Mensajes.MSG_RESULTADO_ENVIO);
         alertDialog.setMessage(mensaje);
-        alertDialog.setButton(Dialog.BUTTON_POSITIVE,"ACEPTAR", new DialogInterface.OnClickListener() {
+        alertDialog.setButton(Dialog.BUTTON_POSITIVE,Mensajes.MSG_ACEPTAR, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog,int which) {
                 finish();
             }
@@ -147,9 +143,12 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
         for(Resultado resul:resultado){
             if(resul.getId()!=-1){
                 Cuadro cuadro = realm.where(Cuadro.class).equalTo("id", resul.getId()).findFirst();
-                realm.beginTransaction();
-                cuadro.deleteFromRealm();
-                realm.commitTransaction();
+                if(cuadro!=null){
+                    realm.beginTransaction();
+                    cuadro.deleteFromRealm();
+                    realm.commitTransaction();
+                }
+
             }
         }
         surveyAdapter.setSelectedItems(new ArrayList<Cuadro>());
@@ -182,18 +181,6 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
         request.setRegistros(listaRegistros);
         return request;
     }
-
-    private ArrayList<Cuadro> getModel(boolean isSelect){
-        ArrayList<Cuadro> list = new ArrayList<>();
-        for(int i = 0; i < encuestas.size(); i++){
-            Cuadro cuadro = encuestas.get(i);
-            if(cuadro.isSelected()){
-                list.add(cuadro);
-            }
-        }
-        return list;
-    }
-
 
     @Override
     public void onChange(RealmResults<Cuadro> cuadros) {

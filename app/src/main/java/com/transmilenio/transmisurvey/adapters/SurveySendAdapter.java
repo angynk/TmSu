@@ -68,16 +68,10 @@ public class SurveySendAdapter  extends BaseAdapter {
         Cuadro encuesta = lista.get(position);
         vh.titulo.setText(encuesta.getNombreEncuesta()+" - "+encuesta.getServicio());
         vh.fecha.setText("No."+encuesta.getRecorrido()+" - "+encuesta.getFecha());
-       // vh.selection.setChecked(encuesta.getSeleccionado());
-
-//        vh.selection.setTag(R.integer.btnplusview, convertView);
         vh.selection.setTag( position);
         vh.selection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                View tempview = (View) vh.selection.getTag(R.integer.btnplusview);
-//                TextView tv = (TextView) tempview.findViewById(R.id.animal);
                 Integer pos = (Integer)  vh.selection.getTag();
                 Cuadro cuadro = lista.get(pos);
                 if(selectedItems.contains(cuadro)){
@@ -85,12 +79,6 @@ public class SurveySendAdapter  extends BaseAdapter {
                 }else{
                     selectedItems.add(cuadro);
                 }
-//                if(lista.get(pos).isSelected()){
-//                    lista.get(pos).setSelected(false);
-//                }else {
-//                    lista.get(pos).setSelected(true);
-//                }
-
             }
         });
 

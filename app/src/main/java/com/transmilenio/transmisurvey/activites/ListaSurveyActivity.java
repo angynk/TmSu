@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.adapters.SurveyAdapter;
 import com.transmilenio.transmisurvey.models.db.Encuesta;
+import com.transmilenio.transmisurvey.models.util.ExtrasID;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +31,9 @@ public class ListaSurveyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_survey);
-        bindUI();
         realm = Realm.getDefaultInstance();
-
-
+        bindUI();
+        definirEventos();
     }
 
 
@@ -46,7 +46,9 @@ public class ListaSurveyActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView_surveys);
         surveyAdapter = new SurveyAdapter(this,encuestas,R.layout.list_view_surveys);
         listView.setAdapter(surveyAdapter);
+    }
 
+    private void definirEventos(){
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
@@ -56,19 +58,17 @@ public class ListaSurveyActivity extends AppCompatActivity {
                 Encuesta value = (Encuesta)adapter.getItemAtPosition(position);
                 if(value.getNombre().equals("Ascensos y Descensos Troncal")){
                     Intent intent = new Intent(ListaSurveyActivity.this, SurveyActivity.class);
-                    intent.putExtra("nombre","Ascensos y Descensos Troncal");
-                    intent.putExtra("tipo","Nuevo");
+                    intent.putExtra(ExtrasID.EXTRA_NOMBRE,"Ascensos y Descensos Troncal");
+                    intent.putExtra(ExtrasID.EXTRA_TIPO,ExtrasID.VALOR_NUEVO);
                     startActivity(intent);
                 }else{
-                            realm.beginTransaction();
-                            realm.deleteAll();
-                            realm.commitTransaction();
+                    realm.beginTransaction();
+                    realm.deleteAll();
+                    realm.commitTransaction();
                 }
 
             }
         });
-
-
     }
 
     @Override

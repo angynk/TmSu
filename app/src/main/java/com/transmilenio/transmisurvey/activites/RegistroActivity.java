@@ -15,6 +15,7 @@ import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Registro;
+import com.transmilenio.transmisurvey.models.util.ExtrasID;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -44,16 +45,13 @@ public class RegistroActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
-
         realm = Realm.getDefaultInstance();
-
         Bundle extras = getIntent().getExtras();
         if(extras != null){
-            idCuadroEncuesta = (int) extras.get("idEncuesta");
+            idCuadroEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
             encuesta = realm.where(Cuadro.class).equalTo("id",idCuadroEncuesta).findFirst();
         }
         bindUI();
-
     }
 
     private void bindUI() {
@@ -65,8 +63,6 @@ public class RegistroActivity extends AppCompatActivity  {
         seQuedan = (EditText) findViewById(R.id.editText_quedan);
         seSuben = (EditText) findViewById(R.id.editText_suben);
         buttonNuevo = (FloatingActionButton) findViewById(R.id.button_nuevoRegistro);
-
-
         agregarListaEstacion();
         agregarEventosBotones();
     }
@@ -94,8 +90,8 @@ public class RegistroActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 agregarRegistro();
                 Intent intent = new Intent(RegistroActivity.this, ListaRegistrosActivity.class);
-                intent.putExtra("idEncuesta",idCuadroEncuesta);
-                intent.putExtra("tipo","Nuevo");
+                intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idCuadroEncuesta);
+                intent.putExtra(ExtrasID.EXTRA_TIPO,ExtrasID.VALOR_NUEVO);
                 startActivity(intent);
             }
         });

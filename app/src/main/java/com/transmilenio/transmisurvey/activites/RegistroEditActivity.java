@@ -15,6 +15,8 @@ import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Registro;
+import com.transmilenio.transmisurvey.models.util.ExtrasID;
+import com.transmilenio.transmisurvey.models.util.Mensajes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,31 +45,34 @@ public class RegistroEditActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_edit);
-
         realm = Realm.getDefaultInstance();
         bindUI();
+        validarExtras();
+    }
+
+    private void validarExtras(){
         Bundle extras = getIntent().getExtras();
         if(extras != null){
-            tipo = (String) extras.get("tipo");
-            idCuadroEncuesta = (int) extras.get("idEncuesta");
+            tipo = (String) extras.get(ExtrasID.EXTRA_TIPO);
+            idCuadroEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
             encuesta = realm.where(Cuadro.class).equalTo("id",idCuadroEncuesta).findFirst();
-            if( tipo.equals("Edicion")){
-                idRegistroEncuesta = (int) extras.get("idRegistro");
+            if( tipo.equals(ExtrasID.VALOR_EDICION)){
+                idRegistroEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_REGISTRO);
                 registro = realm.where(Registro.class).equalTo("id",idRegistroEncuesta).findFirst();
                 agregarDatosRegistro();
             }
         }
-
-
     }
 
     private void agregarDatosRegistro() {
-        llegada.setText(registro.getHoraLlegada());
-        salida.setText(registro.getHoraSalida());
-        seBajan.setText(Integer.toString(registro.getBajan()));
-        seSuben.setText(Integer.toString(registro.getSuban()));
-        seQuedan.setText(Integer.toString(registro.getQuedan()));
-        estacion.setSelection(getIndex(estacion,registro.getEstacion()));
+        if(registro!= null){
+            llegada.setText(registro.getHoraLlegada());
+            salida.setText(registro.getHoraSalida());
+            seBajan.setText(Integer.toString(registro.getBajan()));
+            seSuben.setText(Integer.toString(registro.getSuban()));
+            seQuedan.setText(Integer.toString(registro.getQuedan()));
+            estacion.setSelection(getIndex(estacion,registro.getEstacion()));
+        }
     }
 
     private void bindUI() {
@@ -87,8 +92,8 @@ public class RegistroEditActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 agregarRegistro();
                 Intent intent = new Intent(RegistroEditActivity.this, ListaRegistrosEditActivity.class);
-                intent.putExtra("idEncuesta",idCuadroEncuesta);
-                intent.putExtra("tipo","Edicion");
+                intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idCuadroEncuesta);
+                intent.putExtra(ExtrasID.EXTRA_TIPO,ExtrasID.VALOR_EDICION);
                 startActivity(intent);
             }
         });
@@ -99,7 +104,7 @@ public class RegistroEditActivity extends AppCompatActivity  {
 
     private void agregarRegistro(){
         if(informacionCompletada()){
-            if(tipo.equals("Nuevo")){
+            if(tipo.equals(ExtrasID.VALOR_NUEVO)){
                 registro = new Registro();
             }
             realm.beginTransaction();
@@ -110,18 +115,13 @@ public class RegistroEditActivity extends AppCompatActivity  {
             registro.setQuedan(Integer.parseInt(seQuedan.getText().toString()));
             registro.setEstacion(estacion.getSelectedItem().toString());
             realm.copyToRealmOrUpdate(registro);
-            if(tipo.equals("Nuevo")){
+            if(tipo.equals(ExtrasID.VALOR_NUEVO)){
                 encuesta.getRegistros().add(registro);
             }
-            //encuesta.getRegistros().add(registro);
             realm.commitTransaction();
-
         }else{
-            Toast.makeText(RegistroEditActivity.this,"Complete todos los campos",Toast.LENGTH_LONG).show();
+            Toast.makeText(RegistroEditActivity.this, Mensajes.MSG_COMPLETE_CAMPOS,Toast.LENGTH_LONG).show();
         }
-
-
-
     }
 
 
@@ -144,8 +144,8 @@ public class RegistroEditActivity extends AppCompatActivity  {
                 android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         estacion.setAdapter(dataAdapter);
-        estacion.setTitle("Seleccione Uno");
-        estacion.setPositiveButton("OK");
+        estacion.setTitle(Mensajes.MSG_SELECCIONE);
+        estacion.setPositiveButton(Mensajes.MSG_OK);
     }
 
     // Change selection in Spinner by Value
