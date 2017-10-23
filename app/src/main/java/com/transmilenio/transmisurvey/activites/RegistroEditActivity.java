@@ -14,7 +14,9 @@ import android.widget.Toast;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
+import com.transmilenio.transmisurvey.models.db.Estacion;
 import com.transmilenio.transmisurvey.models.db.Registro;
+import com.transmilenio.transmisurvey.models.db.ServicioRutas;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 import com.transmilenio.transmisurvey.models.util.Mensajes;
 
@@ -22,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmList;
 
 public class RegistroEditActivity extends AppCompatActivity  {
 
@@ -38,6 +41,7 @@ public class RegistroEditActivity extends AppCompatActivity  {
     private String tipo;
     private Registro registro;
     private Cuadro encuesta;
+    private String servicio;
 
 
 
@@ -59,6 +63,7 @@ public class RegistroEditActivity extends AppCompatActivity  {
             if( tipo.equals(ExtrasID.VALOR_EDICION)){
                 idRegistroEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_REGISTRO);
                 registro = realm.where(Registro.class).equalTo("id",idRegistroEncuesta).findFirst();
+                servicio = (String) extras.get(ExtrasID.EXTRA_ID_SERVICIO);
                 agregarDatosRegistro();
             }
         }
@@ -161,14 +166,13 @@ public class RegistroEditActivity extends AppCompatActivity  {
         return index;
     }
 
-
     public List<String> getDiasEstaciones() {
+        ServicioRutas servicioRutas = realm.where(ServicioRutas.class).equalTo("nombre", servicio).findFirst();
+        RealmList<Estacion> estaciones = servicioRutas.getEstaciones();
         List<String> lista =  new ArrayList<>();
-        lista.add("Comuneros");
-        lista.add("Paloquemado");
-        lista.add("Santa Isabel");
-        lista.add("Ricaurte");
-        lista.add("CAD");
+        for(Estacion estacion:estaciones){
+            lista.add(estacion.getNombre());
+        }
         return lista;
     }
 

@@ -3,11 +3,13 @@ package com.transmilenio.transmisurvey.http;
 import com.transmilenio.transmisurvey.models.db.Resultado;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 import com.transmilenio.transmisurvey.models.json.EncuestasTerminadas;
+import com.transmilenio.transmisurvey.models.json.Servicio;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -18,4 +20,7 @@ public interface SurveyService {
 
     @POST("survey/new/")
     Call<List<Resultado>> sendSurvey(@Body EncuestasTerminadas res);
+
+    @GET("config/servicios/")
+    Call<List<Servicio>> getServicios();
 }

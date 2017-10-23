@@ -14,7 +14,10 @@ import android.widget.Toast;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
+import com.transmilenio.transmisurvey.models.db.Estacion;
 import com.transmilenio.transmisurvey.models.db.Registro;
+import com.transmilenio.transmisurvey.models.db.ServicioRutas;
+import com.transmilenio.transmisurvey.models.json.Servicio;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 
 import java.text.SimpleDateFormat;
@@ -23,6 +26,7 @@ import java.util.Date;
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmList;
 
 
 public class RegistroActivity extends AppCompatActivity  {
@@ -38,6 +42,7 @@ public class RegistroActivity extends AppCompatActivity  {
 
     private int idCuadroEncuesta;
     private Cuadro encuesta;
+    private String servicio;
 
 
 
@@ -45,11 +50,13 @@ public class RegistroActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
+        servicio = "";
         realm = Realm.getDefaultInstance();
         Bundle extras = getIntent().getExtras();
         if(extras != null){
             idCuadroEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
             encuesta = realm.where(Cuadro.class).equalTo("id",idCuadroEncuesta).findFirst();
+            servicio = (String) extras.get(ExtrasID.EXTRA_ID_SERVICIO);
         }
         bindUI();
     }
@@ -154,12 +161,12 @@ public class RegistroActivity extends AppCompatActivity  {
 
 
     public List<String> getDiasEstaciones() {
+        ServicioRutas servicioRutas = realm.where(ServicioRutas.class).equalTo("nombre", servicio).findFirst();
+        RealmList<Estacion> estaciones = servicioRutas.getEstaciones();
         List<String> lista =  new ArrayList<>();
-        lista.add("Comuneros");
-        lista.add("Paloquemado");
-        lista.add("Santa Isabel");
-        lista.add("Ricaurte");
-        lista.add("CAD");
+        for(Estacion estacion:estaciones){
+            lista.add(estacion.getNombre());
+        }
         return lista;
     }
 

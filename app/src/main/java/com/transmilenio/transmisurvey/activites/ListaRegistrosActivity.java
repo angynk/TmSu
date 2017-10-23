@@ -33,6 +33,7 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
     private RealmList<Registro> registros;
     private int  idEncuesta ;
     private String tipoEncuesta;
+    private String servicio;
 
     //For dialog fragment
     FragmentManager fm = getSupportFragmentManager();
@@ -54,6 +55,7 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
         if(extras != null){
             idEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
             tipoEncuesta = (String) extras.get(ExtrasID.EXTRA_TIPO);
+            servicio = (String) extras.get(ExtrasID.EXTRA_ID_SERVICIO);
             Cuadro cuadro =  realm.where(Cuadro.class).equalTo("id",idEncuesta).findFirst();
             registros = cuadro.getRegistros();
         }
@@ -91,6 +93,7 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
             public void onClick(View v) {
                 Intent intent = new Intent(ListaRegistrosActivity.this, RegistroActivity.class);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
+                intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,  servicio);
                 startActivity(intent);
             }
         });

@@ -33,6 +33,7 @@ public class ListaRegistrosEditActivity extends AppCompatActivity implements Rea
     private RealmList<Registro> registros;
     private int  idEncuesta ;
     private String tipoEncuesta;
+    private String servicio;
 
     //For dialog fragment
     FragmentManager fm = getSupportFragmentManager();
@@ -55,6 +56,7 @@ public class ListaRegistrosEditActivity extends AppCompatActivity implements Rea
         if(extras != null){
             idEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
             tipoEncuesta = (String) extras.get(ExtrasID.EXTRA_TIPO);
+            servicio = (String) extras.get(ExtrasID.EXTRA_ID_SERVICIO);
             Cuadro cuadro =  realm.where(Cuadro.class).equalTo("id",idEncuesta).findFirst();
             if(cuadro!=null){
                 registros = cuadro.getRegistros();
@@ -95,6 +97,7 @@ public class ListaRegistrosEditActivity extends AppCompatActivity implements Rea
                 Intent intent = new Intent(ListaRegistrosEditActivity.this, RegistroEditActivity.class);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_TIPO,ExtrasID.VALOR_NUEVO);
+                intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,  servicio);
                 startActivity(intent);
             }
         });

@@ -16,6 +16,8 @@ import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Registro;
+import com.transmilenio.transmisurvey.models.db.ServicioRutas;
+import com.transmilenio.transmisurvey.models.json.Servicio;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 import com.transmilenio.transmisurvey.models.util.Mensajes;
 
@@ -27,6 +29,8 @@ import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmList;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 
 public class SurveyActivity extends AppCompatActivity {
@@ -104,6 +108,7 @@ public class SurveyActivity extends AppCompatActivity {
                     }
                     intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                     intent.putExtra(ExtrasID.EXTRA_TIPO,tipoEncuesta);
+                    intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicios.getSelectedItem().toString());
                     startActivity(intent);
                     finish();
                 }
@@ -210,13 +215,10 @@ public class SurveyActivity extends AppCompatActivity {
     @NonNull
     private List<String> getServicios() {
         List<String> list = new ArrayList<String>();
-        list.add("B11");
-        list.add("B12");
-        list.add("G11");
-        list.add("G12");
-        list.add("C17");
-        list.add("H17");
-        list.add("L80");
+        RealmResults<ServicioRutas> servicios = realm.where(ServicioRutas.class).findAll();
+        for (ServicioRutas servicioRutas: servicios){
+            list.add(servicioRutas.getNombre());
+        }
         return list;
     }
 
