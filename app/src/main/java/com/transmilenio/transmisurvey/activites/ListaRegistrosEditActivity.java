@@ -118,6 +118,7 @@ public class ListaRegistrosEditActivity extends AppCompatActivity implements Rea
                 intent.putExtra(ExtrasID.EXTRA_ID_REGISTRO,value.getId());
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_TIPO,ExtrasID.VALOR_EDICION);
+                intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,  servicio);
                 startActivity(intent);
             }
         });

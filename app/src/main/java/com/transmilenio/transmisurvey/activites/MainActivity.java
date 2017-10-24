@@ -154,10 +154,10 @@ public class MainActivity extends AppCompatActivity {
     //Cargar opciones
     private void cargarOpciones() {
         int[] covers = new int[]{
-                R.mipmap.ic_new,
-                R.mipmap.ic_edit,
-                R.mipmap.ic_send,
-                R.mipmap.ic_settings};
+                R.drawable.ic_new_icon,
+                R.drawable.ic_edit_icon,
+                R.drawable.ic_send_icon,
+                R.drawable.ic_settings_icon};
 
         Opcion a = new Opcion(Mensajes.OPCION_NUEVA, covers[0]);
         opcionesList.add(a);

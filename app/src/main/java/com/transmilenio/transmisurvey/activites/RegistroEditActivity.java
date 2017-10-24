@@ -50,8 +50,16 @@ public class RegistroEditActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_edit);
         realm = Realm.getDefaultInstance();
-        bindUI();
         validarExtras();
+        bindUI();
+        agregarDatos();
+
+    }
+
+    private void agregarDatos() {
+        if( tipo.equals(ExtrasID.VALOR_EDICION)){
+            agregarDatosRegistro();
+        }
     }
 
     private void validarExtras(){
@@ -60,11 +68,10 @@ public class RegistroEditActivity extends AppCompatActivity  {
             tipo = (String) extras.get(ExtrasID.EXTRA_TIPO);
             idCuadroEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
             encuesta = realm.where(Cuadro.class).equalTo("id",idCuadroEncuesta).findFirst();
+            servicio = (String) extras.get(ExtrasID.EXTRA_ID_SERVICIO);
             if( tipo.equals(ExtrasID.VALOR_EDICION)){
                 idRegistroEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_REGISTRO);
                 registro = realm.where(Registro.class).equalTo("id",idRegistroEncuesta).findFirst();
-                servicio = (String) extras.get(ExtrasID.EXTRA_ID_SERVICIO);
-                agregarDatosRegistro();
             }
         }
     }

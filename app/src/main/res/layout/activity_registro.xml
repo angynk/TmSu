@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
-            android:src="@mipmap/ic_checked"
+            android:src="@drawable/ic_checked_icon"
             />
 
         <RelativeLayout
@@ -52,7 +52,7 @@
                 android:layout_marginLeft="22dp"
                 android:layout_marginStart="22dp"
                 android:layout_marginTop="31dp"
-                android:src="@mipmap/ic_clock"/>
+                android:src="@drawable/ic_clock"/>
 
             <TextView
                 android:id="@+id/textView_llegada"
@@ -164,7 +164,7 @@
                 android:layout_toLeftOf="@+id/editText_quedan"
                 android:layout_toStartOf="@+id/editText_quedan"
                 android:layout_marginTop="17dp"
-                android:src="@mipmap/ic_clock"
+                android:src="@drawable/ic_clock"
                 style="@style/AppTheme.ButtonObtDatos"/>
 
             <TextView
