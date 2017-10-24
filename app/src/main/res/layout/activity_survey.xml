@@ -35,15 +35,6 @@
         android:paddingRight="16dp"
         android:layout_below="@+id/tituloPanel">
 
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/spinner_diaSemana"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="11dp"
-            android:layout_below="@+id/text_diaSemana"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
 
         <TextView
             android:id="@+id/button_fecha"
@@ -84,11 +75,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/AppTheme.Encabezado"
-            android:layout_alignLeft="@+id/text_diaSemana"
-            android:layout_alignStart="@+id/text_diaSemana"
+            android:layout_marginTop="24dp"
+            android:text="@string/servicio"
             android:layout_below="@+id/text_diaSemana"
-            android:layout_marginTop="40dp"
-            android:text="@string/servicio" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/text_numBus"
@@ -167,6 +158,15 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:maxLength="2"/>
+
+        <TextView
+            android:id="@+id/textView_dia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/text_diaSemana"
+            android:text=""
+            android:layout_alignLeft="@+id/text_fecha"
+            android:layout_alignStart="@+id/text_fecha" />
 
     </RelativeLayout>
 

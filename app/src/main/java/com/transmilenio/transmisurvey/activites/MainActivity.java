@@ -95,8 +95,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this,ListaSurveyActivity.class);
                     startActivity(intent);
                 }else if(position==1){
-                    Intent intent = new Intent(MainActivity.this,ListaSurveyEditActivity.class);
-                    startActivity(intent);
                 }else if (position ==2){
                     Intent intent = new Intent(MainActivity.this,ListaSurveyEnvioActivity.class);
                     startActivity(intent);

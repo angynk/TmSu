@@ -32,7 +32,6 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
     private RegistroAdapter registroAdapter;
     private RealmList<Registro> registros;
     private int  idEncuesta ;
-    private String tipoEncuesta;
     private String servicio;
 
     //For dialog fragment
@@ -54,7 +53,6 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
         Bundle extras = getIntent().getExtras();
         if(extras != null){
             idEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
-            tipoEncuesta = (String) extras.get(ExtrasID.EXTRA_TIPO);
             servicio = (String) extras.get(ExtrasID.EXTRA_ID_SERVICIO);
             Cuadro cuadro =  realm.where(Cuadro.class).equalTo("id",idEncuesta).findFirst();
             registros = cuadro.getRegistros();
@@ -72,7 +70,7 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                AlertGuardarDatos dFragment = newInstance(idEncuesta,tipoEncuesta);
+                AlertGuardarDatos dFragment = newInstance(idEncuesta);
                 dFragment.show(fm, Mensajes.MSG_SALIR_ENCUESTA);
                 break;
         }
@@ -101,19 +99,18 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
         buttonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertGuardarDatos dFragment = newInstance(idEncuesta,tipoEncuesta);
+                AlertGuardarDatos dFragment = newInstance(idEncuesta);
                 dFragment.show(fm, Mensajes.MSG_SALIR_ENCUESTA);
             }
         });
     }
 
-    public static AlertGuardarDatos newInstance(int id,String tipoEncuesta) {
+    public static AlertGuardarDatos newInstance(int id) {
         AlertGuardarDatos f = new AlertGuardarDatos();
 
         // Supply num input as an argument.
         Bundle args = new Bundle();
         args.putInt(ExtrasID.EXTRA_ID_ENCUESTA, id);
-        args.putString(ExtrasID.EXTRA_TIPO, tipoEncuesta);
         f.setArguments(args);
 
         return f;

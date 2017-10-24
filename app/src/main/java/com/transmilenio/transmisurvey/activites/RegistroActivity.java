@@ -95,11 +95,13 @@ public class RegistroActivity extends AppCompatActivity  {
         buttonNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                agregarRegistro();
-                Intent intent = new Intent(RegistroActivity.this, ListaRegistrosActivity.class);
-                intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idCuadroEncuesta);
-                intent.putExtra(ExtrasID.EXTRA_TIPO,ExtrasID.VALOR_NUEVO);
-                startActivity(intent);
+                if(agregarRegistro()){
+                    Intent intent = new Intent(RegistroActivity.this, ListaRegistrosActivity.class);
+                    intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idCuadroEncuesta);
+                    intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
+                    startActivity(intent);
+                }
+
             }
         });
     }
@@ -107,7 +109,7 @@ public class RegistroActivity extends AppCompatActivity  {
 
 
 
-    private void agregarRegistro(){
+    private boolean agregarRegistro(){
        if(informacionCompletada()){
            final Registro registro = crearObjetoRegistro();
            realm.executeTransaction(new Realm.Transaction() {
@@ -120,9 +122,10 @@ public class RegistroActivity extends AppCompatActivity  {
 
        }else{
            Toast.makeText(RegistroActivity.this,"Complete todos los campos",Toast.LENGTH_LONG).show();
+           return false;
        }
 
-
+        return true;
 
     }
 
@@ -138,8 +141,8 @@ public class RegistroActivity extends AppCompatActivity  {
     }
 
     private boolean informacionCompletada() {
-        if( textLlegada.getText().toString().trim().equals("") ||
-                textSalida.getText().toString().trim().equals("")  ||
+        if( textLlegada.getText().toString().trim().equals("Hora Llegada") ||
+                textSalida.getText().toString().trim().equals("Hora Salida")  ||
                 seBajan.getText().toString().trim().equals("") ||
                 seSuben.getText().toString().trim().equals("") ||
                 seQuedan.getText().toString().trim().equals("")){

@@ -49,16 +49,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activites.MainActivity" />
         </activity>
-        <activity
-            android:name=".activites.ListaSurveyEditActivity"
-            android:parentActivityName=".activites.MainActivity"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activites.MainActivity" />
-        </activity>
-        <activity android:name=".activites.ListaRegistrosEditActivity" />
-        <activity android:name=".activites.RegistroEditActivity" />
         <activity android:name=".activites.ListaSurveyEnvioActivity"></activity>
     </application>
 

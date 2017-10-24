@@ -20,10 +20,12 @@ import com.transmilenio.transmisurvey.models.db.ServicioRutas;
 import com.transmilenio.transmisurvey.models.json.Servicio;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 import com.transmilenio.transmisurvey.models.util.Mensajes;
+import com.transmilenio.transmisurvey.util.ProcessorUtil;
 
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -35,13 +37,12 @@ import io.realm.RealmResults;
 
 public class SurveyActivity extends AppCompatActivity {
 
-   private SearchableSpinner diaSemana,servicios;
-   private TextView textFecha;
+   private SearchableSpinner servicios;
+   private TextView textFecha,textDiaSemana;
    private EditText editTextNumBuses, editTextRecorrido, editTextNumPuerta;
    private Button buttonContinuar;
    private Realm realm;
    private String nombreEncuesta;
-   private String tipoEncuesta;
    private int idEncuesta;
    private  Cuadro encuesta;
 
@@ -56,32 +57,10 @@ public class SurveyActivity extends AppCompatActivity {
     }
 
     private void validarExtras(){
-        tipoEncuesta = ExtrasID.VALOR_NUEVO;
         Bundle extras = getIntent().getExtras();
         if(extras != null){
-            tipoEncuesta =(String) extras.get(ExtrasID.EXTRA_TIPO);
-            if(tipoEncuesta!= null){
-                if (tipoEncuesta.equals(ExtrasID.VALOR_NUEVO)){
-                    nombreEncuesta = (String) extras.get(ExtrasID.EXTRA_NOMBRE);
-                }else{
-                    idEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
-                    escribirInformacionActual();
-                }
-            }
+            nombreEncuesta = (String) extras.get(ExtrasID.EXTRA_NOMBRE);
         }
-    }
-
-    private void escribirInformacionActual() {
-        encuesta = realm.where(Cuadro.class).equalTo("id",idEncuesta).findFirst();
-        if(encuesta != null ){
-            editTextNumBuses.setText(encuesta.getNumBus());
-            editTextRecorrido.setText(Integer.toString(encuesta.getRecorrido()));
-            editTextNumPuerta.setText(Integer.toString(encuesta.getRecorrido()));
-            textFecha.setText(encuesta.getFecha());
-            servicios.setSelection(getIndex(servicios, encuesta.getServicio()));
-            diaSemana.setSelection(getIndex(diaSemana, encuesta.getDiaSemana()));
-        }
-
     }
 
 
@@ -98,16 +77,10 @@ public class SurveyActivity extends AppCompatActivity {
                         Toast.makeText(SurveyActivity.this, Mensajes.MSG_COMPLETE_CAMPOS,Toast.LENGTH_LONG).show();
                 }else{
                     Intent intent = null;
-                    if(tipoEncuesta.equals(ExtrasID.VALOR_NUEVO)){
-                        Cuadro cuadro = new Cuadro();
-                        idEncuesta = crearObjetoInfoBase(cuadro);
-                        intent = new Intent(SurveyActivity.this,ListaRegistrosActivity.class);
-                    }else{
-                        idEncuesta = crearObjetoInfoBase(encuesta);
-                        intent = new Intent(SurveyActivity.this,ListaRegistrosEditActivity.class);
-                    }
+                    Cuadro cuadro = new Cuadro();
+                    idEncuesta = crearObjetoInfoBase(cuadro);
+                    intent = new Intent(SurveyActivity.this,ListaRegistrosActivity.class);
                     intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
-                    intent.putExtra(ExtrasID.EXTRA_TIPO,tipoEncuesta);
                     intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicios.getSelectedItem().toString());
                     startActivity(intent);
                     finish();
@@ -121,7 +94,8 @@ public class SurveyActivity extends AppCompatActivity {
     private boolean camposCompletos(){
         if(editTextNumBuses.getText().toString().trim().equals("") ||
                 editTextRecorrido.getText().toString().trim().equals("")
-                || textFecha.toString().trim().equals("")){
+                || textFecha.toString().trim().equals("") ||
+                editTextNumPuerta.getText().toString().trim().equals("")){
             return false;
         }
         return true;
@@ -131,15 +105,13 @@ public class SurveyActivity extends AppCompatActivity {
 
         realm.beginTransaction();
         cuadro.setServicio(servicios.getSelectedItem().toString());
-        cuadro.setDiaSemana(diaSemana.getSelectedItem().toString());
+        cuadro.setDiaSemana(textDiaSemana.getText().toString());
         cuadro.setFecha(textFecha.getText().toString());
         cuadro.setNumBus(editTextNumBuses.getText().toString());
         cuadro.setNumPuerta(Integer.parseInt(editTextNumPuerta.getText().toString()));
         cuadro.setRecorrido(Integer.parseInt(editTextRecorrido.getText().toString()));
-        if(tipoEncuesta.equals(ExtrasID.VALOR_NUEVO)){
-            cuadro.setRegistros(new RealmList<Registro>());
-            cuadro.setNombreEncuesta(nombreEncuesta);
-        }
+        cuadro.setRegistros(new RealmList<Registro>());
+        cuadro.setNombreEncuesta(nombreEncuesta);
         realm.copyToRealmOrUpdate(cuadro);
         realm.commitTransaction();
         return cuadro.getId();
@@ -147,6 +119,7 @@ public class SurveyActivity extends AppCompatActivity {
 
     private void bindUI() {
         textFecha = (TextView) findViewById(R.id.text_fecha);
+        textDiaSemana= (TextView) findViewById(R.id.textView_dia);
         editTextNumBuses = (EditText) findViewById(R.id.editText_numBus);
         editTextRecorrido = (EditText) findViewById(R.id.editText_recorrido);
         editTextNumPuerta = (EditText) findViewById(R.id.editText_num_puerta);
@@ -158,24 +131,16 @@ public class SurveyActivity extends AppCompatActivity {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         Date ahora = new Date();
         textFecha.setText(formato.format(ahora));
+        textDiaSemana.setText(ProcessorUtil.obtenerDiaDeLaSemana(ahora));
     }
 
     public void agregarItemsListas() {
-
-        diaSemana = (SearchableSpinner) findViewById(R.id.spinner_diaSemana);
-        List<String> list = getDiasSemana();
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, list);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        diaSemana.setAdapter(dataAdapter);
-        diaSemana.setTitle(Mensajes.MSG_SELECCIONE);
-        diaSemana.setPositiveButton(Mensajes.MSG_OK);
 
         servicios = (SearchableSpinner) findViewById(R.id.spinner_servicio);
         List<String> listservicios = getServicios();
         ArrayAdapter<String> dataAdapterservicios = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, listservicios);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapterservicios.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         servicios.setAdapter(dataAdapterservicios);
         servicios.setTitle(Mensajes.MSG_SELECCIONE);
         servicios.setPositiveButton(Mensajes.MSG_OK);
@@ -197,20 +162,6 @@ public class SurveyActivity extends AppCompatActivity {
         return index;
     }
 
-
-
-    @NonNull
-    private List<String> getDiasSemana() {
-        List<String> list = new ArrayList<String>();
-        list.add("Lunes");
-        list.add("Martes");
-        list.add("Miercoles");
-        list.add("Jueves");
-        list.add("Viernes");
-        list.add("Sábado");
-        list.add("Domingo");
-        return list;
-    }
 
     @NonNull
     private List<String> getServicios() {
