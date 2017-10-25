@@ -1,21 +1,20 @@
 package com.transmilenio.transmisurvey.activites;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
 import com.transmilenio.transmisurvey.R;
-import com.transmilenio.transmisurvey.adapters.OpcionAdapter;
+import com.transmilenio.transmisurvey.adapters.OptionAdapter;
 import com.transmilenio.transmisurvey.http.API;
 import com.transmilenio.transmisurvey.http.SurveyService;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Estacion;
 import com.transmilenio.transmisurvey.models.db.Opcion;
 import com.transmilenio.transmisurvey.models.db.Registro;
-import com.transmilenio.transmisurvey.models.db.Resultado;
 import com.transmilenio.transmisurvey.models.db.ServicioRutas;
 import com.transmilenio.transmisurvey.models.json.Servicio;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
@@ -33,8 +32,8 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private OpcionAdapter adapter;
+    private ListView listView;
+    private OptionAdapter adapter;
     private List<Opcion> opcionesList;
 
     private Realm realm;
@@ -46,18 +45,26 @@ public class MainActivity extends AppCompatActivity {
         realm = Realm.getDefaultInstance();
         validarExtras();
         bindUI();
-        cargarOpciones();
     }
 
 
     private void bindUI(){
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_main);
-        recyclerView.setHasFixedSize(true);
+        listView = (ListView) findViewById(R.id.ini_opciones_listView);
         opcionesList = new ArrayList<>();
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
-        recyclerView.setLayoutManager(mLayoutManager);
-        adapter = new OpcionAdapter(this, opcionesList);
-        recyclerView.setAdapter(adapter);
+        cargarOpciones();
+        adapter = new OptionAdapter(this, opcionesList,R.layout.list_view_options);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View v, int position,
+                                    long arg3)
+            {
+                Opcion value = (Opcion) adapter.getItemAtPosition(position);
+
+
+            }
+        });
     }
 
 
@@ -87,22 +94,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ((OpcionAdapter) adapter).setOnItemClickListener(new OpcionAdapter
-                .MyClickListener() {
-            @Override
-            public void onItemClick(int position, View v) {
-                if(position==0){
-                    Intent intent = new Intent(MainActivity.this,ListaSurveyActivity.class);
-                    startActivity(intent);
-                }else if(position==1){
-                }else if (position ==2){
-                    Intent intent = new Intent(MainActivity.this,ListaSurveyEnvioActivity.class);
-                    startActivity(intent);
-                }else if (position == 3 ){
-                    cargarServiciosTemporal();
-                }
-            }
-        });
+//        ((OpcionAdapter) adapter).setOnItemClickListener(new OpcionAdapter
+//                .MyClickListener() {
+//            @Override
+//            public void onItemClick(int position, View v) {
+//                if(position==0){
+//                    Intent intent = new Intent(MainActivity.this,ListaSurveyActivity.class);
+//                    startActivity(intent);
+//                }else if(position==1){
+//                }else if (position ==2){
+//                    Intent intent = new Intent(MainActivity.this,ListaSurveyEnvioActivity.class);
+//                    startActivity(intent);
+//                }else if (position == 3 ){
+//                    cargarServiciosTemporal();
+//                }
+//            }
+//        });
     }
 
     private void cargarServiciosTemporal(){
@@ -153,23 +160,18 @@ public class MainActivity extends AppCompatActivity {
     private void cargarOpciones() {
         int[] covers = new int[]{
                 R.drawable.ic_new_icon,
-                R.drawable.ic_edit_icon,
                 R.drawable.ic_send_icon,
                 R.drawable.ic_settings_icon};
 
         Opcion a = new Opcion(Mensajes.OPCION_NUEVA, covers[0]);
         opcionesList.add(a);
 
-        a = new Opcion(Mensajes.OPCION_EDITAR, covers[1]);
+        a = new Opcion(Mensajes.OPCION_ENVIAR, covers[1]);
         opcionesList.add(a);
 
-        a = new Opcion(Mensajes.OPCION_ENVIAR, covers[2]);
+        a = new Opcion(Mensajes.OPCION_CONFIG, covers[2]);
         opcionesList.add(a);
 
-        a = new Opcion(Mensajes.OPCION_CONFIG, covers[3]);
-        opcionesList.add(a);
-
-        adapter.notifyDataSetChanged();
     }
 
     @Override

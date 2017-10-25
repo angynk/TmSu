@@ -12,6 +12,9 @@
     <style name="AppTheme.TextoBanner">
         <item name="android:textSize">24sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:color">@color/colorButtonNormal</item>
+
+
     </style>
 
     <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Borderless">
@@ -31,6 +34,12 @@
         <item name="android:background">@color/colorButtonNormal</item>
         <item name="android:textColor">@color/colorTextButton</item>
 
+    </style>
+
+    <style name="AppTheme.AlertasTitulo" >
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="AppTheme.Encabezado">
