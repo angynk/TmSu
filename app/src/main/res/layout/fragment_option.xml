@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.transmilenio.transmisurvey.fragments.OptionFragment"
-    android:background="#ced3c9"
+    android:background="#e2edd7"
     >
 
     <LinearLayout

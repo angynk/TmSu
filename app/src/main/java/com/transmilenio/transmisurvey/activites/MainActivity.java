@@ -1,5 +1,6 @@
 package com.transmilenio.transmisurvey.activites;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -61,7 +62,15 @@ public class MainActivity extends AppCompatActivity {
                                     long arg3)
             {
                 Opcion value = (Opcion) adapter.getItemAtPosition(position);
-
+                if(value.getName().equals(Mensajes.OPCION_NUEVA)){
+                    Intent intent = new Intent(MainActivity.this,ListaSurveyActivity.class);
+                    startActivity(intent);
+                }else if( value.getName().equals(Mensajes.OPCION_ENVIAR)){
+                    Intent intent = new Intent(MainActivity.this,ListaSurveyEnvioActivity.class);
+                    startActivity(intent);
+                }else if( value.getName().equals(Mensajes.OPCION_CONFIG)){
+                    cargarServiciosTemporal();
+            }
 
             }
         });
