@@ -17,7 +17,6 @@ import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Estacion;
 import com.transmilenio.transmisurvey.models.db.Registro;
 import com.transmilenio.transmisurvey.models.db.ServicioRutas;
-import com.transmilenio.transmisurvey.models.json.Servicio;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 
 import java.text.SimpleDateFormat;
@@ -49,7 +48,7 @@ public class RegistroActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro);
+        setContentView(R.layout.activity_adt_registro);
         servicio = "";
         realm = Realm.getDefaultInstance();
         Bundle extras = getIntent().getExtras();
@@ -62,14 +61,17 @@ public class RegistroActivity extends AppCompatActivity  {
     }
 
     private void bindUI() {
-        buttonLlegada = (ImageButton) findViewById(R.id.button_llegada);
-        buttonSalida = (ImageButton) findViewById(R.id.button_salida);
-        textLlegada = (TextView) findViewById(R.id.textView_llegada);
+        buttonLlegada = (ImageButton) findViewById(R.id.adt_llegada_button);
+        buttonSalida = (ImageButton) findViewById(R.id.adt_salida_button);
+        textLlegada = (TextView) findViewById(R.id.adt_llegada_textView);
         textSalida = (TextView) findViewById(R.id.textView_salida);
-        seBajan = (EditText) findViewById(R.id.editText_bajan);
-        seQuedan = (EditText) findViewById(R.id.editText_quedan);
-        seSuben = (EditText) findViewById(R.id.editText_suben);
-        buttonNuevo = (FloatingActionButton) findViewById(R.id.button_nuevoRegistro);
+        seBajan = (EditText) findViewById(R.id.adt_bajan_editText);
+        seBajan.setEnabled(false);
+        seQuedan = (EditText) findViewById(R.id.adt_quedan_editText);
+        seQuedan.setEnabled(false);
+        seSuben = (EditText) findViewById(R.id.adt_suben_editText);
+        seSuben.setEnabled(false);
+        buttonNuevo = (FloatingActionButton) findViewById(R.id.adt_nuevoRegistro_button);
         agregarListaEstacion();
         agregarEventosBotones();
     }
@@ -81,6 +83,9 @@ public class RegistroActivity extends AppCompatActivity  {
                 SimpleDateFormat formato = new SimpleDateFormat("HH:mm:ss");
                 Date ahora = new Date();
                 textLlegada.setText(formato.format(ahora));
+                seSuben.setEnabled(true);
+                seBajan.setEnabled(true);
+                seQuedan.setEnabled(true);
             }
         });
 
@@ -152,7 +157,7 @@ public class RegistroActivity extends AppCompatActivity  {
     }
 
     private void agregarListaEstacion() {
-        estacion = (SearchableSpinner) findViewById(R.id.spinner_estacion);
+        estacion = (SearchableSpinner) findViewById(R.id.adt_estacion_spinner);
         List<String> list = getDiasEstaciones();
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, list);

@@ -42,7 +42,7 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_registros);
+        setContentView(R.layout.activity_adt_lista_registros);
         realm = Realm.getDefaultInstance();
         validarExtras();
         bindUI();
@@ -79,10 +79,10 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
 
 
     private void bindUI() {
-        buttonAdd = (FloatingActionButton) findViewById(R.id.button_nuevo);
-        buttonGuardar = (Button) findViewById(R.id.button_guardar);
+        buttonAdd = (FloatingActionButton) findViewById(R.id.adt_nuevo_button);
+        buttonGuardar = (Button) findViewById(R.id.adt_guardar_button);
 
-        listView = (ListView) findViewById(R.id.listView_registros);
+        listView = (ListView) findViewById(R.id.adt_registros_listView);
         registroAdapter = new RegistroAdapter(this,registros,R.layout.list_view_registro_item);
         listView.setAdapter(registroAdapter);
 

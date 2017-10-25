@@ -7,7 +7,7 @@
     tools:context="com.transmilenio.transmisurvey.activites.SurveyActivity">
 
     <Button
-        android:id="@+id/button_continuar"
+        android:id="@+id/adt_continuar_button"
         style="@style/AppTheme.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
 
 
         <TextView
-            android:id="@+id/button_fecha"
+            android:id="@+id/adt_fecha_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/fecha"
@@ -48,87 +48,87 @@
             android:layout_alignParentStart="true" />
 
         <TextView
-            android:id="@+id/text_fecha"
+            android:id="@+id/adt_fecha_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:layout_alignBaseline="@+id/button_fecha"
-            android:layout_alignBottom="@+id/button_fecha"
-            android:layout_toRightOf="@+id/text_numBus"
-            android:layout_toEndOf="@+id/text_numBus"
+            android:layout_alignBaseline="@+id/adt_fecha_textView"
+            android:layout_alignBottom="@+id/adt_fecha_textView"
+            android:layout_toRightOf="@+id/adt_numBus_text"
+            android:layout_toEndOf="@+id/adt_numBus_text"
             android:layout_marginLeft="120dp"
             android:layout_marginStart="120dp" />
 
         <TextView
-            android:id="@+id/text_diaSemana"
+            android:id="@+id/adt_diaSemana_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:text="@string/diaSemana"
             style="@style/AppTheme.Encabezado"
-            android:layout_below="@+id/button_fecha"
+            android:layout_below="@+id/adt_fecha_textView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <TextView
-            android:id="@+id/text_servicio"
+            android:id="@+id/adt_servicio_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/AppTheme.Encabezado"
             android:layout_marginTop="24dp"
             android:text="@string/servicio"
-            android:layout_below="@+id/text_diaSemana"
+            android:layout_below="@+id/adt_diaSemana_text"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <TextView
-            android:id="@+id/text_numBus"
+            android:id="@+id/adt_numBus_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/AppTheme.Encabezado"
-            android:layout_below="@+id/text_servicio"
+            android:layout_below="@+id/adt_servicio_text"
             android:layout_marginTop="40dp"
             android:text="@string/numBus" />
 
         <TextView
-            android:id="@+id/text_recorrido"
+            android:id="@+id/adt_recorrido_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/AppTheme.Encabezado"
-            android:layout_alignLeft="@+id/text_numBus"
-            android:layout_alignStart="@+id/text_numBus"
-            android:layout_below="@+id/text_numBus"
+            android:layout_alignLeft="@+id/adt_numBus_text"
+            android:layout_alignStart="@+id/adt_numBus_text"
+            android:layout_below="@+id/adt_numBus_text"
             android:layout_marginTop="40dp"
             android:text="@string/recorrido" />
 
         <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/spinner_servicio"
+            android:id="@+id/adt_servicio_sepinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
-            android:layout_below="@+id/text_servicio"
+            android:layout_below="@+id/adt_servicio_text"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <EditText
-            android:id="@+id/editText_numBus"
+            android:id="@+id/adt_numBus_editText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/text_numBus"
+            android:layout_below="@+id/adt_numBus_text"
             android:ems="10"
             android:inputType="textPersonName"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
         <EditText
-            android:id="@+id/editText_recorrido"
+            android:id="@+id/adt_recorrido_editText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"
-            android:layout_below="@+id/text_recorrido"
+            android:layout_below="@+id/adt_recorrido_text"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
@@ -136,22 +136,22 @@
             android:maxLength="2" />
 
         <TextView
-            android:id="@+id/textView_num_puerta"
+            android:id="@+id/adt_numPuerta_textView"
             style="@style/AppTheme.Encabezado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_num_puerta"
-            android:layout_below="@+id/editText_recorrido"
+            android:layout_below="@+id/adt_recorrido_editText"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <EditText
-            android:id="@+id/editText_num_puerta"
+            android:id="@+id/adt_numPuerta_editText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/editText_recorrido"
+            android:layout_below="@+id/adt_recorrido_editText"
             android:layout_marginTop="21dp"
             android:ems="10"
             android:inputType="number"
@@ -160,13 +160,13 @@
             android:maxLength="2"/>
 
         <TextView
-            android:id="@+id/textView_dia"
+            android:id="@+id/adt_dia_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/text_diaSemana"
+            android:layout_alignTop="@+id/adt_diaSemana_text"
             android:text=""
-            android:layout_alignLeft="@+id/text_fecha"
-            android:layout_alignStart="@+id/text_fecha" />
+            android:layout_alignLeft="@+id/adt_fecha_text"
+            android:layout_alignStart="@+id/adt_fecha_text" />
 
     </RelativeLayout>
 

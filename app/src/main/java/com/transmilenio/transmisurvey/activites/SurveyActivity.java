@@ -17,7 +17,6 @@ import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Registro;
 import com.transmilenio.transmisurvey.models.db.ServicioRutas;
-import com.transmilenio.transmisurvey.models.json.Servicio;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 import com.transmilenio.transmisurvey.models.util.Mensajes;
 import com.transmilenio.transmisurvey.util.ProcessorUtil;
@@ -25,13 +24,11 @@ import com.transmilenio.transmisurvey.util.ProcessorUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmList;
-import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 
@@ -49,7 +46,7 @@ public class SurveyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_survey);
+        setContentView(R.layout.activity_adt_survey);
         realm = Realm.getDefaultInstance();
         bindUI();
         bindEventos();
@@ -118,12 +115,12 @@ public class SurveyActivity extends AppCompatActivity {
     }
 
     private void bindUI() {
-        textFecha = (TextView) findViewById(R.id.text_fecha);
-        textDiaSemana= (TextView) findViewById(R.id.textView_dia);
-        editTextNumBuses = (EditText) findViewById(R.id.editText_numBus);
-        editTextRecorrido = (EditText) findViewById(R.id.editText_recorrido);
-        editTextNumPuerta = (EditText) findViewById(R.id.editText_num_puerta);
-        buttonContinuar = (Button) findViewById(R.id.button_continuar);
+        textFecha = (TextView) findViewById(R.id.adt_fecha_text);
+        textDiaSemana= (TextView) findViewById(R.id.adt_dia_textView);
+        editTextNumBuses = (EditText) findViewById(R.id.adt_numBus_editText);
+        editTextRecorrido = (EditText) findViewById(R.id.adt_recorrido_editText);
+        editTextNumPuerta = (EditText) findViewById(R.id.adt_numPuerta_editText);
+        buttonContinuar = (Button) findViewById(R.id.adt_continuar_button);
         agregarItemsListas();
     }
 
@@ -136,7 +133,7 @@ public class SurveyActivity extends AppCompatActivity {
 
     public void agregarItemsListas() {
 
-        servicios = (SearchableSpinner) findViewById(R.id.spinner_servicio);
+        servicios = (SearchableSpinner) findViewById(R.id.adt_servicio_sepinner);
         List<String> listservicios = getServicios();
         ArrayAdapter<String> dataAdapterservicios = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, listservicios);
