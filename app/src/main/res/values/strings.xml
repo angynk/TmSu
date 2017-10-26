@@ -26,10 +26,13 @@
     <string name="button_ignorar">Ignorar Cambios</string>
     <string name="button_cancelar">Cancelar</string>
     <string name="button_enviar">Enviar</string>
+    <string name="button_observacion">Observaciones</string>
 
     <string name="txt_encuestasEnviadas">Encuestas Enviadas</string>
     <string name="txt_encuestasPendientes">Encuestas Pendientes</string>
     <string name="txt_opciones">Opciones</string>
+    <string name="txt_tiene_observaciones">Encuesta Registrada!</string>
+    <string name="txt_ninguna">Ninguna</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

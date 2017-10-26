@@ -86,7 +86,7 @@
                 android:id="@+id/adt_bajan_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="42dp"
+                android:layout_marginTop="23dp"
                 android:text="@string/bajan"
                 style="@style/AppTheme.Encabezado"
                 android:layout_below="@+id/adt_estacion_view"
@@ -100,12 +100,11 @@
                 android:ems="10"
                 android:maxLength="3"
                 android:inputType="number"
-                android:layout_alignBaseline="@+id/adt_bajan_textView"
                 android:layout_alignBottom="@+id/adt_bajan_textView"
-                android:layout_alignLeft="@+id/adt_estacion_spinner"
-                android:layout_alignStart="@+id/adt_estacion_spinner"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_alignLeft="@+id/adt_estacion_spinner"
+                android:layout_alignStart="@+id/adt_estacion_spinner" />
 
             <EditText
                 android:id="@+id/adt_suben_editText"
@@ -114,11 +113,11 @@
                 android:ems="10"
                 android:maxLength="3"
                 android:inputType="number"
-                android:layout_centerVertical="true"
-                android:layout_alignLeft="@+id/adt_bajan_editText"
-                android:layout_alignStart="@+id/adt_bajan_editText"
+                android:layout_below="@+id/adt_bajan_editText"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_alignLeft="@+id/adt_bajan_editText"
+                android:layout_alignStart="@+id/adt_bajan_editText" />
 
             <TextView
                 android:id="@+id/adt_sube_textView"
@@ -126,7 +125,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/suben"
                 style="@style/AppTheme.Encabezado"
-                android:layout_alignBaseline="@+id/adt_suben_editText"
                 android:layout_alignBottom="@+id/adt_suben_editText"
                 android:layout_alignLeft="@+id/adt_bajan_textView"
                 android:layout_alignStart="@+id/adt_bajan_textView" />
@@ -139,11 +137,10 @@
                 android:maxLength="3"
                 android:inputType="number"
                 android:layout_below="@+id/adt_suben_editText"
-                android:layout_alignLeft="@+id/adt_suben_editText"
-                android:layout_alignStart="@+id/adt_suben_editText"
-                android:layout_marginTop="26dp"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_alignLeft="@+id/adt_suben_editText"
+                android:layout_alignStart="@+id/adt_suben_editText" />
 
             <TextView
                 android:id="@+id/adt_quedan_textView"
@@ -151,10 +148,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/quedan"
                 style="@style/AppTheme.Encabezado"
-                android:layout_alignBaseline="@+id/adt_quedan_editText"
-                android:layout_alignBottom="@+id/adt_quedan_editText"
-                android:layout_alignLeft="@+id/adt_sube_textView"
-                android:layout_alignStart="@+id/adt_sube_textView" />
+                android:layout_above="@+id/adt_salida_button"
+                android:layout_alignLeft="@+id/adt_salida_button"
+                android:layout_alignStart="@+id/adt_salida_button" />
 
             <ImageButton
                 android:id="@+id/adt_salida_button"
@@ -183,5 +179,17 @@
         </RelativeLayout>
 
     </FrameLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="122dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp">
+
+    </android.support.design.widget.TextInputLayout>
 
 </RelativeLayout>

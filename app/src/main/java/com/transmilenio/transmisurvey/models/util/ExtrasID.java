@@ -8,6 +8,7 @@ public class ExtrasID {
     public static String EXTRA_ID_SERVICIO = "idServicio";
     public static String EXTRA_NOMBRE = "nombre";
     public static String EXTRA_TIPO = "tipo";
+    public static String EXTRA_OBSER = "observacion";
 
 
     public static String VALOR_NUEVO = "Nuevo";

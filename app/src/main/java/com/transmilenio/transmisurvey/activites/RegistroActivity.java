@@ -3,9 +3,11 @@ package com.transmilenio.transmisurvey.activites;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -13,11 +15,14 @@ import android.widget.Toast;
 
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import com.transmilenio.transmisurvey.R;
+import com.transmilenio.transmisurvey.fragments.AlertGuardarDatos;
+import com.transmilenio.transmisurvey.fragments.AlertObservacion;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Estacion;
 import com.transmilenio.transmisurvey.models.db.Registro;
 import com.transmilenio.transmisurvey.models.db.ServicioRutas;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
+import com.transmilenio.transmisurvey.models.util.Mensajes;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,6 +47,8 @@ public class RegistroActivity extends AppCompatActivity  {
     private int idCuadroEncuesta;
     private Cuadro encuesta;
     private String servicio;
+
+    FragmentManager fm = getSupportFragmentManager();
 
 
 
@@ -100,18 +107,29 @@ public class RegistroActivity extends AppCompatActivity  {
         buttonNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 if(agregarRegistro()){
-                    Intent intent = new Intent(RegistroActivity.this, ListaRegistrosActivity.class);
-                    intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idCuadroEncuesta);
-                    intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
-                    startActivity(intent);
+                    AlertObservacion dFragment = newInstance(idCuadroEncuesta,servicio);
+                    dFragment.show(fm, Mensajes.MSG_OBSERVACIONES);
                 }
 
             }
         });
+
     }
 
+    public static AlertObservacion newInstance(int id,String servicio) {
+        AlertObservacion f = new AlertObservacion();
 
+        // Supply num input as an argument.
+        Bundle args = new Bundle();
+        args.putInt(ExtrasID.EXTRA_ID_ENCUESTA, id);
+        args.putString(ExtrasID.EXTRA_ID_SERVICIO, servicio);
+        f.setArguments(args);
+
+        return f;
+    }
 
 
     private boolean agregarRegistro(){
