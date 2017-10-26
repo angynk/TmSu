@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -65,6 +67,7 @@ public class RegistroActivity extends AppCompatActivity  {
             servicio = (String) extras.get(ExtrasID.EXTRA_ID_SERVICIO);
         }
         bindUI();
+        setActionBarBotton();
     }
 
     private void bindUI() {
@@ -79,8 +82,32 @@ public class RegistroActivity extends AppCompatActivity  {
         seSuben = (EditText) findViewById(R.id.adt_suben_editText);
         seSuben.setEnabled(false);
         buttonNuevo = (FloatingActionButton) findViewById(R.id.adt_nuevoRegistro_button);
+        buttonSalida.setEnabled(false);
         agregarListaEstacion();
         agregarEventosBotones();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                inluirDatos();
+                break;
+        }
+        return true;
+    }
+
+    private void inluirDatos() {
+        Intent intent = new Intent(this, ListaRegistrosActivity.class);
+        intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idCuadroEncuesta);
+        intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
+        startActivity(intent);
+    }
+
+    private void setActionBarBotton() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void agregarEventosBotones() {
@@ -93,6 +120,8 @@ public class RegistroActivity extends AppCompatActivity  {
                 seSuben.setEnabled(true);
                 seBajan.setEnabled(true);
                 seQuedan.setEnabled(true);
+                estacion.setEnabled(true);
+                buttonSalida.setEnabled(true);
             }
         });
 
@@ -164,8 +193,8 @@ public class RegistroActivity extends AppCompatActivity  {
     }
 
     private boolean informacionCompletada() {
-        if( textLlegada.getText().toString().trim().equals("Hora Llegada") ||
-                textSalida.getText().toString().trim().equals("Hora Salida")  ||
+        if( textLlegada.getText().toString().trim().equals("H.Llegada") ||
+                textSalida.getText().toString().trim().equals("H.Salida")  ||
                 seBajan.getText().toString().trim().equals("") ||
                 seSuben.getText().toString().trim().equals("") ||
                 seQuedan.getText().toString().trim().equals("")){
@@ -183,6 +212,7 @@ public class RegistroActivity extends AppCompatActivity  {
         estacion.setAdapter(dataAdapter);
         estacion.setTitle("Seleccione Uno");
         estacion.setPositiveButton("OK");
+        estacion.setEnabled(false);
     }
 
 

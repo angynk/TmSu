@@ -41,7 +41,7 @@ public class SurveyActivity extends AppCompatActivity {
    private Realm realm;
    private String nombreEncuesta;
    private int idEncuesta;
-   private  Cuadro encuesta;
+   private boolean infoServicios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,16 +71,25 @@ public class SurveyActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Validar Valores
                 if( !camposCompletos() ){
+                    if(!infoServicios){
+                        Toast.makeText(SurveyActivity.this, Mensajes.MSG_SINCRONIZE,Toast.LENGTH_LONG).show();
+                    }else{
                         Toast.makeText(SurveyActivity.this, Mensajes.MSG_COMPLETE_CAMPOS,Toast.LENGTH_LONG).show();
+                    }
+
                 }else{
-                    Intent intent = null;
-                    Cuadro cuadro = new Cuadro();
-                    idEncuesta = crearObjetoInfoBase(cuadro);
-                    intent = new Intent(SurveyActivity.this,ListaRegistrosActivity.class);
-                    intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
-                    intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicios.getSelectedItem().toString());
-                    startActivity(intent);
-                    finish();
+                    if(!infoServicios){
+                        Toast.makeText(SurveyActivity.this, Mensajes.MSG_SINCRONIZE,Toast.LENGTH_LONG).show();
+                    }else{
+                        Intent intent = null;
+                        Cuadro cuadro = new Cuadro();
+                        idEncuesta = crearObjetoInfoBase(cuadro);
+                        intent = new Intent(SurveyActivity.this,ListaRegistrosActivity.class);
+                        intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
+                        intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicios.getSelectedItem().toString());
+                        startActivity(intent);
+                        finish();
+                    }
                 }
             }
         });
@@ -142,6 +151,11 @@ public class SurveyActivity extends AppCompatActivity {
         servicios.setTitle(Mensajes.MSG_SELECCIONE);
         servicios.setPositiveButton(Mensajes.MSG_OK);
 
+        if(listservicios.size()>0){
+            infoServicios =true;
+        }else{
+            infoServicios = false;
+        }
 
     }
 

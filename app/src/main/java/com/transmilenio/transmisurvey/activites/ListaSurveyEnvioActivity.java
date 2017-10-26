@@ -67,7 +67,12 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
         buttonEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enviarDatosEncuesta();
+                if(surveyAdapter.getSelectedItems().size()>0){
+                    enviarDatosEncuesta();
+                }else{
+                    Toast.makeText(ListaSurveyEnvioActivity.this,Mensajes.MSG_NO_HAY_ENCUESTAS,Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
@@ -78,7 +83,7 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
                                     long arg3)
             {
                 Cuadro value = (Cuadro)adapter.getItemAtPosition(position);
-                Toast.makeText(ListaSurveyEnvioActivity.this,value.getNombreEncuesta(),Toast.LENGTH_LONG);
+                Toast.makeText(ListaSurveyEnvioActivity.this,value.getNombreEncuesta(),Toast.LENGTH_LONG).show();
             }
         });
 

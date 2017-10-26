@@ -55,13 +55,16 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
             idEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
             servicio = (String) extras.get(ExtrasID.EXTRA_ID_SERVICIO);
             Cuadro cuadro =  realm.where(Cuadro.class).equalTo("id",idEncuesta).findFirst();
-            registros = cuadro.getRegistros();
+            if(cuadro!=null){
+                registros = cuadro.getRegistros();
+                registros.addChangeListener(this);
+            }
             observaciones = (String) extras.get(ExtrasID.EXTRA_OBSER);
             if(observaciones!=null){
                 guardarObservaciones();
             }
         }
-        registros.addChangeListener(this);
+
     }
 
     private void guardarObservaciones() {

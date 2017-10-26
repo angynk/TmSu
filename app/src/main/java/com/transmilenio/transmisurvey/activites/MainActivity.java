@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.adapters.OptionAdapter;
@@ -128,17 +129,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Servicio>> call, Response<List<Servicio>> response) {
                     guardarServicios(response.body());
+                    Toast.makeText(MainActivity.this,Mensajes.MSG_SINCRONIZACION,Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<List<Servicio>> call, Throwable t) {
-                System.out.println("Hola");
+                Toast.makeText(MainActivity.this,Mensajes.MSG_SINCRONIZACION_FALLO,Toast.LENGTH_LONG).show();
             }
         });
     }
 
     public void guardarServicios(List<Servicio> servicios){
 
+        eliminarInfoServicios();
 
         for (Servicio servicio:servicios){
             ServicioRutas servicioRutas = new ServicioRutas(servicio.getNombre());
@@ -148,6 +151,13 @@ public class MainActivity extends AppCompatActivity {
             cargarEstaciones(servicioRutas.getNombre(),servicio.getEstaciones());
 
         }
+    }
+
+    private void eliminarInfoServicios() {
+        realm.beginTransaction();
+        realm.delete(Estacion.class);
+        realm.delete(ServicioRutas.class);
+        realm.commitTransaction();
     }
 
     private void cargarEstaciones(String nombre, List<String> estaciones) {
