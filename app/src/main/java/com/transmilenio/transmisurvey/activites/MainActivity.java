@@ -82,7 +82,10 @@ public class MainActivity extends AppCompatActivity {
     private void validarExtras(){
         Bundle extras = getIntent().getExtras();
         if(extras != null){
-            eliminarEncuesta( (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA));
+            Object idEliminar =  extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
+            if(idEliminar!=null){
+                eliminarEncuesta((int)idEliminar);
+            }
         }
     }
 
@@ -96,7 +99,10 @@ public class MainActivity extends AppCompatActivity {
                     RealmList<Registro> registros = cuadro.getRegistros();
                     registros.deleteAllFromRealm();
                 }
-                rows.deleteAllFromRealm();
+                if(rows.size()>0){
+                    rows.deleteAllFromRealm();
+                }
+
             }
         });
     }
