@@ -10,10 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import com.transmilenio.transmisurvey.R;
@@ -40,8 +42,9 @@ public class RegistroActivity extends AppCompatActivity  {
     private SearchableSpinner estacion;
     private List<String> diasSemana;
     private ImageButton buttonLlegada, buttonSalida;
+    private ToggleButton tieneObservaciones;
     private TextView textLlegada,textSalida;
-    private EditText seBajan,seSuben,seQuedan;
+    private EditText seBajan,seSuben,seQuedan,observaciones;
     private FloatingActionButton buttonNuevo;
 
     private Realm realm;
@@ -50,9 +53,11 @@ public class RegistroActivity extends AppCompatActivity  {
     private Cuadro encuesta;
     private String servicio;
 
-    FragmentManager fm = getSupportFragmentManager();
 
 
+
+    public RegistroActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +88,10 @@ public class RegistroActivity extends AppCompatActivity  {
         seSuben.setEnabled(false);
         buttonNuevo = (FloatingActionButton) findViewById(R.id.adt_nuevoRegistro_button);
         buttonSalida.setEnabled(false);
+        observaciones = (EditText) findViewById(R.id.adt_observaciones_editText);
+        tieneObservaciones = (ToggleButton) findViewById(R.id.adt_observaciones_toggleButton);
+        tieneObservaciones.setEnabled(false);
+        observaciones.setEnabled(false);
         agregarListaEstacion();
         agregarEventosBotones();
     }
@@ -122,6 +131,7 @@ public class RegistroActivity extends AppCompatActivity  {
                 seQuedan.setEnabled(true);
                 estacion.setEnabled(true);
                 buttonSalida.setEnabled(true);
+                tieneObservaciones.setEnabled(true);
             }
         });
 
@@ -139,10 +149,25 @@ public class RegistroActivity extends AppCompatActivity  {
 
 
                 if(agregarRegistro()){
-                    AlertObservacion dFragment = newInstance(idCuadroEncuesta,servicio);
-                    dFragment.show(fm, Mensajes.MSG_OBSERVACIONES);
+                    Intent intent = new Intent(RegistroActivity.this,ListaRegistrosActivity.class);
+                    intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idCuadroEncuesta);
+                    intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
+                    startActivity(intent);
+//                    AlertObservacion dFragment = newInstance(idCuadroEncuesta,servicio);
+//                    dFragment.show(fm, Mensajes.MSG_OBSERVACIONES);
                 }
 
+            }
+        });
+
+        tieneObservaciones.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                   observaciones.setEnabled(true);
+                } else {
+                    observaciones.setEnabled(false);
+                }
             }
         });
 
@@ -189,6 +214,7 @@ public class RegistroActivity extends AppCompatActivity  {
         registro.setSuban(Integer.parseInt(seSuben.getText().toString()));
         registro.setQuedan(Integer.parseInt(seQuedan.getText().toString()));
         registro.setEstacion(estacion.getSelectedItem().toString());
+        registro.setObservacion(observaciones.getText().toString());
         return registro;
     }
 

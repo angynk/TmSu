@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
@@ -20,9 +21,9 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView">
+        android:layout_alignParentStart="true">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/adt_nuevoRegistro_button"
@@ -46,23 +47,23 @@
                 style="@style/AppTheme.ButtonObtDatos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
+                android:layout_marginStart="23dp"
+                android:src="@drawable/ic_clock"
+                android:layout_marginBottom="14dp"
+                android:layout_above="@+id/adt_estacion_view"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="22dp"
-                android:layout_marginStart="22dp"
-                android:layout_marginTop="31dp"
-                android:src="@drawable/ic_clock"/>
+                android:layout_alignParentStart="true" />
 
             <TextView
                 android:id="@+id/adt_llegada_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:text="@string/llegada"
-                android:layout_alignTop="@+id/adt_llegada_button"
                 android:layout_alignLeft="@+id/textView_salida"
-                android:layout_alignStart="@+id/textView_salida" />
+                android:layout_alignStart="@+id/textView_salida"
+                android:layout_alignTop="@+id/adt_llegada_button"
+                android:layout_marginTop="14dp"
+                android:text="@string/llegada" />
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/adt_estacion_spinner"
@@ -74,122 +75,148 @@
 
             <TextView
                 android:id="@+id/adt_estacion_view"
+                style="@style/AppTheme.Encabezado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/estacion"
-                style="@style/AppTheme.Encabezado"
                 android:layout_alignBottom="@+id/adt_estacion_spinner"
                 android:layout_alignLeft="@+id/adt_llegada_button"
-                android:layout_alignStart="@+id/adt_llegada_button" />
+                android:layout_alignStart="@+id/adt_llegada_button"
+                android:text="@string/estacion" />
 
             <TextView
                 android:id="@+id/adt_bajan_textView"
+                style="@style/AppTheme.Encabezado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="23dp"
-                android:text="@string/bajan"
-                style="@style/AppTheme.Encabezado"
-                android:layout_below="@+id/adt_estacion_view"
                 android:layout_alignLeft="@+id/adt_estacion_view"
-                android:layout_alignStart="@+id/adt_estacion_view" />
+                android:layout_alignStart="@+id/adt_estacion_view"
+                android:layout_below="@+id/adt_estacion_view"
+                android:layout_marginTop="23dp"
+                android:text="@string/bajan" />
 
             <EditText
                 android:id="@+id/adt_bajan_editText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:maxLength="3"
-                android:inputType="number"
                 android:layout_alignBottom="@+id/adt_bajan_textView"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
                 android:layout_alignLeft="@+id/adt_estacion_spinner"
-                android:layout_alignStart="@+id/adt_estacion_spinner" />
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignStart="@+id/adt_estacion_spinner"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="3" />
 
             <EditText
                 android:id="@+id/adt_suben_editText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:maxLength="3"
-                android:inputType="number"
-                android:layout_below="@+id/adt_bajan_editText"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
                 android:layout_alignLeft="@+id/adt_bajan_editText"
-                android:layout_alignStart="@+id/adt_bajan_editText" />
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignStart="@+id/adt_bajan_editText"
+                android:layout_below="@+id/adt_bajan_editText"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="3" />
 
             <TextView
                 android:id="@+id/adt_sube_textView"
+                style="@style/AppTheme.Encabezado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/suben"
-                style="@style/AppTheme.Encabezado"
                 android:layout_alignBottom="@+id/adt_suben_editText"
                 android:layout_alignLeft="@+id/adt_bajan_textView"
-                android:layout_alignStart="@+id/adt_bajan_textView" />
+                android:layout_alignStart="@+id/adt_bajan_textView"
+                android:text="@string/suben" />
 
             <EditText
                 android:id="@+id/adt_quedan_editText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:maxLength="3"
-                android:inputType="number"
-                android:layout_below="@+id/adt_suben_editText"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
                 android:layout_alignLeft="@+id/adt_suben_editText"
-                android:layout_alignStart="@+id/adt_suben_editText" />
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignStart="@+id/adt_suben_editText"
+                android:layout_below="@+id/adt_suben_editText"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="3" />
 
             <TextView
                 android:id="@+id/adt_quedan_textView"
+                style="@style/AppTheme.Encabezado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/quedan"
-                style="@style/AppTheme.Encabezado"
                 android:layout_above="@+id/adt_salida_button"
                 android:layout_alignLeft="@+id/adt_salida_button"
-                android:layout_alignStart="@+id/adt_salida_button" />
+                android:layout_alignStart="@+id/adt_salida_button"
+                android:text="@string/quedan" />
 
             <ImageButton
                 android:id="@+id/adt_salida_button"
+                style="@style/AppTheme.ButtonObtDatos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/adt_quedan_editText"
+                android:layout_marginTop="17dp"
                 android:layout_toLeftOf="@+id/adt_quedan_editText"
                 android:layout_toStartOf="@+id/adt_quedan_editText"
-                android:layout_marginTop="17dp"
-                android:src="@drawable/ic_clock"
-                style="@style/AppTheme.ButtonObtDatos"/>
+                android:src="@drawable/ic_clock" />
 
             <TextView
                 android:id="@+id/textView_salida"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/salida"
                 android:layout_alignBottom="@+id/adt_salida_button"
-                android:layout_toRightOf="@+id/adt_salida_button"
-                android:layout_toEndOf="@+id/adt_salida_button"
+                android:layout_marginBottom="14dp"
                 android:layout_marginLeft="14dp"
                 android:layout_marginStart="14dp"
-                android:layout_marginBottom="14dp" />
+                android:layout_toEndOf="@+id/adt_salida_button"
+                android:layout_toRightOf="@+id/adt_salida_button"
+                android:text="@string/salida" />
+
+            <TextView
+                android:id="@+id/adt_observaciones_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_observacion"
+                android:layout_marginTop="25dp"
+                style="@style/AppTheme.Encabezado"
+                android:layout_below="@+id/adt_salida_button"
+                android:layout_alignLeft="@+id/adt_salida_button"
+                android:layout_alignStart="@+id/adt_salida_button" />
+
+            <EditText
+                android:id="@+id/adt_observaciones_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:ems="10"
+                android:text=""
+                android:inputType="textMultiLine"
+                android:layout_below="@+id/adt_observaciones_toggleButton"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp" />
+
+            <ToggleButton
+                android:id="@+id/adt_observaciones_toggleButton"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:background="@color/colorObservacion"
+                android:textOff="No"
+                android:textOn="Sí"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_alignTop="@+id/adt_observaciones_TextView"
+                android:layout_toRightOf="@+id/adt_observaciones_TextView"
+                android:layout_toEndOf="@+id/adt_observaciones_TextView" />
 
 
         </RelativeLayout>
 
     </FrameLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="122dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginRight="64dp">
-
-    </android.support.design.widget.TextInputLayout>
 
 </RelativeLayout>

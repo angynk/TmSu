@@ -19,6 +19,7 @@ public class Mensajes {
     public static String MSG_ACEPTAR = "ACEPTAR";
     public static String MSG_SALIR_ENCUESTA = "Salir de Encuesta";
     public static String MSG_OBSERVACIONES= "Observaciones";
+    public static String MSG_SALIR_ENVIO= "Finalizar";
     public static String MSG_ENCUESTA = "Encuestas";
     public static String MSG_ENVIANDO = "Enviando....";
     public static String MSG_ENCUESTAS_ENVIADAS = "Encuestas Enviadas";

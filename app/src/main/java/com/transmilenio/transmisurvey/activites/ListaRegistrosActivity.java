@@ -59,17 +59,10 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
                 registros = cuadro.getRegistros();
                 registros.addChangeListener(this);
             }
-            observaciones = (String) extras.get(ExtrasID.EXTRA_OBSER);
-            if(observaciones!=null){
-                guardarObservaciones();
-            }
         }
 
     }
 
-    private void guardarObservaciones() {
-
-    }
 
     private void setActionBarBotton() {
         ActionBar actionBar = getSupportActionBar();

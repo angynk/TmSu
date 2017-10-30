@@ -134,7 +134,7 @@ public class SurveyActivity extends AppCompatActivity {
     }
 
     private void agregarFecha() {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         Date ahora = new Date();
         textFecha.setText(formato.format(ahora));
         textDiaSemana.setText(ProcessorUtil.obtenerDiaDeLaSemana(ahora));

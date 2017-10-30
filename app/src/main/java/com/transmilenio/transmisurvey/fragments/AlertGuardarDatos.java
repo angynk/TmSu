@@ -70,6 +70,7 @@ public class AlertGuardarDatos extends DialogFragment {
                 Intent intent = new Intent(view.getContext(), MainActivity.class);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 startActivity(intent);
+
             }
         });
     }

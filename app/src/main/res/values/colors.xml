@@ -14,5 +14,7 @@
     <color name="colorTextButton">#FFFFFF</color>
     <color name="colorWhite">#000000</color>
 
+    <color name="colorObservacion">#BDBDBD</color>
+
     <color name="colorButtonDialog">#829685</color>
 </resources>

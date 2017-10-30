@@ -1,9 +1,11 @@
 package com.transmilenio.transmisurvey.activites;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.adapters.OptionAdapter;
+import com.transmilenio.transmisurvey.fragments.AlertGuardarDatos;
 import com.transmilenio.transmisurvey.http.API;
 import com.transmilenio.transmisurvey.http.SurveyService;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
@@ -94,12 +97,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void execute(Realm realm) {
                 //Eliminar Encuesta y Registros
-                RealmResults<Cuadro> rows = realm.where(Cuadro.class).equalTo("id",idEncuesta).findAll();
-                for(Cuadro cuadro: rows){
+                RealmResults<Cuadro> rows = realm.where(Cuadro.class).equalTo("id", idEncuesta).findAll();
+                for (Cuadro cuadro : rows) {
                     RealmList<Registro> registros = cuadro.getRegistros();
                     registros.deleteAllFromRealm();
                 }
-                if(rows.size()>0){
+                if (rows.size() > 0) {
                     rows.deleteAllFromRealm();
                 }
 
@@ -107,26 +110,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-//        ((OpcionAdapter) adapter).setOnItemClickListener(new OpcionAdapter
-//                .MyClickListener() {
-//            @Override
-//            public void onItemClick(int position, View v) {
-//                if(position==0){
-//                    Intent intent = new Intent(MainActivity.this,ListaSurveyActivity.class);
-//                    startActivity(intent);
-//                }else if(position==1){
-//                }else if (position ==2){
-//                    Intent intent = new Intent(MainActivity.this,ListaSurveyEnvioActivity.class);
-//                    startActivity(intent);
-//                }else if (position == 3 ){
-//                    cargarServiciosTemporal();
-//                }
-//            }
-//        });
-    }
 
     private void cargarServiciosTemporal(){
         SurveyService surveyService = API.getApi().create(SurveyService.class);
@@ -143,6 +126,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,Mensajes.MSG_SINCRONIZACION_FALLO,Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return true;
     }
 
     public void guardarServicios(List<Servicio> servicios){

@@ -17,6 +17,7 @@ public class Registro extends RealmObject{
     private int suban;
     private int quedan;
     private String horaSalida;
+    private String observacion;
 
     public Registro() {
         this.id = MyApplication.registroID.incrementAndGet();
@@ -82,5 +83,13 @@ public class Registro extends RealmObject{
 
     public void setHoraSalida(String horaSalida) {
         this.horaSalida = horaSalida;
+    }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
     }
 }

@@ -26,7 +26,8 @@
     <string name="button_ignorar">Ignorar Cambios</string>
     <string name="button_cancelar">Cancelar</string>
     <string name="button_enviar">Enviar</string>
-    <string name="button_observacion">Observaciones</string>
+    <string name="button_limpiar">Limpiar</string>
+    <string name="button_observacion">¿Tiene Observaciones?</string>
 
     <string name="txt_encuestasEnviadas">Encuestas Enviadas</string>
     <string name="txt_encuestasPendientes">Encuestas Pendientes</string>
