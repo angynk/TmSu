@@ -111,7 +111,6 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
     }
 
     ProgressDialog progressDoalog;
-    List<Resultado> resultado = new ArrayList<>();
 
     private void enviarEncuesta(final EncuestasTerminadas encuestas) {
         SurveyService surveyService = API.getApi().create(SurveyService.class);
@@ -120,11 +119,8 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
             @Override
             public void onResponse(Call<List<Resultado>> call, Response<List<Resultado>> response) {
                 List<Resultado>  resulta = response.body();
-//               eliminarResultados(resultado);
                 progressDoalog.dismiss();
                 showAlertDialog(Mensajes.MSG_ENCUESTAS_ENVIADAS,resulta);
-//                buttonEliminar.setVisibility(View.VISIBLE);
-//                buttonEnviar.setVisibility(View.INVISIBLE);
             }
 
             @Override

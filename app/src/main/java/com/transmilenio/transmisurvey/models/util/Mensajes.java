@@ -13,6 +13,7 @@ public class Mensajes {
     public static String MSG_COMPLETE_CAMPOS = "Complete todos los campos";
     public static String MSG_SINCRONIZE = "Datos Incompletos Sincronize la Aplicacion";
     public static String MSG_SINCRONIZACION = "Sincronización exitosa";
+    public static String MSG_SINCRONIZANDO= "Sincronizando Datos";
     public static String MSG_SINCRONIZACION_FALLO = "Error en Sincronización ";
     public static String MSG_SELECCIONE = "Seleccione Uno";
     public static String MSG_OK = "OK";
@@ -21,6 +22,7 @@ public class Mensajes {
     public static String MSG_OBSERVACIONES= "Observaciones";
     public static String MSG_SALIR_ENVIO= "Finalizar";
     public static String MSG_ENCUESTA = "Encuestas";
+    public static String MSG_CONFIGURACION = "Configuración";
     public static String MSG_ENVIANDO = "Enviando....";
     public static String MSG_ENCUESTAS_ENVIADAS = "Encuestas Enviadas";
     public static String MSG_NO_HAY_ENCUESTAS = "No hay Encuestas completadas";

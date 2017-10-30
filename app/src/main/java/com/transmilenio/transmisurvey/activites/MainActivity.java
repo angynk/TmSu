@@ -1,5 +1,6 @@
 package com.transmilenio.transmisurvey.activites;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView listView;
     private OptionAdapter adapter;
     private List<Opcion> opcionesList;
+    private ProgressDialog progressDoalog;
 
     private Realm realm;
 
@@ -112,18 +114,26 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void cargarServiciosTemporal(){
+        progressDoalog = new ProgressDialog(MainActivity.this);
+        progressDoalog.setMessage(Mensajes.MSG_SINCRONIZANDO);
+        progressDoalog.setTitle(Mensajes.MSG_CONFIGURACION);
+        progressDoalog.setCanceledOnTouchOutside(false);
+        progressDoalog.show();
+
         SurveyService surveyService = API.getApi().create(SurveyService.class);
         Call<List<Servicio>> call = surveyService.getServicios();
         call.enqueue(new Callback<List<Servicio>>() {
             @Override
             public void onResponse(Call<List<Servicio>> call, Response<List<Servicio>> response) {
                     guardarServicios(response.body());
-                    Toast.makeText(MainActivity.this,Mensajes.MSG_SINCRONIZACION,Toast.LENGTH_LONG).show();
+                    progressDoalog.dismiss();
+                    Toast.makeText(MainActivity.this,Mensajes.MSG_SINCRONIZACION,Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<List<Servicio>> call, Throwable t) {
-                Toast.makeText(MainActivity.this,Mensajes.MSG_SINCRONIZACION_FALLO,Toast.LENGTH_LONG).show();
+                progressDoalog.dismiss();
+                Toast.makeText(MainActivity.this,Mensajes.MSG_SINCRONIZACION_FALLO,Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -160,7 +170,6 @@ public class MainActivity extends AppCompatActivity {
         ServicioRutas servicioRutas = realm.where(ServicioRutas.class).equalTo("nombre", nombre).findFirst();
         for(String estacionNombre: estaciones){
             Estacion estacion = new Estacion(estacionNombre);
-//                realm.beginTransaction();
             realm.copyToRealmOrUpdate(estacion);
             servicioRutas.getEstaciones().add(estacion);
 
