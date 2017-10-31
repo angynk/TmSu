@@ -137,16 +137,6 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
 
                  AlertObservacion dFragment = newInstance(resultado);
                     dFragment.show(fm, Mensajes.MSG_SALIR_ENVIO);
-//        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-//        alertDialog.setTitle(Mensajes.MSG_RESULTADO_ENVIO);
-//        alertDialog.setMessage(mensaje);
-//        alertDialog.setButton(Dialog.BUTTON_POSITIVE,Mensajes.MSG_ACEPTAR, new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog,int which) {
-//                eliminarResultados(resultado);
-//               finish();
-//            }
-//        });
-//        alertDialog.show();
     }
 
 

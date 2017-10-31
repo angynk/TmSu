@@ -45,7 +45,7 @@ public class RegistroActivity extends AppCompatActivity  {
     private ToggleButton tieneObservaciones;
     private TextView textLlegada,textSalida;
     private EditText seBajan,seSuben,seQuedan,observaciones;
-    private FloatingActionButton buttonNuevo;
+    private FloatingActionButton buttonNuevo,buttonCerrar;
 
     private Realm realm;
 
@@ -73,6 +73,7 @@ public class RegistroActivity extends AppCompatActivity  {
         }
         bindUI();
         setActionBarBotton();
+        Toast.makeText(RegistroActivity.this,"Nueva Entrada, para iniciar Registre la hora de llegada",Toast.LENGTH_LONG).show();
     }
 
     private void bindUI() {
@@ -87,6 +88,7 @@ public class RegistroActivity extends AppCompatActivity  {
         seSuben = (EditText) findViewById(R.id.adt_suben_editText);
         seSuben.setEnabled(false);
         buttonNuevo = (FloatingActionButton) findViewById(R.id.adt_nuevoRegistro_button);
+        buttonCerrar = (FloatingActionButton) findViewById(R.id.adt_cancelarRegistro_button);
         buttonSalida.setEnabled(false);
         observaciones = (EditText) findViewById(R.id.adt_observaciones_editText);
         tieneObservaciones = (ToggleButton) findViewById(R.id.adt_observaciones_toggleButton);
@@ -146,17 +148,23 @@ public class RegistroActivity extends AppCompatActivity  {
         buttonNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 if(agregarRegistro()){
-                    Intent intent = new Intent(RegistroActivity.this,ListaRegistrosActivity.class);
+                    Intent intent = new Intent(RegistroActivity.this,RegistroActivity.class);
                     intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idCuadroEncuesta);
                     intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
                     startActivity(intent);
-//                    AlertObservacion dFragment = newInstance(idCuadroEncuesta,servicio);
-//                    dFragment.show(fm, Mensajes.MSG_OBSERVACIONES);
                 }
 
+            }
+        });
+
+        buttonCerrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegistroActivity.this,ListaRegistrosActivity.class);
+                intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idCuadroEncuesta);
+                intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
+                startActivity(intent);
             }
         });
 
