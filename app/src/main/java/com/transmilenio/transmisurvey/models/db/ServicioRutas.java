@@ -13,6 +13,7 @@ public class ServicioRutas extends RealmObject {
     private int id;
 
     private String nombre;
+    private String tipo;
     private RealmList<Estacion> estaciones;
 
     public ServicioRutas() {
@@ -20,8 +21,9 @@ public class ServicioRutas extends RealmObject {
         estaciones = new RealmList<Estacion>();
     }
 
-    public ServicioRutas(String nombre) {
+    public ServicioRutas(String nombre,String tipo) {
         this.nombre = nombre;
+        this.tipo = tipo;
         this.id = MyApplication.servicioID.incrementAndGet();
         estaciones = new RealmList<Estacion>();
     }
@@ -48,5 +50,13 @@ public class ServicioRutas extends RealmObject {
 
     public void setEstaciones(RealmList<Estacion> estaciones) {
         this.estaciones = estaciones;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

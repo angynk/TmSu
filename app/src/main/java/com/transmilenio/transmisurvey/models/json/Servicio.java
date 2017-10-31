@@ -9,6 +9,7 @@ import io.realm.annotations.PrimaryKey;
 public class Servicio {
 
     private String nombre;
+    private String tipo;
     private List<String> estaciones;
 
     public Servicio() {
@@ -34,5 +35,13 @@ public class Servicio {
 
     public void setEstaciones(List<String> estaciones) {
         this.estaciones = estaciones;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

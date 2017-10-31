@@ -41,7 +41,8 @@ public class ListaSurveyActivity extends AppCompatActivity {
 
     private void bindUI() {
         encuestas = new ArrayList<>();
-        encuestas.add(new Encuesta("Ascensos y Descensos Troncal"));
+        encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_ASCDES_TRONCAL));
+        encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_ASCDES_ALIMENTADOR));
         encuestas.add(new Encuesta("Eliminar Todo"));
         listView = (ListView) findViewById(R.id.listView_surveys);
         surveyAdapter = new SurveyAdapter(this,encuestas,R.layout.list_view_surveys);
@@ -56,9 +57,10 @@ public class ListaSurveyActivity extends AppCompatActivity {
                                     long arg3)
             {
                 Encuesta value = (Encuesta)adapter.getItemAtPosition(position);
-                if(value.getNombre().equals("Ascensos y Descensos Troncal")){
+                if(value.getNombre().equals(ExtrasID.NOMBRE_ENCUESTA_ASCDES_TRONCAL) ||
+                        value.getNombre().equals(ExtrasID.NOMBRE_ENCUESTA_ASCDES_ALIMENTADOR)){
                     Intent intent = new Intent(ListaSurveyActivity.this, SurveyActivity.class);
-                    intent.putExtra(ExtrasID.EXTRA_NOMBRE,"Ascensos y Descensos Troncal");
+                    intent.putExtra(ExtrasID.EXTRA_NOMBRE,value.getNombre());
                     intent.putExtra(ExtrasID.EXTRA_TIPO,ExtrasID.VALOR_NUEVO);
                     startActivity(intent);
                 }else{

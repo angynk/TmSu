@@ -48,9 +48,9 @@ public class SurveyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adt_survey);
         realm = Realm.getDefaultInstance();
+        validarExtras();
         bindUI();
         bindEventos();
-        validarExtras();
     }
 
     private void validarExtras(){
@@ -143,7 +143,7 @@ public class SurveyActivity extends AppCompatActivity {
     public void agregarItemsListas() {
 
         servicios = (SearchableSpinner) findViewById(R.id.adt_servicio_sepinner);
-        List<String> listservicios = getServicios();
+        List<String> listservicios = getServicios(obtenerTipoServicio(nombreEncuesta));
         ArrayAdapter<String> dataAdapterservicios = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, listservicios);
         dataAdapterservicios.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -175,9 +175,9 @@ public class SurveyActivity extends AppCompatActivity {
 
 
     @NonNull
-    private List<String> getServicios() {
+    private List<String> getServicios(String tipo) {
         List<String> list = new ArrayList<String>();
-        RealmResults<ServicioRutas> servicios = realm.where(ServicioRutas.class).findAll();
+        RealmResults<ServicioRutas> servicios = realm.where(ServicioRutas.class).equalTo("tipo", tipo).findAll();
         for (ServicioRutas servicioRutas: servicios){
             list.add(servicioRutas.getNombre());
         }
@@ -188,5 +188,13 @@ public class SurveyActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         realm.close();
+    }
+
+    private String obtenerTipoServicio(String nombreEncuesta){
+        if (nombreEncuesta.equals(ExtrasID.NOMBRE_ENCUESTA_ASCDES_TRONCAL)){
+            return ExtrasID.TIPO_SERVICIO_TRONCAL;
+        }
+
+        return ExtrasID.TIPO_SERVICIO_ALIMENTADOR;
     }
 }

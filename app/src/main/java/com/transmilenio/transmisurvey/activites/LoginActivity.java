@@ -37,11 +37,16 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setcredentialsIfExist() {
-        String user = prefs.getString(ExtrasID.EXTRA_USER,"");
-        String pass = prefs.getString(ExtrasID.EXTRA_PASS,"");
-        if(!TextUtils.isEmpty(user) && !TextUtils.isEmpty(pass)){
-            editTextUsuario.setText(user);
-            editTextContrasena.setText(pass);
+        Boolean isLogged = prefs.getBoolean(ExtrasID.EXTRA_LOGGED,false);
+        if(isLogged){
+            goToMain();
+        }else{
+            String user = prefs.getString(ExtrasID.EXTRA_USER,"");
+            String pass = prefs.getString(ExtrasID.EXTRA_PASS,"");
+            if(!TextUtils.isEmpty(user) && !TextUtils.isEmpty(pass)){
+                editTextUsuario.setText(user);
+                editTextContrasena.setText(pass);
+            }
         }
     }
 
@@ -81,12 +86,15 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+
     private void saveOnPreferences(String user,String password){
+        SharedPreferences.Editor editor = prefs.edit();
         if(switchRecordar.isChecked()){
-            SharedPreferences.Editor editor = prefs.edit();
             editor.putString(ExtrasID.EXTRA_USER,user);
             editor.putString(ExtrasID.EXTRA_PASS,password);
-            editor.apply();
         }
+        editor.putBoolean(ExtrasID.EXTRA_LOGGED,true);
+        editor.apply();
     }
 }

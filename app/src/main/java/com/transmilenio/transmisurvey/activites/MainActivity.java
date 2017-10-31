@@ -85,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void logOut(){
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean(ExtrasID.EXTRA_LOGGED,false);
+        editor.apply();
         Intent intent = new Intent(this,LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
@@ -184,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         eliminarInfoServicios();
 
         for (Servicio servicio:servicios){
-            ServicioRutas servicioRutas = new ServicioRutas(servicio.getNombre());
+            ServicioRutas servicioRutas = new ServicioRutas(servicio.getNombre(),servicio.getTipo());
             realm.beginTransaction();
             realm.copyToRealmOrUpdate(servicioRutas);
             realm.commitTransaction();
@@ -204,10 +207,12 @@ public class MainActivity extends AppCompatActivity {
         realm.beginTransaction();
         ServicioRutas servicioRutas = realm.where(ServicioRutas.class).equalTo("nombre", nombre).findFirst();
         for(String estacionNombre: estaciones){
-            Estacion estacion = new Estacion(estacionNombre);
-            realm.copyToRealmOrUpdate(estacion);
+            Estacion estacion = realm.where(Estacion.class).equalTo("nombre", estacionNombre).findFirst();
+            if(estacion==null){
+                estacion = new Estacion(estacionNombre);
+                realm.copyToRealmOrUpdate(estacion);
+            }
             servicioRutas.getEstaciones().add(estacion);
-
         }
         realm.commitTransaction();
         System.out.println("");
