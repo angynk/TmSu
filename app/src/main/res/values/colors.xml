@@ -6,6 +6,7 @@
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#c62828</color>
     <color name="colorSecondaryLigth">#ff5f52</color>
+    <color name="colorMainLogin">#ff5f52</color>
     <color name="colorDivider">#BDBDBD</color>
     <color name="colorList">#80a556</color>
 
