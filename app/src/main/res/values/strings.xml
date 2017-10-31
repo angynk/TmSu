@@ -27,6 +27,7 @@
     <string name="button_cancelar">Cancelar</string>
     <string name="button_enviar">Enviar</string>
     <string name="button_limpiar">Limpiar</string>
+    <string name="button_iniciar">Iniciar</string>
     <string name="button_observacion">¿Tiene Observaciones?</string>
 
     <string name="txt_encuestasEnviadas">Encuestas Enviadas</string>
@@ -34,6 +35,13 @@
     <string name="txt_opciones">Opciones</string>
     <string name="txt_tiene_observaciones">Encuesta Registrada!</string>
     <string name="txt_ninguna">Ninguna</string>
+
+    <string name="hint_usuario">Usuario</string>
+    <string name="hint_contrasena">Contraseña</string>
+    <string name="hint_recordar">Recordar</string>
+
+    <string name="menu_salir">Cerrar Sesión</string>
+    <string name="menu_olvidar">Cerrar Sesión y Olvidar</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

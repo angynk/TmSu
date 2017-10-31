@@ -1,11 +1,14 @@
 package com.transmilenio.transmisurvey.activites;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -44,16 +47,52 @@ public class MainActivity extends AppCompatActivity {
     private ProgressDialog progressDoalog;
 
     private Realm realm;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         realm = Realm.getDefaultInstance();
+        prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         validarExtras();
         bindUI();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.lg_menu_salir:
+                logOut();
+                return true;
+            case R.id.lg_menu_olvidar:
+                removeSharedPreferences();
+                logOut();
+                return false;
+            default:
+                return super.onContextItemSelected(item);
+        }
+
+    }
+
+
+
+    private void logOut(){
+        Intent intent = new Intent(this,LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
+    private void removeSharedPreferences(){
+        prefs.edit().clear().apply();
+    }
 
     private void bindUI(){
         listView = (ListView) findViewById(R.id.ini_opciones_listView);
@@ -139,10 +178,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return true;
-    }
 
     public void guardarServicios(List<Servicio> servicios){
 

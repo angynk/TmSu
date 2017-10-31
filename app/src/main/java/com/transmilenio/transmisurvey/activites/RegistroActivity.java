@@ -178,18 +178,15 @@ public class RegistroActivity extends AppCompatActivity  {
                 }
             }
         });
-
     }
 
     public static AlertObservacion newInstance(int id,String servicio) {
         AlertObservacion f = new AlertObservacion();
-
         // Supply num input as an argument.
         Bundle args = new Bundle();
         args.putInt(ExtrasID.EXTRA_ID_ENCUESTA, id);
         args.putString(ExtrasID.EXTRA_ID_SERVICIO, servicio);
         f.setArguments(args);
-
         return f;
     }
 
