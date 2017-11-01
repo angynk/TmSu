@@ -13,9 +13,11 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.transmilenio.transmisurvey.R;
+import com.transmilenio.transmisurvey.models.db.Aforador;
+import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 
-import org.w3c.dom.Text;
+import io.realm.Realm;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -23,7 +25,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText editTextUsuario,editTextContrasena;
     private Switch switchRecordar;
-    private Button buttonIngresar;
+    private Button buttonIngresar,buttonInvitado;
+    private Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+        realm = Realm.getDefaultInstance();
         bindUI();
         createEvents();
         setcredentialsIfExist();
@@ -39,14 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     private void setcredentialsIfExist() {
         Boolean isLogged = prefs.getBoolean(ExtrasID.EXTRA_LOGGED,false);
         if(isLogged){
-            goToMain();
-        }else{
-            String user = prefs.getString(ExtrasID.EXTRA_USER,"");
-            String pass = prefs.getString(ExtrasID.EXTRA_PASS,"");
-            if(!TextUtils.isEmpty(user) && !TextUtils.isEmpty(pass)){
-                editTextUsuario.setText(user);
-                editTextContrasena.setText(pass);
-            }
+            goToMain(ExtrasID.TIPO_USUARIO_AFORADOR);
         }
     }
 
@@ -56,12 +53,34 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String user =editTextUsuario.getText().toString();
                 String pass = editTextContrasena.getText().toString();
-               if( inicioSession(user,pass)){
-                   goToMain();
-                   saveOnPreferences(user,pass);
-               }
+
+                if(switchRecordar.isChecked()){
+                    loginAdministrador(user,pass);
+                }else{
+                    if(inicioSession(user,pass)){
+                        goToMain(ExtrasID.TIPO_USUARIO_AFORADOR);
+                        saveOnPreferences(user);
+                    }
+                }
+
             }
         });
+
+        buttonInvitado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMain(ExtrasID.TIPO_USUARIO_INVITADO);
+                saveOnPreferences(ExtrasID.TIPO_USUARIO_INVITADO);
+            }
+        });
+    }
+
+    private void loginAdministrador(String user, String pass) {
+        if(!TextUtils.isEmpty(user) && !TextUtils.isEmpty(pass)){
+            goToMain(ExtrasID.TIPO_USUARIO_ADMIN);
+            saveOnPreferences(user);
+        }
+
     }
 
     private void bindUI(){
@@ -69,31 +88,39 @@ public class LoginActivity extends AppCompatActivity {
         editTextContrasena = (EditText) findViewById(R.id.lg_pass_editText);
         switchRecordar = (Switch) findViewById(R.id.lg_recordar_switch);
         buttonIngresar = (Button) findViewById(R.id.lg_iniciar_button);
+        buttonInvitado = (Button) findViewById(R.id.lg_invitado_button);
     }
 
     private boolean inicioSession(String user,String password){
         if(!TextUtils.isEmpty(user) && !TextUtils.isEmpty(password)){
-            return true;
+            Aforador aforador = realm.where(Aforador.class).equalTo("user", user).findFirst();
+            if(aforador !=null){
+                if(aforador.getContrasena().equals(password)){
+                    return true;
+                }else{
+                    Toast.makeText(this,"Información invalida, Intente de nuevo",Toast.LENGTH_LONG).show();
+                }
+            }else{
+                Toast.makeText(this,"El usuario no existe, contactese con el administrador",Toast.LENGTH_LONG).show();
+            }
         }else{
             Toast.makeText(this,"Información incompleta, Intente de nuevo",Toast.LENGTH_LONG).show();
         }
         return false;
     }
 
-    private void goToMain(){
+    private void goToMain(String tipoUsuario){
         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra(ExtrasID.EXTRA_TIPO_USUARIO,tipoUsuario);
         startActivity(intent);
     }
 
 
 
-    private void saveOnPreferences(String user,String password){
+    private void saveOnPreferences(String user){
         SharedPreferences.Editor editor = prefs.edit();
-        if(switchRecordar.isChecked()){
-            editor.putString(ExtrasID.EXTRA_USER,user);
-            editor.putString(ExtrasID.EXTRA_PASS,password);
-        }
+        editor.putString(ExtrasID.EXTRA_USER,user);
         editor.putBoolean(ExtrasID.EXTRA_LOGGED,true);
         editor.apply();
     }

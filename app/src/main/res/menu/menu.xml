@@ -6,7 +6,4 @@
         android:title="@string/menu_salir"
         app:showAsAction="never"/>
 
-    <item android:id="@+id/lg_menu_olvidar"
-        android:title="@string/menu_olvidar"
-        app:showAsAction="never"/>
 </menu>

@@ -2,6 +2,7 @@ package com.transmilenio.transmisurvey.app;
 
 import android.app.Application;
 
+import com.transmilenio.transmisurvey.models.db.Aforador;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Estacion;
 import com.transmilenio.transmisurvey.models.db.Registro;
@@ -24,6 +25,7 @@ public class MyApplication extends Application {
     public static AtomicInteger registroID = new AtomicInteger();
     public static AtomicInteger servicioID = new AtomicInteger();
     public static AtomicInteger estacionID = new AtomicInteger();
+    public static AtomicInteger aforadorID = new AtomicInteger();
 
     @Override
     public void onCreate() {
@@ -35,6 +37,7 @@ public class MyApplication extends Application {
         registroID = getIdByTable(realm, Registro.class);
         servicioID = getIdByTable(realm, ServicioRutas.class);
         estacionID = getIdByTable(realm, Estacion.class);
+        aforadorID = getIdByTable(realm, Aforador.class);
         realm.close();
     }
 

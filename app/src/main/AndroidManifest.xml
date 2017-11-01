@@ -54,6 +54,7 @@
                 android:value=".activites.MainActivity" />
         </activity>
         <activity android:name=".activites.ListaSurveyEnvioActivity" />
+        <activity android:name=".activites.CreacionUsuariosActivity"></activity>
     </application>
 
 </manifest>

@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Realm realm;
     private SharedPreferences prefs;
+    private String tipoUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +71,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.lg_menu_salir:
-                logOut();
-                return true;
-            case R.id.lg_menu_olvidar:
                 removeSharedPreferences();
                 logOut();
-                return false;
+                return true;
             default:
                 return super.onContextItemSelected(item);
         }
@@ -85,9 +83,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void logOut(){
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putBoolean(ExtrasID.EXTRA_LOGGED,false);
-        editor.apply();
         Intent intent = new Intent(this,LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
@@ -118,7 +113,10 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }else if( value.getName().equals(Mensajes.OPCION_CONFIG)){
                     cargarServiciosTemporal();
-            }
+                }else if(value.getName().equals(Mensajes.OPCION_USUARIO)){
+                    Intent intent = new Intent(MainActivity.this,CreacionUsuariosActivity.class);
+                    startActivity(intent);
+                }
 
             }
         });
@@ -133,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
             if(idEliminar!=null){
                 eliminarEncuesta((int)idEliminar);
             }
+            tipoUsuario = extras.getString(ExtrasID.EXTRA_TIPO_USUARIO);
         }
     }
 
@@ -224,7 +223,8 @@ public class MainActivity extends AppCompatActivity {
         int[] covers = new int[]{
                 R.drawable.ic_new_icon,
                 R.drawable.ic_send_icon,
-                R.drawable.ic_settings_icon};
+                R.drawable.ic_settings_icon,
+                R.drawable.ic_user_icon};
 
         Opcion a = new Opcion(Mensajes.OPCION_NUEVA, covers[0]);
         opcionesList.add(a);
@@ -234,6 +234,11 @@ public class MainActivity extends AppCompatActivity {
 
         a = new Opcion(Mensajes.OPCION_CONFIG, covers[2]);
         opcionesList.add(a);
+
+        if(tipoUsuario.equals(ExtrasID.TIPO_USUARIO_ADMIN)){
+            a = new Opcion(Mensajes.OPCION_USUARIO, covers[3]);
+            opcionesList.add(a);
+        }
 
     }
 

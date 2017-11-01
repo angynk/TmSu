@@ -26,12 +26,9 @@
         android:hint="@string/hint_usuario"
         tools:layout_editor_absoluteX="72dp"
         tools:layout_editor_absoluteY="148dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="59dp"
-        android:layout_marginStart="59dp"
-        android:layout_marginTop="167dp" />
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/imageView5"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/lg_pass_editText"
@@ -49,7 +46,7 @@
         android:id="@+id/lg_recordar_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hint_recordar"
+        android:text="@string/hint_admin"
         android:layout_marginTop="18dp"
         android:layout_below="@+id/lg_pass_editText"
         android:layout_alignRight="@+id/lg_pass_editText"
@@ -68,6 +65,20 @@
         android:layout_alignRight="@+id/lg_recordar_switch"
         android:layout_alignEnd="@+id/lg_recordar_switch"
         android:background="@color/colorPrimary"
+        android:textColor="@color/colorTextButton"/>
+
+    <Button
+        android:id="@+id/lg_invitado_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lg_iniciar_button"
+        android:layout_alignStart="@+id/lg_iniciar_button"
+        android:layout_below="@+id/lg_iniciar_button"
+        android:layout_marginTop="12dp"
+        android:text="@string/button_iniciar_anonimo"
+        android:layout_alignRight="@+id/lg_iniciar_button"
+        android:layout_alignEnd="@+id/lg_iniciar_button"
+        android:background="@color/colorButtonNormal"
         android:textColor="@color/colorTextButton"/>
 
 </RelativeLayout>
