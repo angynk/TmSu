@@ -10,6 +10,8 @@ public class ExtrasID {
     public static String EXTRA_TIPO = "tipo";
     public static String EXTRA_OBSER = "observacion";
     public static String EXTRA_USER = "user";
+    public static String EXTRA_NUM_ENVIADAS = "numEnv";
+    public static String EXTRA_NUM_PENDIENTES = "numPen";
     public static String EXTRA_PASS = "pass";
     public static String EXTRA_TIPO_USUARIO = "tipoUsuario";
     public static String EXTRA_LOGGED = "in";

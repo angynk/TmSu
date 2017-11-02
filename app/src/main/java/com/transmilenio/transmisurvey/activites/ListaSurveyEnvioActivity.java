@@ -3,7 +3,9 @@ package com.transmilenio.transmisurvey.activites;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -45,6 +47,7 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
     private Button buttonEnviar;
     private SurveySendAdapter surveyAdapter;
     private RealmResults<Cuadro> encuestas;
+    private SharedPreferences prefs;
 
     private Realm realm;
 
@@ -52,7 +55,7 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_survey_envio);
-
+        prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         realm = Realm.getDefaultInstance();
         encuestas = realm.where(Cuadro.class).findAll();
         encuestas.addChangeListener(this);
@@ -120,15 +123,31 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
             public void onResponse(Call<List<Resultado>> call, Response<List<Resultado>> response) {
                 List<Resultado>  resulta = response.body();
                 progressDoalog.dismiss();
+                incrementarEncuestasEnviadas(resulta.size());
                 showAlertDialog(Mensajes.MSG_ENCUESTAS_ENVIADAS,resulta);
             }
 
-            @Override
+
+
+                   @Override
             public void onFailure(Call<List<Resultado>> call, Throwable t) {
                 progressDoalog.dismiss();
                 showAlertDialog(Mensajes.MSG_ENCUESTAS_NO_ENVIADAS, new ArrayList<Resultado>());
             }
         });
+    }
+
+    private void incrementarEncuestasEnviadas(int nuevasEnviadas) {
+        int encEnviadas = prefs.getInt(ExtrasID.EXTRA_NUM_ENVIADAS,0);
+        int encPendientes = prefs.getInt(ExtrasID.EXTRA_NUM_PENDIENTES,0);
+        encEnviadas = encEnviadas + nuevasEnviadas;
+        if(encPendientes!=0){
+            encPendientes = encPendientes - nuevasEnviadas;
+        }
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(ExtrasID.EXTRA_NUM_ENVIADAS,encEnviadas);
+        editor.putInt(ExtrasID.EXTRA_NUM_PENDIENTES,encPendientes);
+        editor.apply();
     }
 
     FragmentManager fm = getSupportFragmentManager();
@@ -154,39 +173,6 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
         f.setArguments(args);
 
         return f;
-    }
-
-    private void eliminarResultados(List<Resultado> resultado) {
-        realm.beginTransaction();
-        for(Resultado resul:resultado){
-            if(resul.getId()!=-1){
-                final Cuadro cuadro = realm.where(Cuadro.class).equalTo("id", resul.getId()).findFirst();
-                if(cuadro!=null){
-                    if(cuadro.isValid()){
-                        RealmList<Registro> registros = cuadro.getRegistros();
-                        List<Integer> regIn= new ArrayList<>();
-                        for(Registro re:registros){
-                            regIn.add(re.getId());
-                        }
-                        for(Integer value:regIn){
-                            Registro registro = realm.where(Registro.class).equalTo("id", value).findFirst();
-                            if(registro!=null){
-                                if(registro.isValid()){
-                                    registro.deleteFromRealm();
-                                }
-                            }
-
-                        }
-                        cuadro.deleteFromRealm();
-                    }
-
-                }
-
-            }
-        }
-        realm.commitTransaction();
-        surveyAdapter.setSelectedItems(new ArrayList<Cuadro>());
-        buttonEnviar.setVisibility(View.VISIBLE);
     }
 
 

@@ -1,6 +1,8 @@
 package com.transmilenio.transmisurvey.activites;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -42,11 +44,13 @@ public class SurveyActivity extends AppCompatActivity {
    private String nombreEncuesta;
    private int idEncuesta;
    private boolean infoServicios;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adt_survey);
+        prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         realm = Realm.getDefaultInstance();
         validarExtras();
         bindUI();
@@ -120,7 +124,17 @@ public class SurveyActivity extends AppCompatActivity {
         cuadro.setNombreEncuesta(nombreEncuesta);
         realm.copyToRealmOrUpdate(cuadro);
         realm.commitTransaction();
+        incrementarEncuestasPendientes();
         return cuadro.getId();
+    }
+
+
+    private void incrementarEncuestasPendientes() {
+        int encPendientes = prefs.getInt(ExtrasID.EXTRA_NUM_PENDIENTES,0);
+        encPendientes = encPendientes + 1;
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(ExtrasID.EXTRA_NUM_PENDIENTES,encPendientes);
+        editor.apply();
     }
 
     private void bindUI() {

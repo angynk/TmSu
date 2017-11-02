@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.transmilenio.transmisurvey.R;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private OptionAdapter adapter;
     private List<Opcion> opcionesList;
     private ProgressDialog progressDoalog;
+    private TextView userNameTextView,encuePendientes,encuesEnviadas;
 
     private Realm realm;
     private SharedPreferences prefs;
@@ -58,6 +60,16 @@ public class MainActivity extends AppCompatActivity {
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         validarExtras();
         bindUI();
+        cargarDatosUsuario();
+    }
+
+    private void cargarDatosUsuario() {
+        String nombreUsuario = prefs.getString(ExtrasID.EXTRA_USER,ExtrasID.TIPO_USUARIO_INVITADO);
+        userNameTextView.setText(nombreUsuario);
+        String encPendientes = prefs.getInt(ExtrasID.EXTRA_NUM_PENDIENTES,0)+"";
+        String encEnviadas = prefs.getInt(ExtrasID.EXTRA_NUM_ENVIADAS,0)+"";
+        encuePendientes.setText(encPendientes);
+        encuesEnviadas.setText(encEnviadas);
     }
 
     @Override
@@ -94,6 +106,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void bindUI(){
         listView = (ListView) findViewById(R.id.ini_opciones_listView);
+        userNameTextView = (TextView) findViewById(R.id.bn_user_textView);
+        encuesEnviadas = (TextView) findViewById(R.id.ini_encuestasC_textView);
+        encuePendientes = (TextView) findViewById(R.id.ini_encuestasP_textView);
         opcionesList = new ArrayList<>();
         cargarOpciones();
         adapter = new OptionAdapter(this, opcionesList,R.layout.list_view_options);
@@ -152,6 +167,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+//        reducirEncuestasPendientes();
     }
 
 
