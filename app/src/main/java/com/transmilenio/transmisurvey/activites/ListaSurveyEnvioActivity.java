@@ -138,16 +138,16 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
     }
 
     private void incrementarEncuestasEnviadas(int nuevasEnviadas) {
-        int encEnviadas = prefs.getInt(ExtrasID.EXTRA_NUM_ENVIADAS,0);
-        int encPendientes = prefs.getInt(ExtrasID.EXTRA_NUM_PENDIENTES,0);
-        encEnviadas = encEnviadas + nuevasEnviadas;
-        if(encPendientes!=0){
-            encPendientes = encPendientes - nuevasEnviadas;
-        }
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt(ExtrasID.EXTRA_NUM_ENVIADAS,encEnviadas);
-        editor.putInt(ExtrasID.EXTRA_NUM_PENDIENTES,encPendientes);
-        editor.apply();
+//        int encEnviadas = prefs.getInt(ExtrasID.EXTRA_NUM_ENVIADAS,0);
+//        int encPendientes = prefs.getInt(ExtrasID.EXTRA_NUM_PENDIENTES,0);
+//        encEnviadas = encEnviadas + nuevasEnviadas;
+//        if(encPendientes!=0){
+//            encPendientes = encPendientes - nuevasEnviadas;
+//        }
+//        SharedPreferences.Editor editor = prefs.edit();
+//        editor.putInt(ExtrasID.EXTRA_NUM_ENVIADAS,encEnviadas);
+//        editor.putInt(ExtrasID.EXTRA_NUM_PENDIENTES,encPendientes);
+//        editor.apply();
     }
 
     FragmentManager fm = getSupportFragmentManager();

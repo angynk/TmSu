@@ -66,8 +66,10 @@ public class MainActivity extends AppCompatActivity {
     private void cargarDatosUsuario() {
         String nombreUsuario = prefs.getString(ExtrasID.EXTRA_USER,ExtrasID.TIPO_USUARIO_INVITADO);
         userNameTextView.setText(nombreUsuario);
-        String encPendientes = prefs.getInt(ExtrasID.EXTRA_NUM_PENDIENTES,0)+"";
-        String encEnviadas = prefs.getInt(ExtrasID.EXTRA_NUM_ENVIADAS,0)+"";
+//        String encPendientes = prefs.getInt(ExtrasID.EXTRA_NUM_PENDIENTES,0)+"";
+//        String encEnviadas = prefs.getInt(ExtrasID.EXTRA_NUM_ENVIADAS,0)+"";
+        String encPendientes = "0";
+        String encEnviadas = "0";
         encuePendientes.setText(encPendientes);
         encuesEnviadas.setText(encEnviadas);
     }

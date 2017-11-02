@@ -130,11 +130,11 @@ public class SurveyActivity extends AppCompatActivity {
 
 
     private void incrementarEncuestasPendientes() {
-        int encPendientes = prefs.getInt(ExtrasID.EXTRA_NUM_PENDIENTES,0);
-        encPendientes = encPendientes + 1;
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt(ExtrasID.EXTRA_NUM_PENDIENTES,encPendientes);
-        editor.apply();
+//        int encPendientes = prefs.getInt(ExtrasID.EXTRA_NUM_PENDIENTES,0);
+//        encPendientes = encPendientes + 1;
+//        SharedPreferences.Editor editor = prefs.edit();
+//        editor.putInt(ExtrasID.EXTRA_NUM_PENDIENTES,encPendientes);
+//        editor.apply();
     }
 
     private void bindUI() {
