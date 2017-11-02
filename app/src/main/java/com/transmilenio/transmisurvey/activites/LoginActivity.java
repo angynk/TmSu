@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     private void setcredentialsIfExist() {
         Boolean isLogged = prefs.getBoolean(ExtrasID.EXTRA_LOGGED,false);
         if(isLogged){
-            goToMain(ExtrasID.TIPO_USUARIO_AFORADOR);
+            goToMain(prefs.getString(ExtrasID.EXTRA_TIPO_USUARIO,ExtrasID.TIPO_USUARIO_INVITADO));
         }
     }
 
@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                 }else{
                     if(inicioSession(user,pass)){
                         goToMain(ExtrasID.TIPO_USUARIO_AFORADOR);
-                        saveOnPreferences(user);
+                        saveOnPreferences(user,ExtrasID.TIPO_USUARIO_AFORADOR);
                     }
                 }
 
@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 goToMain(ExtrasID.TIPO_USUARIO_INVITADO);
-                saveOnPreferences(ExtrasID.TIPO_USUARIO_INVITADO);
+                saveOnPreferences(ExtrasID.TIPO_USUARIO_INVITADO,ExtrasID.TIPO_USUARIO_INVITADO);
             }
         });
     }
@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
     private void loginAdministrador(String user, String pass) {
         if(!TextUtils.isEmpty(user) && !TextUtils.isEmpty(pass)){
             goToMain(ExtrasID.TIPO_USUARIO_ADMIN);
-            saveOnPreferences(user);
+            saveOnPreferences(user,ExtrasID.TIPO_USUARIO_ADMIN);
         }
 
     }
@@ -118,9 +118,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-    private void saveOnPreferences(String user){
+    private void saveOnPreferences(String user,String tipoUsuario){
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(ExtrasID.EXTRA_USER,user);
+        editor.putString(ExtrasID.EXTRA_TIPO_USUARIO,tipoUsuario);
         editor.putBoolean(ExtrasID.EXTRA_LOGGED,true);
         editor.apply();
     }

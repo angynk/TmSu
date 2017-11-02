@@ -40,6 +40,7 @@
     <string name="txt_tiene_observaciones">Encuesta Registrada!</string>
     <string name="txt_ninguna">Ninguna</string>
     <string name="txt_gestion_usuarios">Gestión Usuarios</string>
+    <string name="txt_nuevo_usuario">Nuevo Usuario</string>
 
     <string name="hint_usuario">Usuario</string>
     <string name="hint_contrasena">Contraseña</string>

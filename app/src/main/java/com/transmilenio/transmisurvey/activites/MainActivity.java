@@ -131,8 +131,9 @@ public class MainActivity extends AppCompatActivity {
             if(idEliminar!=null){
                 eliminarEncuesta((int)idEliminar);
             }
-            tipoUsuario = extras.getString(ExtrasID.EXTRA_TIPO_USUARIO);
+
         }
+        tipoUsuario = prefs.getString(ExtrasID.EXTRA_TIPO_USUARIO,ExtrasID.TIPO_USUARIO_INVITADO);
     }
 
     private void eliminarEncuesta(final int idEncuesta) {
@@ -248,4 +249,9 @@ public class MainActivity extends AppCompatActivity {
         realm.close();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
 }

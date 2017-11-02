@@ -8,27 +8,28 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.transmilenio.transmisurvey.R;
-import com.transmilenio.transmisurvey.models.db.Registro;
+import com.transmilenio.transmisurvey.models.db.Aforador;
+import com.transmilenio.transmisurvey.models.db.Encuesta;
 
 import java.util.List;
 
-/**
- * Created by nataly on 05/10/2017.
- */
-
-public class RegistroAdapter  extends BaseAdapter{
 
 
+public class UsuariosAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Registro> lista;
+    private List<Aforador> lista;
     private int layout;
 
-    public RegistroAdapter(Context context, List<Registro> lista, int layout) {
+    public UsuariosAdapter() {
+    }
+
+    public UsuariosAdapter(Context context, List<Aforador> lista, int layout) {
         this.context = context;
         this.lista = lista;
         this.layout = layout;
     }
+
 
     @Override
     public int getCount() {
@@ -36,7 +37,7 @@ public class RegistroAdapter  extends BaseAdapter{
     }
 
     @Override
-    public Registro getItem(int position) {
+    public Object getItem(int position) {
         return lista.get(position);
     }
 
@@ -47,20 +48,19 @@ public class RegistroAdapter  extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        ViewHolder vh;
+        UsuariosAdapter.ViewHolder vh;
 
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(layout,null);
-            vh = new ViewHolder();
-            vh.titulo = (TextView) convertView.findViewById(R.id.textView_tituloRegistro);
+            vh = new UsuariosAdapter.ViewHolder();
+            vh.titulo = (TextView) convertView.findViewById(R.id.lv_user_textView);
             convertView.setTag(vh);
         }else{
-            vh = (ViewHolder) convertView.getTag();
+            vh = (UsuariosAdapter.ViewHolder) convertView.getTag();
         }
 
-        Registro registro = lista.get(position);
-        vh.titulo.setText(registro.getEstacion());
+        Aforador encuesta = lista.get(position);
+        vh.titulo.setText(encuesta.getUser());
 
         return convertView;
     }

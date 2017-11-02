@@ -20,6 +20,7 @@ public class Mensajes {
     public static String MSG_OK = "OK";
     public static String MSG_ACEPTAR = "ACEPTAR";
     public static String MSG_SALIR_ENCUESTA = "Salir de Encuesta";
+    public static String MSG_CREAR_USUARIO = "Nuevo usuario";
     public static String MSG_OBSERVACIONES= "Observaciones";
     public static String MSG_SALIR_ENVIO= "Finalizar";
     public static String MSG_ENCUESTA = "Encuestas";
