@@ -60,7 +60,7 @@ public class UsuariosAdapter extends BaseAdapter {
         }
 
         Aforador encuesta = lista.get(position);
-        vh.titulo.setText(encuesta.getUser());
+        vh.titulo.setText(encuesta.getUsuario());
 
         return convertView;
     }

@@ -80,7 +80,7 @@ public class AlertNuevoUsuario extends DialogFragment {
         if(!TextUtils.isEmpty(user) &&
                 !TextUtils.isEmpty(pass)){
             //Validar Existencia Usuario
-           Aforador af =  realm.where(Aforador.class).equalTo("user",user).findFirst();
+           Aforador af =  realm.where(Aforador.class).equalTo("usuario",user).findFirst();
             if(af==null){
                 realm.beginTransaction();
                 Aforador nuevoAforador = new Aforador(user,pass);

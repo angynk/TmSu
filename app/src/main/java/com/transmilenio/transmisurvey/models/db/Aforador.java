@@ -13,7 +13,7 @@ public class Aforador extends RealmObject {
     @PrimaryKey
     private int id;
     @Required
-    private String user;
+    private String usuario;
     @Required
     private String contrasena;
 
@@ -22,7 +22,7 @@ public class Aforador extends RealmObject {
     }
 
     public Aforador(String user, String contrasena) {
-        this.user = user;
+        this.usuario = user;
         this.contrasena = contrasena;
         this.id = MyApplication.aforadorID.incrementAndGet();
     }
@@ -35,12 +35,12 @@ public class Aforador extends RealmObject {
         this.id = id;
     }
 
-    public String getUser() {
-        return user;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getContrasena() {

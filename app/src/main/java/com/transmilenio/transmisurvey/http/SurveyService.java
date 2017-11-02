@@ -1,5 +1,6 @@
 package com.transmilenio.transmisurvey.http;
 
+import com.transmilenio.transmisurvey.models.db.Aforador;
 import com.transmilenio.transmisurvey.models.db.Resultado;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 import com.transmilenio.transmisurvey.models.json.EncuestasTerminadas;
@@ -23,4 +24,7 @@ public interface SurveyService {
 
     @GET("config/servicios/")
     Call<List<Servicio>> getServicios();
+
+    @POST("user/login/")
+    Call<Boolean> login(@Body Aforador aforador);
 }

@@ -1,5 +1,6 @@
 package com.transmilenio.transmisurvey.activites;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,11 +14,22 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.transmilenio.transmisurvey.R;
+import com.transmilenio.transmisurvey.http.API;
+import com.transmilenio.transmisurvey.http.SurveyService;
 import com.transmilenio.transmisurvey.models.db.Aforador;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
+import com.transmilenio.transmisurvey.models.db.Resultado;
+import com.transmilenio.transmisurvey.models.json.EncuestasTerminadas;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
+import com.transmilenio.transmisurvey.models.util.Mensajes;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.realm.Realm;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -27,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private Switch switchRecordar;
     private Button buttonIngresar,buttonInvitado;
     private Realm realm;
+    private ProgressDialog progressDoalog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +90,36 @@ public class LoginActivity extends AppCompatActivity {
 
     private void loginAdministrador(String user, String pass) {
         if(!TextUtils.isEmpty(user) && !TextUtils.isEmpty(pass)){
-            goToMain(ExtrasID.TIPO_USUARIO_ADMIN);
-            saveOnPreferences(user,ExtrasID.TIPO_USUARIO_ADMIN);
+            Aforador aforador = new Aforador(user,pass);
+            progressDoalog = new ProgressDialog(LoginActivity.this);
+            progressDoalog.setMessage(Mensajes.MSG_AUTENTICANDO);
+            progressDoalog.setTitle(Mensajes.MSG_USUARIO);
+            progressDoalog.setCanceledOnTouchOutside(false);
+            progressDoalog.show();
+            validarUsuario(aforador);
         }
 
+    }
+
+    private void validarUsuario(final Aforador aforador) {
+        SurveyService surveyService = API.getApi().create(SurveyService.class);
+        Call<Boolean> call = surveyService.login(aforador);
+        call.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                Boolean  resulta = response.body();
+                progressDoalog.dismiss();
+                if(resulta){
+                    goToMain(ExtrasID.TIPO_USUARIO_ADMIN);
+                    saveOnPreferences(aforador.getUsuario(),ExtrasID.TIPO_USUARIO_ADMIN);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                progressDoalog.dismiss();
+            }
+        });
     }
 
     private void bindUI(){
@@ -93,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean inicioSession(String user,String password){
         if(!TextUtils.isEmpty(user) && !TextUtils.isEmpty(password)){
-            Aforador aforador = realm.where(Aforador.class).equalTo("user", user).findFirst();
+            Aforador aforador = realm.where(Aforador.class).equalTo("usuario", user).findFirst();
             if(aforador !=null){
                 if(aforador.getContrasena().equals(password)){
                     return true;

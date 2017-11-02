@@ -24,6 +24,8 @@ public class Mensajes {
     public static String MSG_OBSERVACIONES= "Observaciones";
     public static String MSG_SALIR_ENVIO= "Finalizar";
     public static String MSG_ENCUESTA = "Encuestas";
+    public static String MSG_USUARIO = "Usuario Administrador";
+    public static String MSG_AUTENTICANDO = "Autenticando";
     public static String MSG_CONFIGURACION = "Configuración";
     public static String MSG_ENVIANDO = "Enviando....";
     public static String MSG_ENCUESTAS_ENVIADAS = "Encuestas Enviadas";
