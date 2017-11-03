@@ -44,7 +44,7 @@ public class SurveyActivity extends AppCompatActivity {
    private String nombreEncuesta;
    private int idEncuesta;
    private boolean infoServicios;
-    private SharedPreferences prefs;
+   private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +112,6 @@ public class SurveyActivity extends AppCompatActivity {
     }
 
     private int crearObjetoInfoBase(final Cuadro cuadro){
-
         realm.beginTransaction();
         cuadro.setServicio(servicios.getSelectedItem().toString());
         cuadro.setDiaSemana(textDiaSemana.getText().toString());
@@ -122,6 +121,7 @@ public class SurveyActivity extends AppCompatActivity {
         cuadro.setRecorrido(Integer.parseInt(editTextRecorrido.getText().toString()));
         cuadro.setRegistros(new RealmList<Registro>());
         cuadro.setNombreEncuesta(nombreEncuesta);
+        cuadro.setAforador(prefs.getString(ExtrasID.EXTRA_USER,ExtrasID.TIPO_USUARIO_INVITADO));
         realm.copyToRealmOrUpdate(cuadro);
         realm.commitTransaction();
         incrementarEncuestasPendientes();

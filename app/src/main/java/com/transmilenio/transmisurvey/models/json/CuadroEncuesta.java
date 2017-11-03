@@ -11,6 +11,7 @@ public class CuadroEncuesta implements Serializable {
     private String dia_semana;
     private String servicio;
     private String num_bus;
+    private String aforador;
     private int recorrido;
     private int num_puerta;
     private int id_realm;
@@ -90,5 +91,13 @@ public class CuadroEncuesta implements Serializable {
 
     public void setId_realm(int id_realm) {
         this.id_realm = id_realm;
+    }
+
+    public String getAforador() {
+        return aforador;
+    }
+
+    public void setAforador(String aforador) {
+        this.aforador = aforador;
     }
 }

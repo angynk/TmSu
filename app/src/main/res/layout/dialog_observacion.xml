@@ -4,6 +4,14 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
+    <TextView
+        android:id="@+id/d_message_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_marginTop="20dp"
+        android:layout_weight="0.05" />
+
     <Button
         android:id="@+id/d_finalizar_button"
         android:layout_width="match_parent"
@@ -15,6 +23,7 @@
         android:layout_below="@+id/d_observacion_text"
         style="@style/AppTheme.ButtonObtDatos"
         android:text="@string/button_finalizar"
+        android:layout_marginTop="20dp"
         />
 
 </LinearLayout>

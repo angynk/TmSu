@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.activites.ListaRegistrosActivity;
@@ -30,8 +31,9 @@ import io.realm.RealmList;
 public class AlertObservacion extends DialogFragment {
 
     private Button buttonFinalizar;
-    private EditText observaciones;
+    private TextView mensajeTextView;
     private int idEncuesta;
+    private String mensaje;
     private List<Integer> eliminar;
 
 
@@ -43,7 +45,7 @@ public class AlertObservacion extends DialogFragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.dialog_observacion, container,
                 false);
-//        idEncuesta =  getArguments().getInt(ExtrasID.EXTRA_ID_ENCUESTA);
+        mensaje =  getArguments().getString(ExtrasID.EXTRA_MENSAJE);
         eliminar =  getArguments().getIntegerArrayList("lista");
         return rootView;
     }
@@ -56,16 +58,15 @@ public class AlertObservacion extends DialogFragment {
         getDialog().setTitle(Mensajes.MSG_OBSERVACIONES);
 
         buttonFinalizar = (Button) view.findViewById(R.id.d_finalizar_button);
-//        observaciones = (EditText) view.findViewById(R.id.d_observacion_text);
+        mensajeTextView = (TextView) view.findViewById(R.id.d_message_textView);
+        mensajeTextView.setText(mensaje);
 
         buttonFinalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 eliminarResultados(eliminar);
                 Intent intent = new Intent(view.getContext(), MainActivity.class);
-//                intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
-//                intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
-//                intent.putExtra(ExtrasID.EXTRA_OBSER,observaciones.getText().toString());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
         });

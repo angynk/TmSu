@@ -8,6 +8,7 @@ public class RegistroEncuesta {
     private int suban;
     private int quedan;
     private String hora_salida;
+    private String observacion;
 
     public RegistroEncuesta() {
     }
@@ -58,5 +59,13 @@ public class RegistroEncuesta {
 
     public void setHora_salida(String hora_salida) {
         this.hora_salida = hora_salida;
+    }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
     }
 }

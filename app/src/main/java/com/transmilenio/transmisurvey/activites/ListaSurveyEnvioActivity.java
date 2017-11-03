@@ -154,13 +154,13 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
 
     private void showAlertDialog(String mensaje, final List<Resultado> resultado){
 
-                 AlertObservacion dFragment = newInstance(resultado);
+                 AlertObservacion dFragment = newInstance(resultado,mensaje);
                     dFragment.show(fm, Mensajes.MSG_SALIR_ENVIO);
     }
 
 
 
-    public static AlertObservacion newInstance(final List<Resultado> resultado) {
+    public static AlertObservacion newInstance(final List<Resultado> resultado,String mensaje) {
         AlertObservacion f = new AlertObservacion();
         ArrayList<Integer> lista = new ArrayList<>();
         for(Resultado res : resultado){
@@ -170,6 +170,7 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
         // Supply num input as an argument.
         Bundle args = new Bundle();
         args.putIntegerArrayList("lista", lista);
+        args.putString(ExtrasID.EXTRA_MENSAJE,mensaje);
         f.setArguments(args);
 
         return f;
@@ -187,6 +188,7 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
         request.setRecorrido(cuadro.getRecorrido());
         request.setServicio(cuadro.getServicio());
         request.setId_realm(cuadro.getId());
+        request.setAforador(cuadro.getAforador());
 
         List<RegistroEncuesta> listaRegistros = new ArrayList<>();
         for(Registro registro: cuadro.getRegistros()){
@@ -198,6 +200,7 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
             reg.setEstacion(registro.getEstacion());
             reg.setQuedan(registro.getQuedan());
             reg.setSuban(registro.getSuban());
+            reg.setObservacion(registro.getObservacion());
             listaRegistros.add(reg);
         }
 

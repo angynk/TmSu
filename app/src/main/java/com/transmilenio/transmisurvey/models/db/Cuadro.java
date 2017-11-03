@@ -20,6 +20,7 @@ public class Cuadro extends RealmObject {
     private String diaSemana;
     private String servicio;
     private String numBus;
+    private String aforador;
     private int recorrido;
     private int numPuerta;
 
@@ -131,5 +132,13 @@ public class Cuadro extends RealmObject {
 
     public void setSelected(boolean selected) {
         isSelected = selected;
+    }
+
+    public String getAforador() {
+        return aforador;
+    }
+
+    public void setAforador(String aforador) {
+        this.aforador = aforador;
     }
 }
