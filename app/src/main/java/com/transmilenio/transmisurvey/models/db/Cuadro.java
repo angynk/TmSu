@@ -17,20 +17,25 @@ public class Cuadro extends RealmObject {
     private int id;
     @Required
     private String fecha;
+
+    //Abordo
     private String diaSemana;
     private String servicio;
     private String numBus;
-    private String aforador;
     private int recorrido;
     private int numPuerta;
 
-    @Ignore
-    private boolean isSelected;
-
     private Date now;
     private String nombreEncuesta;
+    private String aforador;
+
+    //En punto fijo
+    private String zona;
+    private String estacion;
+    private String sentido;
 
     private RealmList<Registro> registros;
+    private RealmList<RegistroFrecOcupacion> registrosOcupacion;
 
     public Cuadro() {
         this.id = MyApplication.cuadroID.incrementAndGet();
@@ -46,6 +51,7 @@ public class Cuadro extends RealmObject {
         this.registros = new RealmList<Registro>();
         this.now = new Date();
         this.nombreEncuesta = nombreEncuesta;
+        this.registrosOcupacion = new RealmList<RegistroFrecOcupacion>();
     }
 
     public int getId() {
@@ -126,19 +132,43 @@ public class Cuadro extends RealmObject {
         this.numPuerta = numPuerta;
     }
 
-    public boolean isSelected() {
-        return isSelected;
-    }
-
-    public void setSelected(boolean selected) {
-        isSelected = selected;
-    }
-
     public String getAforador() {
         return aforador;
     }
 
     public void setAforador(String aforador) {
         this.aforador = aforador;
+    }
+
+    public String getZona() {
+        return zona;
+    }
+
+    public void setZona(String zona) {
+        this.zona = zona;
+    }
+
+    public String getEstacion() {
+        return estacion;
+    }
+
+    public void setEstacion(String estacion) {
+        this.estacion = estacion;
+    }
+
+    public String getSentido() {
+        return sentido;
+    }
+
+    public void setSentido(String sentido) {
+        this.sentido = sentido;
+    }
+
+    public RealmList<RegistroFrecOcupacion> getRegistrosOcupacion() {
+        return registrosOcupacion;
+    }
+
+    public void setRegistrosOcupacion(RealmList<RegistroFrecOcupacion> registrosOcupacion) {
+        this.registrosOcupacion = registrosOcupacion;
     }
 }

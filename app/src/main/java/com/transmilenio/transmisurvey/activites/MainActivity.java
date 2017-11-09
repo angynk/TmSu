@@ -26,7 +26,11 @@ import com.transmilenio.transmisurvey.models.db.Estacion;
 import com.transmilenio.transmisurvey.models.db.Opcion;
 import com.transmilenio.transmisurvey.models.db.Registro;
 import com.transmilenio.transmisurvey.models.db.ServicioRutas;
+import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
+import com.transmilenio.transmisurvey.models.json.EncuestaTM;
+import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
 import com.transmilenio.transmisurvey.models.json.Servicio;
+import com.transmilenio.transmisurvey.models.json.TipoEncuesta;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 import com.transmilenio.transmisurvey.models.util.Mensajes;
 
@@ -66,8 +70,6 @@ public class MainActivity extends AppCompatActivity {
     private void cargarDatosUsuario() {
         String nombreUsuario = prefs.getString(ExtrasID.EXTRA_USER,ExtrasID.TIPO_USUARIO_INVITADO);
         userNameTextView.setText(nombreUsuario);
-//        String encPendientes = prefs.getInt(ExtrasID.EXTRA_NUM_PENDIENTES,0)+"";
-//        String encEnviadas = prefs.getInt(ExtrasID.EXTRA_NUM_ENVIADAS,0)+"";
         String encPendientes = "0";
         String encEnviadas = "0";
         encuePendientes.setText(encPendientes);
@@ -154,23 +156,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void eliminarEncuesta(final int idEncuesta) {
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                //Eliminar Encuesta y Registros
-                RealmResults<Cuadro> rows = realm.where(Cuadro.class).equalTo("id", idEncuesta).findAll();
-                for (Cuadro cuadro : rows) {
-                    RealmList<Registro> registros = cuadro.getRegistros();
-                    registros.deleteAllFromRealm();
-                }
-                if (rows.size() > 0) {
-                    rows.deleteAllFromRealm();
-                }
-
+        //Eliminar Encuesta y Registros
+        EncuestaTM encuestaTM = realm.where(EncuestaTM.class).equalTo("id", idEncuesta).findFirst();
+        if(encuestaTM!=null){
+            int tipo = encuestaTM.getTipo();
+            if( tipo == TipoEncuesta.ENC_AD_ABORDO){
+                CuadroEncuesta ad_abordo = encuestaTM.getAd_abordo();
+                realm.beginTransaction();
+                ad_abordo.deleteFromRealm();
+                realm.commitTransaction();
+                realm.beginTransaction();
+                encuestaTM.deleteFromRealm();
+                realm.commitTransaction();
             }
-        });
 
-//        reducirEncuestasPendientes();
+        }
     }
 
 

@@ -6,7 +6,11 @@ import com.transmilenio.transmisurvey.models.db.Aforador;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Estacion;
 import com.transmilenio.transmisurvey.models.db.Registro;
+import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupacion;
 import com.transmilenio.transmisurvey.models.db.ServicioRutas;
+import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
+import com.transmilenio.transmisurvey.models.json.EncuestaTM;
+import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -23,9 +27,13 @@ public class MyApplication extends Application {
 
     public static AtomicInteger cuadroID = new AtomicInteger();
     public static AtomicInteger registroID = new AtomicInteger();
+    public static AtomicInteger registroFrecOcuID = new AtomicInteger();
     public static AtomicInteger servicioID = new AtomicInteger();
     public static AtomicInteger estacionID = new AtomicInteger();
     public static AtomicInteger aforadorID = new AtomicInteger();
+    public static AtomicInteger encuestasTmID = new AtomicInteger();
+    public static AtomicInteger encAsDsAbordoID = new AtomicInteger();
+    public static AtomicInteger regAsDsAbordoID = new AtomicInteger();
 
     @Override
     public void onCreate() {
@@ -38,6 +46,10 @@ public class MyApplication extends Application {
         servicioID = getIdByTable(realm, ServicioRutas.class);
         estacionID = getIdByTable(realm, Estacion.class);
         aforadorID = getIdByTable(realm, Aforador.class);
+        registroFrecOcuID = getIdByTable(realm, RegistroFrecOcupacion.class);
+        encuestasTmID = getIdByTable(realm, EncuestaTM.class);
+        encAsDsAbordoID = getIdByTable(realm, CuadroEncuesta.class);
+        regAsDsAbordoID = getIdByTable(realm, RegistroEncuesta.class);
         realm.close();
     }
 

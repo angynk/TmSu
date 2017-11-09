@@ -25,6 +25,8 @@ import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Estacion;
 import com.transmilenio.transmisurvey.models.db.Registro;
 import com.transmilenio.transmisurvey.models.db.ServicioRutas;
+import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
+import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 import com.transmilenio.transmisurvey.models.util.Mensajes;
 
@@ -49,8 +51,8 @@ public class RegistroActivity extends AppCompatActivity  {
 
     private Realm realm;
 
-    private int idCuadroEncuesta;
-    private Cuadro encuesta;
+    private int idCuadroEncuesta,idEncuesta;
+    private CuadroEncuesta encuesta;
     private String servicio;
 
 
@@ -67,8 +69,9 @@ public class RegistroActivity extends AppCompatActivity  {
         realm = Realm.getDefaultInstance();
         Bundle extras = getIntent().getExtras();
         if(extras != null){
-            idCuadroEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
-            encuesta = realm.where(Cuadro.class).equalTo("id",idCuadroEncuesta).findFirst();
+            idEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
+            idCuadroEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_CUADRO);
+            encuesta = realm.where(CuadroEncuesta.class).equalTo("id",idCuadroEncuesta).findFirst();
             servicio = (String) extras.get(ExtrasID.EXTRA_ID_SERVICIO);
         }
         bindUI();
@@ -110,7 +113,8 @@ public class RegistroActivity extends AppCompatActivity  {
 
     private void inluirDatos() {
         Intent intent = new Intent(this, ListaRegistrosActivity.class);
-        intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idCuadroEncuesta);
+        intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
+        intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
         intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
         startActivity(intent);
     }
@@ -150,7 +154,8 @@ public class RegistroActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 if(agregarRegistro()){
                     Intent intent = new Intent(RegistroActivity.this,RegistroActivity.class);
-                    intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idCuadroEncuesta);
+                    intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
+                    intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
                     intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
                     startActivity(intent);
                 }
@@ -162,7 +167,8 @@ public class RegistroActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RegistroActivity.this,ListaRegistrosActivity.class);
-                intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idCuadroEncuesta);
+                intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
+                intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
                 startActivity(intent);
             }
@@ -193,7 +199,7 @@ public class RegistroActivity extends AppCompatActivity  {
 
     private boolean agregarRegistro(){
        if(informacionCompletada()){
-           final Registro registro = crearObjetoRegistro();
+           final RegistroEncuesta registro = crearObjetoRegistro();
            realm.executeTransaction(new Realm.Transaction() {
                @Override
                public void execute(Realm realm) {
@@ -211,10 +217,10 @@ public class RegistroActivity extends AppCompatActivity  {
 
     }
 
-    private Registro crearObjetoRegistro() {
-        Registro registro = new Registro();
-        registro.setHoraSalida(textSalida.getText().toString());
-        registro.setHoraLlegada(textLlegada.getText().toString());
+    private RegistroEncuesta crearObjetoRegistro() {
+        RegistroEncuesta registro = new RegistroEncuesta();
+        registro.setHora_salida(textSalida.getText().toString());
+        registro.setHora_llegada(textLlegada.getText().toString());
         registro.setBajan(Integer.parseInt(seBajan.getText().toString()));
         registro.setSuban(Integer.parseInt(seSuben.getText().toString()));
         registro.setQuedan(Integer.parseInt(seQuedan.getText().toString()));

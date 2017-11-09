@@ -5,6 +5,7 @@ package com.transmilenio.transmisurvey.models.util;
 public class ExtrasID {
 
     public static String EXTRA_ID_ENCUESTA = "idEncuesta";
+    public static String EXTRA_ID_CUADRO = "idCuadro";
     public static String EXTRA_ID_SERVICIO = "idServicio";
     public static String EXTRA_NOMBRE = "nombre";
     public static String EXTRA_TIPO = "tipo";
@@ -19,6 +20,7 @@ public class ExtrasID {
 
     public static String NOMBRE_ENCUESTA_ASCDES_TRONCAL = "Ascensos y Descensos Troncal";
     public static String NOMBRE_ENCUESTA_ASCDES_ALIMENTADOR = "Ascensos y Descensos Alimentador";
+    public static String NOMBRE_ENCUESTA_FRECUENCIA_OCUPACION = "Frecuencia Ocupación";
 
     public static String TIPO_SERVICIO_TRONCAL = "tro";
     public static String TIPO_SERVICIO_ALIMENTADOR = "ali";

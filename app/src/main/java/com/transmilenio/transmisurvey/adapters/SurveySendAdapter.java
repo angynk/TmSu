@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
+import com.transmilenio.transmisurvey.models.json.EncuestaTM;
 
 import java.util.ArrayList;
 
@@ -20,14 +21,14 @@ import io.realm.RealmResults;
 public class SurveySendAdapter  extends BaseAdapter {
 
     private Context context;
-    private RealmResults<Cuadro> lista;
-    private ArrayList<Cuadro> selectedItems;
+    private RealmResults<EncuestaTM> lista;
+    private ArrayList<EncuestaTM> selectedItems;
     private int layout;
 
     public SurveySendAdapter() {
     }
 
-    public SurveySendAdapter(Context context, RealmResults<Cuadro> lista, int layout) {
+    public SurveySendAdapter(Context context, RealmResults<EncuestaTM> lista, int layout) {
         this.context = context;
         this.lista = lista;
         this.layout = layout;
@@ -40,7 +41,7 @@ public class SurveySendAdapter  extends BaseAdapter {
     }
 
     @Override
-    public Cuadro getItem(int position) {
+    public EncuestaTM getItem(int position) {
         return lista.get(position);
     }
 
@@ -65,15 +66,15 @@ public class SurveySendAdapter  extends BaseAdapter {
             vh = (SurveySendAdapter.ViewHolder) convertView.getTag();
         }
 
-        Cuadro encuesta = lista.get(position);
-        vh.titulo.setText(encuesta.getNombreEncuesta()+" - "+encuesta.getServicio());
-        vh.fecha.setText("No."+encuesta.getRecorrido()+" - "+encuesta.getFecha());
+        EncuestaTM encuesta = lista.get(position);
+        vh.titulo.setText(encuesta.getNombre_encuesta());
+        vh.fecha.setText(encuesta.getIdentificador());
         vh.selection.setTag( position);
         vh.selection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Integer pos = (Integer)  vh.selection.getTag();
-                Cuadro cuadro = lista.get(pos);
+                EncuestaTM cuadro = lista.get(pos);
                 if(selectedItems.contains(cuadro)){
                     selectedItems.remove(cuadro);
                 }else{
@@ -90,11 +91,11 @@ public class SurveySendAdapter  extends BaseAdapter {
         CheckBox selection;
     }
 
-    public ArrayList<Cuadro> getSelectedItems() {
+    public ArrayList<EncuestaTM> getSelectedItems() {
         return selectedItems;
     }
 
-    public void setSelectedItems(ArrayList<Cuadro> selectedItems) {
+    public void setSelectedItems(ArrayList<EncuestaTM> selectedItems) {
         this.selectedItems = selectedItems;
     }
 }

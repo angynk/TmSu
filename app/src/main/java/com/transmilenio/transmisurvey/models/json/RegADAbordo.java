@@ -1,33 +1,21 @@
 package com.transmilenio.transmisurvey.models.json;
 
-import com.transmilenio.transmisurvey.app.MyApplication;
+/**
+ * Created by nataly on 08/11/2017.
+ */
 
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
+public class RegADAbordo {
 
-public class RegistroEncuesta extends RealmObject {
 
-    @PrimaryKey
-    private int id;
-
-    private String estacion;
     private String hora_llegada;
     private int bajan;
-    private int suban;
+    private int suben;
     private int quedan;
     private String hora_salida;
     private String observacion;
 
-    public RegistroEncuesta() {
-        this.id = MyApplication.regAsDsAbordoID.incrementAndGet();
-    }
 
-    public String getEstacion() {
-        return estacion;
-    }
-
-    public void setEstacion(String estacion) {
-        this.estacion = estacion;
+    public RegADAbordo() {
     }
 
     public String getHora_llegada() {
@@ -46,12 +34,12 @@ public class RegistroEncuesta extends RealmObject {
         this.bajan = bajan;
     }
 
-    public int getSuban() {
-        return suban;
+    public int getSuben() {
+        return suben;
     }
 
-    public void setSuban(int suban) {
-        this.suban = suban;
+    public void setSuben(int suben) {
+        this.suben = suben;
     }
 
     public int getQuedan() {
@@ -76,13 +64,5 @@ public class RegistroEncuesta extends RealmObject {
 
     public void setObservacion(String observacion) {
         this.observacion = observacion;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }

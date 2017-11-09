@@ -14,8 +14,20 @@ import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.activites.ListaRegistrosActivity;
 import com.transmilenio.transmisurvey.activites.MainActivity;
 import com.transmilenio.transmisurvey.activites.RegistroActivity;
+import com.transmilenio.transmisurvey.models.db.Cuadro;
+import com.transmilenio.transmisurvey.models.db.Registro;
+import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
+import com.transmilenio.transmisurvey.models.json.EncuestaTM;
+import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
+import com.transmilenio.transmisurvey.models.json.TipoEncuesta;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 import com.transmilenio.transmisurvey.models.util.Mensajes;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import io.realm.Realm;
+import io.realm.RealmList;
 
 /**
  * Created by nataly on 10/10/2017.
@@ -68,12 +80,48 @@ public class AlertGuardarDatos extends DialogFragment {
         buttonIgnorar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                eliminarResultados();
                 Intent intent = new Intent(view.getContext(), MainActivity.class);
-                intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
+                intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
                 startActivity(intent);
 
             }
         });
     }
+
+    private void eliminarResultados() {
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        EncuestaTM encuestaTM = realm.where(EncuestaTM.class).equalTo("id", idEncuesta).findFirst();
+                if(encuestaTM!=null){
+                    if(encuestaTM.isValid()){
+                        int tipo = encuestaTM.getTipo();
+                        if( tipo == TipoEncuesta.ENC_AD_ABORDO){
+                            CuadroEncuesta ad_abordo = encuestaTM.getAd_abordo();
+                            RealmList<RegistroEncuesta> registros = ad_abordo.getRegistros();
+                            List<Integer> regIn= new ArrayList<>();
+                            for(RegistroEncuesta re:registros){
+                                regIn.add(re.getId());
+                            }
+                            for(Integer value:regIn){
+                                RegistroEncuesta registro = realm.where(RegistroEncuesta.class).equalTo("id", value).findFirst();
+                                if(registro!=null){
+                                    if(registro.isValid()){
+                                        registro.deleteFromRealm();
+                                    }
+                                }
+                            }
+
+                        }
+
+                    }
+
+                }
+        realm.commitTransaction();
+
+        realm.close();
+    }
+
+
 
 }

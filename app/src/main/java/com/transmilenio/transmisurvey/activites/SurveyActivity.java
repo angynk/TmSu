@@ -16,9 +16,11 @@ import android.widget.Toast;
 
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import com.transmilenio.transmisurvey.R;
-import com.transmilenio.transmisurvey.models.db.Cuadro;
-import com.transmilenio.transmisurvey.models.db.Registro;
 import com.transmilenio.transmisurvey.models.db.ServicioRutas;
+import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
+import com.transmilenio.transmisurvey.models.json.EncuestaTM;
+import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
+import com.transmilenio.transmisurvey.models.json.TipoEncuesta;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 import com.transmilenio.transmisurvey.models.util.Mensajes;
 import com.transmilenio.transmisurvey.util.ProcessorUtil;
@@ -42,7 +44,7 @@ public class SurveyActivity extends AppCompatActivity {
    private Button buttonContinuar;
    private Realm realm;
    private String nombreEncuesta;
-   private int idEncuesta;
+   private int idEncuesta, idCuadro;
    private boolean infoServicios;
    private SharedPreferences prefs;
 
@@ -86,10 +88,11 @@ public class SurveyActivity extends AppCompatActivity {
                         Toast.makeText(SurveyActivity.this, Mensajes.MSG_SINCRONIZE,Toast.LENGTH_LONG).show();
                     }else{
                         Intent intent = null;
-                        Cuadro cuadro = new Cuadro();
-                        idEncuesta = crearObjetoInfoBase(cuadro);
+                        EncuestaTM encuestaTM = new EncuestaTM();
+                        idEncuesta = crearObjetoInfoBase(encuestaTM);
                         intent = new Intent(SurveyActivity.this,ListaRegistrosActivity.class);
                         intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
+                        intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
                         intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicios.getSelectedItem().toString());
                         startActivity(intent);
                         finish();
@@ -111,31 +114,37 @@ public class SurveyActivity extends AppCompatActivity {
         return true;
     }
 
-    private int crearObjetoInfoBase(final Cuadro cuadro){
+    private int crearObjetoInfoBase(final EncuestaTM encuestaTM){
+
+        // Crear Encuesta general
         realm.beginTransaction();
-        cuadro.setServicio(servicios.getSelectedItem().toString());
-        cuadro.setDiaSemana(textDiaSemana.getText().toString());
-        cuadro.setFecha(textFecha.getText().toString());
-        cuadro.setNumBus(editTextNumBuses.getText().toString());
-        cuadro.setNumPuerta(Integer.parseInt(editTextNumPuerta.getText().toString()));
-        cuadro.setRecorrido(Integer.parseInt(editTextRecorrido.getText().toString()));
-        cuadro.setRegistros(new RealmList<Registro>());
-        cuadro.setNombreEncuesta(nombreEncuesta);
-        cuadro.setAforador(prefs.getString(ExtrasID.EXTRA_USER,ExtrasID.TIPO_USUARIO_INVITADO));
-        realm.copyToRealmOrUpdate(cuadro);
+        encuestaTM.setFecha_encuesta(textFecha.getText().toString());
+        encuestaTM.setNombre_encuesta(nombreEncuesta);
+        encuestaTM.setAforador(prefs.getString(ExtrasID.EXTRA_USER,ExtrasID.TIPO_USUARIO_INVITADO));
+        encuestaTM.setTipo(TipoEncuesta.ENC_AD_ABORDO);
+        encuestaTM.setIdentificador("Fecha: "+textFecha.getText().toString() +" - "+servicios.getSelectedItem().toString());
+        realm.copyToRealmOrUpdate(encuestaTM);
         realm.commitTransaction();
-        incrementarEncuestasPendientes();
-        return cuadro.getId();
+
+        // Incluir informacion especifica
+        realm.beginTransaction();
+        CuadroEncuesta cuadroEncuesta = new CuadroEncuesta();
+        cuadroEncuesta.setServicio(servicios.getSelectedItem().toString());
+        cuadroEncuesta.setDia_semana(textDiaSemana.getText().toString());
+        cuadroEncuesta.setNum_bus(editTextNumBuses.getText().toString());
+        cuadroEncuesta.setNum_puerta(Integer.parseInt(editTextNumPuerta.getText().toString()));
+        cuadroEncuesta.setRecorrido(Integer.parseInt(editTextRecorrido.getText().toString()));
+        cuadroEncuesta.setRegistros(new RealmList<RegistroEncuesta>());
+        realm.copyToRealmOrUpdate(cuadroEncuesta);
+        encuestaTM.setAd_abordo(cuadroEncuesta);
+        realm.copyToRealmOrUpdate(encuestaTM);
+//        realm.copyToRealmOrUpdate(encuestaTM);
+        realm.commitTransaction();
+        idCuadro = cuadroEncuesta.getId();
+        return encuestaTM.getId();
     }
 
 
-    private void incrementarEncuestasPendientes() {
-//        int encPendientes = prefs.getInt(ExtrasID.EXTRA_NUM_PENDIENTES,0);
-//        encPendientes = encPendientes + 1;
-//        SharedPreferences.Editor editor = prefs.edit();
-//        editor.putInt(ExtrasID.EXTRA_NUM_PENDIENTES,encPendientes);
-//        editor.apply();
-    }
 
     private void bindUI() {
         textFecha = (TextView) findViewById(R.id.adt_fecha_text);

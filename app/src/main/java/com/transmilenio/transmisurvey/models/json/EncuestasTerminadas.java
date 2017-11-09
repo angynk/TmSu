@@ -5,16 +5,16 @@ import java.util.List;
 
 public class EncuestasTerminadas {
 
-    private List<CuadroEncuesta> encuestas;
+    private List<EncuestaJSON> encuestas;
 
     public EncuestasTerminadas() {
     }
 
-    public List<CuadroEncuesta> getEncuestas() {
+    public List<EncuestaJSON> getEncuestas() {
         return encuestas;
     }
 
-    public void setEncuestas(List<CuadroEncuesta> encuestas) {
+    public void setEncuestas(List<EncuestaJSON> encuestas) {
         this.encuestas = encuestas;
     }
 }

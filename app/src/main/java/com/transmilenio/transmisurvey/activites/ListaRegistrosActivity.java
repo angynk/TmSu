@@ -17,6 +17,8 @@ import com.transmilenio.transmisurvey.adapters.RegistroAdapter;
 import com.transmilenio.transmisurvey.fragments.AlertGuardarDatos;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Registro;
+import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
+import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 import com.transmilenio.transmisurvey.models.util.Mensajes;
 
@@ -24,14 +26,14 @@ import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmList;
 
-public class ListaRegistrosActivity extends AppCompatActivity implements RealmChangeListener<RealmList<Registro>> {
+public class ListaRegistrosActivity extends AppCompatActivity implements RealmChangeListener<RealmList<RegistroEncuesta>> {
 
     private FloatingActionButton buttonAdd;
     private Button buttonGuardar;
     private ListView listView;
     private RegistroAdapter registroAdapter;
-    private RealmList<Registro> registros;
-    private int  idEncuesta ;
+    private RealmList<RegistroEncuesta> registros;
+    private int  idEncuesta,idCuadro ;
     private String servicio,observaciones;
 
     //For dialog fragment
@@ -53,8 +55,9 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
         Bundle extras = getIntent().getExtras();
         if(extras != null){
             idEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
+            idCuadro = (int) extras.get(ExtrasID.EXTRA_ID_CUADRO);
             servicio = (String) extras.get(ExtrasID.EXTRA_ID_SERVICIO);
-            Cuadro cuadro =  realm.where(Cuadro.class).equalTo("id",idEncuesta).findFirst();
+            CuadroEncuesta cuadro =  realm.where(CuadroEncuesta.class).equalTo("id",idCuadro).findFirst();
             if(cuadro!=null){
                 registros = cuadro.getRegistros();
                 registros.addChangeListener(this);
@@ -95,6 +98,7 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
             public void onClick(View v) {
                 Intent intent = new Intent(ListaRegistrosActivity.this, RegistroActivity.class);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
+                intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
                 intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,  servicio);
                 startActivity(intent);
             }
@@ -121,7 +125,7 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
     }
 
     @Override
-    public void onChange(RealmList<Registro> registros) {
+    public void onChange(RealmList<RegistroEncuesta> registros) {
         registroAdapter.notifyDataSetChanged();
     }
 

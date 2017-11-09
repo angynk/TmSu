@@ -18,6 +18,10 @@ import com.transmilenio.transmisurvey.activites.RegistroActivity;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Registro;
 import com.transmilenio.transmisurvey.models.db.Resultado;
+import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
+import com.transmilenio.transmisurvey.models.json.EncuestaTM;
+import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
+import com.transmilenio.transmisurvey.models.json.TipoEncuesta;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 import com.transmilenio.transmisurvey.models.util.Mensajes;
 
@@ -66,6 +70,7 @@ public class AlertObservacion extends DialogFragment {
             public void onClick(View v) {
                 eliminarResultados(eliminar);
                 Intent intent = new Intent(view.getContext(), MainActivity.class);
+//                intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
@@ -74,41 +79,57 @@ public class AlertObservacion extends DialogFragment {
 
     }
 
-    private void eliminarResultados(List<Integer> resultado) {
+    private void eliminarResultados(int encuesta) {
         Realm realm = Realm.getDefaultInstance();
-
-        for(Integer resul:resultado){
-            if(resul!=-1){
-                final Cuadro cuadro = realm.where(Cuadro.class).equalTo("id", resul).findFirst();
-                if(cuadro!=null){
-                    if(cuadro.isValid()){
-                        RealmList<Registro> registros = cuadro.getRegistros();
-                        List<Integer> regIn= new ArrayList<>();
-                        for(Registro re:registros){
-                            regIn.add(re.getId());
-                        }
-                        for(Integer value:regIn){
-                            Registro registro = realm.where(Registro.class).equalTo("id", value).findFirst();
-                            if(registro!=null){
-                                if(registro.isValid()){
-                                    realm.beginTransaction();
-                                    registro.deleteFromRealm();
-                                    realm.commitTransaction();
-                                }
-                            }
-
-                        }
-                        realm.beginTransaction();
-                        cuadro.deleteFromRealm();
-                        realm.commitTransaction();
+        EncuestaTM encuestaTM = realm.where(EncuestaTM.class).equalTo("id", encuesta).findFirst();
+        if(encuestaTM!=null){
+            if(encuestaTM.isValid()){
+                int tipo = encuestaTM.getTipo();
+                if( tipo == TipoEncuesta.ENC_AD_ABORDO){
+                    CuadroEncuesta ad_abordo = encuestaTM.getAd_abordo();
+                    realm.beginTransaction();
+                    RealmList<RegistroEncuesta> registros = ad_abordo.getRegistros();
+                    List<Integer> regIn= new ArrayList<>();
+                    for(RegistroEncuesta re:registros){
+                        regIn.add(re.getId());
                     }
+                    for(Integer value:regIn){
+                        RegistroEncuesta registro = realm.where(RegistroEncuesta.class).equalTo("id", value).findFirst();
+                        if(registro!=null){
+                            if(registro.isValid()){
+                                registro.deleteFromRealm();
+                            }
+                        }
+                    }
+                    realm.commitTransaction();
+
+                    realm.beginTransaction();
+                    ad_abordo.deleteFromRealm();
+                    realm.commitTransaction();
+                    realm.beginTransaction();
+                    encuestaTM.deleteFromRealm();
+                    realm.commitTransaction();
 
                 }
 
             }
+
         }
 
 
+
+
         realm.close();
+    }
+
+
+    private void eliminarResultados(List<Integer> resultado) {
+
+        for(Integer resul:resultado){
+            if(resul!=-1){
+               eliminarResultados(resul);
+            }
+        }
+
     }
 }

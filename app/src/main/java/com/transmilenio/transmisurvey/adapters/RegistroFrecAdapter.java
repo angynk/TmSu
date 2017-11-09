@@ -9,23 +9,22 @@ import android.widget.TextView;
 
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.models.db.Registro;
-import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
+import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupacion;
 
 import java.util.List;
 
 /**
- * Created by nataly on 05/10/2017.
+ * Created by nataly on 06/11/2017.
  */
 
-public class RegistroAdapter  extends BaseAdapter{
-
+public class RegistroFrecAdapter extends BaseAdapter {
 
 
     private Context context;
-    private List<RegistroEncuesta> lista;
+    private List<RegistroFrecOcupacion> lista;
     private int layout;
 
-    public RegistroAdapter(Context context, List<RegistroEncuesta> lista, int layout) {
+    public RegistroFrecAdapter(Context context, List<RegistroFrecOcupacion> lista, int layout) {
         this.context = context;
         this.lista = lista;
         this.layout = layout;
@@ -37,7 +36,7 @@ public class RegistroAdapter  extends BaseAdapter{
     }
 
     @Override
-    public RegistroEncuesta getItem(int position) {
+    public Object getItem(int position) {
         return lista.get(position);
     }
 
@@ -48,20 +47,19 @@ public class RegistroAdapter  extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        ViewHolder vh;
+        RegistroFrecAdapter.ViewHolder vh;
 
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(layout,null);
-            vh = new ViewHolder();
+            vh = new RegistroFrecAdapter.ViewHolder();
             vh.titulo = (TextView) convertView.findViewById(R.id.textView_tituloRegistro);
             convertView.setTag(vh);
         }else{
-            vh = (ViewHolder) convertView.getTag();
+            vh = (RegistroFrecAdapter.ViewHolder) convertView.getTag();
         }
 
-        RegistroEncuesta registro = lista.get(position);
-        vh.titulo.setText(registro.getEstacion());
+        RegistroFrecOcupacion registro = lista.get(position);
+        vh.titulo.setText(registro.getServicio());
 
         return convertView;
     }
@@ -69,4 +67,6 @@ public class RegistroAdapter  extends BaseAdapter{
     public class ViewHolder{
         TextView titulo;
     }
+
+
 }

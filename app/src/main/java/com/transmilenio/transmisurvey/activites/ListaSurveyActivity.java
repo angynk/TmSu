@@ -43,6 +43,7 @@ public class ListaSurveyActivity extends AppCompatActivity {
         encuestas = new ArrayList<>();
         encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_ASCDES_TRONCAL));
         encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_ASCDES_ALIMENTADOR));
+        encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_FRECUENCIA_OCUPACION));
         encuestas.add(new Encuesta("Eliminar Todo"));
         listView = (ListView) findViewById(R.id.listView_surveys);
         surveyAdapter = new SurveyAdapter(this,encuestas,R.layout.list_view_surveys);
@@ -62,6 +63,10 @@ public class ListaSurveyActivity extends AppCompatActivity {
                     Intent intent = new Intent(ListaSurveyActivity.this, SurveyActivity.class);
                     intent.putExtra(ExtrasID.EXTRA_NOMBRE,value.getNombre());
                     intent.putExtra(ExtrasID.EXTRA_TIPO,ExtrasID.VALOR_NUEVO);
+                    startActivity(intent);
+                }else if (value.getNombre().equals(ExtrasID.NOMBRE_ENCUESTA_FRECUENCIA_OCUPACION)) {
+                    Intent intent = new Intent(ListaSurveyActivity.this, BaseFrecOcupacionActivity.class);
+                    intent.putExtra(ExtrasID.EXTRA_NOMBRE,value.getNombre());
                     startActivity(intent);
                 }else{
                     realm.beginTransaction();

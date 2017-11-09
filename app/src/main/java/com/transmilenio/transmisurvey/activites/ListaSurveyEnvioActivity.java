@@ -24,8 +24,12 @@ import com.transmilenio.transmisurvey.http.SurveyService;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Registro;
 import com.transmilenio.transmisurvey.models.db.Resultado;
+import com.transmilenio.transmisurvey.models.json.AD_Abordo;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
+import com.transmilenio.transmisurvey.models.json.EncuestaJSON;
+import com.transmilenio.transmisurvey.models.json.EncuestaTM;
 import com.transmilenio.transmisurvey.models.json.EncuestasTerminadas;
+import com.transmilenio.transmisurvey.models.json.RegADAbordo;
 import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 import com.transmilenio.transmisurvey.models.util.Mensajes;
@@ -41,12 +45,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListaSurveyEnvioActivity extends AppCompatActivity implements RealmChangeListener<RealmResults<Cuadro>> {
+public class ListaSurveyEnvioActivity extends AppCompatActivity implements RealmChangeListener<RealmResults<EncuestaTM>> {
 
     private ListView listView;
     private Button buttonEnviar;
     private SurveySendAdapter surveyAdapter;
-    private RealmResults<Cuadro> encuestas;
+    private RealmResults<EncuestaTM> encuestas;
     private SharedPreferences prefs;
 
     private Realm realm;
@@ -57,7 +61,7 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
         setContentView(R.layout.activity_lista_survey_envio);
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         realm = Realm.getDefaultInstance();
-        encuestas = realm.where(Cuadro.class).findAll();
+        encuestas = realm.where(EncuestaTM.class).findAll();
         encuestas.addChangeListener(this);
         bindUI();
     }
@@ -96,7 +100,7 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
     }
 
     private void enviarDatosEncuesta() {
-        ArrayList<Cuadro> selectedItems = surveyAdapter.getSelectedItems();
+        ArrayList<EncuestaTM> selectedItems = surveyAdapter.getSelectedItems();
         progressDoalog = new ProgressDialog(ListaSurveyEnvioActivity.this);
         progressDoalog.setMessage(Mensajes.MSG_ENVIANDO);
         progressDoalog.setTitle(Mensajes.MSG_ENCUESTA);
@@ -104,13 +108,47 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
         progressDoalog.show();
 
         EncuestasTerminadas encuestas = new EncuestasTerminadas();
-        ArrayList<CuadroEncuesta> valores = new ArrayList<>();
-        for(Cuadro cuadro:selectedItems){
-            valores.add(fromCuadroToJson(cuadro));
+        ArrayList<EncuestaJSON> valores = new ArrayList<>();
+        for(EncuestaTM encuestaTM:selectedItems) {
+            valores.add(convertToJSON(encuestaTM));
         }
         encuestas.setEncuestas(valores);
         enviarEncuesta(encuestas);
 
+    }
+
+    private EncuestaJSON convertToJSON(EncuestaTM encuestaTM) {
+        EncuestaJSON encuestaJSON = new EncuestaJSON();
+        encuestaJSON.setTipo(encuestaTM.getTipo());
+        encuestaJSON.setNombre_encuesta(encuestaTM.getNombre_encuesta());
+        encuestaJSON.setAforador(encuestaTM.getAforador());
+        encuestaJSON.setId_realm(encuestaTM.getId());
+        encuestaJSON.setFecha_encuesta(encuestaTM.getFecha_encuesta());
+
+        CuadroEncuesta cuadro = encuestaTM.getAd_abordo();
+        AD_Abordo ad_abordo = new AD_Abordo();
+        ad_abordo.setDia_semana(cuadro.getDia_semana());
+        ad_abordo.setNum_bus(cuadro.getNum_bus());
+        ad_abordo.setNum_puerta(cuadro.getNum_puerta());
+        ad_abordo.setRecorrido(cuadro.getRecorrido());
+        ad_abordo.setServicio(cuadro.getServicio());
+
+        RealmList<RegistroEncuesta> cuadroRegistros = cuadro.getRegistros();
+        List<RegADAbordo> registros = new ArrayList<>();
+        for(RegistroEncuesta reg:cuadroRegistros){
+            RegADAbordo regADAbordo = new RegADAbordo();
+            regADAbordo.setBajan(reg.getBajan());
+            regADAbordo.setQuedan(reg.getQuedan());
+            regADAbordo.setSuben(reg.getSuban());
+            regADAbordo.setHora_llegada(reg.getHora_llegada());
+            regADAbordo.setHora_salida(reg.getHora_salida());
+            regADAbordo.setObservacion(reg.getObservacion());
+            registros.add(regADAbordo);
+        }
+        ad_abordo.setRegistros(registros);
+
+        encuestaJSON.setAd_abordo(ad_abordo);
+        return encuestaJSON;
     }
 
     ProgressDialog progressDoalog;
@@ -180,36 +218,36 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
 
     private CuadroEncuesta fromCuadroToJson(Cuadro cuadro) {
         CuadroEncuesta request = new CuadroEncuesta();
-        request.setNombre_encuesta(cuadro.getNombreEncuesta());
-        request.setDia_semana(cuadro.getDiaSemana());
-        request.setNum_bus(cuadro.getNumBus());
-        request.setNum_puerta(cuadro.getNumPuerta());
-        request.setFecha_encuesta(cuadro.getFecha());
-        request.setRecorrido(cuadro.getRecorrido());
-        request.setServicio(cuadro.getServicio());
-        request.setId_realm(cuadro.getId());
-        request.setAforador(cuadro.getAforador());
-
-        List<RegistroEncuesta> listaRegistros = new ArrayList<>();
-        for(Registro registro: cuadro.getRegistros()){
-            RegistroEncuesta reg = new RegistroEncuesta();
-            reg.setBajan(registro.getBajan());
-            reg.setEstacion(registro.getEstacion());
-            reg.setHora_llegada(registro.getHoraLlegada());
-            reg.setHora_salida(registro.getHoraSalida());
-            reg.setEstacion(registro.getEstacion());
-            reg.setQuedan(registro.getQuedan());
-            reg.setSuban(registro.getSuban());
-            reg.setObservacion(registro.getObservacion());
-            listaRegistros.add(reg);
-        }
-
-        request.setRegistros(listaRegistros);
+//        request.setNombre_encuesta(cuadro.getNombreEncuesta());
+//        request.setDia_semana(cuadro.getDiaSemana());
+//        request.setNum_bus(cuadro.getNumBus());
+//        request.setNum_puerta(cuadro.getNumPuerta());
+//        request.setFecha_encuesta(cuadro.getFecha());
+//        request.setRecorrido(cuadro.getRecorrido());
+//        request.setServicio(cuadro.getServicio());
+//        request.setId_realm(cuadro.getId());
+//        request.setAforador(cuadro.getAforador());
+//
+//        List<RegistroEncuesta> listaRegistros = new ArrayList<>();
+//        for(Registro registro: cuadro.getRegistros()){
+//            RegistroEncuesta reg = new RegistroEncuesta();
+//            reg.setBajan(registro.getBajan());
+//            reg.setEstacion(registro.getEstacion());
+//            reg.setHora_llegada(registro.getHoraLlegada());
+//            reg.setHora_salida(registro.getHoraSalida());
+//            reg.setEstacion(registro.getEstacion());
+//            reg.setQuedan(registro.getQuedan());
+//            reg.setSuban(registro.getSuban());
+//            reg.setObservacion(registro.getObservacion());
+//            listaRegistros.add(reg);
+//        }
+//
+//        request.setRegistros(listaRegistros);
         return request;
     }
 
     @Override
-    public void onChange(RealmResults<Cuadro> cuadros) {
+    public void onChange(RealmResults<EncuestaTM> cuadros) {
         surveyAdapter.notifyDataSetChanged();
     }
 
