@@ -16,6 +16,7 @@ import com.transmilenio.transmisurvey.adapters.RegistroAdapter;
 import com.transmilenio.transmisurvey.adapters.RegistroFrecAdapter;
 import com.transmilenio.transmisurvey.fragments.AlertGuardarDatos;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
+import com.transmilenio.transmisurvey.models.db.FOcupacionEncuesta;
 import com.transmilenio.transmisurvey.models.db.Registro;
 import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupacion;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
@@ -31,7 +32,7 @@ public class ListaRegistrosFrecOcupacionActivity extends AppCompatActivity imple
     private Button buttonGuardar;
     private ListView listView;
     private RealmList<RegistroFrecOcupacion> registros;
-    private int  idEncuesta ;
+    private int  idEncuesta, idCuadro ;
     private RegistroFrecAdapter adapter;
 
     FragmentManager fm = getSupportFragmentManager();
@@ -50,6 +51,7 @@ public class ListaRegistrosFrecOcupacionActivity extends AppCompatActivity imple
         setActionBarBotton();
     }
 
+
     private void setActionBarBotton() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
@@ -57,7 +59,6 @@ public class ListaRegistrosFrecOcupacionActivity extends AppCompatActivity imple
     }
 
     private void bindUI() {
-        registros = new RealmList<>();
         buttonAdd = (FloatingActionButton) findViewById(R.id.fro_nuevo_button);
         buttonGuardar = (Button) findViewById(R.id.fro_guardar_button);
 
@@ -69,6 +70,8 @@ public class ListaRegistrosFrecOcupacionActivity extends AppCompatActivity imple
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListaRegistrosFrecOcupacionActivity.this,FrecRegistroActivity.class);
+                intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
+                intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
                 startActivity(intent);
             }
         });
@@ -90,12 +93,13 @@ public class ListaRegistrosFrecOcupacionActivity extends AppCompatActivity imple
         Bundle extras = getIntent().getExtras();
         if(extras != null){
             idEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
+            idCuadro = (int) extras.get(ExtrasID.EXTRA_ID_CUADRO);
 //            servicio = (String) extras.get(ExtrasID.EXTRA_ID_SERVICIO);
-//            Cuadro cuadro =  realm.where(Cuadro.class).equalTo("id",idEncuesta).findFirst();
-//            if(cuadro!=null){
-//                registros = cuadro.getRegistros();
-//                registros.addChangeListener(this);
-//            }
+            FOcupacionEncuesta cuadro =  realm.where(FOcupacionEncuesta.class).equalTo("id",idCuadro).findFirst();
+            if(cuadro!=null){
+                registros = cuadro.getRegistros();
+                registros.addChangeListener(this);
+            }
         }
     }
     
