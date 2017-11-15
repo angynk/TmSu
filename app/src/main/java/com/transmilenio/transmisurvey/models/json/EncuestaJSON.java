@@ -12,6 +12,7 @@ public class EncuestaJSON {
     private int id_realm;
 
     private AD_Abordo ad_abordo;
+    private FR_Ocupacion fr_ocupacion;
 
     public EncuestaJSON() {
     }
@@ -70,5 +71,13 @@ public class EncuestaJSON {
 
     public void setAd_abordo(AD_Abordo ad_abordo) {
         this.ad_abordo = ad_abordo;
+    }
+
+    public FR_Ocupacion getFr_ocupacion() {
+        return fr_ocupacion;
+    }
+
+    public void setFr_ocupacion(FR_Ocupacion fr_ocupacion) {
+        this.fr_ocupacion = fr_ocupacion;
     }
 }

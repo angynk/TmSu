@@ -1,13 +1,10 @@
 
 package com.transmilenio.transmisurvey.activites;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,15 +19,19 @@ import com.transmilenio.transmisurvey.fragments.AlertObservacion;
 import com.transmilenio.transmisurvey.http.API;
 import com.transmilenio.transmisurvey.http.SurveyService;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
-import com.transmilenio.transmisurvey.models.db.Registro;
+import com.transmilenio.transmisurvey.models.db.FOcupacionEncuesta;
+import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupacion;
 import com.transmilenio.transmisurvey.models.db.Resultado;
 import com.transmilenio.transmisurvey.models.json.AD_Abordo;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 import com.transmilenio.transmisurvey.models.json.EncuestaJSON;
 import com.transmilenio.transmisurvey.models.json.EncuestaTM;
 import com.transmilenio.transmisurvey.models.json.EncuestasTerminadas;
+import com.transmilenio.transmisurvey.models.json.FR_Ocupacion;
 import com.transmilenio.transmisurvey.models.json.RegADAbordo;
+import com.transmilenio.transmisurvey.models.json.RegFROcupacion;
 import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
+import com.transmilenio.transmisurvey.models.json.TipoEncuesta;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 import com.transmilenio.transmisurvey.models.util.Mensajes;
 
@@ -124,7 +125,16 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
         encuestaJSON.setAforador(encuestaTM.getAforador());
         encuestaJSON.setId_realm(encuestaTM.getId());
         encuestaJSON.setFecha_encuesta(encuestaTM.getFecha_encuesta());
+        if(encuestaTM.getTipo() == TipoEncuesta.ENC_AD_ABORDO){
+            generarEncuestaAscDescAbordo(encuestaTM, encuestaJSON);
+        }else if(encuestaTM.getTipo() == TipoEncuesta.ENC_FR_OCUPACION){
+            generarFrecOcupacion(encuestaTM,encuestaJSON);
+        }
 
+        return encuestaJSON;
+    }
+
+    private void generarEncuestaAscDescAbordo(EncuestaTM encuestaTM, EncuestaJSON encuestaJSON) {
         CuadroEncuesta cuadro = encuestaTM.getAd_abordo();
         AD_Abordo ad_abordo = new AD_Abordo();
         ad_abordo.setDia_semana(cuadro.getDia_semana());
@@ -146,9 +156,29 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
             registros.add(regADAbordo);
         }
         ad_abordo.setRegistros(registros);
-
         encuestaJSON.setAd_abordo(ad_abordo);
-        return encuestaJSON;
+    }
+
+    private void generarFrecOcupacion(EncuestaTM encuestaTM, EncuestaJSON encuestaJSON) {
+        FOcupacionEncuesta fr_ocupacion = encuestaTM.getFr_ocupacion();
+        FR_Ocupacion fr_ocu = new FR_Ocupacion();
+        fr_ocu.setSentido(fr_ocupacion.getSentido());
+        fr_ocu.setEstacion(fr_ocupacion.getEstacion());
+
+        RealmList<RegistroFrecOcupacion> registrosBD = fr_ocupacion.getRegistros();
+        List<RegFROcupacion> registros = new ArrayList<>();
+        for(RegistroFrecOcupacion reg: registrosBD){
+            RegFROcupacion frOcupacion = new RegFROcupacion();
+            frOcupacion.setHora_paso(reg.getHora_paso());
+            frOcupacion.setOcupacion(reg.getOcupacion());
+            frOcupacion.setCodigo(reg.getServicio());
+            registros.add(frOcupacion);
+        }
+
+        fr_ocu.setRegistros(registros);
+        encuestaJSON.setFr_ocupacion(fr_ocu);
+
+
     }
 
     ProgressDialog progressDoalog;
@@ -161,7 +191,6 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
             public void onResponse(Call<List<Resultado>> call, Response<List<Resultado>> response) {
                 List<Resultado>  resulta = response.body();
                 progressDoalog.dismiss();
-                incrementarEncuestasEnviadas(resulta.size());
                 showAlertDialog(Mensajes.MSG_ENCUESTAS_ENVIADAS,resulta);
             }
 
@@ -175,18 +204,7 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
         });
     }
 
-    private void incrementarEncuestasEnviadas(int nuevasEnviadas) {
-//        int encEnviadas = prefs.getInt(ExtrasID.EXTRA_NUM_ENVIADAS,0);
-//        int encPendientes = prefs.getInt(ExtrasID.EXTRA_NUM_PENDIENTES,0);
-//        encEnviadas = encEnviadas + nuevasEnviadas;
-//        if(encPendientes!=0){
-//            encPendientes = encPendientes - nuevasEnviadas;
-//        }
-//        SharedPreferences.Editor editor = prefs.edit();
-//        editor.putInt(ExtrasID.EXTRA_NUM_ENVIADAS,encEnviadas);
-//        editor.putInt(ExtrasID.EXTRA_NUM_PENDIENTES,encPendientes);
-//        editor.apply();
-    }
+
 
     FragmentManager fm = getSupportFragmentManager();
 
@@ -215,36 +233,6 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
     }
 
 
-
-    private CuadroEncuesta fromCuadroToJson(Cuadro cuadro) {
-        CuadroEncuesta request = new CuadroEncuesta();
-//        request.setNombre_encuesta(cuadro.getNombreEncuesta());
-//        request.setDia_semana(cuadro.getDiaSemana());
-//        request.setNum_bus(cuadro.getNumBus());
-//        request.setNum_puerta(cuadro.getNumPuerta());
-//        request.setFecha_encuesta(cuadro.getFecha());
-//        request.setRecorrido(cuadro.getRecorrido());
-//        request.setServicio(cuadro.getServicio());
-//        request.setId_realm(cuadro.getId());
-//        request.setAforador(cuadro.getAforador());
-//
-//        List<RegistroEncuesta> listaRegistros = new ArrayList<>();
-//        for(Registro registro: cuadro.getRegistros()){
-//            RegistroEncuesta reg = new RegistroEncuesta();
-//            reg.setBajan(registro.getBajan());
-//            reg.setEstacion(registro.getEstacion());
-//            reg.setHora_llegada(registro.getHoraLlegada());
-//            reg.setHora_salida(registro.getHoraSalida());
-//            reg.setEstacion(registro.getEstacion());
-//            reg.setQuedan(registro.getQuedan());
-//            reg.setSuban(registro.getSuban());
-//            reg.setObservacion(registro.getObservacion());
-//            listaRegistros.add(reg);
-//        }
-//
-//        request.setRegistros(listaRegistros);
-        return request;
-    }
 
     @Override
     public void onChange(RealmResults<EncuestaTM> cuadros) {

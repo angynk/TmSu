@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             style="@style/AppTheme.Encabezado"
             android:layout_marginTop="24dp"
-            android:text="@string/servicio"
+            android:text="@string/codigo"
             android:layout_below="@+id/adt_diaSemana_text"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />

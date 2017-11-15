@@ -5,7 +5,7 @@
     <string name="continuar">Continuar</string>
     <string name="fecha">Fecha</string>
     <string name="diaSemana">Día Semana</string>
-    <string name="servicio">Servicio</string>
+    <string name="codigo">Servicio</string>
     <string name="numBus">Número Bus</string>
     <string name="text_num_puerta">Número Puerta</string>
     <string name="recorrido">Recorrido</string>

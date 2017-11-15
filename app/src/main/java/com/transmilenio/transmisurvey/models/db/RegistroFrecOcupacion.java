@@ -11,16 +11,16 @@ public class RegistroFrecOcupacion extends RealmObject {
     @PrimaryKey
     private int id;
     private String servicio;
-    private String horaPaso;
+    private String hora_paso;
     private Integer ocupacion;
 
     public RegistroFrecOcupacion() {
         this.id = MyApplication.registroFrecOcuID.incrementAndGet();
     }
 
-    public RegistroFrecOcupacion(String servicio, String horaPaso, Integer ocupacion) {
+    public RegistroFrecOcupacion(String servicio, String hora_paso, Integer ocupacion) {
         this.servicio = servicio;
-        this.horaPaso = horaPaso;
+        this.hora_paso = hora_paso;
         this.ocupacion = ocupacion;
         this.id = MyApplication.registroFrecOcuID.incrementAndGet();
     }
@@ -33,12 +33,12 @@ public class RegistroFrecOcupacion extends RealmObject {
         this.servicio = servicio;
     }
 
-    public String getHoraPaso() {
-        return horaPaso;
+    public String getHora_paso() {
+        return hora_paso;
     }
 
-    public void setHoraPaso(String horaPaso) {
-        this.horaPaso = horaPaso;
+    public void setHora_paso(String hora_paso) {
+        this.hora_paso = hora_paso;
     }
 
     public Integer getOcupacion() {

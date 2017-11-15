@@ -4,20 +4,16 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.format.Time;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.models.db.FOcupacionEncuesta;
 import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupacion;
-import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 
 import java.text.SimpleDateFormat;
@@ -117,7 +113,7 @@ public class FrecRegistroActivity extends AppCompatActivity {
     private boolean agregarRegistro(){
         if(informacionCompletada()){
             final RegistroFrecOcupacion registro = new RegistroFrecOcupacion();
-            registro.setHoraPaso(horaPasoEditText.getText().toString());
+            registro.setHora_paso(horaPasoEditText.getText().toString());
             registro.setServicio(codigoEditText.getText().toString());
             registro.setOcupacion(transformarValor(ocupacionEditText.getText().toString()));
             realm.executeTransaction(new Realm.Transaction() {
