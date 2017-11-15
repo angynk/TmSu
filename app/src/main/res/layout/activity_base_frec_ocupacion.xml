@@ -23,7 +23,9 @@
         android:layout_height="match_parent"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:layout_below="@+id/fro_tituloPanel">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:id="@+id/fro_fecha_textView"
@@ -31,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="@string/fecha"
             style="@style/AppTheme.Encabezado"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -40,32 +42,10 @@
             android:id="@+id/fro_fecha_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
             android:layout_alignBaseline="@+id/fro_fecha_textView"
             android:layout_alignBottom="@+id/fro_fecha_textView"
             android:layout_marginLeft="120dp"
             android:layout_marginStart="120dp" />
-
-        <TextView
-            android:id="@+id/fro_zona_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/AppTheme.Encabezado"
-            android:layout_marginTop="28dp"
-            android:text="@string/txt_zona"
-            android:layout_below="@+id/fro_fecha_textView"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/fro_zona_sepinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/fro_estacion_sepinner"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="23dp"
-            android:layout_toEndOf="@+id/fro_estacion_text" />
 
         <TextView
             android:id="@+id/fro_estacion_text"
@@ -73,17 +53,19 @@
             android:layout_height="wrap_content"
             style="@style/AppTheme.Encabezado"
             android:text="@string/estacion"
-            android:layout_alignTop="@+id/fro_zona_sepinner"
+            android:layout_below="@+id/fro_sentido_sepinner"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="29dp" />
 
         <com.toptoche.searchablespinnerlibrary.SearchableSpinner
             android:id="@+id/fro_estacion_sepinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/fro_zona_text"
-            android:layout_toEndOf="@+id/fro_estacion_text"
-            android:layout_toRightOf="@+id/fro_estacion_text" />
+            android:layout_below="@+id/fro_estacion_text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="13dp" />
 
         <TextView
             android:id="@+id/fro_sentido_text"
@@ -91,18 +73,19 @@
             android:layout_height="wrap_content"
             style="@style/AppTheme.Encabezado"
             android:text="@string/txt_sentido"
-            android:layout_below="@+id/fro_zona_sepinner"
+            android:layout_below="@+id/fro_fecha_textView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="27dp" />
+            android:layout_marginTop="40dp" />
 
         <com.toptoche.searchablespinnerlibrary.SearchableSpinner
             android:id="@+id/fro_sentido_sepinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/fro_sentido_text"
-            android:layout_alignLeft="@+id/fro_zona_sepinner"
-            android:layout_alignStart="@+id/fro_zona_sepinner" />
+            android:layout_marginTop="14dp"
+            android:layout_below="@+id/fro_sentido_text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 

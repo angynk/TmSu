@@ -57,25 +57,30 @@ public class ListaRegistrosFrecOcupacionActivity extends AppCompatActivity imple
     }
 
     private void bindUI() {
+        registros = new RealmList<>();
         buttonAdd = (FloatingActionButton) findViewById(R.id.fro_nuevo_button);
         buttonGuardar = (Button) findViewById(R.id.fro_guardar_button);
 
-        listView = (ListView) findViewById(R.id.adt_registros_listView);
+        listView = (ListView) findViewById(R.id.fro_registros_listView);
         adapter = new RegistroFrecAdapter(this,registros,R.layout.list_view_registro_item);
         listView.setAdapter(adapter);
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(ListaRegistrosFrecOcupacionActivity.this,FrecRegistroActivity.class);
+                startActivity(intent);
             }
         });
 
         buttonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertGuardarDatos dFragment = newInstance(idEncuesta);
-                dFragment.show(fm, Mensajes.MSG_SALIR_ENCUESTA);
+                Intent intent = new Intent(ListaRegistrosFrecOcupacionActivity.this,MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+//                AlertGuardarDatos dFragment = newInstance(idEncuesta);
+//                dFragment.show(fm, Mensajes.MSG_SALIR_ENCUESTA);
             }
         });
     }

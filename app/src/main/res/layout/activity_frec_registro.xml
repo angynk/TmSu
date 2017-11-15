@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.transmilenio.transmisurvey.activites.FrecRegistroActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nuevoRegistro"
+        style="@style/AppTheme.Banner"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fre_nuevoRegistro_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_checked_icon"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fre_cancelarRegistro_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_cancel"
+            />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tituloPanel"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <TextView
+                android:id="@+id/fre_hora_paso_view"
+                style="@style/AppTheme.Encabezado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/fre_hora_paso_editText"
+                android:layout_alignBottom="@+id/fre_hora_paso_editText"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="7dp"
+                android:layout_marginStart="7dp"
+                android:text="@string/txt_hora_paso" />
+
+            <EditText
+                android:id="@+id/fre_hora_paso_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/fre_codigo_view"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="59dp"
+                android:ems="10"
+                android:inputType="time" />
+
+            <TextView
+                android:id="@+id/fre_codigo_view"
+                style="@style/AppTheme.Encabezado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="145dp"
+                android:text="@string/txt_codigo"
+                android:layout_alignParentTop="true"
+                android:layout_alignLeft="@+id/fre_hora_paso_view"
+                android:layout_alignStart="@+id/fre_hora_paso_view" />
+
+            <EditText
+                android:id="@+id/fre_codigo_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:layout_alignBaseline="@+id/fre_codigo_view"
+                android:layout_alignBottom="@+id/fre_codigo_view"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:id="@+id/fre_ocupacion_view"
+                style="@style/AppTheme.Encabezado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/fre_ocupacion_editText"
+                android:layout_alignBottom="@+id/fre_ocupacion_editText"
+                android:layout_alignEnd="@+id/fre_hora_paso_view"
+                android:layout_alignRight="@+id/fre_hora_paso_view"
+                android:text="@string/txt_ocupacion" />
+
+            <EditText
+                android:id="@+id/fre_ocupacion_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:layout_below="@+id/fre_codigo_editText"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="33dp" />
+
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+</RelativeLayout>

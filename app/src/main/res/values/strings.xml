@@ -43,6 +43,9 @@
     <string name="txt_nuevo_usuario">Nuevo Usuario</string>
     <string name="txt_zona">Zona</string>
     <string name="txt_sentido">Sentido</string>
+    <string name="txt_hora_paso">Hora Paso</string>
+    <string name="txt_codigo">Codigo</string>
+    <string name="txt_ocupacion">Ocupación</string>
 
     <string name="hint_usuario">Usuario</string>
     <string name="hint_contrasena">Contraseña</string>

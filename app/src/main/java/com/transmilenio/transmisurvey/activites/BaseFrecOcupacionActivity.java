@@ -1,6 +1,7 @@
 package com.transmilenio.transmisurvey.activites;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,7 +26,7 @@ import io.realm.Realm;
 
 public class BaseFrecOcupacionActivity extends AppCompatActivity {
 
-    private SearchableSpinner zonas,estaciones,sentidos;
+    private SearchableSpinner estaciones,sentidos;
     private TextView textFecha;
     private Button buttonContinuar;
     private Realm realm;
@@ -59,6 +60,9 @@ public class BaseFrecOcupacionActivity extends AppCompatActivity {
         buttonContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(BaseFrecOcupacionActivity.this,ListaRegistrosFrecOcupacionActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
 
             }
         });
@@ -68,7 +72,6 @@ public class BaseFrecOcupacionActivity extends AppCompatActivity {
         textFecha = (TextView) findViewById(R.id.fro_fecha_text);
         buttonContinuar = (Button) findViewById(R.id.fro_continuar_button);
         agregarItemsEstaciones();
-        agregarItemsZonas();
         agregarItemsSentido();
     }
 
@@ -92,16 +95,6 @@ public class BaseFrecOcupacionActivity extends AppCompatActivity {
         return sentidos;
     }
 
-    private void agregarItemsZonas() {
-        zonas = (SearchableSpinner) findViewById(R.id.fro_zona_sepinner);
-        List<String> listzonas = getZonas();
-        ArrayAdapter<String> dataAdaptersentido = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listzonas);
-        dataAdaptersentido.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        zonas.setAdapter(dataAdaptersentido);
-        zonas.setTitle(Mensajes.MSG_SELECCIONE);
-        zonas.setPositiveButton(Mensajes.MSG_OK);
-    }
 
     private List<String> getZonas() {
         List<String> zonas = new ArrayList<>();

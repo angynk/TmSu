@@ -56,7 +56,8 @@
         <activity android:name=".activites.ListaSurveyEnvioActivity" />
         <activity android:name=".activites.CreacionUsuariosActivity" />
         <activity android:name=".activites.BaseFrecOcupacionActivity" />
-        <activity android:name=".activites.ListaRegistrosFrecOcupacionActivity"></activity>
+        <activity android:name=".activites.ListaRegistrosFrecOcupacionActivity" />
+        <activity android:name=".activites.FrecRegistroActivity"></activity>
     </application>
 
 </manifest>
