@@ -40,7 +40,7 @@ public class BaseFrecOcupacionActivity extends AppCompatActivity {
     private TextView textFecha, textDiaSemana;
     private Button buttonContinuar;
     private Realm realm;
-    private String nombreEncuesta;
+    private String nombreEncuesta,modo;
     private SharedPreferences prefs;
     private int idCuadro;
 
@@ -59,6 +59,7 @@ public class BaseFrecOcupacionActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if(extras != null){
             nombreEncuesta = (String) extras.get(ExtrasID.EXTRA_NOMBRE);
+            modo = (String) extras.get(ExtrasID.EXTRA_MODO);
         }
     }
 
@@ -141,7 +142,7 @@ public class BaseFrecOcupacionActivity extends AppCompatActivity {
 
     private void agregarItemsEstaciones() {
         estaciones = (SearchableSpinner) findViewById(R.id.fro_estacion_sepinner);
-        List<String> listestaciones = getEstaciones("");
+        List<String> listestaciones = getEstaciones(modo);
         ArrayAdapter<String> dataAdapterestaciones = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, listestaciones);
         dataAdapterestaciones.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -162,7 +163,7 @@ public class BaseFrecOcupacionActivity extends AppCompatActivity {
     @NonNull
     private List<String> getEstaciones(String tipo) {
         List<String> list = new ArrayList<String>();
-        RealmResults<Estacion> servicios = realm.where(Estacion.class).findAll();
+        RealmResults<Estacion> servicios = realm.where(Estacion.class).equalTo("tipo", tipo).findAll();
         for (Estacion estacion: servicios){
             list.add(estacion.getNombre());
         }

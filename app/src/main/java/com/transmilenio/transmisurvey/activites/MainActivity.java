@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 Opcion value = (Opcion) adapter.getItemAtPosition(position);
                 if(value.getName().equals(Mensajes.OPCION_NUEVA)){
-                    Intent intent = new Intent(MainActivity.this,ListaSurveyActivity.class);
+                    Intent intent = new Intent(MainActivity.this,SeleccionModoActivity.class);
                     startActivity(intent);
                 }else if( value.getName().equals(Mensajes.OPCION_ENVIAR)){
                     Intent intent = new Intent(MainActivity.this,ListaSurveyEnvioActivity.class);

@@ -9,6 +9,7 @@ public class ExtrasID {
     public static String EXTRA_ID_SERVICIO = "idServicio";
     public static String EXTRA_NOMBRE = "nombre";
     public static String EXTRA_TIPO = "tipo";
+    public static String EXTRA_MODO = "modo";
     public static String EXTRA_OBSER = "observacion";
     public static String EXTRA_USER = "user";
     public static String EXTRA_NUM_ENVIADAS = "numEnv";
@@ -18,8 +19,7 @@ public class ExtrasID {
     public static String EXTRA_LOGGED = "in";
     public static String EXTRA_MENSAJE = "mensaje";
 
-    public static String NOMBRE_ENCUESTA_ASCDES_TRONCAL = "Ascensos y Descensos Troncal";
-    public static String NOMBRE_ENCUESTA_ASCDES_ALIMENTADOR = "Ascensos y Descensos Alimentador";
+    public static String NOMBRE_ENCUESTA_ASCDES_TRONCAL = "Ascensos y Descensos Abordo";
     public static String NOMBRE_ENCUESTA_FRECUENCIA_OCUPACION = "Frecuencia Ocupación";
 
     public static String TIPO_SERVICIO_TRONCAL = "tro";

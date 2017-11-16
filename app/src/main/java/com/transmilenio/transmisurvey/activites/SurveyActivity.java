@@ -43,7 +43,7 @@ public class SurveyActivity extends AppCompatActivity {
    private EditText editTextNumBuses, editTextRecorrido, editTextNumPuerta;
    private Button buttonContinuar;
    private Realm realm;
-   private String nombreEncuesta;
+   private String nombreEncuesta,modo;
    private int idEncuesta, idCuadro;
    private boolean infoServicios;
    private SharedPreferences prefs;
@@ -63,6 +63,7 @@ public class SurveyActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if(extras != null){
             nombreEncuesta = (String) extras.get(ExtrasID.EXTRA_NOMBRE);
+            modo = (String) extras.get(ExtrasID.EXTRA_MODO);
         }
     }
 
@@ -166,7 +167,7 @@ public class SurveyActivity extends AppCompatActivity {
     public void agregarItemsListas() {
 
         servicios = (SearchableSpinner) findViewById(R.id.adt_servicio_sepinner);
-        List<String> listservicios = getServicios(obtenerTipoServicio(nombreEncuesta));
+        List<String> listservicios = getServicios(modo);
         ArrayAdapter<String> dataAdapterservicios = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, listservicios);
         dataAdapterservicios.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

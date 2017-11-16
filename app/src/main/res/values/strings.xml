@@ -33,6 +33,8 @@
     <string name="button_eliminar_todo"> Eliminar Todo </string>
     <string name="button_iniciar_anonimo">Inicio Invitado</string>
     <string name="button_observacion">¿Tiene Observaciones?</string>
+    <string name="button_troncal">Troncal</string>
+    <string name="button_alimentador">Alimentador</string>
 
     <string name="txt_encuestasEnviadas">Encuestas Enviadas</string>
     <string name="txt_encuestasPendientes">Encuestas Pendientes</string>
@@ -46,6 +48,7 @@
     <string name="txt_hora_paso">Hora Paso</string>
     <string name="txt_codigo">Codigo</string>
     <string name="txt_ocupacion">Ocupación</string>
+    <string name="txt_Modo">Modo</string>
 
     <string name="hint_usuario">Usuario</string>
     <string name="hint_contrasena">Contraseña</string>
