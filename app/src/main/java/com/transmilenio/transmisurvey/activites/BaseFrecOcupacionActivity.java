@@ -3,6 +3,7 @@ package com.transmilenio.transmisurvey.activites;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +14,9 @@ import android.widget.TextView;
 
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import com.transmilenio.transmisurvey.R;
+import com.transmilenio.transmisurvey.models.db.Estacion;
 import com.transmilenio.transmisurvey.models.db.FOcupacionEncuesta;
+import com.transmilenio.transmisurvey.models.db.ServicioRutas;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 import com.transmilenio.transmisurvey.models.json.EncuestaTM;
 import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
@@ -29,11 +32,12 @@ import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmList;
+import io.realm.RealmResults;
 
 public class BaseFrecOcupacionActivity extends AppCompatActivity {
 
     private SearchableSpinner estaciones,sentidos;
-    private TextView textFecha;
+    private TextView textFecha, textDiaSemana;
     private Button buttonContinuar;
     private Realm realm;
     private String nombreEncuesta;
@@ -108,6 +112,7 @@ public class BaseFrecOcupacionActivity extends AppCompatActivity {
 
     private void bindUI() {
         textFecha = (TextView) findViewById(R.id.fro_fecha_text);
+        textDiaSemana = (TextView) findViewById(R.id.fro_diasSemana_textView);
         buttonContinuar = (Button) findViewById(R.id.fro_continuar_button);
         agregarItemsEstaciones();
         agregarItemsSentido();
@@ -134,26 +139,9 @@ public class BaseFrecOcupacionActivity extends AppCompatActivity {
     }
 
 
-    private List<String> getZonas() {
-        List<String> zonas = new ArrayList<>();
-        zonas.add("Caracas");
-        zonas.add("AutoNorte");
-        zonas.add("Suba");
-        zonas.add("Calle 80");
-        zonas.add("NQS Central");
-        zonas.add("Américas");
-        zonas.add("NQS Sur");
-        zonas.add("Caracas Sur");
-        zonas.add("Eje Ambiental");
-        zonas.add("Calle 26");
-        zonas.add("Carrera 10");
-        zonas.add("Carrera 7");
-        return zonas;
-    }
-
     private void agregarItemsEstaciones() {
         estaciones = (SearchableSpinner) findViewById(R.id.fro_estacion_sepinner);
-        List<String> listestaciones = getEstaciones();
+        List<String> listestaciones = getEstaciones("");
         ArrayAdapter<String> dataAdapterestaciones = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, listestaciones);
         dataAdapterestaciones.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -162,18 +150,23 @@ public class BaseFrecOcupacionActivity extends AppCompatActivity {
         estaciones.setPositiveButton(Mensajes.MSG_OK);
     }
 
-    private List<String> getEstaciones() {
-        List<String> estaciones = new ArrayList<>();
-        estaciones.add("Modelia");
-        estaciones.add("Normandia");
-        estaciones.add("Av. Rojas");
-        return estaciones;
-    }
+
 
     private void agregarFecha() {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         Date ahora = new Date();
         textFecha.setText(formato.format(ahora));
+        textDiaSemana.setText(ProcessorUtil.obtenerDiaDeLaSemana(ahora));
+    }
+
+    @NonNull
+    private List<String> getEstaciones(String tipo) {
+        List<String> list = new ArrayList<String>();
+        RealmResults<Estacion> servicios = realm.where(Estacion.class).findAll();
+        for (Estacion estacion: servicios){
+            list.add(estacion.getNombre());
+        }
+        return list;
     }
 
 

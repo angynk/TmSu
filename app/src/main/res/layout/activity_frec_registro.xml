@@ -105,6 +105,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:ems="10"
+                android:maxLength="3"
                 android:inputType="numberDecimal" />
 
             <TextView
@@ -127,6 +128,7 @@
                 android:layout_below="@+id/fre_codigo_editText"
                 android:layout_marginTop="33dp"
                 android:ems="10"
+                android:maxLength="1"
                 android:inputType="number" />
 
 

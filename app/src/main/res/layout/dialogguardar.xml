@@ -15,24 +15,13 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:id="@+id/button_noguardar_alert"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_ignorar"
-        style="@style/AppTheme.ButtonDialog"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/button_guardar_alert"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
         android:id="@+id/button_cancelar_alert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_cancelar"
         style="@style/AppTheme.ButtonDialog"
-        android:layout_marginTop="16dp"
-        android:layout_below="@+id/button_noguardar_alert"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/button_guardar_alert"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"

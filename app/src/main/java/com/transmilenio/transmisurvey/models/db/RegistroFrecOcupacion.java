@@ -48,4 +48,12 @@ public class RegistroFrecOcupacion extends RealmObject {
     public void setOcupacion(Integer ocupacion) {
         this.ocupacion = ocupacion;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

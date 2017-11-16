@@ -48,6 +48,29 @@
             android:layout_marginStart="120dp" />
 
         <TextView
+            android:id="@+id/fro_diaSemana_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            style="@style/AppTheme.Encabezado"
+            android:text="@string/diaSemana"
+            android:layout_below="@+id/fro_fecha_textView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/fro_diasSemana_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginLeft="14dp"
+            android:layout_marginStart="14dp"
+            android:layout_alignBottom="@+id/fro_diaSemana_text"
+            android:layout_toRightOf="@+id/fro_fecha_text"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
             android:id="@+id/fro_estacion_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,10 +96,10 @@
             android:layout_height="wrap_content"
             style="@style/AppTheme.Encabezado"
             android:text="@string/txt_sentido"
-            android:layout_below="@+id/fro_fecha_textView"
+            android:layout_marginTop="23dp"
+            android:layout_below="@+id/fro_diaSemana_text"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="40dp" />
+            android:layout_alignParentStart="true" />
 
         <com.toptoche.searchablespinnerlibrary.SearchableSpinner
             android:id="@+id/fro_sentido_sepinner"

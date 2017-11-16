@@ -35,7 +35,7 @@ import io.realm.RealmList;
 
 public class AlertGuardarDatos extends DialogFragment {
 
-    private Button buttonGuardar,buttonCancelar,buttonIgnorar;
+    private Button buttonGuardar,buttonCancelar;
     private int idEncuesta;
 
 
@@ -57,7 +57,6 @@ public class AlertGuardarDatos extends DialogFragment {
 
         buttonGuardar = (Button) view.findViewById(R.id.button_guardar_alert);
         buttonCancelar = (Button) view.findViewById(R.id.button_cancelar_alert);
-        buttonIgnorar = (Button) view.findViewById(R.id.button_noguardar_alert);
 
         buttonCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,16 +76,7 @@ public class AlertGuardarDatos extends DialogFragment {
         });
 
 
-        buttonIgnorar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                eliminarResultados();
-                Intent intent = new Intent(view.getContext(), MainActivity.class);
-                intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
-                startActivity(intent);
 
-            }
-        });
     }
 
     private void eliminarResultados() {

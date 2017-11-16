@@ -16,7 +16,9 @@ import com.transmilenio.transmisurvey.activites.ListaRegistrosActivity;
 import com.transmilenio.transmisurvey.activites.MainActivity;
 import com.transmilenio.transmisurvey.activites.RegistroActivity;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
+import com.transmilenio.transmisurvey.models.db.FOcupacionEncuesta;
 import com.transmilenio.transmisurvey.models.db.Registro;
+import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupacion;
 import com.transmilenio.transmisurvey.models.db.Resultado;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 import com.transmilenio.transmisurvey.models.json.EncuestaTM;
@@ -110,6 +112,30 @@ public class AlertObservacion extends DialogFragment {
                     encuestaTM.deleteFromRealm();
                     realm.commitTransaction();
 
+                }else if (tipo == TipoEncuesta.ENC_FR_OCUPACION){
+                    FOcupacionEncuesta fr_ocupacion = encuestaTM.getFr_ocupacion();
+                    realm.beginTransaction();
+                    RealmList<RegistroFrecOcupacion> registros = fr_ocupacion.getRegistros();
+                    List<Integer> regIn= new ArrayList<>();
+                    for(RegistroFrecOcupacion re:registros){
+                        regIn.add(re.getId());
+                    }
+                    for(Integer value:regIn){
+                        RegistroFrecOcupacion registro = realm.where(RegistroFrecOcupacion.class).equalTo("id", value).findFirst();
+                        if(registro!=null){
+                            if(registro.isValid()){
+                                registro.deleteFromRealm();
+                            }
+                        }
+                    }
+                    realm.commitTransaction();
+
+                    realm.beginTransaction();
+                    fr_ocupacion.deleteFromRealm();
+                    realm.commitTransaction();
+                    realm.beginTransaction();
+                    encuestaTM.deleteFromRealm();
+                    realm.commitTransaction();
                 }
 
             }
