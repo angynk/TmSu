@@ -12,14 +12,16 @@ public class Estacion  extends RealmObject {
     private int id;
 
     private String nombre;
+    private String tipo;
 
     public Estacion() {
         this.id = MyApplication.estacionID.incrementAndGet();
     }
 
 
-    public Estacion(String nombre) {
+    public Estacion(String nombre,String tipo) {
         this.nombre = nombre;
+        this.tipo = tipo;
         this.id = MyApplication.estacionID.incrementAndGet();
     }
 
@@ -37,5 +39,13 @@ public class Estacion  extends RealmObject {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

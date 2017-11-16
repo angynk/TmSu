@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
             realm.beginTransaction();
             realm.copyToRealmOrUpdate(servicioRutas);
             realm.commitTransaction();
-            cargarEstaciones(servicioRutas.getNombre(),servicio.getEstaciones());
+            cargarEstaciones(servicioRutas.getNombre(),servicio.getEstaciones(),servicio.getTipo());
 
         }
     }
@@ -222,13 +222,13 @@ public class MainActivity extends AppCompatActivity {
         realm.commitTransaction();
     }
 
-    private void cargarEstaciones(String nombre, List<String> estaciones) {
+    private void cargarEstaciones(String nombre, List<String> estaciones, String tipo) {
         realm.beginTransaction();
         ServicioRutas servicioRutas = realm.where(ServicioRutas.class).equalTo("nombre", nombre).findFirst();
         for(String estacionNombre: estaciones){
             Estacion estacion = realm.where(Estacion.class).equalTo("nombre", estacionNombre).findFirst();
             if(estacion==null){
-                estacion = new Estacion(estacionNombre);
+                estacion = new Estacion(estacionNombre,tipo);
                 realm.copyToRealmOrUpdate(estacion);
             }
             servicioRutas.getEstaciones().add(estacion);
