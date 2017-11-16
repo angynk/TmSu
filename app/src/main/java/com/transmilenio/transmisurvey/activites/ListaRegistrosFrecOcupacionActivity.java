@@ -79,11 +79,8 @@ public class ListaRegistrosFrecOcupacionActivity extends AppCompatActivity imple
         buttonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ListaRegistrosFrecOcupacionActivity.this,MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-//                AlertGuardarDatos dFragment = newInstance(idEncuesta);
-//                dFragment.show(fm, Mensajes.MSG_SALIR_ENCUESTA);
+                AlertGuardarDatos dFragment = newInstance(idEncuesta);
+                dFragment.show(fm, Mensajes.MSG_SALIR_ENCUESTA);
             }
         });
     }
