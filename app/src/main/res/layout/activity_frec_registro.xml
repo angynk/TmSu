@@ -50,6 +50,16 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
+            <ImageButton
+                android:id="@+id/fre_getHora_button"
+                style="@style/AppTheme.ButtonObtDatos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fre_ocupacion_editText"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="53dp"
+                android:src="@drawable/ic_clock" />
+
             <TextView
                 android:id="@+id/fre_hora_paso_view"
                 style="@style/AppTheme.Encabezado"
@@ -63,38 +73,39 @@
                 android:layout_marginStart="7dp"
                 android:text="@string/txt_hora_paso" />
 
-            <EditText
+            <TextView
                 android:id="@+id/fre_hora_paso_editText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/fre_codigo_view"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginBottom="59dp"
+                android:layout_marginBottom="24dp"
                 android:ems="10"
-                android:inputType="time" />
+                android:layout_above="@+id/fre_codigo_editText"
+                android:layout_alignLeft="@+id/fre_codigo_editText"
+                android:layout_alignStart="@+id/fre_codigo_editText"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
             <TextView
                 android:id="@+id/fre_codigo_view"
                 style="@style/AppTheme.Encabezado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="145dp"
-                android:text="@string/txt_codigo"
-                android:layout_alignParentTop="true"
                 android:layout_alignLeft="@+id/fre_hora_paso_view"
-                android:layout_alignStart="@+id/fre_hora_paso_view" />
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/fre_hora_paso_view"
+                android:layout_marginTop="145dp"
+                android:text="@string/txt_codigo" />
 
             <EditText
                 android:id="@+id/fre_codigo_editText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="numberDecimal"
                 android:layout_alignBaseline="@+id/fre_codigo_view"
                 android:layout_alignBottom="@+id/fre_codigo_view"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:ems="10"
+                android:inputType="numberDecimal" />
 
             <TextView
                 android:id="@+id/fre_ocupacion_view"
@@ -111,12 +122,12 @@
                 android:id="@+id/fre_ocupacion_editText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number"
-                android:layout_below="@+id/fre_codigo_editText"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="33dp" />
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/fre_codigo_editText"
+                android:layout_marginTop="33dp"
+                android:ems="10"
+                android:inputType="number" />
 
 
         </RelativeLayout>
