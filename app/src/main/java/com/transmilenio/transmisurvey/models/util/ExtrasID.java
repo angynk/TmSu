@@ -21,6 +21,7 @@ public class ExtrasID {
 
     public static String NOMBRE_ENCUESTA_ASCDES_TRONCAL = "Ascensos y Descensos Abordo";
     public static String NOMBRE_ENCUESTA_FRECUENCIA_OCUPACION = "Frecuencia Ocupación";
+    public static String NOMBRE_ENCUESTA_ASCDES_PUNTO = "Ascensos y Descensos Punto Fijo";
 
     public static String TIPO_SERVICIO_TRONCAL = "tro";
     public static String TIPO_SERVICIO_ALIMENTADOR = "ali";

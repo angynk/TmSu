@@ -49,6 +49,7 @@
     <string name="txt_codigo">Codigo</string>
     <string name="txt_ocupacion">Ocupación</string>
     <string name="txt_Modo">Modo</string>
+    <string name="txt_Estacion">Estación</string>
 
     <string name="hint_usuario">Usuario</string>
     <string name="hint_contrasena">Contraseña</string>

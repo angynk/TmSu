@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.transmilenio.transmisurvey.activites.AdpRegistroActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nuevoRegistro"
+        style="@style/AppTheme.Banner"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/adp_nuevoRegistro_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_checked_icon"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/adp_cancelarRegistro_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_cancel"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tituloPanel"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <ImageButton
+                android:id="@+id/adp_llegada_button"
+                style="@style/AppTheme.ButtonObtDatos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_clock"
+                android:layout_marginTop="59dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/adp_llegada_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="77dp"
+                android:text="@string/llegada"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/adp_llegada_button"
+                android:layout_toEndOf="@+id/adp_llegada_button"
+                android:layout_marginLeft="77dp"
+                android:layout_marginStart="77dp" />
+
+            <TextView
+                android:id="@+id/adp_num_bus_textView"
+                style="@style/AppTheme.Encabezado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/numBus"
+                android:layout_marginTop="42dp"
+                android:layout_below="@+id/adp_llegada_button"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:id="@+id/adp_num_bus_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_alignBaseline="@+id/adp_num_bus_textView"
+                android:layout_alignBottom="@+id/adp_num_bus_textView"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:inputType="text"/>
+
+            <TextView
+                android:id="@+id/adp_bajan_textView"
+                style="@style/AppTheme.Encabezado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bajan"
+                android:layout_marginTop="38dp"
+                android:layout_below="@+id/adp_num_bus_editText"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:id="@+id/adp_bajan_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="3"
+                android:layout_alignBaseline="@+id/adp_bajan_textView"
+                android:layout_alignBottom="@+id/adp_bajan_textView"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:id="@+id/adp_suben_textView"
+                style="@style/AppTheme.Encabezado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/suben"
+                android:layout_marginTop="44dp"
+                android:layout_below="@+id/adp_bajan_editText"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:id="@+id/adp_suben_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="3"
+                android:layout_alignBaseline="@+id/adp_suben_textView"
+                android:layout_alignBottom="@+id/adp_suben_textView"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <ImageButton
+                android:id="@+id/adp_salida_button"
+                style="@style/AppTheme.ButtonObtDatos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:src="@drawable/ic_clock"
+                android:layout_below="@+id/adp_suben_editText"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/adp_salida_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="@string/salida"
+                android:layout_alignBottom="@+id/adp_salida_button"
+                android:layout_alignRight="@+id/adp_llegada_textView"
+                android:layout_alignEnd="@+id/adp_llegada_textView" />
+
+
+
+         </RelativeLayout>
+
+        </FrameLayout>
+
+</RelativeLayout>

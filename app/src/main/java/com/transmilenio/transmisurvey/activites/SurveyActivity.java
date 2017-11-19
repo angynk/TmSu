@@ -214,11 +214,4 @@ public class SurveyActivity extends AppCompatActivity {
         realm.close();
     }
 
-    private String obtenerTipoServicio(String nombreEncuesta){
-        if (nombreEncuesta.equals(ExtrasID.NOMBRE_ENCUESTA_ASCDES_TRONCAL)){
-            return ExtrasID.TIPO_SERVICIO_TRONCAL;
-        }
-
-        return ExtrasID.TIPO_SERVICIO_ALIMENTADOR;
-    }
 }

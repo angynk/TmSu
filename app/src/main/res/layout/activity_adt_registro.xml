@@ -56,13 +56,11 @@
                 style="@style/AppTheme.ButtonObtDatos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="23dp"
-                android:layout_marginStart="23dp"
                 android:src="@drawable/ic_clock"
-                android:layout_marginBottom="14dp"
-                android:layout_above="@+id/adt_estacion_view"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_below="@+id/adt_estacion_spinner"
+                android:layout_alignLeft="@+id/adt_observaciones_editText"
+                android:layout_alignStart="@+id/adt_observaciones_editText"
+                android:layout_marginTop="15dp" />
 
             <TextView
                 android:id="@+id/adt_llegada_textView"
@@ -72,36 +70,41 @@
                 android:layout_alignStart="@+id/textView_salida"
                 android:layout_alignTop="@+id/adt_llegada_button"
                 android:layout_marginTop="14dp"
-                android:text="@string/llegada" />
+                android:text="@string/llegada"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/adt_estacion_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
-                android:layout_toEndOf="@+id/adt_llegada_button"
-                android:layout_toRightOf="@+id/adt_llegada_button" />
+                android:layout_marginTop="57dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_toRightOf="@+id/adt_llegada_button"
+                android:layout_toEndOf="@+id/adt_llegada_button" />
 
             <TextView
                 android:id="@+id/adt_estacion_view"
                 style="@style/AppTheme.Encabezado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/adt_estacion_spinner"
+                android:text="@string/estacion"
+                android:layout_alignTop="@+id/adt_estacion_spinner"
                 android:layout_alignLeft="@+id/adt_llegada_button"
-                android:layout_alignStart="@+id/adt_llegada_button"
-                android:text="@string/estacion" />
+                android:layout_alignStart="@+id/adt_llegada_button" />
 
             <TextView
                 android:id="@+id/adt_bajan_textView"
                 style="@style/AppTheme.Encabezado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/adt_estacion_view"
-                android:layout_alignStart="@+id/adt_estacion_view"
-                android:layout_below="@+id/adt_estacion_view"
-                android:layout_marginTop="23dp"
-                android:text="@string/bajan" />
+                android:text="@string/bajan"
+                android:layout_marginTop="27dp"
+                android:layout_below="@+id/adt_llegada_button"
+                android:layout_alignRight="@+id/adt_estacion_view"
+                android:layout_alignEnd="@+id/adt_estacion_view" />
 
             <EditText
                 android:id="@+id/adt_bajan_editText"

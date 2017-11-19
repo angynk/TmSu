@@ -248,7 +248,6 @@ public class RegistroActivity extends AppCompatActivity  {
         estacion.setAdapter(dataAdapter);
         estacion.setTitle("Seleccione Uno");
         estacion.setPositiveButton("OK");
-        estacion.setEnabled(false);
     }
 
 

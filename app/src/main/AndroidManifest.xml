@@ -58,7 +58,10 @@
         <activity android:name=".activites.BaseFrecOcupacionActivity" />
         <activity android:name=".activites.ListaRegistrosFrecOcupacionActivity" />
         <activity android:name=".activites.FrecRegistroActivity" />
-        <activity android:name=".activites.SeleccionModoActivity"></activity>
+        <activity android:name=".activites.SeleccionModoActivity" />
+        <activity android:name=".activites.BaseADPuntoFijoActivity" />
+        <activity android:name=".activites.ListaRegistrosADPActivity" />
+        <activity android:name=".activites.AdpRegistroActivity"></activity>
     </application>
 
 </manifest>

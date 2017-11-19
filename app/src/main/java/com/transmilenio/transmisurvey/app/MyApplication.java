@@ -2,10 +2,12 @@ package com.transmilenio.transmisurvey.app;
 
 import android.app.Application;
 
+import com.transmilenio.transmisurvey.models.db.AdPuntoEncuesta;
 import com.transmilenio.transmisurvey.models.db.Aforador;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Estacion;
 import com.transmilenio.transmisurvey.models.db.Registro;
+import com.transmilenio.transmisurvey.models.db.RegistroAdPunto;
 import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupacion;
 import com.transmilenio.transmisurvey.models.db.ServicioRutas;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
@@ -34,6 +36,8 @@ public class MyApplication extends Application {
     public static AtomicInteger encuestasTmID = new AtomicInteger();
     public static AtomicInteger encAsDsAbordoID = new AtomicInteger();
     public static AtomicInteger regAsDsAbordoID = new AtomicInteger();
+    public static AtomicInteger encAsDsPuntoID = new AtomicInteger();
+    public static AtomicInteger regAsDsPuntoID = new AtomicInteger();
 
     @Override
     public void onCreate() {
@@ -50,6 +54,8 @@ public class MyApplication extends Application {
         encuestasTmID = getIdByTable(realm, EncuestaTM.class);
         encAsDsAbordoID = getIdByTable(realm, CuadroEncuesta.class);
         regAsDsAbordoID = getIdByTable(realm, RegistroEncuesta.class);
+        encAsDsPuntoID = getIdByTable(realm, AdPuntoEncuesta.class);
+        regAsDsPuntoID = getIdByTable(realm, RegistroAdPunto.class);
         realm.close();
     }
 
