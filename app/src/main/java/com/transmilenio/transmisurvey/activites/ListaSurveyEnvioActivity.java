@@ -18,17 +18,21 @@ import com.transmilenio.transmisurvey.adapters.SurveySendAdapter;
 import com.transmilenio.transmisurvey.fragments.AlertObservacion;
 import com.transmilenio.transmisurvey.http.API;
 import com.transmilenio.transmisurvey.http.SurveyService;
+import com.transmilenio.transmisurvey.models.db.AdPuntoEncuesta;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.FOcupacionEncuesta;
+import com.transmilenio.transmisurvey.models.db.RegistroAdPunto;
 import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupacion;
 import com.transmilenio.transmisurvey.models.db.Resultado;
 import com.transmilenio.transmisurvey.models.json.AD_Abordo;
+import com.transmilenio.transmisurvey.models.json.AD_Fijo;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 import com.transmilenio.transmisurvey.models.json.EncuestaJSON;
 import com.transmilenio.transmisurvey.models.json.EncuestaTM;
 import com.transmilenio.transmisurvey.models.json.EncuestasTerminadas;
 import com.transmilenio.transmisurvey.models.json.FR_Ocupacion;
 import com.transmilenio.transmisurvey.models.json.RegADAbordo;
+import com.transmilenio.transmisurvey.models.json.RegADFijo;
 import com.transmilenio.transmisurvey.models.json.RegFROcupacion;
 import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
 import com.transmilenio.transmisurvey.models.json.TipoEncuesta;
@@ -129,9 +133,34 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
             generarEncuestaAscDescAbordo(encuestaTM, encuestaJSON);
         }else if(encuestaTM.getTipo() == TipoEncuesta.ENC_FR_OCUPACION){
             generarFrecOcupacion(encuestaTM,encuestaJSON);
+        }else if(encuestaTM.getTipo() == TipoEncuesta.ENC_AD_PUNTO){
+            generarEncuestaADPunto(encuestaTM,encuestaJSON);
         }
 
         return encuestaJSON;
+    }
+
+    private void generarEncuestaADPunto(EncuestaTM encuestaTM, EncuestaJSON encuestaJSON) {
+        AdPuntoEncuesta adPuntoEncuesta = encuestaTM.getAd_punto();
+        AD_Fijo ad_fijo = new AD_Fijo();
+        ad_fijo.setEstacion(adPuntoEncuesta.getEstacion());
+        ad_fijo.setDia_semana(adPuntoEncuesta.getDiaSemana());
+        ad_fijo.setServicio(adPuntoEncuesta.getServicio());
+
+        RealmList<RegistroAdPunto> registrosBD = adPuntoEncuesta.getRegistros();
+        List<RegADFijo> registros = new ArrayList<>();
+        for(RegistroAdPunto reg: registrosBD){
+            RegADFijo regADFijo = new RegADFijo();
+            regADFijo.setHora_llegada(reg.getHoraLlegada());
+            regADFijo.setHora_salida(reg.getHoraSalida());
+            regADFijo.setNum_bus(reg.getNumBus());
+            regADFijo.setPas_bajan(reg.getPasBajan());
+            regADFijo.setPas_suben(reg.getPasSuben());
+            registros.add(regADFijo);
+        }
+
+        ad_fijo.setRegistros(registros);
+        encuestaJSON.setAd_fijo(ad_fijo);
     }
 
     private void generarEncuestaAscDescAbordo(EncuestaTM encuestaTM, EncuestaJSON encuestaJSON) {

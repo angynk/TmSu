@@ -2,12 +2,10 @@ package com.transmilenio.transmisurvey.models.db;
 
 import com.transmilenio.transmisurvey.app.MyApplication;
 
-import java.util.Date;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-import io.realm.annotations.Required;
 
 
 

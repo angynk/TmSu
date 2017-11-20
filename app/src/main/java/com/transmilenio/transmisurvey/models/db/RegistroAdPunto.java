@@ -5,9 +5,7 @@ import com.transmilenio.transmisurvey.app.MyApplication;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-/**
- * Created by nataly on 19/11/2017.
- */
+
 
 public class RegistroAdPunto extends RealmObject {
 

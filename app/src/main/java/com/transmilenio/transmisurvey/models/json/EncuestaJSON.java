@@ -13,6 +13,7 @@ public class EncuestaJSON {
 
     private AD_Abordo ad_abordo;
     private FR_Ocupacion fr_ocupacion;
+    private AD_Fijo ad_fijo;
 
     public EncuestaJSON() {
     }
@@ -79,5 +80,13 @@ public class EncuestaJSON {
 
     public void setFr_ocupacion(FR_Ocupacion fr_ocupacion) {
         this.fr_ocupacion = fr_ocupacion;
+    }
+
+    public AD_Fijo getAd_fijo() {
+        return ad_fijo;
+    }
+
+    public void setAd_fijo(AD_Fijo ad_fijo) {
+        this.ad_fijo = ad_fijo;
     }
 }
