@@ -12,6 +12,7 @@ public class Mensajes {
 
 
     public static String MSG_COMPLETE_CAMPOS = "Complete todos los campos";
+    public static String MSG_SERVICIO_NO_ESTACION = "El servicio no pasa por la estación seleccionada";
     public static String MSG_SINCRONIZE = "Datos Incompletos Sincronize la Aplicacion";
     public static String MSG_SINCRONIZACION = "Sincronización exitosa";
     public static String MSG_SINCRONIZANDO= "Sincronizando Datos";

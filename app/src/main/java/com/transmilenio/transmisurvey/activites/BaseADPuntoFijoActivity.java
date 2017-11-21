@@ -123,8 +123,8 @@ public class BaseADPuntoFijoActivity extends AppCompatActivity {
                 // Validar Valores
                 if( !camposCompletos() ){
                         Toast.makeText(BaseADPuntoFijoActivity.this, Mensajes.MSG_COMPLETE_CAMPOS,Toast.LENGTH_LONG).show();
-
-
+                }else if (!servicioValido()){
+                    Toast.makeText(BaseADPuntoFijoActivity.this, Mensajes.MSG_SERVICIO_NO_ESTACION,Toast.LENGTH_LONG).show();
                 }else{
                         Intent intent = null;
                         EncuestaTM encuestaTM = new EncuestaTM();
@@ -137,6 +137,21 @@ public class BaseADPuntoFijoActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private boolean servicioValido() {
+        String servicio = servicios.getSelectedItem().toString();
+        String estacion = estaciones.getSelectedItem().toString();
+        ServicioRutas servicioRutas = realm.where(ServicioRutas.class).equalTo("nombre", servicio).findFirst();
+        if(servicioRutas!=null){
+            RealmList<Estacion> estaciones = servicioRutas.getEstaciones();
+            for(Estacion esProv:estaciones){
+                if(esProv.getNombre().equals(estacion)){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private int crearObjetoInfoBase(final EncuestaTM encuestaTM){

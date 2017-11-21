@@ -13,7 +13,7 @@ public class RegADAbordo {
     private int quedan;
     private String hora_salida;
     private String observacion;
-
+    private String estacion;
 
     public RegADAbordo() {
     }
@@ -64,5 +64,13 @@ public class RegADAbordo {
 
     public void setObservacion(String observacion) {
         this.observacion = observacion;
+    }
+
+    public String getEstacion() {
+        return estacion;
+    }
+
+    public void setEstacion(String estacion) {
+        this.estacion = estacion;
     }
 }

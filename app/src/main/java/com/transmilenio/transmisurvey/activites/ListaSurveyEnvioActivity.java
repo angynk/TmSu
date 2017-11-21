@@ -184,6 +184,7 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
             regADAbordo.setHora_llegada(reg.getHora_llegada());
             regADAbordo.setHora_salida(reg.getHora_salida());
             regADAbordo.setObservacion(reg.getObservacion());
+            regADAbordo.setEstacion(reg.getEstacion());
             registros.add(regADAbordo);
         }
         ad_abordo.setRegistros(registros);

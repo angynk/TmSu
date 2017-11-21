@@ -3,6 +3,7 @@ package com.transmilenio.transmisurvey.models.db;
 
 import com.transmilenio.transmisurvey.app.MyApplication;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -13,6 +14,7 @@ public class Estacion  extends RealmObject {
 
     private String nombre;
     private String tipo;
+
 
     public Estacion() {
         this.id = MyApplication.estacionID.incrementAndGet();
@@ -48,4 +50,6 @@ public class Estacion  extends RealmObject {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+
 }
