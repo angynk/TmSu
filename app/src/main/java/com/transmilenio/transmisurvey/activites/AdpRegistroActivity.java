@@ -31,7 +31,8 @@ public class AdpRegistroActivity extends AppCompatActivity {
 
     private ImageButton buttonLlegada, buttonSalida;
     private TextView textLlegada,textSalida;
-    private EditText seBajan,seSuben,numBus;
+    private ToggleButton tieneObservaciones;
+    private EditText seBajan,seSuben, seQuedan,numBus,observacion;
     private FloatingActionButton buttonNuevo,buttonCerrar;
 
     private Realm realm;
@@ -68,14 +69,19 @@ public class AdpRegistroActivity extends AppCompatActivity {
         textLlegada = (TextView) findViewById(R.id.adp_llegada_textView);
         textSalida = (TextView) findViewById(R.id.adp_salida_textView);
         seBajan = (EditText) findViewById(R.id.adp_bajan_editText);
+        seQuedan = (EditText) findViewById(R.id.adp_quedan_editText);
+        seQuedan.setEnabled(false);
         seBajan.setEnabled(false);
         seSuben = (EditText) findViewById(R.id.adp_suben_editText);
         numBus = (EditText) findViewById(R.id.adp_num_bus_editText);
-        numBus.setEnabled(false);
         seSuben.setEnabled(false);
         buttonNuevo = (FloatingActionButton) findViewById(R.id.adp_nuevoRegistro_button);
         buttonCerrar = (FloatingActionButton) findViewById(R.id.adp_cancelarRegistro_button);
         buttonSalida.setEnabled(false);
+        observacion = (EditText) findViewById(R.id.adp_observaciones_editText);
+        tieneObservaciones = (ToggleButton) findViewById(R.id.adp_observaciones_toggleButton);
+        tieneObservaciones.setEnabled(false);
+        observacion.setEnabled(false);
         agregarEventosBotones();
     }
 
@@ -112,7 +118,8 @@ public class AdpRegistroActivity extends AppCompatActivity {
                 seSuben.setEnabled(true);
                 seBajan.setEnabled(true);
                 buttonSalida.setEnabled(true);
-                numBus.setEnabled(true);
+                seQuedan.setEnabled(true);
+                tieneObservaciones.setEnabled(true);
             }
         });
 
@@ -144,6 +151,17 @@ public class AdpRegistroActivity extends AppCompatActivity {
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
                 startActivity(intent);
+            }
+        });
+
+        tieneObservaciones.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    observacion.setEnabled(true);
+                } else {
+                    observacion.setEnabled(false);
+                }
             }
         });
     }
@@ -183,6 +201,8 @@ public class AdpRegistroActivity extends AppCompatActivity {
         registro.setHoraLlegada(textLlegada.getText().toString());
         registro.setPasBajan(Integer.parseInt(seBajan.getText().toString()));
         registro.setPasSuben(Integer.parseInt(seSuben.getText().toString()));
+        registro.setPasQuedan(Integer.parseInt(seQuedan.getText().toString()));
+        registro.setObservacion(observacion.getText().toString());
         registro.setNumBus(numBus.getText().toString());
         return registro;
     }
@@ -191,7 +211,8 @@ public class AdpRegistroActivity extends AppCompatActivity {
         if( textLlegada.getText().toString().trim().equals("H.Llegada") ||
                 textSalida.getText().toString().trim().equals("H.Salida")  ||
                 seBajan.getText().toString().trim().equals("") ||
-                seSuben.getText().toString().trim().equals("") ){
+                seSuben.getText().toString().trim().equals("") ||
+                seQuedan.getText().toString().trim().equals("")){
             return false;
         }
         return true;

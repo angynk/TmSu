@@ -156,6 +156,8 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
             regADFijo.setNum_bus(reg.getNumBus());
             regADFijo.setPas_bajan(reg.getPasBajan());
             regADFijo.setPas_suben(reg.getPasSuben());
+            regADFijo.setPas_quedan(reg.getPasQuedan());
+            regADFijo.setObservacion(reg.getObservacion());
             registros.add(regADFijo);
         }
 

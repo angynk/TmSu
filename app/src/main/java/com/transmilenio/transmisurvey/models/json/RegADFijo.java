@@ -9,6 +9,8 @@ public class RegADFijo {
     private String hora_salida;
     private int pas_bajan;
     private int pas_suben;
+    private int pas_quedan;
+    private String observacion;
 
     public RegADFijo() {
     }
@@ -59,5 +61,21 @@ public class RegADFijo {
 
     public void setPas_suben(int pas_suben) {
         this.pas_suben = pas_suben;
+    }
+
+    public int getPas_quedan() {
+        return pas_quedan;
+    }
+
+    public void setPas_quedan(int pas_quedan) {
+        this.pas_quedan = pas_quedan;
+    }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
     }
 }

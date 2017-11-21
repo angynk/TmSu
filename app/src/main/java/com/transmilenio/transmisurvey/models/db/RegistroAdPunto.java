@@ -16,6 +16,8 @@ public class RegistroAdPunto extends RealmObject {
     private String horaSalida;
     private int pasBajan;
     private int pasSuben;
+    private int pasQuedan;
+    private String observacion;
 
     public RegistroAdPunto() {
         this.id = MyApplication.regAsDsPuntoID.incrementAndGet();
@@ -76,5 +78,21 @@ public class RegistroAdPunto extends RealmObject {
 
     public void setPasSuben(int pasSuben) {
         this.pasSuben = pasSuben;
+    }
+
+    public int getPasQuedan() {
+        return pasQuedan;
+    }
+
+    public void setPasQuedan(int pasQuedan) {
+        this.pasQuedan = pasQuedan;
+    }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
     }
 }

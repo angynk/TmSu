@@ -56,22 +56,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_clock"
-                android:layout_marginTop="59dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_marginTop="17dp"
+                android:layout_below="@+id/adp_num_bus_editText"
+                android:layout_alignLeft="@+id/adp_bajan_textView"
+                android:layout_alignStart="@+id/adp_bajan_textView" />
 
             <TextView
                 android:id="@+id/adp_llegada_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="77dp"
+                android:layout_marginTop="31dp"
                 android:text="@string/llegada"
-                android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/adp_llegada_button"
-                android:layout_toEndOf="@+id/adp_llegada_button"
-                android:layout_marginLeft="77dp"
-                android:layout_marginStart="77dp" />
+                android:layout_marginLeft="58dp"
+                android:layout_marginStart="58dp"
+                android:layout_below="@+id/adp_num_bus_editText"
+                android:layout_alignLeft="@+id/adp_bajan_editText"
+                android:layout_alignStart="@+id/adp_bajan_editText" />
 
             <TextView
                 android:id="@+id/adp_num_bus_textView"
@@ -79,21 +79,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/numBus"
-                android:layout_marginTop="42dp"
-                android:layout_below="@+id/adp_llegada_button"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_marginTop="37dp"
+                android:layout_alignParentTop="true" />
 
             <EditText
                 android:id="@+id/adp_num_bus_editText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:inputType="text"
                 android:layout_alignBaseline="@+id/adp_num_bus_textView"
                 android:layout_alignBottom="@+id/adp_num_bus_textView"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:inputType="text"/>
+                android:layout_alignParentEnd="true" />
 
             <TextView
                 android:id="@+id/adp_bajan_textView"
@@ -101,8 +99,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/bajan"
-                android:layout_marginTop="38dp"
-                android:layout_below="@+id/adp_num_bus_editText"
+                android:layout_marginTop="19dp"
+                android:layout_below="@+id/adp_llegada_button"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -124,7 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/suben"
-                android:layout_marginTop="44dp"
+                android:layout_marginTop="25dp"
                 android:layout_below="@+id/adp_bajan_editText"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -141,14 +139,37 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
 
+            <TextView
+                android:id="@+id/adp_quedan_textView"
+                style="@style/AppTheme.Encabezado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quedan"
+                android:layout_marginTop="23dp"
+                android:layout_below="@+id/adp_suben_editText"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:id="@+id/adp_quedan_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="3"
+                android:layout_alignBaseline="@+id/adp_quedan_textView"
+                android:layout_alignBottom="@+id/adp_quedan_textView"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
             <ImageButton
                 android:id="@+id/adp_salida_button"
                 style="@style/AppTheme.ButtonObtDatos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="15dp"
                 android:src="@drawable/ic_clock"
-                android:layout_below="@+id/adp_suben_editText"
+                android:layout_below="@+id/adp_quedan_editText"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -156,13 +177,47 @@
                 android:id="@+id/adp_salida_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
                 android:text="@string/salida"
-                android:layout_alignBottom="@+id/adp_salida_button"
-                android:layout_alignRight="@+id/adp_llegada_textView"
-                android:layout_alignEnd="@+id/adp_llegada_textView" />
+                android:layout_alignTop="@+id/adp_salida_button"
+                android:layout_alignLeft="@+id/adp_llegada_textView"
+                android:layout_alignStart="@+id/adp_llegada_textView"
+                android:layout_marginLeft="22dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="15dp" />
 
 
+            <TextView
+                android:id="@+id/adp_observaciones_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_observacion"
+                style="@style/AppTheme.Encabezado"
+                android:layout_below="@+id/adp_salida_button"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="14dp" />
+
+            <EditText
+                android:id="@+id/adp_observaciones_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text=""
+                android:inputType="textMultiLine"
+                android:layout_below="@+id/adp_observaciones_TextView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <ToggleButton
+                android:id="@+id/adp_observaciones_toggleButton"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:background="@color/colorObservacion"
+                android:textOff="No"
+                android:textOn="Sí"
+                android:layout_alignBottom="@+id/adp_observaciones_TextView"
+                android:layout_alignRight="@+id/adp_salida_textView"
+                android:layout_alignEnd="@+id/adp_salida_textView" />
 
          </RelativeLayout>
 
