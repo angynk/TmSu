@@ -3,10 +3,12 @@ package com.transmilenio.transmisurvey.activites;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -50,6 +52,7 @@ public class FrecRegistroActivity extends AppCompatActivity {
         realm = Realm.getDefaultInstance();
         bindUI();
         validarExtras();
+        setActionBarBotton();
 
     }
 
@@ -115,6 +118,7 @@ public class FrecRegistroActivity extends AppCompatActivity {
                 Intent intent = new Intent(FrecRegistroActivity.this,ListaRegistrosFrecOcupacionActivity.class);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
         });
@@ -170,6 +174,37 @@ public class FrecRegistroActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                inluirDatos();
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        inluirDatos();
+    }
+
+    private void inluirDatos() {
+        Intent intent = new Intent(FrecRegistroActivity.this,ListaRegistrosFrecOcupacionActivity.class);
+        intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
+        intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
+    private void setActionBarBotton() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
 }

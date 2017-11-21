@@ -96,9 +96,10 @@ public class AdpRegistroActivity extends AppCompatActivity {
     }
 
     private void inluirDatos() {
-        Intent intent = new Intent(this, ListaRegistrosADPActivity.class);
+        Intent intent = new Intent(AdpRegistroActivity.this,ListaRegistrosADPActivity.class);
         intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
         intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 
@@ -150,6 +151,7 @@ public class AdpRegistroActivity extends AppCompatActivity {
                 Intent intent = new Intent(AdpRegistroActivity.this,ListaRegistrosADPActivity.class);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
         });
@@ -224,6 +226,14 @@ public class AdpRegistroActivity extends AppCompatActivity {
         super.onDestroy();
         realm.close();
     }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        inluirDatos();
+    }
+
 
 
 

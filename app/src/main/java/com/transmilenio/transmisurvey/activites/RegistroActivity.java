@@ -111,6 +111,12 @@ public class RegistroActivity extends AppCompatActivity  {
         return true;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        inluirDatos();
+    }
+
     private void inluirDatos() {
         Intent intent = new Intent(this, ListaRegistrosActivity.class);
         intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
@@ -170,6 +176,7 @@ public class RegistroActivity extends AppCompatActivity  {
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
         });

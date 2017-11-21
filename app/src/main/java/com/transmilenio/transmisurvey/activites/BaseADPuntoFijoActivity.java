@@ -132,6 +132,7 @@ public class BaseADPuntoFijoActivity extends AppCompatActivity {
                         intent = new Intent(BaseADPuntoFijoActivity.this,ListaRegistrosADPActivity.class);
                         intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                         intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         finish();
                 }
