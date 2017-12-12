@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.transmilenio.transmisurvey.activites.ConteoRegistroActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nuevoRegistro"
+        style="@style/AppTheme.Banner"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/cod_nuevoRegistro_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_checked_icon"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/cod_cancelarRegistro_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_cancel"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tituloPanel"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+            <TextView
+                android:id="@+id/cod_num_bus_textView"
+                style="@style/AppTheme.Encabezado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/numBus"
+                android:layout_alignBaseline="@+id/cod_num_bus_editText"
+                android:layout_alignBottom="@+id/cod_num_bus_editText"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:id="@+id/cod_num_bus_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_marginTop="48dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <ImageButton
+                android:id="@+id/cod_despacho_button"
+                style="@style/AppTheme.ButtonObtDatos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_clock"
+                android:layout_marginTop="37dp"
+                android:layout_below="@+id/cod_num_bus_editText"
+                android:layout_alignRight="@+id/cod_num_bus_textView"
+                android:layout_alignEnd="@+id/cod_num_bus_textView" />
+
+            <TextView
+                android:id="@+id/cod_despacho_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/despacho"
+                android:layout_alignTop="@+id/cod_despacho_button"
+                android:layout_alignLeft="@+id/cod_num_bus_editText"
+                android:layout_alignStart="@+id/cod_num_bus_editText"
+                android:layout_marginLeft="61dp"
+                android:layout_marginStart="61dp" />
+
+            </RelativeLayout>
+    </FrameLayout>
+</RelativeLayout>

@@ -2,6 +2,7 @@ package com.transmilenio.transmisurvey.models.json;
 
 import com.transmilenio.transmisurvey.app.MyApplication;
 import com.transmilenio.transmisurvey.models.db.AdPuntoEncuesta;
+import com.transmilenio.transmisurvey.models.db.ConteoDesEncuesta;
 import com.transmilenio.transmisurvey.models.db.FOcupacionEncuesta;
 
 
@@ -29,6 +30,7 @@ public class EncuestaTM extends RealmObject {
     private CuadroEncuesta ad_abordo; // ASCENSOS Y DESCENSOS TRONCAL ABORDO
     private FOcupacionEncuesta fr_ocupacion; // FRECUENCIA OCUPACIÓN
     private AdPuntoEncuesta ad_punto; // FRECUENCIA OCUPACIÓN
+    private ConteoDesEncuesta co_despachos; //CONTEO DESPACHOS
 
     public EncuestaTM() {
         this.id = MyApplication.encuestasTmID.incrementAndGet();
@@ -112,5 +114,13 @@ public class EncuestaTM extends RealmObject {
 
     public void setAd_punto(AdPuntoEncuesta ad_punto) {
         this.ad_punto = ad_punto;
+    }
+
+    public ConteoDesEncuesta getCo_despachos() {
+        return co_despachos;
+    }
+
+    public void setCo_despachos(ConteoDesEncuesta co_despachos) {
+        this.co_despachos = co_despachos;
     }
 }

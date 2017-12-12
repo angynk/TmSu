@@ -14,6 +14,7 @@
     <string name="banner_encuestas">Encuestas</string>
     <string name="nuevoRegistro">Nuevo Registro</string>
     <string name="llegada">H.Llegada</string>
+    <string name="despacho">H.Despacho</string>
     <string name="salida">H.Salida</string>
     <string name="estacion">Estación</string>
     <string name="bajan">Se Bajan</string>

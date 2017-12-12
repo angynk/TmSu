@@ -53,15 +53,39 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activites.MainActivity" />
         </activity>
-        <activity android:name=".activites.ListaSurveyEnvioActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activites.CreacionUsuariosActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activites.BaseFrecOcupacionActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activites.ListaRegistrosFrecOcupacionActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activites.FrecRegistroActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activites.SeleccionModoActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activites.BaseADPuntoFijoActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activites.ListaRegistrosADPActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".activites.AdpRegistroActivity" android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activites.ListaSurveyEnvioActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activites.CreacionUsuariosActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activites.BaseFrecOcupacionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activites.ListaRegistrosFrecOcupacionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activites.FrecRegistroActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activites.SeleccionModoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activites.BaseADPuntoFijoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activites.ListaRegistrosADPActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activites.AdpRegistroActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activites.ConteoDesActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activites.ListaRegistrosConteoActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.ConteoRegistroActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
