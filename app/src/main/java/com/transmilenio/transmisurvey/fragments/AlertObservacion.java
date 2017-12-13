@@ -16,10 +16,12 @@ import com.transmilenio.transmisurvey.activites.ListaRegistrosActivity;
 import com.transmilenio.transmisurvey.activites.MainActivity;
 import com.transmilenio.transmisurvey.activites.RegistroActivity;
 import com.transmilenio.transmisurvey.models.db.AdPuntoEncuesta;
+import com.transmilenio.transmisurvey.models.db.ConteoDesEncuesta;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.FOcupacionEncuesta;
 import com.transmilenio.transmisurvey.models.db.Registro;
 import com.transmilenio.transmisurvey.models.db.RegistroAdPunto;
+import com.transmilenio.transmisurvey.models.db.RegistroConteo;
 import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupacion;
 import com.transmilenio.transmisurvey.models.db.Resultado;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
@@ -158,6 +160,30 @@ public class AlertObservacion extends DialogFragment {
 
                     realm.beginTransaction();
                     adPuntoEncuesta.deleteFromRealm();
+                    realm.commitTransaction();
+                    realm.beginTransaction();
+                    encuestaTM.deleteFromRealm();
+                    realm.commitTransaction();
+                }else if ( tipo == TipoEncuesta.ENC_CONT_DESPACHOS){
+                    ConteoDesEncuesta conteoDesEncuesta = encuestaTM.getCo_despachos();
+                    realm.beginTransaction();
+                    RealmList<RegistroConteo> registros = conteoDesEncuesta.getRegistros();
+                    List<Integer> regIn= new ArrayList<>();
+                    for(RegistroConteo re:registros){
+                        regIn.add(re.getId());
+                    }
+                    for(Integer value:regIn){
+                        RegistroConteo registro = realm.where(RegistroConteo.class).equalTo("id", value).findFirst();
+                        if(registro!=null){
+                            if(registro.isValid()){
+                                registro.deleteFromRealm();
+                            }
+                        }
+                    }
+                    realm.commitTransaction();
+
+                    realm.beginTransaction();
+                    conteoDesEncuesta.deleteFromRealm();
                     realm.commitTransaction();
                     realm.beginTransaction();
                     encuestaTM.deleteFromRealm();

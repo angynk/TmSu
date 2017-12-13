@@ -32,6 +32,7 @@ public class EncuestaTM extends RealmObject {
     private AdPuntoEncuesta ad_punto; // FRECUENCIA OCUPACIÓN
     private ConteoDesEncuesta co_despachos; //CONTEO DESPACHOS
 
+
     public EncuestaTM() {
         this.id = MyApplication.encuestasTmID.incrementAndGet();
     }
