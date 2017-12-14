@@ -68,7 +68,8 @@
                 android:layout_marginTop="48dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:digits="1234567890smuaSMUA"/>
 
             <ImageButton
                 android:id="@+id/cod_despacho_button"
