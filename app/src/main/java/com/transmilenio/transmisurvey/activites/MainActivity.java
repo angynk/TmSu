@@ -27,6 +27,7 @@ import com.transmilenio.transmisurvey.models.db.Opcion;
 import com.transmilenio.transmisurvey.models.db.Registro;
 import com.transmilenio.transmisurvey.models.db.RegistroAdPunto;
 import com.transmilenio.transmisurvey.models.db.ServicioRutas;
+import com.transmilenio.transmisurvey.models.json.Config;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 import com.transmilenio.transmisurvey.models.json.EncuestaTM;
 import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
@@ -184,17 +185,17 @@ public class MainActivity extends AppCompatActivity  {
         progressDoalog.show();
 
         SurveyService surveyService = API.getApi().create(SurveyService.class);
-        Call<List<Servicio>> call = surveyService.getServicios();
-        call.enqueue(new Callback<List<Servicio>>() {
+        Call<Config> call = surveyService.getServicios();
+        call.enqueue(new Callback<Config>() {
             @Override
-            public void onResponse(Call<List<Servicio>> call, Response<List<Servicio>> response) {
-                    guardarServicios(response.body());
+            public void onResponse(Call<Config> call, Response<Config> response) {
+                    guardarServicios(response.body().getServicios());
                     progressDoalog.dismiss();
                     Toast.makeText(MainActivity.this,Mensajes.MSG_SINCRONIZACION,Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(Call<List<Servicio>> call, Throwable t) {
+            public void onFailure(Call<Config> call, Throwable t) {
                 progressDoalog.dismiss();
                 Toast.makeText(MainActivity.this,Mensajes.MSG_SINCRONIZACION_FALLO,Toast.LENGTH_SHORT).show();
             }
