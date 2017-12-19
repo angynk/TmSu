@@ -3,9 +3,11 @@ package com.transmilenio.transmisurvey.activites;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +18,9 @@ import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.models.db.AdPuntoEncuesta;
 import com.transmilenio.transmisurvey.models.db.Estacion;
+import com.transmilenio.transmisurvey.models.db.EstacionServicio;
 import com.transmilenio.transmisurvey.models.db.RegistroAdPunto;
+import com.transmilenio.transmisurvey.models.db.Serv;
 import com.transmilenio.transmisurvey.models.db.ServicioRutas;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 import com.transmilenio.transmisurvey.models.json.EncuestaTM;
@@ -65,15 +69,6 @@ public class BaseADPuntoFijoActivity extends AppCompatActivity {
 
     private void agregarItemsListas() {
 
-        servicios = (SearchableSpinner) findViewById(R.id.adp_servicio_sepinner);
-        List<String> listservicios = getServicios(modo);
-        ArrayAdapter<String> dataAdapterservicios = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listservicios);
-        dataAdapterservicios.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        servicios.setAdapter(dataAdapterservicios);
-        servicios.setTitle(Mensajes.MSG_SELECCIONE);
-        servicios.setPositiveButton(Mensajes.MSG_OK);
-
         estaciones = (SearchableSpinner) findViewById(R.id.adp_estacion_sepinner);
         List<String> listEstaciones = getEstaciones(modo);
         ArrayAdapter<String> dataAdapterEstaciones = new ArrayAdapter<String>(this,
@@ -82,23 +77,49 @@ public class BaseADPuntoFijoActivity extends AppCompatActivity {
         estaciones.setAdapter(dataAdapterEstaciones);
         estaciones.setTitle(Mensajes.MSG_SELECCIONE);
         estaciones.setPositiveButton(Mensajes.MSG_OK);
+        estaciones.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                agregarServicioLista();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        agregarServicioLista();
 
 
     }
 
-    private List<String> getServicios(String modo) {
+    private void agregarServicioLista(){
+        servicios = (SearchableSpinner) findViewById(R.id.adp_servicio_sepinner);
+        List<String> listservicios = getServicios(modo);
+        ArrayAdapter<String> dataAdapterservicios = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, listservicios);
+        dataAdapterservicios.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        servicios.setAdapter(dataAdapterservicios);
+        servicios.setTitle(Mensajes.MSG_SELECCIONE);
+        servicios.setPositiveButton(Mensajes.MSG_OK);
+    }
+
+    @NonNull
+    private List<String> getEstaciones(String tipo) {
         List<String> list = new ArrayList<String>();
-        RealmResults<ServicioRutas> servicios = realm.where(ServicioRutas.class).equalTo("tipo", modo).findAll();
-        for (ServicioRutas servicioRutas: servicios){
-            list.add(servicioRutas.getNombre());
+        RealmResults<EstacionServicio> servicios = realm.where(EstacionServicio.class).equalTo("tipo", tipo).findAll();
+        for (EstacionServicio estacion: servicios){
+            list.add(estacion.getNombre());
         }
         return list;
     }
 
-    private List<String> getEstaciones(String modo) {
+    @NonNull
+    private List<String> getServicios(String tipo) {
         List<String> list = new ArrayList<String>();
-        RealmResults<Estacion> estaciones = realm.where(Estacion.class).equalTo("tipo", modo).findAll();
-        for (Estacion servicioRutas: estaciones){
+        EstacionServicio estacion = realm.where(EstacionServicio.class).equalTo("nombre", estaciones.getSelectedItem().toString()).findFirst();
+        for (Serv servicioRutas: estacion.getServicios()){
             list.add(servicioRutas.getNombre());
         }
         return list;
