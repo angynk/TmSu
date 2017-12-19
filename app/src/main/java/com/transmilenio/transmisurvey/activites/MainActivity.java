@@ -23,13 +23,16 @@ import com.transmilenio.transmisurvey.http.API;
 import com.transmilenio.transmisurvey.http.SurveyService;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Estacion;
+import com.transmilenio.transmisurvey.models.db.EstacionServicio;
 import com.transmilenio.transmisurvey.models.db.Opcion;
 import com.transmilenio.transmisurvey.models.db.Registro;
 import com.transmilenio.transmisurvey.models.db.RegistroAdPunto;
+import com.transmilenio.transmisurvey.models.db.Serv;
 import com.transmilenio.transmisurvey.models.db.ServicioRutas;
 import com.transmilenio.transmisurvey.models.json.Config;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 import com.transmilenio.transmisurvey.models.json.EncuestaTM;
+import com.transmilenio.transmisurvey.models.json.EstacionTs;
 import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
 import com.transmilenio.transmisurvey.models.json.Servicio;
 import com.transmilenio.transmisurvey.models.json.TipoEncuesta;
@@ -190,6 +193,7 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public void onResponse(Call<Config> call, Response<Config> response) {
                     guardarServicios(response.body().getServicios());
+                    guardarEstaciones(response.body().getEstacionTs());
                     progressDoalog.dismiss();
                     Toast.makeText(MainActivity.this,Mensajes.MSG_SINCRONIZACION,Toast.LENGTH_SHORT).show();
             }
@@ -202,6 +206,39 @@ public class MainActivity extends AppCompatActivity  {
         });
     }
 
+    private void guardarEstaciones(List<EstacionTs> estaciones) {
+        eliminarInfoEstaciones();
+        for (EstacionTs estacion:estaciones){
+            EstacionServicio estacionServicio = new EstacionServicio(estacion.getNombre(),estacion.getTipo());
+            realm.beginTransaction();
+            realm.copyToRealmOrUpdate(estacionServicio);
+            realm.commitTransaction();
+            cargarServicios(estacion.getNombre(),estacion.getServicios());
+
+        }
+    }
+
+    private void cargarServicios(String nombre, List<String> servicios) {
+
+        realm.beginTransaction();
+        EstacionServicio estacionServicio = realm.where(EstacionServicio.class).equalTo("nombre", nombre).findFirst();
+        for(String servNombre: servicios){
+            Serv serv = realm.where(Serv.class).equalTo("nombre", servNombre).findFirst();
+            if(serv==null){
+                serv = new Serv(servNombre);
+                realm.copyToRealmOrUpdate(serv);
+            }
+            estacionServicio.getServicios().add(serv);
+        }
+        realm.commitTransaction();
+    }
+
+    private void eliminarInfoEstaciones() {
+        realm.beginTransaction();
+        realm.delete(Serv.class);
+        realm.delete(EstacionServicio.class);
+        realm.commitTransaction();
+    }
 
 
     public void guardarServicios(List<Servicio> servicios){
@@ -237,7 +274,6 @@ public class MainActivity extends AppCompatActivity  {
             servicioRutas.getEstaciones().add(estacion);
         }
         realm.commitTransaction();
-        System.out.println("");
     }
 
 

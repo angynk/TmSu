@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,7 +17,9 @@ import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.models.db.ConteoDesEncuesta;
 import com.transmilenio.transmisurvey.models.db.Estacion;
+import com.transmilenio.transmisurvey.models.db.EstacionServicio;
 import com.transmilenio.transmisurvey.models.db.FOcupacionEncuesta;
+import com.transmilenio.transmisurvey.models.db.Serv;
 import com.transmilenio.transmisurvey.models.db.ServicioRutas;
 import com.transmilenio.transmisurvey.models.json.EncuestaTM;
 import com.transmilenio.transmisurvey.models.json.Servicio;
@@ -146,6 +149,17 @@ public class ConteoDesActivity extends AppCompatActivity {
         estaciones.setAdapter(dataAdapterestaciones);
         estaciones.setTitle(Mensajes.MSG_SELECCIONE);
         estaciones.setPositiveButton(Mensajes.MSG_OK);
+        estaciones.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                agregarItemsSentido();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
 
@@ -160,8 +174,8 @@ public class ConteoDesActivity extends AppCompatActivity {
     @NonNull
     private List<String> getEstaciones(String tipo) {
         List<String> list = new ArrayList<String>();
-        RealmResults<Estacion> servicios = realm.where(Estacion.class).equalTo("tipo", tipo).findAll();
-        for (Estacion estacion: servicios){
+        RealmResults<EstacionServicio> servicios = realm.where(EstacionServicio.class).equalTo("tipo", tipo).findAll();
+        for (EstacionServicio estacion: servicios){
             list.add(estacion.getNombre());
         }
         return list;
@@ -170,8 +184,8 @@ public class ConteoDesActivity extends AppCompatActivity {
     @NonNull
     private List<String> getServicios(String tipo) {
         List<String> list = new ArrayList<String>();
-        RealmResults<ServicioRutas> servicios = realm.where(ServicioRutas.class).equalTo("tipo", tipo).findAll();
-        for (ServicioRutas servicioRutas: servicios){
+        EstacionServicio estacion = realm.where(EstacionServicio.class).equalTo("nombre", estaciones.getSelectedItem().toString()).findFirst();
+        for (Serv servicioRutas: estacion.getServicios()){
             list.add(servicioRutas.getNombre());
         }
         return list;
