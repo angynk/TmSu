@@ -240,7 +240,8 @@ public class RegistroActivity extends AppCompatActivity  {
         if( textLlegada.getText().toString().trim().equals("H.Llegada") ||
                 textSalida.getText().toString().trim().equals("H.Salida")  ||
                 seBajan.getText().toString().trim().equals("") ||
-                seSuben.getText().toString().trim().equals("") ){
+                seSuben.getText().toString().trim().equals("") ||
+                seQuedan.getText().toString().trim().equals("")){
             return false;
         }
         return true;
