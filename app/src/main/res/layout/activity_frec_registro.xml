@@ -129,6 +129,7 @@
                 android:layout_marginTop="33dp"
                 android:ems="10"
                 android:maxLength="1"
+                android:digits="12345"
                 android:inputType="number" />
 
 
