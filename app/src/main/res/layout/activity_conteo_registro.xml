@@ -69,7 +69,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
                 android:digits="1234567890abmtuksdneABMTUKSDNE"/>
 
             <ImageButton
