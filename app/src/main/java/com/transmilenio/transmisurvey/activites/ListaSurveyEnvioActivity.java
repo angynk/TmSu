@@ -90,7 +90,6 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
                 }else{
                     Toast.makeText(ListaSurveyEnvioActivity.this,Mensajes.MSG_NO_HAY_ENCUESTAS,Toast.LENGTH_LONG).show();
                 }
-
             }
         });
 
@@ -149,6 +148,9 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
     private void generarEncuestaConteoDespachos(EncuestaTM encuestaTM, EncuestaJSON encuestaJSON) {
         ConteoDesEncuesta conteoDesEncuesta = encuestaTM.getCo_despachos();
         CO_Despacho co_despacho = new CO_Despacho();
+        if(conteoDesEncuesta == null){
+            System.out.println("aQUI");
+        }
         co_despacho.setServicio(conteoDesEncuesta.getServicio());
         co_despacho.setEstacion(conteoDesEncuesta.getEstacion());
 

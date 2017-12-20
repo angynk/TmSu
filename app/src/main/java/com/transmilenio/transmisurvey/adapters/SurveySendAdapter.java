@@ -15,6 +15,7 @@ import com.transmilenio.transmisurvey.models.json.EncuestaTM;
 
 import java.util.ArrayList;
 
+import io.realm.Realm;
 import io.realm.RealmResults;
 
 
@@ -25,6 +26,8 @@ public class SurveySendAdapter  extends BaseAdapter {
     private ArrayList<EncuestaTM> selectedItems;
     private int layout;
 
+    private Realm realm;
+
     public SurveySendAdapter() {
     }
 
@@ -33,6 +36,7 @@ public class SurveySendAdapter  extends BaseAdapter {
         this.lista = lista;
         this.layout = layout;
         this.selectedItems = new ArrayList<>();
+        realm = Realm.getDefaultInstance();
     }
 
     @Override
@@ -80,6 +84,7 @@ public class SurveySendAdapter  extends BaseAdapter {
                 }else{
                     selectedItems.add(cuadro);
                 }
+
             }
         });
 

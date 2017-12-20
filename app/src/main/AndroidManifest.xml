@@ -80,12 +80,16 @@
         <activity
             android:name=".activites.AdpRegistroActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activites.ConteoDesActivity"
+        <activity
+            android:name=".activites.ConteoDesActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activites.ListaRegistrosConteoActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".activites.ConteoRegistroActivity"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activites.ListaRegistrosConteoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activites.ConteoRegistroActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activites.TransbordosActivity"></activity>
     </application>
 
 </manifest>

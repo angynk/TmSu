@@ -18,6 +18,8 @@ public class ConteoDesEncuesta extends RealmObject {
     private RealmList<RegistroConteo> registros;
 
     public ConteoDesEncuesta() {
+        this.id = MyApplication.conteoDespaID.incrementAndGet();
+        this.registros = new RealmList<RegistroConteo>();
     }
 
     public ConteoDesEncuesta(String estacion, String servicio) {

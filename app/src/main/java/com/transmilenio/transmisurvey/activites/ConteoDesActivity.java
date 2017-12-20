@@ -116,6 +116,10 @@ public class ConteoDesActivity extends AppCompatActivity {
 //        realm.copyToRealmOrUpdate(encuestaTM);
         realm.commitTransaction();
         idCuadro = conteoDesEncuesta.getId();
+
+
+
+
         return encuestaTM.getId();
     }
 
