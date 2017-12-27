@@ -4,7 +4,7 @@ import com.transmilenio.transmisurvey.app.MyApplication;
 import com.transmilenio.transmisurvey.models.db.AdPuntoEncuesta;
 import com.transmilenio.transmisurvey.models.db.ConteoDesEncuesta;
 import com.transmilenio.transmisurvey.models.db.FOcupacionEncuesta;
-
+import com.transmilenio.transmisurvey.models.db.OrigenDestinoBase;
 
 
 import java.util.Date;
@@ -31,6 +31,7 @@ public class EncuestaTM extends RealmObject {
     private FOcupacionEncuesta fr_ocupacion; // FRECUENCIA OCUPACIÓN
     private AdPuntoEncuesta ad_punto; // FRECUENCIA OCUPACIÓN
     private ConteoDesEncuesta co_despachos; //CONTEO DESPACHOS
+    private OrigenDestinoBase od_destino; //ORIGEN DESTINO
 
 
     public EncuestaTM() {
@@ -123,5 +124,13 @@ public class EncuestaTM extends RealmObject {
 
     public void setCo_despachos(ConteoDesEncuesta co_despachos) {
         this.co_despachos = co_despachos;
+    }
+
+    public OrigenDestinoBase getOd_destino() {
+        return od_destino;
+    }
+
+    public void setOd_destino(OrigenDestinoBase od_destino) {
+        this.od_destino = od_destino;
     }
 }

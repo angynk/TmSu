@@ -16,8 +16,12 @@ import android.widget.Toast;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.models.db.EstacionServicio;
+import com.transmilenio.transmisurvey.models.db.OrigenDestinoBase;
 import com.transmilenio.transmisurvey.models.db.ServicioRutas;
+import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 import com.transmilenio.transmisurvey.models.json.EncuestaTM;
+import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
+import com.transmilenio.transmisurvey.models.json.TipoEncuesta;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 import com.transmilenio.transmisurvey.models.util.Mensajes;
 import com.transmilenio.transmisurvey.util.ProcessorUtil;
@@ -28,6 +32,7 @@ import java.util.Date;
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
 public class OrigenDestinoActivity extends AppCompatActivity {
@@ -67,31 +72,42 @@ public class OrigenDestinoActivity extends AppCompatActivity {
     private void agregarEventoBotonContinuar() {
         buttonContinuar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Validar Valores
-//                if( !camposCompletos() ){
-//                    if(!infoServicios){
-//                        Toast.makeText(SurveyActivity.this, Mensajes.MSG_SINCRONIZE,Toast.LENGTH_LONG).show();
-//                    }else{
-//                        Toast.makeText(SurveyActivity.this, Mensajes.MSG_COMPLETE_CAMPOS,Toast.LENGTH_LONG).show();
-//                    }
-//
-//                }else{
-//                    if(!infoServicios){
-//                        Toast.makeText(SurveyActivity.this, Mensajes.MSG_SINCRONIZE,Toast.LENGTH_LONG).show();
-//                    }else{
-//                        Intent intent = null;
-//                        EncuestaTM encuestaTM = new EncuestaTM();
-//                        idEncuesta = crearObjetoInfoBase(encuestaTM);
-//                        intent = new Intent(SurveyActivity.this,ListaRegistrosActivity.class);
-//                        intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
-//                        intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
-//                        intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicios.getSelectedItem().toString());
-//                        startActivity(intent);
-//                        finish();
-//                    }
-//                }
+                Intent intent = null;
+                EncuestaTM encuestaTM = new EncuestaTM();
+                        idEncuesta = crearObjetoInfoBase(encuestaTM);
+                        intent = new Intent(OrigenDestinoActivity.this,ListaRegistrosODActivity.class);
+                        intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
+                        intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
+                        intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,estaciones.getSelectedItem().toString());
+                        startActivity(intent);
+                        finish();
             }
         });
+    }
+
+    private int crearObjetoInfoBase(EncuestaTM encuestaTM) {
+        realm.beginTransaction();
+        encuestaTM.setFecha_encuesta(textFecha.getText().toString());
+        encuestaTM.setNombre_encuesta(nombreEncuesta);
+        encuestaTM.setAforador(prefs.getString(ExtrasID.EXTRA_USER,ExtrasID.TIPO_USUARIO_INVITADO));
+        encuestaTM.setTipo(TipoEncuesta.ENC_ORI_DEST);
+        encuestaTM.setIdentificador("Fecha: "+textFecha.getText().toString() +" - "+estaciones.getSelectedItem().toString());
+        realm.copyToRealmOrUpdate(encuestaTM);
+        realm.commitTransaction();
+
+        // Incluir informacion especifica
+        realm.beginTransaction();
+        OrigenDestinoBase origenDestinoBase = new OrigenDestinoBase();
+        origenDestinoBase.setEstacion(estaciones.getSelectedItem().toString());
+        origenDestinoBase.setDia_semana(textDiaSemana.getText().toString());
+//        cuadroEncuesta.setRegistros(new RealmList<RegistroEncuesta>());
+        realm.copyToRealmOrUpdate(origenDestinoBase);
+        encuestaTM.setOd_destino(origenDestinoBase);
+        realm.copyToRealmOrUpdate(encuestaTM);
+//        realm.copyToRealmOrUpdate(encuestaTM);
+        realm.commitTransaction();
+        idCuadro = origenDestinoBase.getId();
+        return encuestaTM.getId();
     }
 
     private boolean camposCompletos(){

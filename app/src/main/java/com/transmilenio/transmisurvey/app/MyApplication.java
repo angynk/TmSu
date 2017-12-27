@@ -8,10 +8,12 @@ import com.transmilenio.transmisurvey.models.db.ConteoDesEncuesta;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Estacion;
 import com.transmilenio.transmisurvey.models.db.EstacionServicio;
+import com.transmilenio.transmisurvey.models.db.OrigenDestinoBase;
 import com.transmilenio.transmisurvey.models.db.Registro;
 import com.transmilenio.transmisurvey.models.db.RegistroAdPunto;
 import com.transmilenio.transmisurvey.models.db.RegistroConteo;
 import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupacion;
+import com.transmilenio.transmisurvey.models.db.RegistroOD;
 import com.transmilenio.transmisurvey.models.db.Serv;
 import com.transmilenio.transmisurvey.models.db.ServicioRutas;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
@@ -46,6 +48,8 @@ public class MyApplication extends Application {
     public static AtomicInteger regConteoDespaID = new AtomicInteger();
     public static AtomicInteger estacionServicioID = new AtomicInteger();
     public static AtomicInteger servID = new AtomicInteger();
+    public static AtomicInteger orDesBaseID = new AtomicInteger();
+    public static AtomicInteger orDesRegID = new AtomicInteger();
 
     @Override
     public void onCreate() {
@@ -67,6 +71,8 @@ public class MyApplication extends Application {
         conteoDespaID = getIdByTable(realm, ConteoDesEncuesta.class);
         regConteoDespaID = getIdByTable(realm, RegistroConteo.class);
         estacionServicioID = getIdByTable(realm, EstacionServicio.class);
+        orDesBaseID = getIdByTable(realm, OrigenDestinoBase.class);
+        orDesRegID = getIdByTable(realm, RegistroOD.class);
         servID = getIdByTable(realm, Serv.class);
         realm.close();
     }
