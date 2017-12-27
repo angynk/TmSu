@@ -8,6 +8,7 @@ public class RegCoDespachos {
 
     private String num_bus;
     private String hora_despacho;
+    private String servicio;
 
     public RegCoDespachos() {
     }
@@ -31,5 +32,13 @@ public class RegCoDespachos {
 
     public void setHora_despacho(String hora_despacho) {
         this.hora_despacho = hora_despacho;
+    }
+
+    public String getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
     }
 }

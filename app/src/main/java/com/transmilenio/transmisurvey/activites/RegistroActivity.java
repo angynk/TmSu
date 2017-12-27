@@ -206,15 +206,19 @@ public class RegistroActivity extends AppCompatActivity  {
 
     private boolean agregarRegistro(){
        if(informacionCompletada()){
-           final RegistroEncuesta registro = crearObjetoRegistro();
-           realm.executeTransaction(new Realm.Transaction() {
-               @Override
-               public void execute(Realm realm) {
-                   realm.copyToRealm(registro);
-                   encuesta.getRegistros().add(registro);
-               }
-           });
-
+           if(estacionNoHaSidoCompletada()){
+               final RegistroEncuesta registro = crearObjetoRegistro();
+               realm.executeTransaction(new Realm.Transaction() {
+                   @Override
+                   public void execute(Realm realm) {
+                       realm.copyToRealm(registro);
+                       encuesta.getRegistros().add(registro);
+                   }
+               });
+           }else{
+               Toast.makeText(RegistroActivity.this,"Ya hay datos para la estación seleccionada",Toast.LENGTH_LONG).show();
+               return false;
+           }
        }else{
            Toast.makeText(RegistroActivity.this,"Complete todos los campos",Toast.LENGTH_LONG).show();
            return false;
@@ -222,6 +226,15 @@ public class RegistroActivity extends AppCompatActivity  {
 
         return true;
 
+    }
+
+    private boolean estacionNoHaSidoCompletada() {
+        for(RegistroEncuesta reg:encuesta.getRegistros()){
+            if(reg.getEstacion().equals(estacion.getSelectedItem().toString())){
+                return false;
+            }
+        }
+        return true;
     }
 
     private RegistroEncuesta crearObjetoRegistro() {
@@ -266,6 +279,7 @@ public class RegistroActivity extends AppCompatActivity  {
         for(Estacion estacion:estaciones){
             lista.add(estacion.getNombre());
         }
+        lista.add("Otro");
         return lista;
     }
 

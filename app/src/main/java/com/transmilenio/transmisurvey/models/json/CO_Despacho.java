@@ -9,15 +9,14 @@ import java.util.List;
 public class CO_Despacho {
 
     private String estacion;
-    private String servicio;
+
     private List<RegCoDespachos> registros;
 
     public CO_Despacho() {
     }
 
-    public CO_Despacho(String estacion, String servicio, List<RegCoDespachos> registros) {
+    public CO_Despacho(String estacion, List<RegCoDespachos> registros) {
         this.estacion = estacion;
-        this.servicio = servicio;
         this.registros = registros;
     }
 
@@ -27,14 +26,6 @@ public class CO_Despacho {
 
     public void setEstacion(String estacion) {
         this.estacion = estacion;
-    }
-
-    public String getServicio() {
-        return servicio;
-    }
-
-    public void setServicio(String servicio) {
-        this.servicio = servicio;
     }
 
     public List<RegCoDespachos> getRegistros() {

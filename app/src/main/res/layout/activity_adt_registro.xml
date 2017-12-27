@@ -153,6 +153,8 @@
                 android:layout_below="@+id/adt_suben_editText"
                 android:ems="10"
                 android:inputType="number"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
                 android:maxLength="3" />
 
             <TextView

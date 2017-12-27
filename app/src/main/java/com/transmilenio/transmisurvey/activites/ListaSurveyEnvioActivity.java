@@ -156,6 +156,7 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
             RegCoDespachos registro = new RegCoDespachos();
             registro.setNum_bus(reg.getNumBus());
             registro.setHora_despacho(reg.getHoradespacho());
+            registro.setServicio(reg.getServicio());
             registros.add(registro);
         }
 
