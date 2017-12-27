@@ -25,6 +25,7 @@ public class ExtrasID {
     public static String NOMBRE_ENCUESTA_FRECUENCIA_OCUPACION = "Frecuencia Ocupación";
     public static String NOMBRE_ENCUESTA_ASCDES_PUNTO = "Ascensos y Descensos Punto Fijo";
     public static String NOMBRE_ENCUESTA_CONTEO_DESPACHOS = "Conteo Despachos";
+    public static String NOMBRE_ENCUESTA_ORIGEN_DESTINO = "Origen Destino";
 
     public static String TIPO_SERVICIO_TRONCAL = "tro";
     public static String TIPO_SERVICIO_ALIMENTADOR = "ali";
