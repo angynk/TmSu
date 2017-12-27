@@ -37,9 +37,10 @@ import io.realm.RealmList;
 public class ConteoRegistroActivity extends AppCompatActivity {
 
     private ImageButton buttonDespacho;
-    private TextView textDespacho;
+    private TextView textDespacho,textServicio;
     private EditText numBus;
-    private FloatingActionButton buttonNuevo,buttonCerrar;
+    private String servicio,estacion;
+    private FloatingActionButton buttonNuevo;
     private Realm realm;
 
     private int idCuadroEncuesta,idEncuesta;
@@ -64,6 +65,8 @@ public class ConteoRegistroActivity extends AppCompatActivity {
         if(extras != null){
             idEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
             idCuadroEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_CUADRO);
+            servicio = (String) extras.get(ExtrasID.EXTRA_ID_SERVICIO);
+            estacion = (String) extras.get(ExtrasID.EXTRA_ID_ESTACION);
             encuesta = realm.where(ConteoDesEncuesta.class).equalTo("id",idCuadroEncuesta).findFirst();
         }
     }
@@ -71,10 +74,12 @@ public class ConteoRegistroActivity extends AppCompatActivity {
     private void bindUI() {
         buttonDespacho = (ImageButton) findViewById(R.id.cod_despacho_button);
         textDespacho = (TextView) findViewById(R.id.cod_despacho_textView);
+        textServicio = (TextView) findViewById(R.id.cod_servicio_textView);
         numBus = (EditText) findViewById(R.id.cod_num_bus_editText);
         buttonNuevo = (FloatingActionButton) findViewById(R.id.cod_nuevoRegistro_button);
-        buttonCerrar = (FloatingActionButton) findViewById(R.id.cod_cancelarRegistro_button);
+
         agregarEventosBotones();
+        textServicio.setText(servicio);
     }
 
     @Override
@@ -120,25 +125,18 @@ public class ConteoRegistroActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(agregarRegistro()){
-                    Intent intent = new Intent(ConteoRegistroActivity.this,ConteoRegistroActivity.class);
-                    intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
-                    intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
+                    Intent intent = new Intent(ConteoRegistroActivity.this,ConteoServActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
+                    intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadroEncuesta);
+                    intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estacion);
                     startActivity(intent);
                 }
 
             }
         });
 
-        buttonCerrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ConteoRegistroActivity.this,ListaRegistrosConteoActivity.class);
-                intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
-                intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-            }
-        });
+
 
     }
 
@@ -177,6 +175,7 @@ public class ConteoRegistroActivity extends AppCompatActivity {
         RegistroConteo registro = new RegistroConteo();
         registro.setNumBus(numBus.getText().toString());
         registro.setHoradespacho(textDespacho.getText().toString());
+        registro.setServicio(servicio);
         return registro;
     }
 

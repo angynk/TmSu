@@ -13,7 +13,6 @@ public class ConteoDesEncuesta extends RealmObject {
     @PrimaryKey
     private int id;
     private String estacion;
-    private String servicio;
 
     private RealmList<RegistroConteo> registros;
 
@@ -24,7 +23,6 @@ public class ConteoDesEncuesta extends RealmObject {
 
     public ConteoDesEncuesta(String estacion, String servicio) {
         this.estacion = estacion;
-        this.servicio = servicio;
         this.id = MyApplication.conteoDespaID.incrementAndGet();
         this.registros = new RealmList<RegistroConteo>();
     }
@@ -43,14 +41,6 @@ public class ConteoDesEncuesta extends RealmObject {
 
     public void setEstacion(String estacion) {
         this.estacion = estacion;
-    }
-
-    public String getServicio() {
-        return servicio;
-    }
-
-    public void setServicio(String servicio) {
-        this.servicio = servicio;
     }
 
     public RealmList<RegistroConteo> getRegistros() {

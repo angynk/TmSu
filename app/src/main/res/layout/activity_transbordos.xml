@@ -52,59 +52,12 @@
 
 
             <TextView
-                android:id="@+id/trs_fecha_textView"
-                style="@style/AppTheme.Encabezado"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="15dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="42dp"
-                android:text="@string/fecha" />
-
-            <TextView
-                android:id="@+id/trs_fecha_valor_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/trs_fecha_textView"
-                android:layout_marginLeft="94dp"
-                android:layout_marginStart="94dp"
-                android:layout_toEndOf="@+id/trs_fecha_textView"
-                android:layout_toRightOf="@+id/trs_fecha_textView"
-                android:text="@string/llegada" />
-
-            <TextView
-                android:id="@+id/trs_hora_textView"
-                style="@style/AppTheme.Encabezado"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/trs_fecha_textView"
-                android:layout_marginTop="19dp"
-                android:layout_toLeftOf="@+id/trs_fecha_valor_textView"
-                android:layout_toStartOf="@+id/trs_fecha_valor_textView"
-                android:text="@string/hora" />
-
-            <TextView
-                android:id="@+id/trs_hora_valor_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/trs_hora_textView"
-                android:layout_marginLeft="94dp"
-                android:layout_marginStart="94dp"
-                android:layout_toEndOf="@+id/trs_hora_textView"
-                android:layout_toRightOf="@+id/trs_hora_textView"
-                android:text="@string/llegada" />
-
-            <TextView
                 android:id="@+id/trs_p1_textView"
                 style="@style/AppTheme.Encabezado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="33dp"
                 android:text="@string/trs_p1"
-                android:layout_below="@+id/trs_hora_textView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 

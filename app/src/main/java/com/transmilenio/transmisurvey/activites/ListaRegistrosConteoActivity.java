@@ -34,6 +34,7 @@ public class ListaRegistrosConteoActivity extends AppCompatActivity implements R
     private ListView listView;
     private RealmList<RegistroConteo> registros;
     private int  idEncuesta, idCuadro ;
+    private String estacion;
     private RegistroConteoDeAdapter adapter;
 
     FragmentManager fm = getSupportFragmentManager();
@@ -63,9 +64,12 @@ public class ListaRegistrosConteoActivity extends AppCompatActivity implements R
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ListaRegistrosConteoActivity.this,ConteoRegistroActivity.class);
+
+                Intent intent = new Intent(ListaRegistrosConteoActivity.this,ConteoServActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
+                intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estacion);
                 startActivity(intent);
             }
         });
@@ -85,6 +89,7 @@ public class ListaRegistrosConteoActivity extends AppCompatActivity implements R
         if(extras != null){
             idEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
             idCuadro = (int) extras.get(ExtrasID.EXTRA_ID_CUADRO);
+            estacion = (String) extras.get(ExtrasID.EXTRA_ID_ESTACION);
             ConteoDesEncuesta cuadro =  realm.where(ConteoDesEncuesta.class).equalTo("id",idCuadro).findFirst();
             if(cuadro!=null){
                 registros = cuadro.getRegistros();

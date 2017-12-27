@@ -89,7 +89,9 @@
         <activity
             android:name=".activites.ConteoRegistroActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activites.TransbordosActivity"></activity>
+        <activity android:name=".activites.TransbordosActivity" />
+        <activity android:name=".activites.OrigenDestinoActivity" />
+        <activity android:name=".activites.ConteoServActivity"></activity>
     </application>
 
 </manifest>

@@ -130,6 +130,8 @@
                 android:ems="10"
                 android:maxLength="1"
                 android:digits="12345"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
                 android:inputType="number" />
 
 

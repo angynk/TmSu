@@ -4,10 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.transmilenio.transmisurvey.activites.ConteoDesActivity">
+    tools:context="com.transmilenio.transmisurvey.activites.OrigenDestinoActivity">
+
+    <Button
+        android:id="@+id/ode_continuar_button"
+        style="@style/AppTheme.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="@string/continuar" />
 
     <TextView
-        android:id="@+id/cod_tituloPanel"
+        android:id="@+id/tituloPanel"
         style="@style/AppTheme.Banner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,84 +33,70 @@
         android:layout_height="match_parent"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_below="@+id/tituloPanel">
 
         <TextView
-            android:id="@+id/cod_fecha_textView"
+            android:id="@+id/ode_fecha_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/fecha"
             style="@style/AppTheme.Encabezado"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <TextView
-            android:id="@+id/cod_fecha_text"
+            android:id="@+id/ode_fecha_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/cod_fecha_textView"
-            android:layout_alignBottom="@+id/cod_fecha_textView"
+            android:text=""
+            android:layout_alignBaseline="@+id/ode_fecha_textView"
+            android:layout_alignBottom="@+id/ode_fecha_textView"
             android:layout_marginLeft="120dp"
             android:layout_marginStart="120dp" />
 
         <TextView
-            android:id="@+id/cod_diaSemana_text"
+            android:id="@+id/ode_diaSemana_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            style="@style/AppTheme.Encabezado"
+            android:layout_marginTop="22dp"
             android:text="@string/diaSemana"
-            android:layout_below="@+id/cod_fecha_textView"
+            style="@style/AppTheme.Encabezado"
+            android:layout_below="@+id/ode_fecha_textView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
         <TextView
-            android:id="@+id/cod_diasSemana_textView"
+            android:id="@+id/ode_dia_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ode_diaSemana_text"
             android:text=""
-            android:layout_marginLeft="14dp"
-            android:layout_marginStart="14dp"
-            android:layout_alignBottom="@+id/cod_diaSemana_text"
-            android:layout_toRightOf="@+id/cod_fecha_text"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignLeft="@+id/ode_fecha_text"
+            android:layout_alignStart="@+id/ode_fecha_text" />
 
         <TextView
-        android:id="@+id/cod_estacion_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/AppTheme.Encabezado"
-        android:text="@string/estacion"
-        android:layout_marginTop="28dp"
-        android:layout_below="@+id/cod_diaSemana_text"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+            android:id="@+id/ode_estacion_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/AppTheme.Encabezado"
+            android:layout_marginTop="24dp"
+            android:text="@string/estacion"
+            android:layout_below="@+id/ode_diaSemana_text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/cod_estacion_sepinner"
+            android:id="@+id/ode_estacion_sepinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cod_estacion_text"
+            android:layout_marginTop="14dp"
+            android:layout_below="@+id/ode_estacion_text"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="13dp" />
+            android:layout_alignParentStart="true" />
+
 
     </RelativeLayout>
-
-    <Button
-        android:id="@+id/cod_continuar_button"
-        style="@style/AppTheme.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="@string/continuar" />
-
 
 </RelativeLayout>

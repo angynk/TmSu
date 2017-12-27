@@ -56,7 +56,7 @@ public class RegistroConteoDeAdapter extends BaseAdapter {
         }
 
         RegistroConteo registro = lista.get(position);
-        vh.titulo.setText(registro.getNumBus());
+        vh.titulo.setText("Servicio: "+registro.getServicio()+" - "+registro.getHoradespacho());
 
         return convertView;
     }

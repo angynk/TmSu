@@ -39,7 +39,7 @@ import io.realm.RealmResults;
 
 public class ConteoDesActivity extends AppCompatActivity {
 
-    private SearchableSpinner estaciones,servicios;
+    private SearchableSpinner estaciones;
     private TextView textFecha, textDiaSemana;
     private Button buttonContinuar;
     private Realm realm;
@@ -75,17 +75,13 @@ public class ConteoDesActivity extends AppCompatActivity {
         buttonContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!servicioValido()){
-                    Toast.makeText(ConteoDesActivity.this, Mensajes.MSG_SERVICIO_NO_ESTACION,Toast.LENGTH_LONG).show();
-                }else{
                 int idEncuesta = crearObjetoInfoBase();
                 Intent intent = new Intent(ConteoDesActivity.this,ListaRegistrosConteoActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
+                intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estaciones.getSelectedItem().toString());
                 startActivity(intent);
-                }
-
 
             }
         });
@@ -109,7 +105,6 @@ public class ConteoDesActivity extends AppCompatActivity {
         realm.beginTransaction();
         ConteoDesEncuesta conteoDesEncuesta = new ConteoDesEncuesta();
         conteoDesEncuesta.setEstacion(estaciones.getSelectedItem().toString());
-        conteoDesEncuesta.setServicio(servicios.getSelectedItem().toString());
         realm.copyToRealmOrUpdate(conteoDesEncuesta);
         encuestaTM.setCo_despachos(conteoDesEncuesta);
         realm.copyToRealmOrUpdate(encuestaTM);
@@ -128,19 +123,8 @@ public class ConteoDesActivity extends AppCompatActivity {
         textDiaSemana = (TextView) findViewById(R.id.cod_diasSemana_textView);
         buttonContinuar = (Button) findViewById(R.id.cod_continuar_button);
         agregarItemsEstaciones();
-        agregarItemsSentido();
     }
 
-    private void agregarItemsSentido() {
-        servicios = (SearchableSpinner) findViewById(R.id.cod_servicio_sepinner);
-        List<String> listsentidos = getServicios(modo);
-        ArrayAdapter<String> dataAdaptersentido = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listsentidos);
-        dataAdaptersentido.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        servicios.setAdapter(dataAdaptersentido);
-        servicios.setTitle(Mensajes.MSG_SELECCIONE);
-        servicios.setPositiveButton(Mensajes.MSG_OK);
-    }
 
 
 
@@ -153,17 +137,6 @@ public class ConteoDesActivity extends AppCompatActivity {
         estaciones.setAdapter(dataAdapterestaciones);
         estaciones.setTitle(Mensajes.MSG_SELECCIONE);
         estaciones.setPositiveButton(Mensajes.MSG_OK);
-        estaciones.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                agregarItemsSentido();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
 
@@ -195,20 +168,6 @@ public class ConteoDesActivity extends AppCompatActivity {
         return list;
     }
 
-    private boolean servicioValido() {
-        String servicio = servicios.getSelectedItem().toString();
-        String estacion = estaciones.getSelectedItem().toString();
-        ServicioRutas servicioRutas = realm.where(ServicioRutas.class).equalTo("nombre", servicio).findFirst();
-        if(servicioRutas!=null){
-            RealmList<Estacion> estaciones = servicioRutas.getEstaciones();
-            for(Estacion esProv:estaciones){
-                if(esProv.getNombre().equals(estacion)){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 
 
 }

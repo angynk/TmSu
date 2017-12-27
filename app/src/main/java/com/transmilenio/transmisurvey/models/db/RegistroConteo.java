@@ -12,6 +12,7 @@ public class RegistroConteo extends RealmObject {
     private int id;
     private String numBus;
     private String horadespacho;
+    private String servicio;
 
     public RegistroConteo() {
         this.id = MyApplication.regConteoDespaID.incrementAndGet();
@@ -45,5 +46,13 @@ public class RegistroConteo extends RealmObject {
 
     public void setHoradespacho(String horadespacho) {
         this.horadespacho = horadespacho;
+    }
+
+    public String getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
     }
 }

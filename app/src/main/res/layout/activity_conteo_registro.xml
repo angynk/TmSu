@@ -35,43 +35,26 @@
             android:src="@drawable/ic_checked_icon"
             />
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/cod_cancelarRegistro_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|start"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_cancel"
-            />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/tituloPanel"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
-            <TextView
-                android:id="@+id/cod_num_bus_textView"
-                style="@style/AppTheme.Encabezado"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/numBus"
-                android:layout_alignBaseline="@+id/cod_num_bus_editText"
-                android:layout_alignBottom="@+id/cod_num_bus_editText"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+
 
             <EditText
                 android:id="@+id/cod_num_bus_editText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:layout_marginTop="48dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
+                android:layout_marginTop="98dp"
                 android:singleLine="true"
                 android:imeOptions="actionDone"
-                android:digits="1234567890abmtuksdneABMTUKSDNE"/>
+                android:digits="1234567890abmtuksdneABMTUKSDNE"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
             <ImageButton
                 android:id="@+id/cod_despacho_button"
@@ -79,10 +62,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_clock"
-                android:layout_marginTop="37dp"
+                android:layout_marginTop="31dp"
                 android:layout_below="@+id/cod_num_bus_editText"
-                android:layout_alignRight="@+id/cod_num_bus_textView"
-                android:layout_alignEnd="@+id/cod_num_bus_textView" />
+                android:layout_toLeftOf="@+id/cod_despacho_textView"
+                android:layout_toStartOf="@+id/cod_despacho_textView"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp" />
 
             <TextView
                 android:id="@+id/cod_despacho_textView"
@@ -98,4 +83,43 @@
 
             </RelativeLayout>
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/cod_servicio_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/cod_serv_textView"
+        android:layout_alignBottom="@+id/cod_serv_textView"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="110dp"
+        android:layout_marginRight="110dp"
+        android:text="F28" />
+
+    <TextView
+        android:id="@+id/cod_num_bus_textView"
+        style="@style/AppTheme.Encabezado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
+        android:text="@string/numBus"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/cod_serv_textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/cod_serv_textView"
+        style="@style/AppTheme.Encabezado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:text="@string/codigo"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/cod_num_bus_textView"
+        android:layout_alignStart="@+id/cod_num_bus_textView"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp" />
+
 </RelativeLayout>
