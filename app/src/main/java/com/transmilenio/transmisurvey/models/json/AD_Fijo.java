@@ -7,7 +7,7 @@ import java.util.List;
 public class AD_Fijo {
 
     private String dia_semana;
-    private String servicio;
+
     private String estacion;
 
     private List<RegADFijo> registros;
@@ -15,9 +15,8 @@ public class AD_Fijo {
     public AD_Fijo() {
     }
 
-    public AD_Fijo(String dia_semana, String servicio, String estacion) {
+    public AD_Fijo(String dia_semana,  String estacion) {
         this.dia_semana = dia_semana;
-        this.servicio = servicio;
         this.estacion = estacion;
     }
 
@@ -27,14 +26,6 @@ public class AD_Fijo {
 
     public void setDia_semana(String dia_semana) {
         this.dia_semana = dia_semana;
-    }
-
-    public String getServicio() {
-        return servicio;
-    }
-
-    public void setServicio(String servicio) {
-        this.servicio = servicio;
     }
 
     public String getEstacion() {

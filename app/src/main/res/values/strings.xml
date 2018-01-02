@@ -43,6 +43,7 @@
     <string name="txt_encuestasPendientes">Encuestas Pendientes</string>
     <string name="txt_opciones">Opciones</string>
     <string name="txt_tiene_observaciones">Encuesta Registrada!</string>
+    <string name="txt_seleccione_Servicios">Seleccione los servicios</string>
     <string name="txt_ninguna">Ninguna</string>
     <string name="txt_gestion_usuarios">Gestión Usuarios</string>
     <string name="txt_nuevo_usuario">Nuevo Usuario</string>

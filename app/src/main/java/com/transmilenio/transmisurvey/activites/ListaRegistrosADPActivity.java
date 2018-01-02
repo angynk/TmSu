@@ -34,7 +34,6 @@ public class ListaRegistrosADPActivity extends AppCompatActivity implements Real
     private RealmList<RegistroAdPunto> registros;
     private int  idEncuesta, idCuadro ;
     private RegistroAdPAdapter adapter;
-    private String estacion,vagon;
 
     FragmentManager fm = getSupportFragmentManager();
     private Realm realm;
@@ -68,8 +67,6 @@ public class ListaRegistrosADPActivity extends AppCompatActivity implements Real
                 Intent intent = new Intent(ListaRegistrosADPActivity.this,AdPuntoServiciosActivity.class);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
-                intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estacion);
-                intent.putExtra(ExtrasID.EXTRA_ID_VAGON,  vagon);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
@@ -91,8 +88,6 @@ public class ListaRegistrosADPActivity extends AppCompatActivity implements Real
         if(extras != null){
             idEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
             idCuadro = (int) extras.get(ExtrasID.EXTRA_ID_CUADRO);
-            estacion = (String) extras.get(ExtrasID.EXTRA_ID_ESTACION);
-            vagon    = (String) extras.get(ExtrasID.EXTRA_ID_VAGON);
             AdPuntoEncuesta cuadro =  realm.where(AdPuntoEncuesta.class).equalTo("id",idCuadro).findFirst();
             if(cuadro!=null){
                 registros = cuadro.getRegistros();

@@ -11,6 +11,7 @@ public class RegADFijo {
     private int pas_suben;
     private int pas_quedan;
     private String observacion;
+    private String servicio;
 
     public RegADFijo() {
     }
@@ -77,5 +78,13 @@ public class RegADFijo {
 
     public void setObservacion(String observacion) {
         this.observacion = observacion;
+    }
+
+    public String getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
     }
 }

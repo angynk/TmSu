@@ -12,6 +12,7 @@ import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.adapters.GridServiciosAdapter;
 import com.transmilenio.transmisurvey.models.db.EstacionServicio;
 import com.transmilenio.transmisurvey.models.db.Serv;
+import com.transmilenio.transmisurvey.models.db.ServTemp;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 
 import java.util.ArrayList;
@@ -19,13 +20,14 @@ import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmList;
+import io.realm.RealmResults;
 
 public class AdPuntoServiciosActivity extends AppCompatActivity {
 
 
     private int idCuadro;
     private int idEncuesta;
-    private String estacion,vagon;
+    private String estacion;
     private GridView gridView;
     private List<String> servicios;
     private Realm realm;
@@ -45,8 +47,6 @@ public class AdPuntoServiciosActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if(extras != null){
             idCuadro = (int) extras.get(ExtrasID.EXTRA_ID_CUADRO);
-            estacion = (String) extras.get(ExtrasID.EXTRA_ID_ESTACION);
-            vagon = (String) extras.get(ExtrasID.EXTRA_ID_VAGON);
             idEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
         }
     }
@@ -68,8 +68,6 @@ public class AdPuntoServiciosActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
-                intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estacion);
-                intent.putExtra(ExtrasID.EXTRA_ID_VAGON,  vagon);
                 intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,  servicios.get(position));
                 startActivity(intent);
             }});
@@ -80,8 +78,6 @@ public class AdPuntoServiciosActivity extends AppCompatActivity {
                 Intent intent = new Intent(AdPuntoServiciosActivity.this,ListaRegistrosADPActivity.class);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
-                intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estacion);
-                intent.putExtra(ExtrasID.EXTRA_ID_VAGON,  vagon);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
@@ -89,22 +85,14 @@ public class AdPuntoServiciosActivity extends AppCompatActivity {
     }
 
     private void encontrarServicios() {
-        if(estacion!=null){
-            EstacionServicio estaciones = realm.where(EstacionServicio.class).equalTo("nombre", estacion).findFirst();
-            if(estaciones!=null){
-                RealmList<Serv> listServ = estaciones.getServicios();
-                for(Serv serv:listServ){
-                    if(serv.getNombre().length()> 13){
-                        servicios.add(serv.getNombre().substring(0,13));
+            RealmResults<ServTemp> servTemp = realm.where(ServTemp.class).findAll();
+                for(ServTemp serv:servTemp){
+                    if(serv.getServicio().length()> 13){
+                        servicios.add(serv.getServicio().substring(0,13));
                     }else{
-                        servicios.add(serv.getNombre());
+                        servicios.add(serv.getServicio());
                     }
-
                 }
-
-
-            }
-        }
 
     }
 }

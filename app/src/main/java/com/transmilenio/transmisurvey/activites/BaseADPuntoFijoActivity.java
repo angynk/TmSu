@@ -41,7 +41,7 @@ import io.realm.RealmResults;
 
 public class BaseADPuntoFijoActivity extends AppCompatActivity {
 
-    private SearchableSpinner vagones,estaciones;
+    private SearchableSpinner estaciones;
     private TextView textFecha,textDiaSemana;
     private Button buttonContinuar;
     private Realm realm;
@@ -77,33 +77,10 @@ public class BaseADPuntoFijoActivity extends AppCompatActivity {
         estaciones.setAdapter(dataAdapterEstaciones);
         estaciones.setTitle(Mensajes.MSG_SELECCIONE);
         estaciones.setPositiveButton(Mensajes.MSG_OK);
-        estaciones.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                agregarServicioLista();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        agregarServicioLista();
-
 
     }
 
-    private void agregarServicioLista(){
-        vagones = (SearchableSpinner) findViewById(R.id.adp_vagon_sepinner);
-        List<String> listvagones = getVagones(modo);
-        ArrayAdapter<String> dataAdaptervagones = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listvagones);
-        dataAdaptervagones.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        vagones.setAdapter(dataAdaptervagones);
-        vagones.setTitle(Mensajes.MSG_SELECCIONE);
-        vagones.setPositiveButton(Mensajes.MSG_OK);
-    }
+
 
     @NonNull
     private List<String> getEstaciones(String tipo) {
@@ -115,17 +92,7 @@ public class BaseADPuntoFijoActivity extends AppCompatActivity {
         return list;
     }
 
-    @NonNull
-    private List<String> getVagones(String tipo) {
-        List<String> list = new ArrayList<String>();
-//        EstacionServicio estacion = realm.where(EstacionServicio.class).equalTo("nombre", estaciones.getSelectedItem().toString()).findFirst();
-//        for (Serv servicioRutas: estacion.getServicios()){
-//            list.add(servicioRutas.getNombre());
-//        }
 
-        list.add("Todos");
-        return list;
-    }
 
     private void validarExtras() {
         Bundle extras = getIntent().getExtras();
@@ -150,11 +117,10 @@ public class BaseADPuntoFijoActivity extends AppCompatActivity {
                         Intent intent = null;
                         EncuestaTM encuestaTM = new EncuestaTM();
                         idEncuesta = crearObjetoInfoBase(encuestaTM);
-                        intent = new Intent(BaseADPuntoFijoActivity.this,ListaRegistrosADPActivity.class);
+                        intent = new Intent(BaseADPuntoFijoActivity.this,SeleccionServicioActivity.class);
                         intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                         intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
                         intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estaciones.getSelectedItem().toString());
-                        intent.putExtra(ExtrasID.EXTRA_ID_VAGON,  vagones.getSelectedItem().toString());
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         finish();
@@ -193,8 +159,7 @@ public class BaseADPuntoFijoActivity extends AppCompatActivity {
     }
 
     private boolean camposCompletos(){
-        if(vagones.getSelectedItem() != null ||
-                estaciones.getSelectedItem() != null ){
+        if(estaciones.getSelectedItem() != null ){
             return true;
         }
         return false;

@@ -31,9 +31,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tituloPanel"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
@@ -95,26 +95,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:layout_below="@+id/adp_estacion_text"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:id="@+id/adp_vagon_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/AppTheme.Encabezado"
-            android:layout_marginTop="20dp"
-            android:text="@string/vagon"
-            android:layout_below="@+id/adp_estacion_sepinner"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/adp_vagon_sepinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:layout_below="@+id/adp_vagon_text"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
