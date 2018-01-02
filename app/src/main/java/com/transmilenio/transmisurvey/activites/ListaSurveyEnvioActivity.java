@@ -169,7 +169,7 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
         AD_Fijo ad_fijo = new AD_Fijo();
         ad_fijo.setEstacion(adPuntoEncuesta.getEstacion());
         ad_fijo.setDia_semana(adPuntoEncuesta.getDiaSemana());
-        ad_fijo.setServicio(adPuntoEncuesta.getServicio());
+//        ad_fijo.setServicio(adPuntoEncuesta.getServicio());
 
         RealmList<RegistroAdPunto> registrosBD = adPuntoEncuesta.getRegistros();
         List<RegADFijo> registros = new ArrayList<>();

@@ -30,10 +30,11 @@ import io.realm.Realm;
 public class AdpRegistroActivity extends AppCompatActivity {
 
     private ImageButton buttonLlegada, buttonSalida;
-    private TextView textLlegada,textSalida;
+    private TextView textLlegada,textSalida,textServicio;
     private ToggleButton tieneObservaciones;
     private EditText seBajan,seSuben, seQuedan,numBus,observacion;
     private FloatingActionButton buttonNuevo,buttonCerrar;
+    private String servicio, estacion,vagon;
 
     private Realm realm;
 
@@ -60,6 +61,9 @@ public class AdpRegistroActivity extends AppCompatActivity {
             idEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
             idCuadroEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_CUADRO);
             encuesta = realm.where(AdPuntoEncuesta.class).equalTo("id",idCuadroEncuesta).findFirst();
+            estacion = (String) extras.get(ExtrasID.EXTRA_ID_ESTACION);
+            servicio = (String) extras.get(ExtrasID.EXTRA_ID_SERVICIO);
+            vagon = (String) extras.get(ExtrasID.EXTRA_ID_VAGON);
         }
     }
 
@@ -68,6 +72,8 @@ public class AdpRegistroActivity extends AppCompatActivity {
         buttonSalida = (ImageButton) findViewById(R.id.adp_salida_button);
         textLlegada = (TextView) findViewById(R.id.adp_llegada_textView);
         textSalida = (TextView) findViewById(R.id.adp_salida_textView);
+        textServicio = (TextView) findViewById(R.id.adp_servicio_textView);
+        textServicio.setText(servicio);
         seBajan = (EditText) findViewById(R.id.adp_bajan_editText);
         seQuedan = (EditText) findViewById(R.id.adp_quedan_editText);
         seQuedan.setEnabled(false);
@@ -99,6 +105,8 @@ public class AdpRegistroActivity extends AppCompatActivity {
         Intent intent = new Intent(AdpRegistroActivity.this,ListaRegistrosADPActivity.class);
         intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
         intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
+        intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estacion);
+        intent.putExtra(ExtrasID.EXTRA_ID_VAGON,  vagon);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
@@ -136,9 +144,11 @@ public class AdpRegistroActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(agregarRegistro()){
-                    Intent intent = new Intent(AdpRegistroActivity.this,AdpRegistroActivity.class);
+                    Intent intent = new Intent(AdpRegistroActivity.this,AdPuntoServiciosActivity.class);
                     intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
                     intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
+                    intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estacion);
+                    intent.putExtra(ExtrasID.EXTRA_ID_VAGON,  vagon);
                     startActivity(intent);
                 }
 
@@ -148,9 +158,11 @@ public class AdpRegistroActivity extends AppCompatActivity {
         buttonCerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdpRegistroActivity.this,ListaRegistrosADPActivity.class);
+                Intent intent = new Intent(AdpRegistroActivity.this,AdPuntoServiciosActivity.class);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
+                intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estacion);
+                intent.putExtra(ExtrasID.EXTRA_ID_VAGON,  vagon);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
@@ -206,6 +218,7 @@ public class AdpRegistroActivity extends AppCompatActivity {
         registro.setPasQuedan(Integer.parseInt(seQuedan.getText().toString()));
         registro.setObservacion(observacion.getText().toString());
         registro.setNumBus(numBus.getText().toString());
+        registro.setServicio(servicio);
         return registro;
     }
 

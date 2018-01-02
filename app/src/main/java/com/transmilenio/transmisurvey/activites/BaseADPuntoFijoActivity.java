@@ -41,7 +41,7 @@ import io.realm.RealmResults;
 
 public class BaseADPuntoFijoActivity extends AppCompatActivity {
 
-    private SearchableSpinner servicios,estaciones;
+    private SearchableSpinner vagones,estaciones;
     private TextView textFecha,textDiaSemana;
     private Button buttonContinuar;
     private Realm realm;
@@ -95,14 +95,14 @@ public class BaseADPuntoFijoActivity extends AppCompatActivity {
     }
 
     private void agregarServicioLista(){
-        servicios = (SearchableSpinner) findViewById(R.id.adp_servicio_sepinner);
-        List<String> listservicios = getServicios(modo);
-        ArrayAdapter<String> dataAdapterservicios = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listservicios);
-        dataAdapterservicios.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        servicios.setAdapter(dataAdapterservicios);
-        servicios.setTitle(Mensajes.MSG_SELECCIONE);
-        servicios.setPositiveButton(Mensajes.MSG_OK);
+        vagones = (SearchableSpinner) findViewById(R.id.adp_vagon_sepinner);
+        List<String> listvagones = getVagones(modo);
+        ArrayAdapter<String> dataAdaptervagones = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, listvagones);
+        dataAdaptervagones.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        vagones.setAdapter(dataAdaptervagones);
+        vagones.setTitle(Mensajes.MSG_SELECCIONE);
+        vagones.setPositiveButton(Mensajes.MSG_OK);
     }
 
     @NonNull
@@ -116,12 +116,14 @@ public class BaseADPuntoFijoActivity extends AppCompatActivity {
     }
 
     @NonNull
-    private List<String> getServicios(String tipo) {
+    private List<String> getVagones(String tipo) {
         List<String> list = new ArrayList<String>();
-        EstacionServicio estacion = realm.where(EstacionServicio.class).equalTo("nombre", estaciones.getSelectedItem().toString()).findFirst();
-        for (Serv servicioRutas: estacion.getServicios()){
-            list.add(servicioRutas.getNombre());
-        }
+//        EstacionServicio estacion = realm.where(EstacionServicio.class).equalTo("nombre", estaciones.getSelectedItem().toString()).findFirst();
+//        for (Serv servicioRutas: estacion.getServicios()){
+//            list.add(servicioRutas.getNombre());
+//        }
+
+        list.add("Todos");
         return list;
     }
 
@@ -144,8 +146,6 @@ public class BaseADPuntoFijoActivity extends AppCompatActivity {
                 // Validar Valores
                 if( !camposCompletos() ){
                         Toast.makeText(BaseADPuntoFijoActivity.this, Mensajes.MSG_COMPLETE_CAMPOS,Toast.LENGTH_LONG).show();
-                }else if (!servicioValido()){
-                    Toast.makeText(BaseADPuntoFijoActivity.this, Mensajes.MSG_SERVICIO_NO_ESTACION,Toast.LENGTH_LONG).show();
                 }else{
                         Intent intent = null;
                         EncuestaTM encuestaTM = new EncuestaTM();
@@ -153,28 +153,18 @@ public class BaseADPuntoFijoActivity extends AppCompatActivity {
                         intent = new Intent(BaseADPuntoFijoActivity.this,ListaRegistrosADPActivity.class);
                         intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                         intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
+                        intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estaciones.getSelectedItem().toString());
+                        intent.putExtra(ExtrasID.EXTRA_ID_VAGON,  vagones.getSelectedItem().toString());
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         finish();
+
+
                 }
             }
         });
     }
 
-    private boolean servicioValido() {
-        String servicio = servicios.getSelectedItem().toString();
-        String estacion = estaciones.getSelectedItem().toString();
-        ServicioRutas servicioRutas = realm.where(ServicioRutas.class).equalTo("nombre", servicio).findFirst();
-        if(servicioRutas!=null){
-            RealmList<Estacion> estaciones = servicioRutas.getEstaciones();
-            for(Estacion esProv:estaciones){
-                if(esProv.getNombre().equals(estacion)){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 
     private int crearObjetoInfoBase(final EncuestaTM encuestaTM){
 
@@ -191,7 +181,6 @@ public class BaseADPuntoFijoActivity extends AppCompatActivity {
         // Incluir informacion especifica
         realm.beginTransaction();
         AdPuntoEncuesta cuadroEncuesta = new AdPuntoEncuesta();
-        cuadroEncuesta.setServicio(servicios.getSelectedItem().toString());
         cuadroEncuesta.setEstacion(estaciones.getSelectedItem().toString());
         cuadroEncuesta.setDiaSemana(textDiaSemana.getText().toString());
         cuadroEncuesta.setRegistros(new RealmList<RegistroAdPunto>());
@@ -204,7 +193,7 @@ public class BaseADPuntoFijoActivity extends AppCompatActivity {
     }
 
     private boolean camposCompletos(){
-        if(servicios.getSelectedItem() != null ||
+        if(vagones.getSelectedItem() != null ||
                 estaciones.getSelectedItem() != null ){
             return true;
         }

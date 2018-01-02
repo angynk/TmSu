@@ -7,6 +7,7 @@
     <string name="hora">Hora</string>
     <string name="diaSemana">Día Semana</string>
     <string name="codigo">Servicio</string>
+    <string name="vagon">Vagon</string>
     <string name="numBus">Número Bus</string>
     <string name="text_num_puerta">Número Puerta</string>
     <string name="recorrido">Recorrido</string>

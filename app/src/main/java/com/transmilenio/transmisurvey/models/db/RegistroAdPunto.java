@@ -12,6 +12,7 @@ public class RegistroAdPunto extends RealmObject {
     @PrimaryKey
     private int id;
     private String numBus;
+    private String servicio;
     private String horaLlegada;
     private String horaSalida;
     private int pasBajan;
@@ -94,5 +95,13 @@ public class RegistroAdPunto extends RealmObject {
 
     public void setObservacion(String observacion) {
         this.observacion = observacion;
+    }
+
+    public String getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
     }
 }

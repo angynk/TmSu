@@ -7,7 +7,7 @@
     tools:context="com.transmilenio.transmisurvey.activites.AdpRegistroActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/adp_servicio_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nuevoRegistro"
@@ -79,8 +79,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/numBus"
-                android:layout_marginTop="37dp"
-                android:layout_alignParentTop="true" />
+                android:layout_marginTop="48dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <EditText
                 android:id="@+id/adp_num_bus_editText"
@@ -145,10 +147,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/quedan"
-                android:layout_marginTop="23dp"
+                android:layout_marginTop="33dp"
                 android:layout_below="@+id/adp_suben_editText"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignLeft="@+id/adp_salida_button"
+                android:layout_alignStart="@+id/adp_salida_button" />
 
             <EditText
                 android:id="@+id/adp_quedan_editText"
@@ -157,6 +159,8 @@
                 android:ems="10"
                 android:inputType="number"
                 android:maxLength="3"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
                 android:layout_alignBaseline="@+id/adp_quedan_textView"
                 android:layout_alignBottom="@+id/adp_quedan_textView"
                 android:layout_alignParentRight="true"
@@ -167,7 +171,7 @@
                 style="@style/AppTheme.ButtonObtDatos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="14dp"
                 android:src="@drawable/ic_clock"
                 android:layout_below="@+id/adp_quedan_editText"
                 android:layout_alignParentLeft="true"
@@ -192,10 +196,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/button_observacion"
                 style="@style/AppTheme.Encabezado"
+                android:layout_marginTop="26dp"
                 android:layout_below="@+id/adp_salida_button"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="14dp" />
+                android:layout_alignLeft="@+id/adp_observaciones_editText"
+                android:layout_alignStart="@+id/adp_observaciones_editText" />
 
             <EditText
                 android:id="@+id/adp_observaciones_editText"
@@ -204,9 +208,9 @@
                 android:ems="10"
                 android:text=""
                 android:inputType="textMultiLine"
+                android:layout_marginTop="19dp"
                 android:layout_below="@+id/adp_observaciones_TextView"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_centerHorizontal="true" />
 
             <ToggleButton
                 android:id="@+id/adp_observaciones_toggleButton"
@@ -215,9 +219,10 @@
                 android:background="@color/colorObservacion"
                 android:textOff="No"
                 android:textOn="Sí"
+                android:layout_alignBaseline="@+id/adp_observaciones_TextView"
                 android:layout_alignBottom="@+id/adp_observaciones_TextView"
-                android:layout_alignRight="@+id/adp_salida_textView"
-                android:layout_alignEnd="@+id/adp_salida_textView" />
+                android:layout_toRightOf="@+id/adp_llegada_textView"
+                android:layout_toEndOf="@+id/adp_llegada_textView" />
 
          </RelativeLayout>
 

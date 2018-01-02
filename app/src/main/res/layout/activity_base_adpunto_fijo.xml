@@ -99,22 +99,22 @@
             android:layout_alignParentStart="true" />
 
         <TextView
-            android:id="@+id/adp_servicio_text"
+            android:id="@+id/adp_vagon_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/AppTheme.Encabezado"
-            android:layout_marginTop="19dp"
-            android:text="@string/codigo"
+            android:layout_marginTop="20dp"
+            android:text="@string/vagon"
             android:layout_below="@+id/adp_estacion_sepinner"
-            android:layout_alignRight="@+id/adp_estacion_text"
-            android:layout_alignEnd="@+id/adp_estacion_text" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/adp_servicio_sepinner"
+            android:id="@+id/adp_vagon_sepinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
-            android:layout_below="@+id/adp_servicio_text"
+            android:layout_below="@+id/adp_vagon_text"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 

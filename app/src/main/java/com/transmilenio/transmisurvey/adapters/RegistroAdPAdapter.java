@@ -57,7 +57,7 @@ public class RegistroAdPAdapter extends BaseAdapter {
         }
 
         RegistroAdPunto registro = lista.get(position);
-        vh.titulo.setText(registro.getNumBus());
+        vh.titulo.setText(registro.getServicio()+"-"+registro.getNumBus());
 
         return convertView;
     }

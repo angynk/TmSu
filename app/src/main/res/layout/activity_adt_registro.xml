@@ -83,7 +83,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_toRightOf="@+id/adt_llegada_button"
-                android:layout_toEndOf="@+id/adt_llegada_button" />
+                android:layout_toEndOf="@+id/adt_llegada_button"
+                />
 
             <TextView
                 android:id="@+id/adt_estacion_view"

@@ -16,7 +16,6 @@ public class AdPuntoEncuesta extends RealmObject {
 
     //Abordo
     private String diaSemana;
-    private String servicio;
     private String estacion;
 
     private RealmList<RegistroAdPunto> registros;
@@ -26,9 +25,8 @@ public class AdPuntoEncuesta extends RealmObject {
         this.id = MyApplication.encAsDsPuntoID.incrementAndGet();
     }
 
-    public AdPuntoEncuesta(String diaSemana, String servicio, String estacion, String sentido) {
+    public AdPuntoEncuesta(String diaSemana, String estacion, String sentido) {
         this.diaSemana = diaSemana;
-        this.servicio = servicio;
         this.estacion = estacion;
         this.id = MyApplication.encAsDsPuntoID.incrementAndGet();
         this.registros = new RealmList<>();
@@ -48,14 +46,6 @@ public class AdPuntoEncuesta extends RealmObject {
 
     public void setDiaSemana(String diaSemana) {
         this.diaSemana = diaSemana;
-    }
-
-    public String getServicio() {
-        return servicio;
-    }
-
-    public void setServicio(String servicio) {
-        this.servicio = servicio;
     }
 
     public String getEstacion() {
