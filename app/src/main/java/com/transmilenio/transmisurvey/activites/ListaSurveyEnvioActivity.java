@@ -132,6 +132,7 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
         encuestaJSON.setAforador(encuestaTM.getAforador());
         encuestaJSON.setId_realm(encuestaTM.getId());
         encuestaJSON.setFecha_encuesta(encuestaTM.getFecha_encuesta());
+        encuestaJSON.setDia_semana(encuestaTM.getDia_semana());
         if(encuestaTM.getTipo() == TipoEncuesta.ENC_AD_ABORDO){
             generarEncuestaAscDescAbordo(encuestaTM, encuestaJSON);
         }else if(encuestaTM.getTipo() == TipoEncuesta.ENC_FR_OCUPACION){

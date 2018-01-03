@@ -24,6 +24,7 @@ public class EncuestaTM extends RealmObject {
     private String aforador;
     private String identificador;
     private String fecha_encuesta;
+    private String dia_semana;
     private int id_realm;
 
     //Datos por encuesta
@@ -132,5 +133,13 @@ public class EncuestaTM extends RealmObject {
 
     public void setOd_destino(OrigenDestinoBase od_destino) {
         this.od_destino = od_destino;
+    }
+
+    public String getDia_semana() {
+        return dia_semana;
+    }
+
+    public void setDia_semana(String dia_semana) {
+        this.dia_semana = dia_semana;
     }
 }

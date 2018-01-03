@@ -9,6 +9,7 @@ public class EncuestaJSON {
     private String aforador;
     private String identificador;
     private String fecha_encuesta;
+    private String dia_semana;
     private int id_realm;
 
     private AD_Abordo ad_abordo;
@@ -97,5 +98,13 @@ public class EncuestaJSON {
 
     public void setCo_despacho(CO_Despacho co_despacho) {
         this.co_despacho = co_despacho;
+    }
+
+    public String getDia_semana() {
+        return dia_semana;
+    }
+
+    public void setDia_semana(String dia_semana) {
+        this.dia_semana = dia_semana;
     }
 }
