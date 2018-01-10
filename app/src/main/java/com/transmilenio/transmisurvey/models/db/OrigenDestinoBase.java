@@ -11,7 +11,6 @@ public class OrigenDestinoBase extends RealmObject {
 
     @PrimaryKey
     private int id;
-    private String dia_semana;
     private String estacion;
     private RealmList<RegistroOD> registros;
 
@@ -19,9 +18,8 @@ public class OrigenDestinoBase extends RealmObject {
         this.id = MyApplication.orDesBaseID.incrementAndGet();
     }
 
-    public OrigenDestinoBase( String dia_semana, String estacion) {
+    public OrigenDestinoBase(  String estacion) {
         this.id = MyApplication.orDesBaseID.incrementAndGet();
-        this.dia_semana = dia_semana;
         this.estacion = estacion;
     }
 
@@ -31,14 +29,6 @@ public class OrigenDestinoBase extends RealmObject {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getDia_semana() {
-        return dia_semana;
-    }
-
-    public void setDia_semana(String dia_semana) {
-        this.dia_semana = dia_semana;
     }
 
     public String getEstacion() {

@@ -15,6 +15,7 @@ import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.adapters.RegistroAdapter;
 import com.transmilenio.transmisurvey.adapters.RegistroOdAdapter;
 import com.transmilenio.transmisurvey.fragments.AlertGuardarDatos;
+import com.transmilenio.transmisurvey.models.db.OrigenDestinoBase;
 import com.transmilenio.transmisurvey.models.db.RegistroOD;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
@@ -33,7 +34,7 @@ public class ListaRegistrosODActivity extends AppCompatActivity implements Realm
     private RegistroOdAdapter registroAdapter;
     private RealmList<RegistroOD> registros;
     private int  idEncuesta,idCuadro ;
-    private String estacion;
+    private String estacion,modo;
 
     //For dialog fragment
     FragmentManager fm = getSupportFragmentManager();
@@ -57,11 +58,12 @@ public class ListaRegistrosODActivity extends AppCompatActivity implements Realm
             idEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
             idCuadro = (int) extras.get(ExtrasID.EXTRA_ID_CUADRO);
             estacion = (String) extras.get(ExtrasID.EXTRA_ID_ESTACION);
-//            CuadroEncuesta cuadro =  realm.where(CuadroEncuesta.class).equalTo("id",idCuadro).findFirst();
-//            if(cuadro!=null){
-//                registros = cuadro.getRegistros();
-//                registros.addChangeListener(this);
-//            }
+            modo = (String) extras.get(ExtrasID.EXTRA_MODO);
+            OrigenDestinoBase origenDestinoBase =  realm.where(OrigenDestinoBase.class).equalTo("id",idCuadro).findFirst();
+            if(origenDestinoBase!=null){
+                registros = origenDestinoBase.getRegistros();
+                registros.addChangeListener(this);
+            }
         }
 
     }
@@ -84,21 +86,22 @@ public class ListaRegistrosODActivity extends AppCompatActivity implements Realm
     }
 
     private void bindUI() {
-        buttonAdd = (FloatingActionButton) findViewById(R.id.adt_nuevo_button);
-        buttonGuardar = (Button) findViewById(R.id.adt_guardar_button);
+        buttonAdd = (FloatingActionButton) findViewById(R.id.od_nuevo_button);
+        buttonGuardar = (Button) findViewById(R.id.od_guardar_button);
 
-        listView = (ListView) findViewById(R.id.adt_registros_listView);
+        listView = (ListView) findViewById(R.id.od_registros_listView);
         registroAdapter = new RegistroOdAdapter(this,registros,R.layout.list_view_registro_item);
         listView.setAdapter(registroAdapter);
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(ListaRegistrosODActivity.this, Reg.class);
-//                intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
-//                intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
-//                intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,  servicio);
-//                startActivity(intent);
+                Intent intent = new Intent(ListaRegistrosODActivity.this, TransbordosActivity.class);
+                intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
+                intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
+                intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estacion);
+                intent.putExtra(ExtrasID.EXTRA_MODO,  modo);
+                startActivity(intent);
             }
         });
 
