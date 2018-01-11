@@ -16,6 +16,7 @@ public class EncuestaJSON {
     private FR_Ocupacion fr_ocupacion;
     private AD_Fijo ad_fijo;
     private CO_Despacho co_despacho;
+    private ODEncuesta od_encuesta;
 
     public EncuestaJSON() {
     }
@@ -106,5 +107,13 @@ public class EncuestaJSON {
 
     public void setDia_semana(String dia_semana) {
         this.dia_semana = dia_semana;
+    }
+
+    public ODEncuesta getOd_encuesta() {
+        return od_encuesta;
+    }
+
+    public void setOd_encuesta(ODEncuesta od_encuesta) {
+        this.od_encuesta = od_encuesta;
     }
 }

@@ -12,15 +12,17 @@ public class OrigenDestinoBase extends RealmObject {
     @PrimaryKey
     private int id;
     private String estacion;
+    private String tipo;
     private RealmList<RegistroOD> registros;
 
     public OrigenDestinoBase() {
         this.id = MyApplication.orDesBaseID.incrementAndGet();
     }
 
-    public OrigenDestinoBase(  String estacion) {
+    public OrigenDestinoBase(  String estacion,String tipo) {
         this.id = MyApplication.orDesBaseID.incrementAndGet();
         this.estacion = estacion;
+        this.tipo =tipo;
     }
 
     public int getId() {
@@ -45,5 +47,13 @@ public class OrigenDestinoBase extends RealmObject {
 
     public void setRegistros(RealmList<RegistroOD> registros) {
         this.registros = registros;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

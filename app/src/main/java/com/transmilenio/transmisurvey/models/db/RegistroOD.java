@@ -2,6 +2,7 @@ package com.transmilenio.transmisurvey.models.db;
 
 import com.transmilenio.transmisurvey.app.MyApplication;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -15,17 +16,18 @@ public class RegistroOD extends RealmObject {
     private int id;
     private String servicioOrigen;
     private String estacionOrigen;
-    private String servicioDestino;
+    private String hora;
     private String estacionDestino;
+
+    private RealmList<TransbordoOD> transbordos;
 
     public RegistroOD() {
         this.id = MyApplication.orDesRegID.incrementAndGet();
     }
 
-    public RegistroOD(String servicioOrigen, String estacionOrigen, String servicioDestino, String estacionDestino) {
+    public RegistroOD(String servicioOrigen, String estacionOrigen, String estacionDestino) {
         this.servicioOrigen = servicioOrigen;
         this.estacionOrigen = estacionOrigen;
-        this.servicioDestino = servicioDestino;
         this.estacionDestino = estacionDestino;
         this.id = MyApplication.orDesRegID.incrementAndGet();
     }
@@ -54,12 +56,12 @@ public class RegistroOD extends RealmObject {
         this.estacionOrigen = estacionOrigen;
     }
 
-    public String getServicioDestino() {
-        return servicioDestino;
+    public String getHora() {
+        return hora;
     }
 
-    public void setServicioDestino(String servicioDestino) {
-        this.servicioDestino = servicioDestino;
+    public void setHora(String hora) {
+        this.hora = hora;
     }
 
     public String getEstacionDestino() {
@@ -68,5 +70,13 @@ public class RegistroOD extends RealmObject {
 
     public void setEstacionDestino(String estacionDestino) {
         this.estacionDestino = estacionDestino;
+    }
+
+    public RealmList<TransbordoOD> getTransbordos() {
+        return transbordos;
+    }
+
+    public void setTransbordos(RealmList<TransbordoOD> transbordos) {
+        this.transbordos = transbordos;
     }
 }

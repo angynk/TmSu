@@ -94,6 +94,7 @@ public class OrigenDestinoActivity extends AppCompatActivity {
         encuestaTM.setDia_semana(textDiaSemana.getText().toString());
         encuestaTM.setAforador(prefs.getString(ExtrasID.EXTRA_USER,ExtrasID.TIPO_USUARIO_INVITADO));
         encuestaTM.setTipo(TipoEncuesta.ENC_ORI_DEST);
+        encuestaTM.setNombre_encuesta(nombreEncuesta);
         encuestaTM.setIdentificador("Fecha: "+textFecha.getText().toString() +" - "+estaciones.getSelectedItem().toString());
         realm.copyToRealmOrUpdate(encuestaTM);
         realm.commitTransaction();
@@ -102,6 +103,7 @@ public class OrigenDestinoActivity extends AppCompatActivity {
         realm.beginTransaction();
         OrigenDestinoBase origenDestinoBase = new OrigenDestinoBase();
         origenDestinoBase.setEstacion(estaciones.getSelectedItem().toString());
+        origenDestinoBase.setTipo(tipoEncuesta.getSelectedItem().toString());
         origenDestinoBase.setRegistros(new RealmList<RegistroOD>());
 //        cuadroEncuesta.setRegistros(new RealmList<RegistroEncuesta>());
         realm.copyToRealmOrUpdate(origenDestinoBase);

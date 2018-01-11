@@ -17,6 +17,7 @@ import com.transmilenio.transmisurvey.models.db.RegistroOD;
 import com.transmilenio.transmisurvey.models.db.Serv;
 import com.transmilenio.transmisurvey.models.db.ServTemp;
 import com.transmilenio.transmisurvey.models.db.ServicioRutas;
+import com.transmilenio.transmisurvey.models.db.TransbordoOD;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 import com.transmilenio.transmisurvey.models.json.EncuestaTM;
 import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
@@ -52,6 +53,7 @@ public class MyApplication extends Application {
     public static AtomicInteger servTempID = new AtomicInteger();
     public static AtomicInteger orDesBaseID = new AtomicInteger();
     public static AtomicInteger orDesRegID = new AtomicInteger();
+    public static AtomicInteger odTranRegID = new AtomicInteger();
 
     @Override
     public void onCreate() {
@@ -77,6 +79,7 @@ public class MyApplication extends Application {
         orDesRegID = getIdByTable(realm, RegistroOD.class);
         servID = getIdByTable(realm, Serv.class);
         servTempID = getIdByTable(realm, ServTemp.class);
+        odTranRegID = getIdByTable(realm, TransbordoOD.class);
         realm.close();
     }
 

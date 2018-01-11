@@ -1,6 +1,7 @@
 package com.transmilenio.transmisurvey.activites;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -17,15 +18,20 @@ import android.widget.TextView;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.models.db.EstacionServicio;
+import com.transmilenio.transmisurvey.models.db.OrigenDestinoBase;
+import com.transmilenio.transmisurvey.models.db.RegistroOD;
 import com.transmilenio.transmisurvey.models.db.Serv;
 import com.transmilenio.transmisurvey.models.db.ServicioRutas;
+import com.transmilenio.transmisurvey.models.db.TransbordoOD;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 import com.transmilenio.transmisurvey.models.util.Mensajes;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
 public class TransbordosActivity extends AppCompatActivity {
@@ -76,6 +82,7 @@ public class TransbordosActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 estacionesTr1.setEnabled(isChecked);
                 serviciosTr1.setEnabled(isChecked);
+                transbordo2Check.setEnabled(isChecked);
             }
         });
 
@@ -84,8 +91,11 @@ public class TransbordosActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 estacionesTr2.setEnabled(isChecked);
                 serviciosTr2.setEnabled(isChecked);
+                transbordo3Check.setEnabled(isChecked);
             }
         });
+        transbordo2Check.setEnabled(false);
+
     }
 
     private void agregarBotones() {
@@ -94,16 +104,73 @@ public class TransbordosActivity extends AppCompatActivity {
         buttonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                guardarDatosRegistro();
+                Intent intent = new Intent(TransbordosActivity.this,ListaRegistrosODActivity.class);
+                intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
+                intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
+                intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,estacion);
+                intent.putExtra(ExtrasID.EXTRA_MODO,modo);
+                startActivity(intent);
+                finish();
             }
         });
 
         buttonCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(TransbordosActivity.this,ListaRegistrosODActivity.class);
+                intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
+                intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
+                intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,estacion);
+                intent.putExtra(ExtrasID.EXTRA_MODO,modo);
+                startActivity(intent);
+                finish();
             }
         });
+    }
+
+    private void guardarDatosRegistro() {
+
+        OrigenDestinoBase origenDestinoBase =  realm.where(OrigenDestinoBase.class).equalTo("id",idCuadro).findFirst();
+        if(origenDestinoBase!=null){
+            realm.beginTransaction();
+            RealmList<TransbordoOD> transbordos = new RealmList<>();
+            if(transbordo1Check.isChecked()){
+                TransbordoOD transbordoOD1 = new TransbordoOD();
+                transbordoOD1.setEstacion(estacionesTr1.getSelectedItem().toString());
+                transbordoOD1.setServicio(serviciosTr1.getSelectedItem().toString());
+                realm.copyToRealmOrUpdate(transbordoOD1);
+                transbordos.add(transbordoOD1);
+                if(transbordo1Check.isChecked()){
+                    TransbordoOD transbordoOD2 = new TransbordoOD();
+                    transbordoOD2.setEstacion(estacionesTr2.getSelectedItem().toString());
+                    transbordoOD2.setServicio(serviciosTr2.getSelectedItem().toString());
+                    realm.copyToRealmOrUpdate(transbordoOD2);
+                    transbordos.add(transbordoOD2);
+                }
+            }
+            realm.commitTransaction();
+
+            realm.beginTransaction();
+            RegistroOD registro = new RegistroOD();
+            registro.setEstacionOrigen(estacionesOrigen.getSelectedItem().toString());
+            registro.setEstacionDestino(estacionesDestino.getSelectedItem().toString());
+            registro.setServicioOrigen(serviciosOrigen.getSelectedItem().toString());
+            registro.setHora(obtenerHoraActual());
+            registro.setTransbordos(transbordos);
+            realm.copyToRealmOrUpdate(registro);
+            realm.commitTransaction();
+
+            realm.beginTransaction();
+            origenDestinoBase.getRegistros().add(registro);
+            realm.copyToRealmOrUpdate(origenDestinoBase);
+            realm.commitTransaction();
+        }
+    }
+
+    private String obtenerHoraActual() {
+        Calendar now = Calendar.getInstance();
+        return now.get(Calendar.HOUR_OF_DAY) + ":" + now.get(Calendar.MINUTE)+ ":" + now.get(Calendar.SECOND);
     }
 
     private void agregarItemsListas() {

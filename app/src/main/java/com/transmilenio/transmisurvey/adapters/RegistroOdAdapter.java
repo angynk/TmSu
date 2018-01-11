@@ -62,7 +62,7 @@ public class RegistroOdAdapter extends BaseAdapter {
         }
 
         RegistroOD registro = lista.get(position);
-        vh.titulo.setText(registro.getEstacionOrigen());
+        vh.titulo.setText("Encuesta No."+position);
 
         return convertView;
     }
