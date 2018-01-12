@@ -17,6 +17,7 @@ public class EncuestaJSON {
     private AD_Fijo ad_fijo;
     private CO_Despacho co_despacho;
     private ODEncuesta od_encuesta;
+    private FR_Bus fr_bus;
 
     public EncuestaJSON() {
     }
@@ -115,5 +116,13 @@ public class EncuestaJSON {
 
     public void setOd_encuesta(ODEncuesta od_encuesta) {
         this.od_encuesta = od_encuesta;
+    }
+
+    public FR_Bus getFr_bus() {
+        return fr_bus;
+    }
+
+    public void setFr_bus(FR_Bus fr_bus) {
+        this.fr_bus = fr_bus;
     }
 }

@@ -21,10 +21,12 @@ import com.transmilenio.transmisurvey.http.SurveyService;
 import com.transmilenio.transmisurvey.models.db.AdPuntoEncuesta;
 import com.transmilenio.transmisurvey.models.db.ConteoDesEncuesta;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
+import com.transmilenio.transmisurvey.models.db.FOcupacionBusBase;
 import com.transmilenio.transmisurvey.models.db.FOcupacionEncuesta;
 import com.transmilenio.transmisurvey.models.db.OrigenDestinoBase;
 import com.transmilenio.transmisurvey.models.db.RegistroAdPunto;
 import com.transmilenio.transmisurvey.models.db.RegistroConteo;
+import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupaBus;
 import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupacion;
 import com.transmilenio.transmisurvey.models.db.RegistroOD;
 import com.transmilenio.transmisurvey.models.db.Resultado;
@@ -36,6 +38,7 @@ import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 import com.transmilenio.transmisurvey.models.json.EncuestaJSON;
 import com.transmilenio.transmisurvey.models.json.EncuestaTM;
 import com.transmilenio.transmisurvey.models.json.EncuestasTerminadas;
+import com.transmilenio.transmisurvey.models.json.FR_Bus;
 import com.transmilenio.transmisurvey.models.json.FR_Ocupacion;
 import com.transmilenio.transmisurvey.models.json.ODEncuesta;
 import com.transmilenio.transmisurvey.models.json.ODRegistro;
@@ -44,6 +47,7 @@ import com.transmilenio.transmisurvey.models.json.RegADAbordo;
 import com.transmilenio.transmisurvey.models.json.RegADFijo;
 import com.transmilenio.transmisurvey.models.json.RegCoDespachos;
 import com.transmilenio.transmisurvey.models.json.RegFROcupacion;
+import com.transmilenio.transmisurvey.models.json.RegFROcupacionBus;
 import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
 import com.transmilenio.transmisurvey.models.json.TipoEncuesta;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
@@ -149,9 +153,30 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
             generarEncuestaConteoDespachos(encuestaTM,encuestaJSON);
         }else if(encuestaTM.getTipo() == TipoEncuesta.ENC_ORI_DEST){
             generarEncuestaOrigenDestino(encuestaTM,encuestaJSON);
+        }else if (encuestaTM.getTipo() == TipoEncuesta.ENC_FR_BUS){
+            generarEncuestaFrecuenciaOcupacionBus(encuestaTM,encuestaJSON);
         }
 
         return encuestaJSON;
+    }
+
+    private void generarEncuestaFrecuenciaOcupacionBus(EncuestaTM encuestaTM, EncuestaJSON encuestaJSON) {
+        FOcupacionBusBase focupacionBase = encuestaTM.getFo_bus();
+        FR_Bus fr_bus = new FR_Bus();
+        fr_bus.setEstacion(focupacionBase.getEstacion());
+
+        RealmList<RegistroFrecOcupaBus> registroBD = focupacionBase.getRegistros();
+        List<RegFROcupacionBus> registros = new ArrayList<>();
+        for(RegistroFrecOcupaBus reg:registroBD){
+            RegFROcupacionBus registro = new RegFROcupacionBus();
+            registro.setNum_bus(reg.getMovBus());
+            registro.setHora_paso(reg.getHoraPaso());
+            registro.setCodigo(reg.getServicio());
+            registros.add(registro);
+        }
+
+        fr_bus.setRegistros(registros);
+        encuestaJSON.setFr_bus(fr_bus);
     }
 
     private void generarEncuestaOrigenDestino(EncuestaTM encuestaTM, EncuestaJSON encuestaJSON) {

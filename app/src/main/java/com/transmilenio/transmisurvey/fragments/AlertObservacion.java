@@ -18,12 +18,17 @@ import com.transmilenio.transmisurvey.activites.RegistroActivity;
 import com.transmilenio.transmisurvey.models.db.AdPuntoEncuesta;
 import com.transmilenio.transmisurvey.models.db.ConteoDesEncuesta;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
+import com.transmilenio.transmisurvey.models.db.FOcupacionBusBase;
 import com.transmilenio.transmisurvey.models.db.FOcupacionEncuesta;
+import com.transmilenio.transmisurvey.models.db.OrigenDestinoBase;
 import com.transmilenio.transmisurvey.models.db.Registro;
 import com.transmilenio.transmisurvey.models.db.RegistroAdPunto;
 import com.transmilenio.transmisurvey.models.db.RegistroConteo;
+import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupaBus;
 import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupacion;
+import com.transmilenio.transmisurvey.models.db.RegistroOD;
 import com.transmilenio.transmisurvey.models.db.Resultado;
+import com.transmilenio.transmisurvey.models.db.TransbordoOD;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 import com.transmilenio.transmisurvey.models.json.EncuestaTM;
 import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
@@ -184,6 +189,67 @@ public class AlertObservacion extends DialogFragment {
 
                     realm.beginTransaction();
                     conteoDesEncuesta.deleteFromRealm();
+                    realm.commitTransaction();
+                    realm.beginTransaction();
+                    encuestaTM.deleteFromRealm();
+                    realm.commitTransaction();
+                }else if ( tipo == TipoEncuesta.ENC_ORI_DEST){
+                    OrigenDestinoBase origenDestinoBase = encuestaTM.getOd_destino();
+                    realm.beginTransaction();
+                    RealmList<RegistroOD> registros = origenDestinoBase.getRegistros();
+                    List<Integer> regIn= new ArrayList<>();
+                    for(RegistroOD re:registros){
+                        regIn.add(re.getId());
+                    }
+                    for(Integer value:regIn){
+                        RegistroOD registro = realm.where(RegistroOD.class).equalTo("id", value).findFirst();
+                        RealmList<TransbordoOD> transbordos = registro.getTransbordos();
+                        List<Integer> transIn= new ArrayList<>();
+                        for(TransbordoOD re:transbordos){
+                            transIn.add(re.getId());
+                        }
+                        for(Integer trans:transIn){
+                            TransbordoOD transbordoOD = realm.where(TransbordoOD.class).equalTo("id", value).findFirst();
+                            if(transbordoOD!=null){
+                                if(transbordoOD.isValid()){
+                                    transbordoOD.deleteFromRealm();
+                                }
+                            }
+                        }
+
+                        if(registro!=null){
+                            if(registro.isValid()){
+                                registro.deleteFromRealm();
+                            }
+                        }
+                    }
+                    realm.commitTransaction();
+                    realm.beginTransaction();
+                    origenDestinoBase.deleteFromRealm();
+                    realm.commitTransaction();
+                    realm.beginTransaction();
+                    encuestaTM.deleteFromRealm();
+                    realm.commitTransaction();
+                }else if ( tipo == TipoEncuesta.ENC_FR_BUS){
+                    FOcupacionBusBase fOcupacionBusBase = encuestaTM.getFo_bus();
+                    realm.beginTransaction();
+                    RealmList<RegistroFrecOcupaBus> registros = fOcupacionBusBase.getRegistros();
+                    List<Integer> regIn= new ArrayList<>();
+                    for(RegistroFrecOcupaBus re:registros){
+                        regIn.add(re.getId());
+                    }
+                    for(Integer value:regIn){
+                        RegistroFrecOcupaBus registro = realm.where(RegistroFrecOcupaBus.class).equalTo("id", value).findFirst();
+                        if(registro!=null){
+                            if(registro.isValid()){
+                                registro.deleteFromRealm();
+                            }
+                        }
+                    }
+                    realm.commitTransaction();
+
+                    realm.beginTransaction();
+                    fOcupacionBusBase.deleteFromRealm();
                     realm.commitTransaction();
                     realm.beginTransaction();
                     encuestaTM.deleteFromRealm();
