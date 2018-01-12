@@ -53,6 +53,7 @@ public class ListaSurveyActivity extends AppCompatActivity {
         encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_ASCDES_PUNTO));
         encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_CONTEO_DESPACHOS));
         encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_ORIGEN_DESTINO));
+        encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_FRECUENCIA_OCUPACION_BUS));
         encuestas.add(new Encuesta("Eliminar Todo"));
         listView = (ListView) findViewById(R.id.listView_surveys);
         surveyAdapter = new SurveyAdapter(this,encuestas,R.layout.list_view_surveys);
@@ -90,6 +91,11 @@ public class ListaSurveyActivity extends AppCompatActivity {
                     startActivity(intent);
                 }else if (value.getNombre().equals(ExtrasID.NOMBRE_ENCUESTA_ORIGEN_DESTINO)) {
                     Intent intent = new Intent(ListaSurveyActivity.this, OrigenDestinoActivity.class);
+                    intent.putExtra(ExtrasID.EXTRA_NOMBRE,value.getNombre());
+                    intent.putExtra(ExtrasID.EXTRA_MODO,modo);
+                    startActivity(intent);
+                }else if (value.getNombre().equals(ExtrasID.NOMBRE_ENCUESTA_FRECUENCIA_OCUPACION_BUS)) {
+                    Intent intent = new Intent(ListaSurveyActivity.this, FrecOcupaBusActivity.class);
                     intent.putExtra(ExtrasID.EXTRA_NOMBRE,value.getNombre());
                     intent.putExtra(ExtrasID.EXTRA_MODO,modo);
                     startActivity(intent);

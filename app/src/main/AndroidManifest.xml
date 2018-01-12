@@ -94,7 +94,10 @@
         <activity android:name=".activites.ConteoServActivity" />
         <activity android:name=".activites.ListaRegistrosODActivity" />
         <activity android:name=".activites.AdPuntoServiciosActivity" />
-        <activity android:name=".activites.SeleccionServicioActivity"></activity>
+        <activity android:name=".activites.SeleccionServicioActivity" />
+        <activity android:name=".activites.FrecOcupaBusActivity" />
+        <activity android:name=".activites.ListaRegistrosFOBusActivity" />
+        <activity android:name=".activites.FrecBusRegistroActivity"></activity>
     </application>
 
 </manifest>

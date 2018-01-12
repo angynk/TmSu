@@ -23,10 +23,11 @@ public class ExtrasID {
     public static String EXTRA_ID_ = "mensaje";
 
     public static String NOMBRE_ENCUESTA_ASCDES_TRONCAL = "Ascensos y Descensos Abordo";
-    public static String NOMBRE_ENCUESTA_FRECUENCIA_OCUPACION = "Frecuencia Ocupación";
+    public static String NOMBRE_ENCUESTA_FRECUENCIA_OCUPACION = "Frecuencia Ocupación Visual";
     public static String NOMBRE_ENCUESTA_ASCDES_PUNTO = "Ascensos y Descensos Punto Fijo";
     public static String NOMBRE_ENCUESTA_CONTEO_DESPACHOS = "Conteo Despachos";
     public static String NOMBRE_ENCUESTA_ORIGEN_DESTINO = "Origen Destino";
+    public static String NOMBRE_ENCUESTA_FRECUENCIA_OCUPACION_BUS = "Frecuencia Ocupación No.Bus";
 
     public static String TIPO_SERVICIO_TRONCAL = "tro";
     public static String TIPO_SERVICIO_ALIMENTADOR = "ali";

@@ -3,6 +3,7 @@ package com.transmilenio.transmisurvey.models.json;
 import com.transmilenio.transmisurvey.app.MyApplication;
 import com.transmilenio.transmisurvey.models.db.AdPuntoEncuesta;
 import com.transmilenio.transmisurvey.models.db.ConteoDesEncuesta;
+import com.transmilenio.transmisurvey.models.db.FOcupacionBusBase;
 import com.transmilenio.transmisurvey.models.db.FOcupacionEncuesta;
 import com.transmilenio.transmisurvey.models.db.OrigenDestinoBase;
 
@@ -29,10 +30,11 @@ public class EncuestaTM extends RealmObject {
 
     //Datos por encuesta
     private CuadroEncuesta ad_abordo; // ASCENSOS Y DESCENSOS TRONCAL ABORDO
-    private FOcupacionEncuesta fr_ocupacion; // FRECUENCIA OCUPACIÓN
+    private FOcupacionEncuesta fr_ocupacion; // FRECUENCIA OCUPACIÓN VISUAL
     private AdPuntoEncuesta ad_punto; // FRECUENCIA OCUPACIÓN
     private ConteoDesEncuesta co_despachos; //CONTEO DESPACHOS
     private OrigenDestinoBase od_destino; //ORIGEN DESTINO
+    private FOcupacionBusBase fo_bus; //FRECUENCIA OCUPACION CON NUMERO DE BUS
 
 
     public EncuestaTM() {
@@ -141,5 +143,13 @@ public class EncuestaTM extends RealmObject {
 
     public void setDia_semana(String dia_semana) {
         this.dia_semana = dia_semana;
+    }
+
+    public FOcupacionBusBase getFo_bus() {
+        return fo_bus;
+    }
+
+    public void setFo_bus(FOcupacionBusBase fo_bus) {
+        this.fo_bus = fo_bus;
     }
 }

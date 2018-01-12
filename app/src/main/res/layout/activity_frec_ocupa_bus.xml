@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.transmilenio.transmisurvey.activites.FrecOcupaBusActivity">
+
+    <TextView
+        android:id="@+id/frb_tituloPanel"
+        style="@style/AppTheme.Banner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/infoBase"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/frb_fecha_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fecha"
+            style="@style/AppTheme.Encabezado"
+            android:layout_marginTop="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/frb_fecha_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/frb_fecha_textView"
+            android:layout_alignBottom="@+id/frb_fecha_textView"
+            android:layout_marginLeft="120dp"
+            android:layout_marginStart="120dp" />
+
+        <TextView
+            android:id="@+id/frb_diaSemana_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            style="@style/AppTheme.Encabezado"
+            android:text="@string/diaSemana"
+            android:layout_below="@+id/frb_fecha_textView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/frb_diasSemana_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginLeft="14dp"
+            android:layout_marginStart="14dp"
+            android:layout_alignBottom="@+id/frb_diaSemana_text"
+            android:layout_toRightOf="@+id/frb_fecha_text"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:id="@+id/frb_estacion_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/AppTheme.Encabezado"
+            android:text="@string/estacion"
+            android:layout_below="@+id/frb_sentido_sepinner"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="29dp" />
+
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/frb_estacion_sepinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/frb_estacion_text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="13dp" />
+
+        <TextView
+            android:id="@+id/frb_sentido_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/AppTheme.Encabezado"
+            android:text="@string/txt_sentido"
+            android:layout_marginTop="23dp"
+            android:layout_below="@+id/frb_diaSemana_text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/frb_sentido_sepinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:layout_below="@+id/frb_sentido_text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/frb_continuar_button"
+        style="@style/AppTheme.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="@string/continuar" />
+
+</RelativeLayout>
