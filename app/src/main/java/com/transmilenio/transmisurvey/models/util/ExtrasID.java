@@ -8,6 +8,7 @@ public class ExtrasID {
     public static String EXTRA_ID_CUADRO = "idCuadro";
     public static String EXTRA_ID_SERVICIO = "idServicio";
     public static String EXTRA_ID_ESTACION = "idEstacion";
+    public static String EXTRA_ID_ORIGEN = "idTipoOrigen";
     public static String EXTRA_ID_VAGON = "idVagon";
     public static String EXTRA_NOMBRE = "nombre";
     public static String EXTRA_TIPO = "tipo";

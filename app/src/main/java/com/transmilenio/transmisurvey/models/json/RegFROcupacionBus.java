@@ -10,6 +10,7 @@ public class RegFROcupacionBus {
     private String hora_paso;
     private Integer num_bus;
 
+
     public RegFROcupacionBus() {
     }
 

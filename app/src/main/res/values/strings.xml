@@ -70,9 +70,12 @@
     <string name="trs_origen">Origen</string>
     <string name="trs_destino">Destino</string>
     <string name="trs_transbordos">Transbordos</string>
+    <string name="trs_adicional">Info Adicional</string>
     <string name="trs_transbordo_no1">Transbordo No.1</string>
     <string name="trs_transbordo_no2">Transbordo No.2</string>
     <string name="trs_transbordo_no3">Más de 2 transbordos</string>
+    <string name="trs_cant_veces">Número de veces por semana</string>
+    <string name="trs_modo_llegada">Modo llegada</string>
 
 
 </resources>

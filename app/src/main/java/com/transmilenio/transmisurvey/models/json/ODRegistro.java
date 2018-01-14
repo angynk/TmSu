@@ -11,6 +11,8 @@ public class ODRegistro {
     private String servicio_origen;
     private String hora_encuesta;
     private List<ODTransbordo> transbordos;
+    private String modo_llegada;
+    private Integer cant_viaje;
 
     public ODRegistro() {
     }
@@ -53,5 +55,21 @@ public class ODRegistro {
 
     public void setTransbordos(List<ODTransbordo> transbordos) {
         this.transbordos = transbordos;
+    }
+
+    public String getModo_llegada() {
+        return modo_llegada;
+    }
+
+    public void setModo_llegada(String modo_llegada) {
+        this.modo_llegada = modo_llegada;
+    }
+
+    public Integer getCant_viaje() {
+        return cant_viaje;
+    }
+
+    public void setCant_viaje(Integer cant_viaje) {
+        this.cant_viaje = cant_viaje;
     }
 }

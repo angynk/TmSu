@@ -21,6 +21,7 @@ import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 import com.transmilenio.transmisurvey.models.util.Mensajes;
+import com.transmilenio.transmisurvey.util.TipoODencuesta;
 
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
@@ -34,7 +35,7 @@ public class ListaRegistrosODActivity extends AppCompatActivity implements Realm
     private RegistroOdAdapter registroAdapter;
     private RealmList<RegistroOD> registros;
     private int  idEncuesta,idCuadro ;
-    private String estacion,modo;
+    private String estacion,modo,tipo;
 
     //For dialog fragment
     FragmentManager fm = getSupportFragmentManager();
@@ -59,6 +60,7 @@ public class ListaRegistrosODActivity extends AppCompatActivity implements Realm
             idCuadro = (int) extras.get(ExtrasID.EXTRA_ID_CUADRO);
             estacion = (String) extras.get(ExtrasID.EXTRA_ID_ESTACION);
             modo = (String) extras.get(ExtrasID.EXTRA_MODO);
+            tipo = (String) extras.get(ExtrasID.EXTRA_ID_ORIGEN);
             OrigenDestinoBase origenDestinoBase =  realm.where(OrigenDestinoBase.class).equalTo("id",idCuadro).findFirst();
             if(origenDestinoBase!=null){
                 registros = origenDestinoBase.getRegistros();
@@ -97,9 +99,15 @@ public class ListaRegistrosODActivity extends AppCompatActivity implements Realm
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListaRegistrosODActivity.this, TransbordosActivity.class);
+                if(tipo.equals(TipoODencuesta.TIPO_DESTINO)){
+                    intent = new Intent(ListaRegistrosODActivity.this, OdDestinoActivity.class);
+                }else if (tipo.equals(TipoODencuesta.TIPO_TRANSBORDO)){
+                    intent = new Intent(ListaRegistrosODActivity.this, OdTransbordoActivity.class);
+                }
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
                 intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estacion);
+                intent.putExtra(ExtrasID.EXTRA_ID_ORIGEN,  tipo);
                 intent.putExtra(ExtrasID.EXTRA_MODO,  modo);
                 startActivity(intent);
             }

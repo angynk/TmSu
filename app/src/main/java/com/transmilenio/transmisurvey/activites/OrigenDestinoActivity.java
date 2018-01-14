@@ -81,6 +81,7 @@ public class OrigenDestinoActivity extends AppCompatActivity {
                         intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                         intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
                         intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,estaciones.getSelectedItem().toString());
+                        intent.putExtra(ExtrasID.EXTRA_ID_ORIGEN,tipoEncuesta.getSelectedItem().toString());
                         intent.putExtra(ExtrasID.EXTRA_MODO,modo);
                         startActivity(intent);
                         finish();

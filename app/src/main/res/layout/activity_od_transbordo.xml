@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.transmilenio.transmisurvey.activites.OdTransbordoActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="401dp">
+
+                <TextView
+                    android:id="@+id/odt_origen_textView"
+                    style="@style/AppTheme.Banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/trs_origen" />
+
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/odt_es_ori_sepinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/odt_ser_ori_sepinner"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignRight="@+id/odt_ser_ori_sepinner"
+                    android:layout_marginTop="34dp"
+                    android:layout_toEndOf="@+id/odt_es_ori_textView"
+                    android:layout_toRightOf="@+id/odt_es_ori_textView" />
+
+                <TextView
+                    android:id="@+id/odt_es_ori_textView"
+                    style="@style/AppTheme.Encabezado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/odt_es_ori_sepinner"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="11dp"
+                    android:layout_marginStart="11dp"
+                    android:text="@string/estacion" />
+
+                <TextView
+                    android:id="@+id/odt_ser_ori_textView"
+                    style="@style/AppTheme.Encabezado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/odt_es_ori_textView"
+                    android:layout_alignStart="@+id/odt_es_ori_textView"
+                    android:layout_below="@+id/odt_es_ori_textView"
+                    android:layout_marginTop="21dp"
+                    android:text="@string/codigo" />
+
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/odt_ser_ori_sepinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/odt_ser_ori_textView"
+                    android:layout_marginRight="8dp"
+                    android:layout_toEndOf="@+id/odt_ser_ori_textView" />
+
+                <TextView
+                    android:id="@+id/odt_transbordo_textView"
+                    style="@style/AppTheme.Banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/trs_transbordos"
+                    android:layout_below="@+id/odt_ser_ori_textView"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp" />
+
+                <CheckBox
+                    android:id="@+id/odt_tr1_checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/odt_transbordo_textView"
+                    android:text="@string/trs_transbordo_no1" />
+
+                <TextView
+                    android:id="@+id/odt_es_tr1_textView"
+                    style="@style/AppTheme.Encabezado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/odt_tr1_checkBox"
+                    android:layout_marginTop="13dp"
+                    android:text="@string/estacion" />
+
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/odt_es_tr1_sepinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/odt_es_tr1_textView"
+                    android:layout_toEndOf="@+id/odt_es_tr2_textView"
+                    android:layout_toRightOf="@+id/odt_es_tr2_textView" />
+
+                <TextView
+                    android:id="@+id/odt_ser_tr1_textView"
+                    style="@style/AppTheme.Encabezado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/odt_ser_tr2_textView"
+                    android:layout_alignStart="@+id/odt_ser_tr2_textView"
+                    android:layout_below="@+id/odt_es_tr1_textView"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/codigo" />
+
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/odt_ser_tr1_sepinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/odt_es_tr1_sepinner"
+                    android:layout_alignLeft="@+id/odt_es_tr1_sepinner"
+                    android:layout_alignRight="@+id/odt_es_tr1_sepinner"
+                    android:layout_alignStart="@+id/odt_es_tr1_sepinner"
+                    android:layout_alignTop="@+id/odt_ser_tr1_textView" />
+
+                <CheckBox
+                    android:id="@+id/odt_tr2_checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/odt_es_tr1_textView"
+                    android:layout_alignStart="@+id/odt_es_tr1_textView"
+                    android:layout_below="@+id/odt_ser_tr1_sepinner"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/trs_transbordo_no2" />
+
+                <TextView
+                    android:id="@+id/odt_es_tr2_textView"
+                    style="@style/AppTheme.Encabezado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/odt_ser_tr1_textView"
+                    android:layout_alignStart="@+id/odt_ser_tr1_textView"
+                    android:layout_alignTop="@+id/odt_tr2_checkBox"
+                    android:layout_marginTop="48dp"
+                    android:text="@string/estacion" />
+
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/odt_es_tr2_sepinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/odt_ser_tr1_sepinner"
+                    android:layout_alignLeft="@+id/odt_ser_tr1_sepinner"
+                    android:layout_alignRight="@+id/odt_ser_tr1_sepinner"
+                    android:layout_alignStart="@+id/odt_ser_tr1_sepinner"
+                    android:layout_alignTop="@+id/odt_es_tr2_textView" />
+
+                <TextView
+                    android:id="@+id/odt_ser_tr2_textView"
+                    style="@style/AppTheme.Encabezado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/odt_es_tr2_sepinner"
+                    android:layout_marginTop="21dp"
+                    android:text="@string/codigo" />
+
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/odt_ser_tr2_sepinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/odt_es_tr2_sepinner"
+                    android:layout_alignLeft="@+id/odt_es_tr2_sepinner"
+                    android:layout_alignRight="@+id/odt_es_tr2_sepinner"
+                    android:layout_alignStart="@+id/odt_es_tr2_sepinner"
+                    android:layout_alignTop="@+id/odt_ser_tr2_textView" />
+
+                <CheckBox
+                    android:id="@+id/odt_tr3_checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/odt_ser_tr2_sepinner"
+                    android:layout_marginTop="7dp"
+                    android:text="@string/trs_transbordo_no3" />
+            </RelativeLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true">
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/odt_nuevoRegistro_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="16dp"
+                    android:src="@drawable/ic_checked_icon" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/odt_cancelarRegistro_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|start"
+                    android:layout_margin="16dp"
+                    android:src="@drawable/ic_cancel" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="235dp"
+                    android:layout_below="@+id/tituloPanel">
+
+                    <TextView
+                        android:id="@+id/odt_es_des_textView"
+                        style="@style/AppTheme.Encabezado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="@string/estacion"
+                        android:layout_below="@+id/odt_destino_textView" />
+
+                    <TextView
+                        android:id="@+id/odt_destino_textView"
+                        style="@style/AppTheme.Banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="17dp"
+                        android:text="@string/trs_destino" />
+
+                    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                        android:id="@+id/odt_es_des_sepinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/odt_es_des_textView"
+                        android:layout_toRightOf="@+id/odt_es_des_textView"
+                        android:layout_toEndOf="@+id/odt_es_des_textView" />
+
+                    <TextView
+                        android:id="@+id/odt_adicional_textView"
+                        style="@style/AppTheme.Banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/trs_adicional"
+                        android:layout_below="@+id/odt_es_des_sepinner"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="11dp" />
+
+                    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                        android:id="@+id/odt_num_veces_editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/odt_can_ser_textView"
+                        android:layout_toRightOf="@+id/odt_can_ser_textView"
+                        android:layout_toEndOf="@+id/odt_can_ser_textView" />
+
+                    <TextView
+                        android:id="@+id/odt_can_ser_textView"
+                        style="@style/AppTheme.Encabezado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/trs_cant_veces"
+                        android:layout_below="@+id/odt_adicional_textView"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="13dp" />
+
+                </RelativeLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

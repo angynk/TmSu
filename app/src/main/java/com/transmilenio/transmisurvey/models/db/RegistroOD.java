@@ -18,6 +18,8 @@ public class RegistroOD extends RealmObject {
     private String estacionOrigen;
     private String hora;
     private String estacionDestino;
+    private String modoLlegada;
+    private Integer numVeces;
 
     private RealmList<TransbordoOD> transbordos;
 
@@ -78,5 +80,21 @@ public class RegistroOD extends RealmObject {
 
     public void setTransbordos(RealmList<TransbordoOD> transbordos) {
         this.transbordos = transbordos;
+    }
+
+    public String getModoLlegada() {
+        return modoLlegada;
+    }
+
+    public void setModoLlegada(String modoLlegada) {
+        this.modoLlegada = modoLlegada;
+    }
+
+    public Integer getNumVeces() {
+        return numVeces;
+    }
+
+    public void setNumVeces(Integer numVeces) {
+        this.numVeces = numVeces;
     }
 }

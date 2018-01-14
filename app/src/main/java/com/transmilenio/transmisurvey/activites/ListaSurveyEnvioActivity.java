@@ -193,6 +193,8 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
             registro.setEstacion_destino(reg.getEstacionDestino());
             registro.setServicio_origen(reg.getServicioOrigen());
             registro.setHora_encuesta(reg.getHora());
+            registro.setCant_viaje(reg.getNumVeces());
+            registro.setModo_llegada(reg.getModoLlegada());
             RealmList<TransbordoOD> transbordoODs = reg.getTransbordos();
             List<ODTransbordo> transbordos = new ArrayList<>();
             for(TransbordoOD trans:transbordoODs){

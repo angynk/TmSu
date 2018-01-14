@@ -10,11 +10,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import com.transmilenio.transmisurvey.R;
@@ -22,7 +20,6 @@ import com.transmilenio.transmisurvey.models.db.EstacionServicio;
 import com.transmilenio.transmisurvey.models.db.OrigenDestinoBase;
 import com.transmilenio.transmisurvey.models.db.RegistroOD;
 import com.transmilenio.transmisurvey.models.db.Serv;
-import com.transmilenio.transmisurvey.models.db.ServicioRutas;
 import com.transmilenio.transmisurvey.models.db.TransbordoOD;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 import com.transmilenio.transmisurvey.models.util.Mensajes;
@@ -37,21 +34,21 @@ import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
 
-public class TransbordosActivity extends AppCompatActivity {
+public class OdDestinoActivity extends AppCompatActivity {
 
     private int idEncuesta, idCuadro;
     private String estacion,modo,tipo;
     private FloatingActionButton buttonGuardar,buttonCancelar;
     private CheckBox transbordo1Check,transbordo2Check,transbordo3Check;
     private SearchableSpinner estacionesOrigen,estacionesDestino,estacionesTr1,estacionesTr2;
-    private SearchableSpinner serviciosOrigen,serviciosTr1,serviciosTr2,modoLlegada,numRepite;
+    private SearchableSpinner serviciosOrigen,serviciosTr1,serviciosTr2,numRepite;
     private Realm realm;
     private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transbordos);
+        setContentView(R.layout.activity_od_destino);
         prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         realm = Realm.getDefaultInstance();
         validarExtras();
@@ -77,10 +74,9 @@ public class TransbordosActivity extends AppCompatActivity {
     }
 
     private void agregarCheckBox() {
-        transbordo1Check = (CheckBox) findViewById(R.id.trs_tr1_checkBox);
-        transbordo2Check = (CheckBox) findViewById(R.id.trs_tr2_checkBox);
-        transbordo3Check = (CheckBox) findViewById(R.id.trs_tr3_checkBox);
-
+        transbordo1Check = (CheckBox) findViewById(R.id.ode_tr1_checkBox);
+        transbordo2Check = (CheckBox) findViewById(R.id.ode_tr2_checkBox);
+        transbordo3Check = (CheckBox) findViewById(R.id.ode_tr3_checkBox);
 
         transbordo1Check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -104,13 +100,13 @@ public class TransbordosActivity extends AppCompatActivity {
     }
 
     private void agregarBotones() {
-        buttonGuardar = (FloatingActionButton) findViewById(R.id.trs_nuevoRegistro_button);
-        buttonCancelar = (FloatingActionButton) findViewById(R.id.trs_cancelarRegistro_button);
+        buttonGuardar = (FloatingActionButton) findViewById(R.id.ode_nuevoRegistro_button);
+        buttonCancelar = (FloatingActionButton) findViewById(R.id.ode_cancelarRegistro_button);
         buttonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 guardarDatosRegistro();
-                Intent intent = new Intent(TransbordosActivity.this,ListaRegistrosODActivity.class);
+                Intent intent = new Intent(OdDestinoActivity.this,ListaRegistrosODActivity.class);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
                 intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,estacion);
@@ -124,7 +120,7 @@ public class TransbordosActivity extends AppCompatActivity {
         buttonCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TransbordosActivity.this,ListaRegistrosODActivity.class);
+                Intent intent = new Intent(OdDestinoActivity.this,ListaRegistrosODActivity.class);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
                 intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,estacion);
@@ -163,7 +159,6 @@ public class TransbordosActivity extends AppCompatActivity {
             registro.setEstacionOrigen(estacionesOrigen.getSelectedItem().toString());
             registro.setEstacionDestino(estacionesDestino.getSelectedItem().toString());
             registro.setServicioOrigen(serviciosOrigen.getSelectedItem().toString());
-            registro.setModoLlegada(modoLlegada.getSelectedItem().toString());
             registro.setNumVeces(convertirANum(numRepite.getSelectedItem().toString()));
             registro.setHora(obtenerHoraActual());
             registro.setTransbordos(transbordos);
@@ -192,66 +187,16 @@ public class TransbordosActivity extends AppCompatActivity {
     }
 
     private void agregarItemsListas() {
-            listasOrigen();
-            listasDestino();
-            listasTransbordo1();
-            listasTransbordo2();
-            listaModoLlegada();
-            listaNumRepite();
+        listasOrigen();
+        listasDestino();
+        listasTransbordo1();
+        listasTransbordo2();
+        listaNumRepite();
     }
 
-    private void listaNumRepite() {
-        numRepite = (SearchableSpinner) findViewById(R.id.trs_num_veces_editText);
-        List<String> listNumRepite = getNumRepite();
-        ArrayAdapter<String> dataAdapterestacionesOrigen = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listNumRepite);
-        dataAdapterestacionesOrigen.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        numRepite.setAdapter(dataAdapterestacionesOrigen);
-        numRepite.setTitle(Mensajes.MSG_SELECCIONE);
-        numRepite.setPositiveButton(Mensajes.MSG_OK);
-    }
-
-    private List<String> getNumRepite() {
-        List<String> numRepite = new ArrayList<>();
-        numRepite.add(NumRepite.MODO_CERO);
-        numRepite.add(NumRepite.MODO_UNO);
-        numRepite.add(NumRepite.MODO_DOS);
-        numRepite.add(NumRepite.MODO_TRES);
-        numRepite.add(NumRepite.MODO_CUATRO);
-        numRepite.add(NumRepite.MODO_CINCO);
-        numRepite.add(NumRepite.MODO_SEIS);
-        numRepite.add(NumRepite.MODO_SIETE);
-        return numRepite;
-    }
-
-    private void listaModoLlegada() {
-        modoLlegada = (SearchableSpinner) findViewById(R.id.trs_modo_lle_sepinner);
-        List<String> listModoLlegada = getModoLlegadaEstacion();
-        ArrayAdapter<String> dataAdapterestacionesOrigen = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listModoLlegada);
-        dataAdapterestacionesOrigen.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        modoLlegada.setAdapter(dataAdapterestacionesOrigen);
-        modoLlegada.setTitle(Mensajes.MSG_SELECCIONE);
-        modoLlegada.setPositiveButton(Mensajes.MSG_OK);
-    }
-
-    private List<String> getModoLlegadaEstacion() {
-        List<String> modosLlegada= new ArrayList<>();
-        modosLlegada.add(ModosLlegada.MODO_NINGUNO);
-        modosLlegada.add(ModosLlegada.MODO_ALIMENTACION);
-        modosLlegada.add(ModosLlegada.MODO_BICI);
-        modosLlegada.add(ModosLlegada.MODO_BICITAXI);
-        modosLlegada.add(ModosLlegada.MODO_BUS);
-        modosLlegada.add(ModosLlegada.MODO_CAMINANDO);
-        modosLlegada.add(ModosLlegada.MODO_INFORMAL);
-        modosLlegada.add(ModosLlegada.MODO_SITP);
-        modosLlegada.add(ModosLlegada.MODO_TAXI);
-        modosLlegada.add(ModosLlegada.MODO_OTRO);
-        return modosLlegada;
-    }
 
     private void listasTransbordo2() {
-        estacionesTr2 = (SearchableSpinner) findViewById(R.id.trs_es_tr2_sepinner);
+        estacionesTr2 = (SearchableSpinner) findViewById(R.id.ode_es_tr2_sepinner);
         List<String> listestaciones = getEstaciones(modo);
         ArrayAdapter<String> dataAdapterestacionesOrigen = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, listestaciones);
@@ -277,7 +222,7 @@ public class TransbordosActivity extends AppCompatActivity {
     }
 
     private void addServiciosTransbordo2() {
-        serviciosTr2 = (SearchableSpinner) findViewById(R.id.trs_ser_tr2_sepinner);
+        serviciosTr2 = (SearchableSpinner) findViewById(R.id.ode_ser_tr2_sepinner);
         List<String> listservicios = getServicios(estacionesTr2);
         ArrayAdapter<String> dataAdapterserviciosOrigen = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, listservicios);
@@ -289,7 +234,7 @@ public class TransbordosActivity extends AppCompatActivity {
     }
 
     private void listasTransbordo1() {
-        estacionesTr1 = (SearchableSpinner) findViewById(R.id.trs_es_tr1_sepinner);
+        estacionesTr1 = (SearchableSpinner) findViewById(R.id.ode_es_tr1_sepinner);
         List<String> listestaciones = getEstaciones(modo);
         ArrayAdapter<String> dataAdapterestacionesOrigen = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, listestaciones);
@@ -314,7 +259,7 @@ public class TransbordosActivity extends AppCompatActivity {
     }
 
     private void addServiciosTransbordo1() {
-        serviciosTr1 = (SearchableSpinner) findViewById(R.id.trs_ser_tr1_sepinner);
+        serviciosTr1 = (SearchableSpinner) findViewById(R.id.ode_ser_tr1_sepinner);
         List<String> listservicios = getServicios(estacionesTr1);
         ArrayAdapter<String> dataAdapterserviciosOrigen = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, listservicios);
@@ -326,7 +271,7 @@ public class TransbordosActivity extends AppCompatActivity {
     }
 
     private void listasDestino() {
-        estacionesDestino = (SearchableSpinner) findViewById(R.id.trs_es_des_sepinner);
+        estacionesDestino = (SearchableSpinner) findViewById(R.id.ode_es_des_sepinner);
         List<String> listestaciones = getEstaciones(modo);
         ArrayAdapter<String> dataAdapterestacionesOrigen = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, listestaciones);
@@ -334,10 +279,12 @@ public class TransbordosActivity extends AppCompatActivity {
         estacionesDestino.setAdapter(dataAdapterestacionesOrigen);
         estacionesDestino.setTitle(Mensajes.MSG_SELECCIONE);
         estacionesDestino.setPositiveButton(Mensajes.MSG_OK);
+        estacionesDestino.setSelection(getPositionEstacion(listestaciones,estacion));
+        estacionesDestino.setEnabled(false);
     }
 
     private void listasOrigen() {
-        estacionesOrigen = (SearchableSpinner) findViewById(R.id.trs_es_ori_sepinner);
+        estacionesOrigen = (SearchableSpinner) findViewById(R.id.ode_es_ori_sepinner);
         List<String> listestaciones = getEstaciones(modo);
         ArrayAdapter<String> dataAdapterestacionesOrigen = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, listestaciones);
@@ -347,18 +294,42 @@ public class TransbordosActivity extends AppCompatActivity {
         estacionesOrigen.setPositiveButton(Mensajes.MSG_OK);
         estacionesOrigen.setSelection(getPositionEstacion(listestaciones,estacion));
         addServiciosOrigen();
-        estacionesOrigen.setEnabled(false);
-//        estacionesOrigen.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                addServiciosOrigen();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
+
+        estacionesOrigen.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                addServiciosOrigen();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void listaNumRepite() {
+        numRepite = (SearchableSpinner) findViewById(R.id.ode_num_veces_editText);
+        List<String> listNumRepite = getNumRepite();
+        ArrayAdapter<String> dataAdapterestacionesOrigen = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, listNumRepite);
+        dataAdapterestacionesOrigen.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        numRepite.setAdapter(dataAdapterestacionesOrigen);
+        numRepite.setTitle(Mensajes.MSG_SELECCIONE);
+        numRepite.setPositiveButton(Mensajes.MSG_OK);
+    }
+
+    private List<String> getNumRepite() {
+        List<String> numRepite = new ArrayList<>();
+        numRepite.add(NumRepite.MODO_CERO);
+        numRepite.add(NumRepite.MODO_UNO);
+        numRepite.add(NumRepite.MODO_DOS);
+        numRepite.add(NumRepite.MODO_TRES);
+        numRepite.add(NumRepite.MODO_CUATRO);
+        numRepite.add(NumRepite.MODO_CINCO);
+        numRepite.add(NumRepite.MODO_SEIS);
+        numRepite.add(NumRepite.MODO_SIETE);
+        return numRepite;
     }
 
     private int getPositionEstacion(List<String> listestaciones, String estacion) {
@@ -371,7 +342,7 @@ public class TransbordosActivity extends AppCompatActivity {
     }
 
     private void addServiciosOrigen() {
-        serviciosOrigen = (SearchableSpinner) findViewById(R.id.trs_ser_ori_sepinner);
+        serviciosOrigen = (SearchableSpinner) findViewById(R.id.ode_ser_ori_sepinner);
         List<String> listservicios = getServicios(estacionesOrigen);
         ArrayAdapter<String> dataAdapterserviciosOrigen = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, listservicios);
@@ -401,6 +372,4 @@ public class TransbordosActivity extends AppCompatActivity {
         }
         return list;
     }
-
-
 }
