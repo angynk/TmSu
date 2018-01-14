@@ -89,7 +89,7 @@ public class FrecOcupaBusActivity extends AppCompatActivity {
         encuestaTM.setDia_semana(textDiaSemana.getText().toString());
         encuestaTM.setNombre_encuesta(nombreEncuesta);
         encuestaTM.setAforador(prefs.getString(ExtrasID.EXTRA_USER,ExtrasID.TIPO_USUARIO_INVITADO));
-        encuestaTM.setTipo(TipoEncuesta.ENC_FR_OCUPACION);
+        encuestaTM.setTipo(TipoEncuesta.ENC_FR_BUS);
         encuestaTM.setIdentificador("Fecha: "+textFecha.getText().toString() +" - "+estaciones.getSelectedItem().toString());
         realm.copyToRealmOrUpdate(encuestaTM);
         realm.commitTransaction();

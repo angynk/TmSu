@@ -164,7 +164,7 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
         FOcupacionBusBase focupacionBase = encuestaTM.getFo_bus();
         FR_Bus fr_bus = new FR_Bus();
         fr_bus.setEstacion(focupacionBase.getEstacion());
-
+        fr_bus.setSentido(focupacionBase.getSentido());
         RealmList<RegistroFrecOcupaBus> registroBD = focupacionBase.getRegistros();
         List<RegFROcupacionBus> registros = new ArrayList<>();
         for(RegistroFrecOcupaBus reg:registroBD){
