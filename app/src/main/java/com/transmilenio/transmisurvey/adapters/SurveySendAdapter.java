@@ -1,11 +1,13 @@
 package com.transmilenio.transmisurvey.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,7 @@ public class SurveySendAdapter  extends BaseAdapter {
     private RealmResults<EncuestaTM> lista;
     private ArrayList<EncuestaTM> selectedItems;
     private int layout;
+    ArrayList<Boolean> positionArray;
 
     private Realm realm;
 
@@ -37,6 +40,10 @@ public class SurveySendAdapter  extends BaseAdapter {
         this.layout = layout;
         this.selectedItems = new ArrayList<>();
         realm = Realm.getDefaultInstance();
+        positionArray = new ArrayList<Boolean>(lista.size());
+        for(int i =0;i<lista.size();i++){
+            positionArray.add(false);
+        }
     }
 
     @Override
@@ -54,8 +61,9 @@ public class SurveySendAdapter  extends BaseAdapter {
         return id;
     }
 
+    @SuppressLint("InflateParams")
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         final SurveySendAdapter.ViewHolder vh;
 
@@ -74,6 +82,9 @@ public class SurveySendAdapter  extends BaseAdapter {
         vh.titulo.setText(encuesta.getNombre_encuesta());
         vh.fecha.setText(encuesta.getIdentificador());
         vh.selection.setTag( position);
+        vh.selection.setOnCheckedChangeListener(null);
+        vh.selection.setFocusable(false);
+        vh.selection.setChecked(positionArray.get(position));
         vh.selection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +96,19 @@ public class SurveySendAdapter  extends BaseAdapter {
                     selectedItems.add(cuadro);
                 }
 
+            }
+        });
+
+        vh.selection.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked ){
+                    System.out.println(position+"--- :)");
+                    positionArray.set(position, true);
+
+                }else{
+                    positionArray.set(position, false);
+                }
             }
         });
 

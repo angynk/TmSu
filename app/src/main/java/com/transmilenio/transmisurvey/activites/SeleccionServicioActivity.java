@@ -80,16 +80,6 @@ public class SeleccionServicioActivity extends AppCompatActivity {
         });
 
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-//        {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapter, View v, int position,
-//                                    long arg3)
-//            {
-//                Cuadro value = (Cuadro)adapter.getItemAtPosition(position);
-//                Toast.makeText(SeleccionServicioActivity.this,value.getNombreEncuesta(),Toast.LENGTH_LONG).show();
-//            }
-//        });
 
     }
 
