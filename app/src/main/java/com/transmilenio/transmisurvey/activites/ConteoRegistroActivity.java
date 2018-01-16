@@ -94,7 +94,6 @@ public class ConteoRegistroActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         inluirDatos();
     }
 
@@ -102,6 +101,7 @@ public class ConteoRegistroActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ListaRegistrosConteoActivity.class);
         intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
         intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
+        intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estacion);
         startActivity(intent);
     }
 
@@ -126,11 +126,11 @@ public class ConteoRegistroActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(agregarRegistro()){
                     Intent intent = new Intent(ConteoRegistroActivity.this,ConteoServActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                     intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadroEncuesta);
                     intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estacion);
                     startActivity(intent);
+                    finish();
                 }
 
             }

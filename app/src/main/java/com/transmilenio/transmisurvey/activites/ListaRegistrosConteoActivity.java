@@ -66,7 +66,6 @@ public class ListaRegistrosConteoActivity extends AppCompatActivity implements R
             public void onClick(View v) {
 
                 Intent intent = new Intent(ListaRegistrosConteoActivity.this,ConteoServActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
                 intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estacion);
@@ -132,5 +131,11 @@ public class ListaRegistrosConteoActivity extends AppCompatActivity implements R
         f.setArguments(args);
 
         return f;
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertGuardarDatos dFragment = newInstance(idEncuesta);
+        dFragment.show(fm, Mensajes.MSG_SALIR_ENCUESTA);
     }
 }

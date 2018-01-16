@@ -122,4 +122,10 @@ public class ListaRegistrosFOBusActivity extends AppCompatActivity implements Re
 
         return f;
     }
+
+    @Override
+    public void onBackPressed() {
+        AlertGuardarDatos dFragment = newInstance(idEncuesta);
+        dFragment.show(fm, Mensajes.MSG_SALIR_ENCUESTA);
+    }
 }

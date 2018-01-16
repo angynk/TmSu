@@ -77,7 +77,6 @@ public class ConteoDesActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int idEncuesta = crearObjetoInfoBase();
                 Intent intent = new Intent(ConteoDesActivity.this,ListaRegistrosConteoActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
                 intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estaciones.getSelectedItem().toString());

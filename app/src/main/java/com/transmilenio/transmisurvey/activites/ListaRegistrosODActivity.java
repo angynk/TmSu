@@ -139,4 +139,10 @@ public class ListaRegistrosODActivity extends AppCompatActivity implements Realm
     public void onChange(RealmList<RegistroOD> registroODs) {
         registroAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void onBackPressed() {
+        AlertGuardarDatos dFragment = newInstance(idEncuesta);
+        dFragment.show(fm, Mensajes.MSG_SALIR_ENCUESTA);
+    }
 }

@@ -197,7 +197,6 @@ public class FrecRegistroActivity extends AppCompatActivity {
         Intent intent = new Intent(FrecRegistroActivity.this,ListaRegistrosFrecOcupacionActivity.class);
         intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
         intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 

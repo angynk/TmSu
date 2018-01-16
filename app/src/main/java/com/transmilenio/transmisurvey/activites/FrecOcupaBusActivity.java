@@ -70,7 +70,6 @@ public class FrecOcupaBusActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int idEncuesta = crearObjetoInfoBase();
                 Intent intent = new Intent(FrecOcupaBusActivity.this,ListaRegistrosFOBusActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
                 startActivity(intent);

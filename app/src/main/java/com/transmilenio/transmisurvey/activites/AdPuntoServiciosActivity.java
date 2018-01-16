@@ -65,7 +65,6 @@ public class AdPuntoServiciosActivity extends AppCompatActivity {
                                     long arg3)
             {
                 Intent intent = new Intent(AdPuntoServiciosActivity.this,AdpRegistroActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
                 intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,  servicios.get(position));
@@ -94,5 +93,14 @@ public class AdPuntoServiciosActivity extends AppCompatActivity {
                     }
                 }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(AdPuntoServiciosActivity.this,ListaRegistrosADPActivity.class);
+        intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
+        intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }

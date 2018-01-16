@@ -3,6 +3,7 @@ package com.transmilenio.transmisurvey.activites;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.adapters.ServiceSelectionAdapter;
 import com.transmilenio.transmisurvey.adapters.SurveySendAdapter;
+import com.transmilenio.transmisurvey.fragments.AlertGuardarDatos;
 import com.transmilenio.transmisurvey.models.db.AdPuntoEncuesta;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.EstacionServicio;
@@ -42,6 +44,8 @@ public class SeleccionServicioActivity extends AppCompatActivity {
     private int  idEncuesta, idCuadro ;
     private String estacion;
 
+    //For dialog fragment
+    FragmentManager fm = getSupportFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +72,7 @@ public class SeleccionServicioActivity extends AppCompatActivity {
                     Intent intent = new Intent(SeleccionServicioActivity.this,ListaRegistrosADPActivity.class);
                     intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                     intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-                    finish();
                 }else{
                     Toast.makeText(SeleccionServicioActivity.this, Mensajes.MSG_NO_HAY_ENCUESTAS,Toast.LENGTH_LONG).show();
                 }
@@ -131,5 +133,19 @@ public class SeleccionServicioActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        AlertGuardarDatos dFragment = newInstance(idEncuesta);
+        dFragment.show(fm, Mensajes.MSG_SALIR_ENCUESTA);
+    }
+    public static AlertGuardarDatos newInstance(int id) {
+        AlertGuardarDatos f = new AlertGuardarDatos();
 
+        // Supply num input as an argument.
+        Bundle args = new Bundle();
+        args.putInt(ExtrasID.EXTRA_ID_ENCUESTA, id);
+        f.setArguments(args);
+
+        return f;
+    }
 }

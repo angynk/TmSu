@@ -67,9 +67,7 @@ public class ListaRegistrosADPActivity extends AppCompatActivity implements Real
                 Intent intent = new Intent(ListaRegistrosADPActivity.this,AdPuntoServiciosActivity.class);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -130,5 +128,11 @@ public class ListaRegistrosADPActivity extends AppCompatActivity implements Real
         f.setArguments(args);
 
         return f;
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertGuardarDatos dFragment = newInstance(idEncuesta);
+        dFragment.show(fm, Mensajes.MSG_SALIR_ENCUESTA);
     }
 }

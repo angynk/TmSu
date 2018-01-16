@@ -135,4 +135,10 @@ public class ListaRegistrosActivity extends AppCompatActivity implements RealmCh
         realm.close();
     }
 
+    @Override
+    public void onBackPressed() {
+        AlertGuardarDatos dFragment = newInstance(idEncuesta);
+        dFragment.show(fm, Mensajes.MSG_SALIR_ENCUESTA);
+    }
+
 }

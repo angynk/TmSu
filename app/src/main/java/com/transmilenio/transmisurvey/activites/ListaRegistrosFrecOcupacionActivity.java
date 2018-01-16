@@ -126,4 +126,10 @@ public class ListaRegistrosFrecOcupacionActivity extends AppCompatActivity imple
 
         return f;
     }
+
+    @Override
+    public void onBackPressed() {
+        AlertGuardarDatos dFragment = newInstance(idEncuesta);
+        dFragment.show(fm, Mensajes.MSG_SALIR_ENCUESTA);
+    }
 }

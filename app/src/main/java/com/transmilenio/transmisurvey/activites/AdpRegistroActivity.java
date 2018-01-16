@@ -107,7 +107,7 @@ public class AdpRegistroActivity extends AppCompatActivity {
         intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
         intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estacion);
         intent.putExtra(ExtrasID.EXTRA_ID_VAGON,  vagon);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 
@@ -150,6 +150,7 @@ public class AdpRegistroActivity extends AppCompatActivity {
                     intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estacion);
                     intent.putExtra(ExtrasID.EXTRA_ID_VAGON,  vagon);
                     startActivity(intent);
+                    finish();
                 }
 
             }

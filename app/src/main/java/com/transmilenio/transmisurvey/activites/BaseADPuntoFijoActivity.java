@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import com.transmilenio.transmisurvey.R;
+import com.transmilenio.transmisurvey.fragments.AlertGuardarDatos;
 import com.transmilenio.transmisurvey.models.db.AdPuntoEncuesta;
 import com.transmilenio.transmisurvey.models.db.Estacion;
 import com.transmilenio.transmisurvey.models.db.EstacionServicio;
@@ -48,6 +50,9 @@ public class BaseADPuntoFijoActivity extends AppCompatActivity {
     private String nombreEncuesta,modo;
     private int idEncuesta, idCuadro;
     private SharedPreferences prefs;
+
+    //For dialog fragment
+    FragmentManager fm = getSupportFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,9 +126,7 @@ public class BaseADPuntoFijoActivity extends AppCompatActivity {
                         intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                         intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
                         intent.putExtra(ExtrasID.EXTRA_ID_ESTACION,  estaciones.getSelectedItem().toString());
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
-                        finish();
 
 
                 }
@@ -177,4 +180,21 @@ public class BaseADPuntoFijoActivity extends AppCompatActivity {
         super.onDestroy();
         realm.close();
     }
+
+    @Override
+    public void onBackPressed() {
+        AlertGuardarDatos dFragment = newInstance(idEncuesta);
+        dFragment.show(fm, Mensajes.MSG_SALIR_ENCUESTA);
+    }
+    public static AlertGuardarDatos newInstance(int id) {
+        AlertGuardarDatos f = new AlertGuardarDatos();
+
+        // Supply num input as an argument.
+        Bundle args = new Bundle();
+        args.putInt(ExtrasID.EXTRA_ID_ENCUESTA, id);
+        f.setArguments(args);
+
+        return f;
+    }
+
 }
