@@ -79,14 +79,14 @@ public class OdTransbordoActivity extends AppCompatActivity {
         transbordo3Check = (CheckBox) findViewById(R.id.odt_tr3_checkBox);
         transbordo1Check.setChecked(true);
         transbordo1Check.setEnabled(true);
-//        transbordo1Check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                estacionesTr1.setEnabled(isChecked);
-//                serviciosTr1.setEnabled(isChecked);
-//                transbordo2Check.setEnabled(isChecked);
-//            }
-//        });
+        transbordo1Check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                estacionesTr1.setEnabled(isChecked);
+                serviciosTr1.setEnabled(isChecked);
+                transbordo2Check.setEnabled(isChecked);
+            }
+        });
 
         transbordo2Check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -243,9 +243,19 @@ public class OdTransbordoActivity extends AppCompatActivity {
         estacionesTr1.setAdapter(dataAdapterestacionesOrigen);
         estacionesTr1.setTitle(Mensajes.MSG_SELECCIONE);
         estacionesTr1.setPositiveButton(Mensajes.MSG_OK);
-        estacionesTr1.setEnabled(false);
         estacionesTr1.setSelection(getPositionEstacion(listestaciones,estacion));
         addServiciosTransbordo1();
+        estacionesTr1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                addServiciosTransbordo1();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void addServiciosTransbordo1() {
