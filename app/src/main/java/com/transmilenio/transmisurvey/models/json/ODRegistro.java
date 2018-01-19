@@ -14,6 +14,8 @@ public class ODRegistro {
     private String modo_llegada;
     private Integer cant_viaje;
 
+    private String comentario;
+
     public ODRegistro() {
     }
 
@@ -71,5 +73,13 @@ public class ODRegistro {
 
     public void setCant_viaje(Integer cant_viaje) {
         this.cant_viaje = cant_viaje;
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
 }

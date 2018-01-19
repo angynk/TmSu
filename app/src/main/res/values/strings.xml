@@ -27,6 +27,7 @@
 
     <string name="button_finalizar">Finalizar</string>
     <string name="button_guardar">Guardar Cambios</string>
+    <string name="button_comentario">Guardar Comentario</string>
     <string name="button_ignorar">Ignorar Cambios</string>
     <string name="button_cancelar">Cancelar</string>
     <string name="button_enviar">Enviar</string>

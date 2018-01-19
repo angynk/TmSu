@@ -37,4 +37,5 @@ public class RegFROcupacionBus {
     public void setNum_bus(Integer num_bus) {
         this.num_bus = num_bus;
     }
+
 }

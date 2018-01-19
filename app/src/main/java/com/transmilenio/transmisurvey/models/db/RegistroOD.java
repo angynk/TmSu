@@ -6,9 +6,7 @@ import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-/**
- * Created by nataly on 26/12/2017.
- */
+
 
 public class RegistroOD extends RealmObject {
 
@@ -20,6 +18,7 @@ public class RegistroOD extends RealmObject {
     private String estacionDestino;
     private String modoLlegada;
     private Integer numVeces;
+    private String comentario;
 
     private RealmList<TransbordoOD> transbordos;
 
@@ -96,5 +95,13 @@ public class RegistroOD extends RealmObject {
 
     public void setNumVeces(Integer numVeces) {
         this.numVeces = numVeces;
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
 }

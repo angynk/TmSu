@@ -92,8 +92,9 @@ public class ListaRegistrosODActivity extends AppCompatActivity implements Realm
         buttonGuardar = (Button) findViewById(R.id.od_guardar_button);
 
         listView = (ListView) findViewById(R.id.od_registros_listView);
-        registroAdapter = new RegistroOdAdapter(this,registros,R.layout.list_view_registro_item);
+        registroAdapter = new RegistroOdAdapter(this,registros,R.layout.list_view_od_registro_item);
         listView.setAdapter(registroAdapter);
+
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override

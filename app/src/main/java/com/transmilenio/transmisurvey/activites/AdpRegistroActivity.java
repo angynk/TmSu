@@ -228,7 +228,8 @@ public class AdpRegistroActivity extends AppCompatActivity {
                 textSalida.getText().toString().trim().equals("H.Salida")  ||
                 seBajan.getText().toString().trim().equals("") ||
                 seSuben.getText().toString().trim().equals("") ||
-                seQuedan.getText().toString().trim().equals("")){
+                seQuedan.getText().toString().trim().equals("")||
+                numBus.getText().toString().trim().equals("") ){
             return false;
         }
         return true;
