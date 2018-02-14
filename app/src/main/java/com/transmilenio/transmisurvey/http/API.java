@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class API {
 
 //    public static final String BASE_URL = "http://10.0.2.2:8080/TmAPI/";
-    public static final String BASE_URL = "http://35.165.230.191:8080/TmAPI/";
+    public static final String BASE_URL = "http://35.226.255.51:8080/TmAPI/";
     private static Retrofit retrofit = null;
 
     public static Retrofit getApi(){
