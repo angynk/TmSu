@@ -16,6 +16,7 @@ public class Mensajes {
     public static String MSG_SINCRONIZE = "Datos Incompletos Sincronize la Aplicacion";
     public static String MSG_SINCRONIZACION = "Sincronización exitosa";
     public static String MSG_SINCRONIZANDO= "Sincronizando Datos";
+    public static String MSG_SINCRONIZANCION= "Sincronización";
     public static String MSG_SINCRONIZACION_FALLO = "Error en Sincronización ";
     public static String MSG_SELECCIONE = "Seleccione Uno";
     public static String MSG_OK = "OK";

@@ -99,7 +99,8 @@
         <activity android:name=".activites.ListaRegistrosFOBusActivity" />
         <activity android:name=".activites.FrecBusRegistroActivity" />
         <activity android:name=".activites.OdDestinoActivity" />
-        <activity android:name=".activites.OdTransbordoActivity"></activity>
+        <activity android:name=".activites.OdTransbordoActivity" />
+        <activity android:name=".activites.ConfiguracionActivity"></activity>
     </application>
 
 </manifest>

@@ -12,10 +12,12 @@
     <string name="text_num_puerta">Número Puerta</string>
     <string name="recorrido">Recorrido</string>
     <string name="infoBase">Información Base</string>
+    <string name="config">Configuración</string>
     <string name="listRegistro">Registros Encuesta</string>
     <string name="banner_encuestas">Encuestas</string>
     <string name="nuevoRegistro">Nuevo Registro</string>
     <string name="llegada">H.Llegada</string>
+    <string name="seleccionar">Seleccione el Modo</string>
     <string name="despacho">H.Despacho</string>
     <string name="salida">H.Salida</string>
     <string name="estacion">Estación</string>
@@ -28,6 +30,7 @@
     <string name="button_finalizar">Finalizar</string>
     <string name="button_guardar">Guardar Cambios</string>
     <string name="button_comentario">Guardar Comentario</string>
+    <string name="button_sincronizar">Sincronizar</string>
     <string name="button_ignorar">Ignorar Cambios</string>
     <string name="button_cancelar">Cancelar</string>
     <string name="button_enviar">Enviar</string>
