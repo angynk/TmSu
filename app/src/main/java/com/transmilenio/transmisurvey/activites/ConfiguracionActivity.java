@@ -1,6 +1,7 @@
 package com.transmilenio.transmisurvey.activites;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -72,6 +73,10 @@ public class ConfiguracionActivity extends AppCompatActivity {
             return "tro";
         }else if (valor.equals("Alimentación")){
             return "ali";
+        }else if (valor.equals("Troncal-OD")){
+            return "tro-od";
+        }else if (valor.equals("Zonal")){
+            return "zon";
         }
 
         return "tod";
@@ -80,7 +85,9 @@ public class ConfiguracionActivity extends AppCompatActivity {
     private List<String> getModosLista() {
         List<String> modos = new ArrayList<>();
         modos.add("Troncal");
+        modos.add("Troncal-OD");
         modos.add("Alimentación");
+        modos.add("Zonal");
         modos.add("Todos");
         return modos;
     }
@@ -101,6 +108,9 @@ public class ConfiguracionActivity extends AppCompatActivity {
                 guardarEstaciones(response.body().getEstacionTs());
                 progressDoalog.dismiss();
                 Toast.makeText(ConfiguracionActivity.this,Mensajes.MSG_SINCRONIZACION,Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ConfiguracionActivity.this,MainActivity.class);
+                startActivity(intent);
+
             }
 
             @Override
