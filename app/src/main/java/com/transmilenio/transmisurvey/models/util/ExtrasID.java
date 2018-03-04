@@ -32,6 +32,7 @@ public class ExtrasID {
 
     public static String TIPO_SERVICIO_TRONCAL = "tro";
     public static String TIPO_SERVICIO_ALIMENTADOR = "ali";
+    public static String TIPO_SERVICIO_ZONAL = "zon";
 
     public static String TIPO_USUARIO_ADMIN = "ADMIN";
     public static String TIPO_USUARIO_INVITADO = "INVITADO";

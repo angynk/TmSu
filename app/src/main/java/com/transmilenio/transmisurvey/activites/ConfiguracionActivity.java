@@ -1,7 +1,9 @@
 package com.transmilenio.transmisurvey.activites;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +22,7 @@ import com.transmilenio.transmisurvey.models.db.ServicioRutas;
 import com.transmilenio.transmisurvey.models.json.Config;
 import com.transmilenio.transmisurvey.models.json.EstacionTs;
 import com.transmilenio.transmisurvey.models.json.Servicio;
+import com.transmilenio.transmisurvey.models.util.ExtrasID;
 import com.transmilenio.transmisurvey.models.util.Mensajes;
 
 import java.util.ArrayList;
@@ -32,6 +35,7 @@ import retrofit2.Response;
 
 public class ConfiguracionActivity extends AppCompatActivity {
 
+    private SharedPreferences prefs;
     private Button buttonSincronizar;
     private SearchableSpinner modos;
     private ProgressDialog progressDoalog;
@@ -41,6 +45,7 @@ public class ConfiguracionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuracion);
+        prefs = getSharedPreferences("Preferences", Context.MODE_PRIVATE);
         realm = Realm.getDefaultInstance();
         bindUI();
     }
@@ -61,10 +66,17 @@ public class ConfiguracionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(modos.getSelectedItem().toString()!=null){
                     String modo = obtenerModo(modos.getSelectedItem().toString());
+                    cofigurarModoEncuestas(modo);
                     cargarServiciosTemporal(modo);
                 }
             }
         });
+    }
+
+    private void cofigurarModoEncuestas(String modo) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(ExtrasID.EXTRA_MODO,modo);
+        editor.apply();
     }
 
     private String obtenerModo(String valor) {

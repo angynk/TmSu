@@ -43,6 +43,7 @@
     <string name="button_observacion">¿Tiene Observaciones?</string>
     <string name="button_troncal">Troncal</string>
     <string name="button_alimentador">Alimentador</string>
+    <string name="button_zonal">Zonal</string>
 
     <string name="txt_encuestasEnviadas">Encuestas Enviadas</string>
     <string name="txt_encuestasPendientes">Encuestas Pendientes</string>

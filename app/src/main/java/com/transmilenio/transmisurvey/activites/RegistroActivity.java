@@ -29,6 +29,7 @@ import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 import com.transmilenio.transmisurvey.models.util.Mensajes;
+import com.transmilenio.transmisurvey.util.ModosLlegada;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,6 +55,7 @@ public class RegistroActivity extends AppCompatActivity  {
     private int idCuadroEncuesta,idEncuesta;
     private CuadroEncuesta encuesta;
     private String servicio;
+    private String modo;
 
 
 
@@ -73,6 +75,7 @@ public class RegistroActivity extends AppCompatActivity  {
             idCuadroEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_CUADRO);
             encuesta = realm.where(CuadroEncuesta.class).equalTo("id",idCuadroEncuesta).findFirst();
             servicio = (String) extras.get(ExtrasID.EXTRA_ID_SERVICIO);
+            modo = (String) extras.get(ExtrasID.EXTRA_MODO);
         }
         bindUI();
         setActionBarBotton();
@@ -163,6 +166,7 @@ public class RegistroActivity extends AppCompatActivity  {
                     intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
                     intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
                     intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
+                    intent.putExtra(ExtrasID.EXTRA_MODO,modo);
                     startActivity(intent);
                 }
 
@@ -176,6 +180,7 @@ public class RegistroActivity extends AppCompatActivity  {
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
+                intent.putExtra(ExtrasID.EXTRA_MODO,modo);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
@@ -244,9 +249,18 @@ public class RegistroActivity extends AppCompatActivity  {
         registro.setBajan(Integer.parseInt(seBajan.getText().toString()));
         registro.setSuban(Integer.parseInt(seSuben.getText().toString()));
         registro.setQuedan(Integer.parseInt(seQuedan.getText().toString()));
-        registro.setEstacion(estacion.getSelectedItem().toString());
+        registro.setEstacion(obtenerEstacion());
         registro.setObservacion(observaciones.getText().toString());
         return registro;
+    }
+
+    private String obtenerEstacion() {
+        String estacionValor = estacion.getSelectedItem().toString();
+        if(modo.equals(ExtrasID.TIPO_SERVICIO_ALIMENTADOR) || modo.equals(ExtrasID.TIPO_SERVICIO_ZONAL)){
+           return estacionValor.split("-")[1];
+        }
+
+        return estacionValor;
     }
 
     private boolean informacionCompletada() {
@@ -276,9 +290,16 @@ public class RegistroActivity extends AppCompatActivity  {
         ServicioRutas servicioRutas = realm.where(ServicioRutas.class).equalTo("nombre", servicio).findFirst();
         RealmList<Estacion> estaciones = servicioRutas.getEstaciones();
         List<String> lista =  new ArrayList<>();
-        for(Estacion estacion:estaciones){
-            lista.add(estacion.getNombre());
+        if(modo.equals(ExtrasID.TIPO_SERVICIO_ALIMENTADOR) || modo.equals(ExtrasID.TIPO_SERVICIO_ZONAL) ){
+            for(int x=0;x<estaciones.size();x++){
+                lista.add(x+"-"+estaciones.get(x).getNombre());
+            }
+        }else{
+            for(Estacion estacion:estaciones){
+                lista.add(estacion.getNombre());
+            }
         }
+
         lista.add("Otro");
         return lista;
     }
