@@ -27,7 +27,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activites.SurveyActivity"
-            android:parentActivityName=".activites.ListaSurveyActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activites.ListaRegistrosActivity"

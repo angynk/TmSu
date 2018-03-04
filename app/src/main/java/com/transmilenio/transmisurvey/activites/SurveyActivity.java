@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -57,7 +58,14 @@ public class SurveyActivity extends AppCompatActivity {
         validarExtras();
         bindUI();
         bindEventos();
+//        setActionBarBotton();
     }
+
+//    private void setActionBarBotton() {
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setHomeButtonEnabled(false);
+//        actionBar.setDisplayHomeAsUpEnabled(false);
+//    }
 
     private void validarExtras(){
         Bundle extras = getIntent().getExtras();
@@ -207,12 +215,6 @@ public class SurveyActivity extends AppCompatActivity {
             list.add(servicioRutas.getNombre());
         }
         return list;
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        realm.close();
     }
 
 }

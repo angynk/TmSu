@@ -51,7 +51,7 @@ public class ListaSurveyActivity extends AppCompatActivity {
         encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_ASCDES_TRONCAL));
         encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_FRECUENCIA_OCUPACION));
         encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_ASCDES_PUNTO));
-//        encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_CONTEO_DESPACHOS));
+        encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_CONTEO_DESPACHOS));
         encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_ORIGEN_DESTINO));
         encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_FRECUENCIA_OCUPACION_BUS));
 //        encuestas.add(new Encuesta("Eliminar Todo"));
@@ -72,7 +72,7 @@ public class ListaSurveyActivity extends AppCompatActivity {
                     Intent intent = new Intent(ListaSurveyActivity.this, SurveyActivity.class);
                     intent.putExtra(ExtrasID.EXTRA_NOMBRE,value.getNombre());
                     intent.putExtra(ExtrasID.EXTRA_MODO,modo);
-                    intent.putExtra(ExtrasID.EXTRA_TIPO,ExtrasID.VALOR_NUEVO);
+//                    intent.putExtra(ExtrasID.EXTRA_TIPO,ExtrasID.VALOR_NUEVO);
                     startActivity(intent);
                 }else if (value.getNombre().equals(ExtrasID.NOMBRE_ENCUESTA_FRECUENCIA_OCUPACION)) {
                     Intent intent = new Intent(ListaSurveyActivity.this, BaseFrecOcupacionActivity.class);
