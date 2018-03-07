@@ -16,7 +16,7 @@ import com.transmilenio.transmisurvey.util.ModosLlegada;
 public class SeleccionModoActivity extends AppCompatActivity {
 
     private SharedPreferences prefs;
-    private Button troncalButton,alimentadorButton,zonalButton;
+    private Button troncalButton,alimentadorButton,zonalButton,troncalODButton;
     private String modo;
 
     @Override
@@ -32,12 +32,22 @@ public class SeleccionModoActivity extends AppCompatActivity {
         troncalButton = (Button) findViewById(R.id.sel_troncal_button);
         alimentadorButton = (Button) findViewById(R.id.sel_alimentador_button);
         zonalButton = (Button) findViewById(R.id.sel_zonal_button);
+        troncalODButton = (Button) findViewById(R.id.sel_troncal_od_button);
 
         troncalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SeleccionModoActivity.this,ListaSurveyActivity.class);
                 intent.putExtra(ExtrasID.EXTRA_MODO,ExtrasID.TIPO_SERVICIO_TRONCAL);
+                startActivity(intent);
+            }
+        });
+
+        troncalODButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SeleccionModoActivity.this,ListaSurveyActivity.class);
+                intent.putExtra(ExtrasID.EXTRA_MODO,ExtrasID.TIPO_SERVICIO_TRONCAL_OD);
                 startActivity(intent);
             }
         });
@@ -63,17 +73,21 @@ public class SeleccionModoActivity extends AppCompatActivity {
         troncalButton.setVisibility(View.INVISIBLE);
         alimentadorButton.setVisibility(View.INVISIBLE);
         zonalButton.setVisibility(View.INVISIBLE);
+        troncalODButton.setVisibility(View.INVISIBLE);
 
-        if(modo.equals("tro")|| modo.equals("tro-od")){
+        if(modo.equals("tro")){
             troncalButton.setVisibility(View.VISIBLE);
         }else if(modo.equals("ali")){
             alimentadorButton.setVisibility(View.VISIBLE);
+        }else if(modo.equals("tro-od")){
+            troncalODButton.setVisibility(View.VISIBLE);
         }else if(modo.equals("zon")){
             zonalButton.setVisibility(View.VISIBLE);
         }else{
             troncalButton.setVisibility(View.VISIBLE);
             alimentadorButton.setVisibility(View.VISIBLE);
             zonalButton.setVisibility(View.VISIBLE);
+            troncalODButton.setVisibility(View.VISIBLE);
         }
     }
 }

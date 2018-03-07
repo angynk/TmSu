@@ -31,6 +31,7 @@ public class ExtrasID {
     public static String NOMBRE_ENCUESTA_FRECUENCIA_OCUPACION_BUS = "Frecuencia con No.Bus";
 
     public static String TIPO_SERVICIO_TRONCAL = "tro";
+    public static String TIPO_SERVICIO_TRONCAL_OD = "tro-od";
     public static String TIPO_SERVICIO_ALIMENTADOR = "ali";
     public static String TIPO_SERVICIO_ZONAL = "zon";
 

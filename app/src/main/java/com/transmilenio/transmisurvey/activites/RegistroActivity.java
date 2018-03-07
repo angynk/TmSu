@@ -125,6 +125,7 @@ public class RegistroActivity extends AppCompatActivity  {
         intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
         intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
         intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
+        intent.putExtra(ExtrasID.EXTRA_MODO,modo);
         startActivity(intent);
     }
 
@@ -181,7 +182,6 @@ public class RegistroActivity extends AppCompatActivity  {
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
                 intent.putExtra(ExtrasID.EXTRA_MODO,modo);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
         });

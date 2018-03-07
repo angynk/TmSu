@@ -42,6 +42,7 @@
     <string name="button_iniciar_anonimo">Inicio Invitado</string>
     <string name="button_observacion">¿Tiene Observaciones?</string>
     <string name="button_troncal">Troncal</string>
+    <string name="button_troncal_od">Troncal OD</string>
     <string name="button_alimentador">Alimentador</string>
     <string name="button_zonal">Zonal</string>
 
