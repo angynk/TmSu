@@ -45,12 +45,15 @@
     <string name="button_troncal_od">Troncal OD</string>
     <string name="button_alimentador">Alimentador</string>
     <string name="button_zonal">Zonal</string>
+    <string name="button_modos">Modos</string>
+    <string name="button_info">Información Base</string>
 
     <string name="txt_encuestasEnviadas">Encuestas Enviadas</string>
     <string name="txt_encuestasPendientes">Encuestas Pendientes</string>
     <string name="txt_opciones">Opciones</string>
     <string name="txt_tiene_observaciones">Encuesta Registrada!</string>
     <string name="txt_seleccione_Servicios">Seleccione los servicios</string>
+    <string name="txt_seleccione_Configuracion">Seleccione la configuración</string>
     <string name="txt_ninguna">Ninguna</string>
     <string name="txt_gestion_usuarios">Gestión Usuarios</string>
     <string name="txt_nuevo_usuario">Nuevo Usuario</string>

@@ -96,7 +96,8 @@
             android:layout_marginTop="14dp"
             android:layout_below="@+id/adp_estacion_text"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+           />
 
     </RelativeLayout>
 

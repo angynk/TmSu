@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity  {
                     Intent intent = new Intent(MainActivity.this,ListaSurveyEnvioActivity.class);
                     startActivity(intent);
                 }else if( value.getName().equals(Mensajes.OPCION_CONFIG)){
-                    Intent intent = new Intent(MainActivity.this,ConfiguracionActivity.class);
+                    Intent intent = new Intent(MainActivity.this,SeleccionarSincroActivity.class);
                     startActivity(intent);
                 }else if(value.getName().equals(Mensajes.OPCION_USUARIO)){
                     Intent intent = new Intent(MainActivity.this,CreacionUsuariosActivity.class);
