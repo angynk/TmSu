@@ -9,6 +9,7 @@ import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Estacion;
 import com.transmilenio.transmisurvey.models.db.EstacionServicio;
 import com.transmilenio.transmisurvey.models.db.FOcupacionBusBase;
+import com.transmilenio.transmisurvey.models.db.Modo;
 import com.transmilenio.transmisurvey.models.db.OrigenDestinoBase;
 import com.transmilenio.transmisurvey.models.db.Registro;
 import com.transmilenio.transmisurvey.models.db.RegistroAdPunto;
@@ -58,6 +59,7 @@ public class MyApplication extends Application {
     public static AtomicInteger odTranRegID = new AtomicInteger();
     public static AtomicInteger freOcupaBusID = new AtomicInteger();
     public static AtomicInteger regfreOcupaBusID = new AtomicInteger();
+    public static AtomicInteger modoID = new AtomicInteger();
 
     @Override
     public void onCreate() {
@@ -86,6 +88,7 @@ public class MyApplication extends Application {
         odTranRegID = getIdByTable(realm, TransbordoOD.class);
         freOcupaBusID = getIdByTable(realm, FOcupacionBusBase.class);
         regfreOcupaBusID = getIdByTable(realm, RegistroFrecOcupaBus.class);
+        modoID = getIdByTable(realm, Modo.class);
         realm.close();
     }
 

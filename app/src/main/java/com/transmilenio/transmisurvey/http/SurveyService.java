@@ -3,6 +3,7 @@ package com.transmilenio.transmisurvey.http;
 import com.transmilenio.transmisurvey.models.db.Aforador;
 import com.transmilenio.transmisurvey.models.db.Resultado;
 import com.transmilenio.transmisurvey.models.json.Config;
+import com.transmilenio.transmisurvey.models.json.ConfigModo;
 import com.transmilenio.transmisurvey.models.json.EncuestasTerminadas;
 
 import java.util.List;
@@ -22,6 +23,9 @@ public interface SurveyService {
 
     @GET("config/servicioEstaciones/")
     Call<Config> getServicios(@Query("modo") String modo);
+
+    @GET("config/modos/")
+    Call<ConfigModo> getModos();
 
     @POST("user/login/")
     Call<Boolean> login(@Body Aforador aforador);

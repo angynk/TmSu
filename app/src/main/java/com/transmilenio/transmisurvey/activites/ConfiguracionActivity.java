@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.transmilenio.transmisurvey.http.API;
 import com.transmilenio.transmisurvey.http.SurveyService;
 import com.transmilenio.transmisurvey.models.db.Estacion;
 import com.transmilenio.transmisurvey.models.db.EstacionServicio;
+import com.transmilenio.transmisurvey.models.db.Modo;
 import com.transmilenio.transmisurvey.models.db.Serv;
 import com.transmilenio.transmisurvey.models.db.ServicioRutas;
 import com.transmilenio.transmisurvey.models.json.Config;
@@ -29,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,6 +43,7 @@ public class ConfiguracionActivity extends AppCompatActivity {
     private SearchableSpinner modos;
     private ProgressDialog progressDoalog;
     private Realm realm;
+    private RealmResults<Modo> modosLista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +68,7 @@ public class ConfiguracionActivity extends AppCompatActivity {
         buttonSincronizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(modos.getSelectedItem().toString()!=null){
+                if(modos.getSelectedItem()!=null){
                     String modo = obtenerModo(modos.getSelectedItem().toString());
                     cofigurarModoEncuestas(modo);
                     cargarServiciosTemporal(modo);
@@ -81,28 +85,26 @@ public class ConfiguracionActivity extends AppCompatActivity {
 
     private String obtenerModo(String valor) {
 
-        if(valor.equals("Troncal")){
-            return "tro";
-        }else if (valor.equals("Alimentación")){
-            return "ali";
-        }else if (valor.equals("Troncal-OD")){
-            return "tro-od";
-        }else if (valor.equals("Zonal")){
-            return "zon";
+        for (Modo modo: modosLista){
+            if(modo.getNombre().equals(valor)){
+                return modo.getAbreviatura();
+            }
         }
 
-        return "tod";
+        return "non";
     }
 
+
+    @NonNull
     private List<String> getModosLista() {
         List<String> modos = new ArrayList<>();
-        modos.add("Troncal");
-        modos.add("Troncal-OD");
-        modos.add("Alimentación");
-        modos.add("Zonal");
-        modos.add("Todos");
+        modosLista = realm.where(Modo.class).findAll();
+        for (Modo modo: modosLista){
+            modos.add(modo.getNombre());
+        }
         return modos;
     }
+
 
     private void cargarServiciosTemporal(String modo){
         progressDoalog = new ProgressDialog(ConfiguracionActivity.this);
