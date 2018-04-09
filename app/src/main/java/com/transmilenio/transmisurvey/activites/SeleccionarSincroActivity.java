@@ -27,6 +27,7 @@ import com.transmilenio.transmisurvey.models.util.Mensajes;
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -61,11 +62,26 @@ public class SeleccionarSincroActivity extends AppCompatActivity {
         infoBaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SeleccionarSincroActivity.this,ConfiguracionActivity.class);
-                startActivity(intent);
+                if(existenModos()){
+                    Intent intent = new Intent(SeleccionarSincroActivity.this,ConfiguracionActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(SeleccionarSincroActivity.this,Mensajes.MSG_SINCRONIXE_MODOS,Toast.LENGTH_SHORT).show();
+                }
+
             }
+
+
         });
 
+    }
+
+    private boolean existenModos() {
+        RealmResults<Modo> modos = realm.where(Modo.class).findAll();
+        if(modos.size()>0){
+            return true;
+        }
+        return false;
     }
 
     public void cargarModos(){

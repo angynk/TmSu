@@ -27,6 +27,7 @@ import com.transmilenio.transmisurvey.http.SurveyService;
 import com.transmilenio.transmisurvey.models.db.Cuadro;
 import com.transmilenio.transmisurvey.models.db.Estacion;
 import com.transmilenio.transmisurvey.models.db.EstacionServicio;
+import com.transmilenio.transmisurvey.models.db.Modo;
 import com.transmilenio.transmisurvey.models.db.Opcion;
 import com.transmilenio.transmisurvey.models.db.Registro;
 import com.transmilenio.transmisurvey.models.db.RegistroAdPunto;
@@ -141,8 +142,13 @@ public class MainActivity extends AppCompatActivity  {
             {
                 Opcion value = (Opcion) adapter.getItemAtPosition(position);
                 if(value.getName().equals(Mensajes.OPCION_NUEVA)){
-                    Intent intent = new Intent(MainActivity.this,SeleccionModoActivity.class);
-                    startActivity(intent);
+                    if(existenModos()){
+                        Intent intent = new Intent(MainActivity.this,SeleccionModoActivity.class);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(MainActivity.this,Mensajes.MSG_SINCRONIZE,Toast.LENGTH_SHORT).show();
+                    }
+
                 }else if( value.getName().equals(Mensajes.OPCION_ENVIAR)){
                     Intent intent = new Intent(MainActivity.this,ListaSurveyEnvioActivity.class);
                     startActivity(intent);
@@ -156,6 +162,14 @@ public class MainActivity extends AppCompatActivity  {
 
             }
         });
+    }
+
+    private boolean existenModos() {
+        RealmResults<Modo> modos = realm.where(Modo.class).findAll();
+        if(modos.size()>0){
+            return true;
+        }
+        return false;
     }
 
 

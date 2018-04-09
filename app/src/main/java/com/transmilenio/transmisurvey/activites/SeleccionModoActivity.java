@@ -75,7 +75,6 @@ public class SeleccionModoActivity extends AppCompatActivity {
             }
         });
 
-        System.out.println("a");
 
     }
 

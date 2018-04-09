@@ -15,6 +15,7 @@ public class Mensajes {
     public static String MSG_SERVICIO_NO_ESTACION = "El servicio no pasa por la estación seleccionada";
     public static String MSG_SINCRONIZE = "Datos Incompletos Sincronize la Aplicacion";
     public static String MSG_SINCRONIZACION = "Sincronización exitosa";
+    public static String MSG_SINCRONIXE_MODOS = "Debe sincronizar los modos primero";
     public static String MSG_SINCRONIZANDO= "Sincronizando Datos";
     public static String MSG_SINCRONIZANCION= "Sincronización";
     public static String MSG_SINCRONIZACION_FALLO = "Error en Sincronización ";
