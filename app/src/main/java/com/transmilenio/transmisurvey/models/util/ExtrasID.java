@@ -29,6 +29,7 @@ public class ExtrasID {
     public static String NOMBRE_ENCUESTA_CONTEO_DESPACHOS = "Conteo Despachos";
     public static String NOMBRE_ENCUESTA_ORIGEN_DESTINO = "Origen Destino";
     public static String NOMBRE_ENCUESTA_FRECUENCIA_OCUPACION_BUS = "Frecuencia con No.Bus";
+    public static String NOMBRE_ENCUESTA_TIEMPOS_RECORRIDO = "Tiempos de Recorrido";
 
     public static String TIPO_SERVICIO_TRONCAL = "tro";
     public static String TIPO_SERVICIO_TRONCAL_OD = "tro-od";

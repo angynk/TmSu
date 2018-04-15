@@ -54,7 +54,8 @@ public class ListaSurveyActivity extends AppCompatActivity {
         encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_CONTEO_DESPACHOS));
         encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_ORIGEN_DESTINO));
         encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_FRECUENCIA_OCUPACION_BUS));
-//        encuestas.add(new Encuesta("Eliminar Todo"));
+        encuestas.add(new Encuesta(ExtrasID.NOMBRE_ENCUESTA_TIEMPOS_RECORRIDO));
+        encuestas.add(new Encuesta("Eliminar Todo"));
         listView = (ListView) findViewById(R.id.listView_surveys);
         surveyAdapter = new SurveyAdapter(this,encuestas,R.layout.list_view_surveys);
         listView.setAdapter(surveyAdapter);
@@ -72,7 +73,6 @@ public class ListaSurveyActivity extends AppCompatActivity {
                     Intent intent = new Intent(ListaSurveyActivity.this, SurveyActivity.class);
                     intent.putExtra(ExtrasID.EXTRA_NOMBRE,value.getNombre());
                     intent.putExtra(ExtrasID.EXTRA_MODO,modo);
-//                    intent.putExtra(ExtrasID.EXTRA_TIPO,ExtrasID.VALOR_NUEVO);
                     startActivity(intent);
                 }else if (value.getNombre().equals(ExtrasID.NOMBRE_ENCUESTA_FRECUENCIA_OCUPACION)) {
                     Intent intent = new Intent(ListaSurveyActivity.this, BaseFrecOcupacionActivity.class);
@@ -96,6 +96,11 @@ public class ListaSurveyActivity extends AppCompatActivity {
                     startActivity(intent);
                 }else if (value.getNombre().equals(ExtrasID.NOMBRE_ENCUESTA_FRECUENCIA_OCUPACION_BUS)) {
                     Intent intent = new Intent(ListaSurveyActivity.this, FrecOcupaBusActivity.class);
+                    intent.putExtra(ExtrasID.EXTRA_NOMBRE,value.getNombre());
+                    intent.putExtra(ExtrasID.EXTRA_MODO,modo);
+                    startActivity(intent);
+                }else if (value.getNombre().equals(ExtrasID.NOMBRE_ENCUESTA_TIEMPOS_RECORRIDO)) {
+                    Intent intent = new Intent(ListaSurveyActivity.this, TiemposRecorridoActivity.class);
                     intent.putExtra(ExtrasID.EXTRA_NOMBRE,value.getNombre());
                     intent.putExtra(ExtrasID.EXTRA_MODO,modo);
                     startActivity(intent);

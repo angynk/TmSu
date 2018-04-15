@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.transmilenio.transmisurvey.activites.TiemposRecorridoActivity">
+
+    <Button
+        android:id="@+id/tdr_continuar_button"
+        style="@style/AppTheme.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="@string/continuar" />
+
+    <TextView
+        android:id="@+id/tituloPanel"
+        style="@style/AppTheme.Banner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/infoBase"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_below="@+id/tituloPanel">
+
+
+        <TextView
+            android:id="@+id/tdr_fecha_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fecha"
+            style="@style/AppTheme.Encabezado"
+            android:layout_marginTop="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/tdr_fecha_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_alignBaseline="@+id/tdr_fecha_textView"
+            android:layout_alignBottom="@+id/tdr_fecha_textView"
+            android:layout_toRightOf="@+id/tdr_numBus_text"
+            android:layout_toEndOf="@+id/tdr_numBus_text"
+            android:layout_marginLeft="120dp"
+            android:layout_marginStart="120dp" />
+
+        <TextView
+            android:id="@+id/tdr_diaSemana_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="@string/diaSemana"
+            style="@style/AppTheme.Encabezado"
+            android:layout_below="@+id/tdr_fecha_textView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/tdr_servicio_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/AppTheme.Encabezado"
+            android:layout_marginTop="24dp"
+            android:text="@string/codigo"
+            android:layout_below="@+id/tdr_diaSemana_text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/tdr_numBus_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/AppTheme.Encabezado"
+            android:layout_below="@+id/tdr_servicio_text"
+            android:layout_marginTop="40dp"
+            android:text="@string/numBus" />
+
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:id="@+id/tdr_servicio_sepinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:layout_below="@+id/tdr_servicio_text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:id="@+id/tdr_numBus_editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tdr_numBus_text"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:id="@+id/tdr_dia_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tdr_diaSemana_text"
+            android:text=""
+            android:layout_alignLeft="@+id/tdr_fecha_text"
+            android:layout_alignStart="@+id/tdr_fecha_text" />
+
+        <TextView
+            android:id="@+id/tdr_recorrido_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/AppTheme.Encabezado"
+            android:layout_marginTop="18dp"
+            android:text="@string/recorrido"
+            android:layout_below="@+id/tdr_numBus_editText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:id="@+id/tdr_recorrido_editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:maxLength="2"
+            android:layout_below="@+id/tdr_recorrido_text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="9dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

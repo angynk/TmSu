@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.transmilenio.transmisurvey.activites.TRecorridoRegistroActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nuevoRegistro"
+        style="@style/AppTheme.Banner"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/tdr_nuevoRegistro_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_checked_icon"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/tdr_cancelarRegistro_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_cancel"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+
+            <ImageButton
+                android:id="@+id/tdr_llegada_button"
+                style="@style/AppTheme.ButtonObtDatos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_clock"
+                android:layout_marginTop="35dp"
+                android:layout_below="@+id/tdr_estacion_spinner"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="60dp"
+                android:layout_marginStart="60dp" />
+
+            <TextView
+                android:id="@+id/tdr_llegada_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/llegada"
+                android:layout_marginBottom="10dp"
+                android:layout_above="@+id/tdr_salida_button"
+                android:layout_alignRight="@+id/tdr_salida_texView"
+                android:layout_alignEnd="@+id/tdr_salida_texView" />
+
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                android:id="@+id/tdr_estacion_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="59dp"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/tdr_estacion_view"
+                android:layout_toEndOf="@+id/tdr_estacion_view" />
+
+            <TextView
+                android:id="@+id/tdr_estacion_view"
+                style="@style/AppTheme.Encabezado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/estacion"
+                android:layout_above="@+id/tdr_llegada_button"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="9dp"
+                android:layout_marginStart="9dp" />
+
+            <TextView
+                android:id="@+id/tdr_salida_texView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/salida"
+                android:layout_marginRight="65dp"
+                android:layout_marginEnd="65dp"
+                android:layout_alignBottom="@+id/tdr_salida_button"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="13dp" />
+
+            <ImageButton
+                android:id="@+id/tdr_salida_button"
+                style="@style/AppTheme.ButtonObtDatos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_clock"
+                android:layout_marginTop="27dp"
+                android:layout_below="@+id/tdr_llegada_button"
+                android:layout_alignLeft="@+id/tdr_llegada_button"
+                android:layout_alignStart="@+id/tdr_llegada_button" />
+
+
+            <TextView
+                android:id="@+id/tdr_estacion_zona_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_estacion_zona"
+                style="@style/AppTheme.Encabezado"
+                android:layout_marginTop="37dp"
+                android:layout_below="@+id/tdr_salida_button"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <ToggleButton
+                android:id="@+id/tdr_observaciones_toggleButton"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:background="@color/colorObservacion"
+                android:textOff="No"
+                android:textOn="Sí"
+                android:layout_alignBaseline="@+id/tdr_observaciones_TextView"
+                android:layout_alignBottom="@+id/tdr_observaciones_TextView"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:id="@+id/tdr_observaciones_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_observacion"
+                style="@style/AppTheme.Encabezado"
+                android:layout_marginTop="41dp"
+                android:layout_below="@+id/tdr_estacion_zona_toggleButton"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:id="@+id/tdr_observaciones_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text=""
+                android:inputType="textMultiLine"
+                android:layout_marginTop="26dp"
+                android:layout_below="@+id/tdr_observaciones_TextView"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignLeft="@+id/tdr_estacion_view"
+                android:layout_alignStart="@+id/tdr_estacion_view" />
+
+            <ToggleButton
+                android:id="@+id/tdr_estacion_zona_toggleButton"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:background="@color/colorObservacion"
+                android:textOff="No"
+                android:textOn="Sí"
+                android:layout_alignTop="@+id/tdr_estacion_zona_TextView"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+</RelativeLayout>

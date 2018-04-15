@@ -6,6 +6,7 @@ import com.transmilenio.transmisurvey.models.db.ConteoDesEncuesta;
 import com.transmilenio.transmisurvey.models.db.FOcupacionBusBase;
 import com.transmilenio.transmisurvey.models.db.FOcupacionEncuesta;
 import com.transmilenio.transmisurvey.models.db.OrigenDestinoBase;
+import com.transmilenio.transmisurvey.models.db.TRecorridoEncuesta;
 
 
 import java.util.Date;
@@ -35,6 +36,7 @@ public class EncuestaTM extends RealmObject {
     private ConteoDesEncuesta co_despachos; //CONTEO DESPACHOS
     private OrigenDestinoBase od_destino; //ORIGEN DESTINO
     private FOcupacionBusBase fo_bus; //FRECUENCIA OCUPACION CON NUMERO DE BUS
+    private TRecorridoEncuesta t_recorridos; //TIEMPOS DE RECORRIDO
 
 
     public EncuestaTM() {
@@ -151,5 +153,13 @@ public class EncuestaTM extends RealmObject {
 
     public void setFo_bus(FOcupacionBusBase fo_bus) {
         this.fo_bus = fo_bus;
+    }
+
+    public TRecorridoEncuesta getT_recorridos() {
+        return t_recorridos;
+    }
+
+    public void setT_recorridos(TRecorridoEncuesta t_recorridos) {
+        this.t_recorridos = t_recorridos;
     }
 }

@@ -2,6 +2,7 @@ package com.transmilenio.transmisurvey.app;
 
 import android.app.Application;
 
+import com.transmilenio.transmisurvey.activites.TiemposRecorridoActivity;
 import com.transmilenio.transmisurvey.models.db.AdPuntoEncuesta;
 import com.transmilenio.transmisurvey.models.db.Aforador;
 import com.transmilenio.transmisurvey.models.db.ConteoDesEncuesta;
@@ -17,9 +18,11 @@ import com.transmilenio.transmisurvey.models.db.RegistroConteo;
 import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupaBus;
 import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupacion;
 import com.transmilenio.transmisurvey.models.db.RegistroOD;
+import com.transmilenio.transmisurvey.models.db.RegistroTiempoRecorrido;
 import com.transmilenio.transmisurvey.models.db.Serv;
 import com.transmilenio.transmisurvey.models.db.ServTemp;
 import com.transmilenio.transmisurvey.models.db.ServicioRutas;
+import com.transmilenio.transmisurvey.models.db.TRecorridoEncuesta;
 import com.transmilenio.transmisurvey.models.db.TransbordoOD;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 import com.transmilenio.transmisurvey.models.json.EncuestaTM;
@@ -46,6 +49,8 @@ public class MyApplication extends Application {
     public static AtomicInteger aforadorID = new AtomicInteger();
     public static AtomicInteger encuestasTmID = new AtomicInteger();
     public static AtomicInteger encAsDsAbordoID = new AtomicInteger();
+    public static AtomicInteger encTRecorridoID = new AtomicInteger();
+    public static AtomicInteger regTRecorridoID = new AtomicInteger();
     public static AtomicInteger regAsDsAbordoID = new AtomicInteger();
     public static AtomicInteger encAsDsPuntoID = new AtomicInteger();
     public static AtomicInteger regAsDsPuntoID = new AtomicInteger();
@@ -88,6 +93,8 @@ public class MyApplication extends Application {
         odTranRegID = getIdByTable(realm, TransbordoOD.class);
         freOcupaBusID = getIdByTable(realm, FOcupacionBusBase.class);
         regfreOcupaBusID = getIdByTable(realm, RegistroFrecOcupaBus.class);
+        encTRecorridoID = getIdByTable(realm, TRecorridoEncuesta.class);
+        regTRecorridoID = getIdByTable(realm, RegistroTiempoRecorrido.class);
         modoID = getIdByTable(realm, Modo.class);
         realm.close();
     }

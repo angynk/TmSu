@@ -100,7 +100,10 @@
         <activity android:name=".activites.OdDestinoActivity" />
         <activity android:name=".activites.OdTransbordoActivity" />
         <activity android:name=".activites.ConfiguracionActivity" />
-        <activity android:name=".activites.SeleccionarSincroActivity"></activity>
+        <activity android:name=".activites.SeleccionarSincroActivity" />
+        <activity android:name=".activites.TiemposRecorridoActivity" />
+        <activity android:name=".activites.ListaTiemposRecorridoActivity" />
+        <activity android:name=".activites.TRecorridoRegistroActivity"></activity>
     </application>
 
 </manifest>

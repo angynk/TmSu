@@ -6,7 +6,7 @@ public class Mensajes {
     // Opciones de la aplicacion
     public static String OPCION_NUEVA  = "Nueva Encuesta";
     public static String OPCION_ENVIAR = "Enviar Encuesta";
-    public static String OPCION_CONFIG = "Sincronizar";
+    public static String OPCION_CONFIG = "Configuración";
     public static String OPCION_USUARIO = "Usuarios";
 
 
