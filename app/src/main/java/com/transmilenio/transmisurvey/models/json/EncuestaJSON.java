@@ -1,6 +1,8 @@
 package com.transmilenio.transmisurvey.models.json;
 
 
+import com.transmilenio.transmisurvey.models.db.TRecorridoEncuesta;
+
 public class EncuestaJSON {
 
     // Datos Básicos
@@ -18,6 +20,7 @@ public class EncuestaJSON {
     private CO_Despacho co_despacho;
     private ODEncuesta od_encuesta;
     private FR_Bus fr_bus;
+    private TI_Recorrido ti_recorridos;
 
     public EncuestaJSON() {
     }
@@ -124,5 +127,13 @@ public class EncuestaJSON {
 
     public void setFr_bus(FR_Bus fr_bus) {
         this.fr_bus = fr_bus;
+    }
+
+    public TI_Recorrido getTi_recorridos() {
+        return ti_recorridos;
+    }
+
+    public void setTi_recorridos(TI_Recorrido ti_recorridos) {
+        this.ti_recorridos = ti_recorridos;
     }
 }

@@ -13,6 +13,7 @@ public class ExtrasID {
     public static String EXTRA_NOMBRE = "nombre";
     public static String EXTRA_TIPO = "tipo";
     public static String EXTRA_MODO = "modo";
+    public static String EXTRA_ESTACION_BANDERA = "esBandera";
     public static String EXTRA_OBSER = "observacion";
     public static String EXTRA_USER = "user";
     public static String EXTRA_NUM_ENVIADAS = "numEnv";

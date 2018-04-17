@@ -29,7 +29,9 @@ import com.transmilenio.transmisurvey.models.db.RegistroConteo;
 import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupaBus;
 import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupacion;
 import com.transmilenio.transmisurvey.models.db.RegistroOD;
+import com.transmilenio.transmisurvey.models.db.RegistroTiempoRecorrido;
 import com.transmilenio.transmisurvey.models.db.Resultado;
+import com.transmilenio.transmisurvey.models.db.TRecorridoEncuesta;
 import com.transmilenio.transmisurvey.models.db.TransbordoOD;
 import com.transmilenio.transmisurvey.models.json.AD_Abordo;
 import com.transmilenio.transmisurvey.models.json.AD_Fijo;
@@ -48,7 +50,9 @@ import com.transmilenio.transmisurvey.models.json.RegADFijo;
 import com.transmilenio.transmisurvey.models.json.RegCoDespachos;
 import com.transmilenio.transmisurvey.models.json.RegFROcupacion;
 import com.transmilenio.transmisurvey.models.json.RegFROcupacionBus;
+import com.transmilenio.transmisurvey.models.json.RegRecorrido;
 import com.transmilenio.transmisurvey.models.json.RegistroEncuesta;
+import com.transmilenio.transmisurvey.models.json.TI_Recorrido;
 import com.transmilenio.transmisurvey.models.json.TipoEncuesta;
 import com.transmilenio.transmisurvey.models.util.ExtrasID;
 import com.transmilenio.transmisurvey.models.util.Mensajes;
@@ -144,9 +148,35 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
             generarEncuestaOrigenDestino(encuestaTM,encuestaJSON);
         }else if (encuestaTM.getTipo() == TipoEncuesta.ENC_FR_BUS){
             generarEncuestaFrecuenciaOcupacionBus(encuestaTM,encuestaJSON);
+        }else if (encuestaTM.getTipo() == TipoEncuesta.ENC_TI_RECORRIDOS){
+            generarEncuestaTiemposRecorrido(encuestaTM,encuestaJSON);
         }
 
         return encuestaJSON;
+    }
+
+    private void generarEncuestaTiemposRecorrido(EncuestaTM encuestaTM, EncuestaJSON encuestaJSON) {
+        TRecorridoEncuesta tRecorridoEncuesta=encuestaTM.getT_recorridos();
+        TI_Recorrido ti_recorrido = new TI_Recorrido();
+        ti_recorrido.setRecorrido(tRecorridoEncuesta.getRecorrido());
+        ti_recorrido.setDia_semana(tRecorridoEncuesta.getDia_semana());
+        ti_recorrido.setNum_bus(tRecorridoEncuesta.getNum_bus());
+        ti_recorrido.setServicio(tRecorridoEncuesta.getServicio());
+
+        RealmList<RegistroTiempoRecorrido> registroBD = tRecorridoEncuesta.getRegistros();
+        List<RegRecorrido> registros = new ArrayList<>();
+        for(RegistroTiempoRecorrido reg:registroBD){
+            RegRecorrido registro = new RegRecorrido();
+            registro.setPrimera_zon_destino(reg.isPrimera_zon_destino());
+            registro.setEstacion(reg.getEstacion());
+            registro.setHora_llegada(reg.getHora_llegada());
+            registro.setHora_salida(reg.getHora_salida());
+            registro.setObservacion(reg.getObservacion());
+            registros.add(registro);
+        }
+
+        ti_recorrido.setRegistros(registros);
+        encuestaJSON.setTi_recorridos(ti_recorrido);
     }
 
     private void generarEncuestaFrecuenciaOcupacionBus(EncuestaTM encuestaTM, EncuestaJSON encuestaJSON) {

@@ -45,6 +45,7 @@ public class TiemposRecorridoActivity extends AppCompatActivity {
     private int idEncuesta, idCuadro;
     private boolean infoServicios;
     private SharedPreferences prefs;
+    private boolean estacionBandera;
 
 
     @Override
@@ -63,6 +64,7 @@ public class TiemposRecorridoActivity extends AppCompatActivity {
         if(extras != null){
             nombreEncuesta = (String) extras.get(ExtrasID.EXTRA_NOMBRE);
             modo = (String) extras.get(ExtrasID.EXTRA_MODO);
+            estacionBandera = false;
         }
     }
 
@@ -94,6 +96,7 @@ public class TiemposRecorridoActivity extends AppCompatActivity {
                         intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
                         intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicios.getSelectedItem().toString());
                         intent.putExtra(ExtrasID.EXTRA_MODO,modo);
+                        intent.putExtra(ExtrasID.EXTRA_ESTACION_BANDERA,estacionBandera);
                         startActivity(intent);
                         finish();
                     }

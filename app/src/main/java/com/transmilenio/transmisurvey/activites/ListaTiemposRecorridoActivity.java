@@ -35,6 +35,7 @@ public class ListaTiemposRecorridoActivity extends AppCompatActivity implements 
     private RealmList<RegistroTiempoRecorrido> registros;
     private int  idEncuesta,idCuadro ;
     private String servicio,observaciones,modo;
+    private boolean estacionBandera;
 
     FragmentManager fm = getSupportFragmentManager();
 
@@ -57,6 +58,7 @@ public class ListaTiemposRecorridoActivity extends AppCompatActivity implements 
             idCuadro = (int) extras.get(ExtrasID.EXTRA_ID_CUADRO);
             servicio = (String) extras.get(ExtrasID.EXTRA_ID_SERVICIO);
             modo = (String) extras.get(ExtrasID.EXTRA_MODO);
+            estacionBandera = (boolean) extras.get(ExtrasID.EXTRA_ESTACION_BANDERA);
             TRecorridoEncuesta cuadro =  realm.where(TRecorridoEncuesta.class).equalTo("id",idCuadro).findFirst();
             if(cuadro!=null){
                 registros = cuadro.getRegistros();
@@ -100,6 +102,7 @@ public class ListaTiemposRecorridoActivity extends AppCompatActivity implements 
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
                 intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,  servicio);
                 intent.putExtra(ExtrasID.EXTRA_MODO,  modo);
+                intent.putExtra(ExtrasID.EXTRA_ESTACION_BANDERA,  estacionBandera);
                 startActivity(intent);
             }
         });

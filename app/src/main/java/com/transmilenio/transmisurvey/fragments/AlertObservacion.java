@@ -27,7 +27,9 @@ import com.transmilenio.transmisurvey.models.db.RegistroConteo;
 import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupaBus;
 import com.transmilenio.transmisurvey.models.db.RegistroFrecOcupacion;
 import com.transmilenio.transmisurvey.models.db.RegistroOD;
+import com.transmilenio.transmisurvey.models.db.RegistroTiempoRecorrido;
 import com.transmilenio.transmisurvey.models.db.Resultado;
+import com.transmilenio.transmisurvey.models.db.TRecorridoEncuesta;
 import com.transmilenio.transmisurvey.models.db.TransbordoOD;
 import com.transmilenio.transmisurvey.models.json.CuadroEncuesta;
 import com.transmilenio.transmisurvey.models.json.EncuestaTM;
@@ -250,6 +252,30 @@ public class AlertObservacion extends DialogFragment {
 
                     realm.beginTransaction();
                     fOcupacionBusBase.deleteFromRealm();
+                    realm.commitTransaction();
+                    realm.beginTransaction();
+                    encuestaTM.deleteFromRealm();
+                    realm.commitTransaction();
+                }else if(tipo == TipoEncuesta.ENC_TI_RECORRIDOS){
+                    TRecorridoEncuesta ti_recorrido = encuestaTM.getT_recorridos();
+                    realm.beginTransaction();
+                    RealmList<RegistroTiempoRecorrido> registros = ti_recorrido.getRegistros();
+                    List<Integer> regIn= new ArrayList<>();
+                    for(RegistroTiempoRecorrido re:registros){
+                        regIn.add(re.getId());
+                    }
+                    for(Integer value:regIn){
+                        RegistroTiempoRecorrido registro = realm.where(RegistroTiempoRecorrido.class).equalTo("id", value).findFirst();
+                        if(registro!=null){
+                            if(registro.isValid()){
+                                registro.deleteFromRealm();
+                            }
+                        }
+                    }
+                    realm.commitTransaction();
+
+                    realm.beginTransaction();
+                    ti_recorrido.deleteFromRealm();
                     realm.commitTransaction();
                     realm.beginTransaction();
                     encuestaTM.deleteFromRealm();

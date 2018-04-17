@@ -43,6 +43,7 @@ public class TRecorridoRegistroActivity extends AppCompatActivity {
     private TextView textLlegada,textSalida;
     private EditText observacion;
     private FloatingActionButton buttonNuevo,buttonCerrar;
+    private boolean estacionBandera;
 
     private Realm realm;
 
@@ -64,6 +65,7 @@ public class TRecorridoRegistroActivity extends AppCompatActivity {
             encuesta = realm.where(TRecorridoEncuesta.class).equalTo("id",idCuadroEncuesta).findFirst();
             servicio = (String) extras.get(ExtrasID.EXTRA_ID_SERVICIO);
             modo = (String) extras.get(ExtrasID.EXTRA_MODO);
+            estacionBandera = (boolean) extras.get(ExtrasID.EXTRA_ESTACION_BANDERA);
         }
         bindUI();
         setActionBarBotton();
@@ -81,6 +83,7 @@ public class TRecorridoRegistroActivity extends AppCompatActivity {
         observacion = (EditText) findViewById(R.id.tdr_observaciones_editText);
         tieneObservaciones = (ToggleButton) findViewById(R.id.tdr_observaciones_toggleButton);
         esPrimeraEnZonaDestino = (ToggleButton) findViewById(R.id.tdr_estacion_zona_toggleButton);
+        if(estacionBandera) esPrimeraEnZonaDestino.setEnabled(false);
         tieneObservaciones.setEnabled(false);
         observacion.setEnabled(false);
         agregarListaEstacion();
@@ -109,6 +112,7 @@ public class TRecorridoRegistroActivity extends AppCompatActivity {
         intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
         intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
         intent.putExtra(ExtrasID.EXTRA_MODO,modo);
+        intent.putExtra(ExtrasID.EXTRA_ESTACION_BANDERA,esPrimeraEnZonaDestino.isChecked());
         startActivity(intent);
     }
 
@@ -147,6 +151,7 @@ public class TRecorridoRegistroActivity extends AppCompatActivity {
                     intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
                     intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
                     intent.putExtra(ExtrasID.EXTRA_MODO,modo);
+                    intent.putExtra(ExtrasID.EXTRA_ESTACION_BANDERA,esPrimeraEnZonaDestino.isChecked());
                     startActivity(intent);
                 }
 
@@ -162,6 +167,7 @@ public class TRecorridoRegistroActivity extends AppCompatActivity {
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
                 intent.putExtra(ExtrasID.EXTRA_MODO,modo);
+                intent.putExtra(ExtrasID.EXTRA_ESTACION_BANDERA,esPrimeraEnZonaDestino.isChecked());
                 startActivity(intent);
             }
         });
