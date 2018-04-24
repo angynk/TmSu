@@ -39,8 +39,8 @@ public class TRecorridoRegistroActivity extends AppCompatActivity {
     private SearchableSpinner estacion;
     private List<String> diasSemana;
     private ToggleButton tieneObservaciones,esPrimeraEnZonaDestino;
-    private ImageButton buttonLlegada, buttonSalida;
-    private TextView textLlegada,textSalida;
+    private ImageButton buttonLlegada, buttonSalida,buttonPaso;
+    private TextView textLlegada,textSalida,textPaso;
     private EditText observacion;
     private FloatingActionButton buttonNuevo,buttonCerrar;
     private boolean estacionBandera;
@@ -76,15 +76,15 @@ public class TRecorridoRegistroActivity extends AppCompatActivity {
         buttonLlegada = (ImageButton) findViewById(R.id.tdr_llegada_button);
         buttonSalida = (ImageButton) findViewById(R.id.tdr_salida_button);
         textLlegada = (TextView) findViewById(R.id.tdr_llegada_textView);
+        textPaso = (TextView) findViewById(R.id.tdr_paso_TextView);
         textSalida = (TextView) findViewById(R.id.tdr_salida_texView);
         buttonNuevo = (FloatingActionButton) findViewById(R.id.tdr_nuevoRegistro_button);
         buttonCerrar = (FloatingActionButton) findViewById(R.id.tdr_cancelarRegistro_button);
         buttonSalida.setEnabled(false);
         observacion = (EditText) findViewById(R.id.tdr_observaciones_editText);
         tieneObservaciones = (ToggleButton) findViewById(R.id.tdr_observaciones_toggleButton);
-        esPrimeraEnZonaDestino = (ToggleButton) findViewById(R.id.tdr_estacion_zona_toggleButton);
-        if(estacionBandera) esPrimeraEnZonaDestino.setEnabled(false);
-        tieneObservaciones.setEnabled(false);
+        buttonPaso = (ImageButton) findViewById(R.id.tdr_paso_button);
+        if(estacionBandera) buttonPaso.setEnabled(false);
         observacion.setEnabled(false);
         agregarListaEstacion();
         agregarEventosBotones();
@@ -112,7 +112,7 @@ public class TRecorridoRegistroActivity extends AppCompatActivity {
         intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
         intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
         intent.putExtra(ExtrasID.EXTRA_MODO,modo);
-        intent.putExtra(ExtrasID.EXTRA_ESTACION_BANDERA,esPrimeraEnZonaDestino.isChecked());
+        intent.putExtra(ExtrasID.EXTRA_ESTACION_BANDERA,estacionBandera);
         startActivity(intent);
     }
 
@@ -130,7 +130,6 @@ public class TRecorridoRegistroActivity extends AppCompatActivity {
                 Date ahora = new Date();
                 textLlegada.setText(formato.format(ahora));
                 buttonSalida.setEnabled(true);
-                tieneObservaciones.setEnabled(true);
             }
         });
 
@@ -142,16 +141,28 @@ public class TRecorridoRegistroActivity extends AppCompatActivity {
                 textSalida.setText(formato.format(ahora));
             }
         });
+
+        buttonPaso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SimpleDateFormat formato = new SimpleDateFormat("HH:mm:ss");
+                Date ahora = new Date();
+                textPaso.setText(formato.format(ahora));
+                buttonPaso.setEnabled(false);
+            }
+        });
+
         buttonNuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(agregarRegistro()){
+                    estacionBandera = !buttonPaso.isEnabled();
                     Intent intent = new Intent(TRecorridoRegistroActivity.this,TRecorridoRegistroActivity.class);
                     intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
                     intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
                     intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
                     intent.putExtra(ExtrasID.EXTRA_MODO,modo);
-                    intent.putExtra(ExtrasID.EXTRA_ESTACION_BANDERA,esPrimeraEnZonaDestino.isChecked());
+                    intent.putExtra(ExtrasID.EXTRA_ESTACION_BANDERA,estacionBandera);
                     startActivity(intent);
                 }
 
@@ -167,7 +178,7 @@ public class TRecorridoRegistroActivity extends AppCompatActivity {
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_SERVICIO,servicio);
                 intent.putExtra(ExtrasID.EXTRA_MODO,modo);
-                intent.putExtra(ExtrasID.EXTRA_ESTACION_BANDERA,esPrimeraEnZonaDestino.isChecked());
+                intent.putExtra(ExtrasID.EXTRA_ESTACION_BANDERA,estacionBandera);
                 startActivity(intent);
             }
         });
@@ -230,11 +241,25 @@ public class TRecorridoRegistroActivity extends AppCompatActivity {
 
     private RegistroTiempoRecorrido crearObjetoRegistro() {
         RegistroTiempoRecorrido registro = new RegistroTiempoRecorrido();
-        registro.setHora_salida(textSalida.getText().toString());
-        registro.setHora_llegada(textLlegada.getText().toString());
+
+        if( textLlegada.getText().toString().trim().equals("H.Llegada") &&
+                !textPaso.getText().toString().trim().equals("H.Paso") ){
+            registro.setHora_salida("");
+            registro.setHora_llegada(textPaso.getText().toString());
+        }else{
+            registro.setHora_salida(textSalida.getText().toString());
+            registro.setHora_llegada(textLlegada.getText().toString());
+        }
+
         registro.setEstacion(obtenerEstacion());
         registro.setObservacion(observacion.getText().toString());
-        registro.setPrimera_zon_destino(esPrimeraEnZonaDestino.isChecked());
+        if(!textPaso.getText().toString().trim().equals("H.Paso")){
+            registro.setPrimera_zon_destino(true);
+        }else{
+            registro.setPrimera_zon_destino(false);
+        }
+
+
         return registro;
     }
 
@@ -250,6 +275,9 @@ public class TRecorridoRegistroActivity extends AppCompatActivity {
     private boolean informacionCompletada() {
         if( textLlegada.getText().toString().trim().equals("H.Llegada") ||
                 textSalida.getText().toString().trim().equals("H.Salida") ){
+            if(!textPaso.getText().toString().trim().equals("H.Paso")) {
+                return true;
+            }
             return false;
         }
         return true;

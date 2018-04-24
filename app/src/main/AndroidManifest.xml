@@ -88,22 +88,38 @@
         <activity
             android:name=".activites.ConteoRegistroActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activites.TransbordosActivity" />
-        <activity android:name=".activites.OrigenDestinoActivity" />
-        <activity android:name=".activites.ConteoServActivity" />
-        <activity android:name=".activites.ListaRegistrosODActivity" />
-        <activity android:name=".activites.AdPuntoServiciosActivity" />
-        <activity android:name=".activites.SeleccionServicioActivity" />
-        <activity android:name=".activites.FrecOcupaBusActivity" />
-        <activity android:name=".activites.ListaRegistrosFOBusActivity" />
-        <activity android:name=".activites.FrecBusRegistroActivity" />
-        <activity android:name=".activites.OdDestinoActivity" />
-        <activity android:name=".activites.OdTransbordoActivity" />
-        <activity android:name=".activites.ConfiguracionActivity" />
-        <activity android:name=".activites.SeleccionarSincroActivity" />
-        <activity android:name=".activites.TiemposRecorridoActivity" />
-        <activity android:name=".activites.ListaTiemposRecorridoActivity" />
-        <activity android:name=".activites.TRecorridoRegistroActivity"></activity>
+        <activity android:name=".activites.TransbordosActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.OrigenDestinoActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.ConteoServActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.ListaRegistrosODActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.AdPuntoServiciosActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.SeleccionServicioActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.FrecOcupaBusActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.ListaRegistrosFOBusActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.FrecBusRegistroActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.OdDestinoActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.OdTransbordoActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.ConfiguracionActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.SeleccionarSincroActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.TiemposRecorridoActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.ListaTiemposRecorridoActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activites.TRecorridoRegistroActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

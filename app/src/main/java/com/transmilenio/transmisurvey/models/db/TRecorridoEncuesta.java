@@ -21,7 +21,7 @@ public class TRecorridoEncuesta extends RealmObject {
 
 
     public TRecorridoEncuesta() {
-        this.id = MyApplication.encAsDsAbordoID.incrementAndGet();
+        this.id = MyApplication.encTRecorridoID.incrementAndGet();
         registros = new RealmList<>();
     }
 

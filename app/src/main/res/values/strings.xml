@@ -20,6 +20,7 @@
     <string name="seleccionar">Seleccione el Modo</string>
     <string name="despacho">H.Despacho</string>
     <string name="salida">H.Salida</string>
+    <string name="paso">H.Paso</string>
     <string name="estacion">Estación</string>
     <string name="tipo">Tipo</string>
     <string name="bajan">Se Bajan</string>

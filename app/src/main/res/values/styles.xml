@@ -27,6 +27,11 @@
         <item name="android:textColor">@color/colorTextButton</item>
     </style>
 
+    <style name="AppTheme.ButtonPaso" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@color/colorButtonPaso</item>
+        <item name="android:textColor">@color/colorTextButton</item>
+    </style>
+
     <style name="AppTheme.Banner" parent="@android:style/TextAppearance.Medium">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">50dp</item>

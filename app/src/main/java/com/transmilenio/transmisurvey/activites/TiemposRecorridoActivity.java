@@ -108,7 +108,8 @@ public class TiemposRecorridoActivity extends AppCompatActivity {
 
 
     private boolean camposCompletos(){
-        if(editTextNumBuses.getText().toString().trim().equals("") || textFecha.toString().trim().equals("") ){
+        if(editTextNumBuses.getText().toString().trim().equals("") || textFecha.toString().trim().equals("")
+                || editTextRecorrido.getText().toString().trim().equals("")){
             return false;
         }
         return true;
