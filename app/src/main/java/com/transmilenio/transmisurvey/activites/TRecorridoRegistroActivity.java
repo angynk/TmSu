@@ -232,8 +232,10 @@ public class TRecorridoRegistroActivity extends AppCompatActivity {
 
     private boolean estacionNoHaSidoCompletada() {
         for(RegistroTiempoRecorrido reg:encuesta.getRegistros()){
-            if(reg.getEstacion().equals(estacion.getSelectedItem().toString())){
-                return false;
+            if(!estacion.getSelectedItem().toString().equals("Otro")){
+                if(reg.getEstacion().equals(estacion.getSelectedItem().toString())){
+                    return false;
+                }
             }
         }
         return true;
