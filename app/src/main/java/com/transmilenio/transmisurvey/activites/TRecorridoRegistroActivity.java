@@ -145,10 +145,15 @@ public class TRecorridoRegistroActivity extends AppCompatActivity {
         buttonPaso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SimpleDateFormat formato = new SimpleDateFormat("HH:mm:ss");
-                Date ahora = new Date();
-                textPaso.setText(formato.format(ahora));
-                buttonPaso.setEnabled(false);
+                if(!textPaso.getText().toString().trim().equals("H.Paso")){
+                    textPaso.setText("H.Paso");
+                }else{
+                    SimpleDateFormat formato = new SimpleDateFormat("HH:mm:ss");
+                    Date ahora = new Date();
+                    textPaso.setText(formato.format(ahora));
+                }
+
+//                buttonPaso.setEnabled(false);
             }
         });
 
@@ -156,7 +161,7 @@ public class TRecorridoRegistroActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(agregarRegistro()){
-                    estacionBandera = !buttonPaso.isEnabled();
+                    estacionBandera = validarEstacionBandera();
                     Intent intent = new Intent(TRecorridoRegistroActivity.this,TRecorridoRegistroActivity.class);
                     intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,idEncuesta);
                     intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,idCuadroEncuesta);
@@ -193,6 +198,14 @@ public class TRecorridoRegistroActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private boolean validarEstacionBandera() {
+        if(!buttonPaso.isEnabled()) return true;
+        if(!textPaso.getText().toString().trim().equals("H.Paso")){
+            return true;
+        }
+        return false;
     }
 
     public static AlertObservacion newInstance(int id, String servicio) {
@@ -275,12 +288,14 @@ public class TRecorridoRegistroActivity extends AppCompatActivity {
     }
 
     private boolean informacionCompletada() {
-        if( textLlegada.getText().toString().trim().equals("H.Llegada") ||
-                textSalida.getText().toString().trim().equals("H.Salida") ){
-            if(!textPaso.getText().toString().trim().equals("H.Paso")) {
-                return true;
+        if(!estacion.getSelectedItem().toString().equals("Otro")) {
+            if (textLlegada.getText().toString().trim().equals("H.Llegada") ||
+                    textSalida.getText().toString().trim().equals("H.Salida")) {
+                if (!textPaso.getText().toString().trim().equals("H.Paso")) {
+                    return true;
+                }
+                return false;
             }
-            return false;
         }
         return true;
     }
