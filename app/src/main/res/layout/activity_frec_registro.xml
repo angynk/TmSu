@@ -26,15 +26,6 @@
         android:layout_alignParentStart="true">
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fre_nuevoRegistro_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_checked_icon"
-            />
-
-        <android.support.design.widget.FloatingActionButton
             android:id="@+id/fre_cancelarRegistro_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,49 +41,12 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
-            <ImageButton
-                android:id="@+id/fre_getHora_button"
-                style="@style/AppTheme.ButtonObtDatos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/fre_ocupacion_editText"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="53dp"
-                android:src="@drawable/ic_clock" />
-
-            <TextView
-                android:id="@+id/fre_hora_paso_view"
-                style="@style/AppTheme.Encabezado"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/fre_hora_paso_editText"
-                android:layout_alignBottom="@+id/fre_hora_paso_editText"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="7dp"
-                android:layout_marginStart="7dp"
-                android:text="@string/txt_hora_paso" />
-
-            <TextView
-                android:id="@+id/fre_hora_paso_editText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:ems="10"
-                android:layout_above="@+id/fre_codigo_editText"
-                android:layout_alignLeft="@+id/fre_codigo_editText"
-                android:layout_alignStart="@+id/fre_codigo_editText"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-
             <TextView
                 android:id="@+id/fre_codigo_view"
                 style="@style/AppTheme.Encabezado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/fre_hora_paso_view"
                 android:layout_alignParentTop="true"
-                android:layout_alignStart="@+id/fre_hora_paso_view"
                 android:layout_marginTop="145dp"
                 android:text="@string/txt_codigo" />
 
@@ -105,8 +59,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:ems="10"
-                android:maxLength="3"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:maxLength="3" />
 
             <TextView
                 android:id="@+id/fre_ocupacion_view"
@@ -115,8 +69,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/fre_ocupacion_editText"
                 android:layout_alignBottom="@+id/fre_ocupacion_editText"
-                android:layout_alignEnd="@+id/fre_hora_paso_view"
-                android:layout_alignRight="@+id/fre_hora_paso_view"
                 android:text="@string/txt_ocupacion" />
 
             <EditText
@@ -127,12 +79,12 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/fre_codigo_editText"
                 android:layout_marginTop="33dp"
-                android:ems="10"
-                android:maxLength="1"
                 android:digits="12345"
-                android:singleLine="true"
+                android:ems="10"
                 android:imeOptions="actionDone"
-                android:inputType="number" />
+                android:inputType="number"
+                android:maxLength="1"
+                android:singleLine="true" />
 
 
         </RelativeLayout>
