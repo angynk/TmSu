@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.transmilenio.transmisurvey.activites.AdpRegistroActivity">
 
     <TextView
@@ -67,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="31dp"
                 android:text="@string/llegada"
+                style="@style/AppTheme.Texto"
                 android:layout_marginLeft="58dp"
                 android:layout_marginStart="58dp"
                 android:layout_below="@+id/adp_num_bus_editText"
@@ -90,10 +92,15 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
+                style="@style/AppTheme.Texto"
                 android:layout_alignBaseline="@+id/adp_num_bus_textView"
                 android:layout_alignBottom="@+id/adp_num_bus_textView"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/adp_llegada_button"
+                app:backgroundTint="@color/colorSecondaryLigth"
+                android:layout_alignLeft="@+id/adp_llegada_textView"
+                android:layout_alignStart="@+id/adp_llegada_textView" />
 
             <TextView
                 android:id="@+id/adp_bajan_textView"
@@ -113,10 +120,13 @@
                 android:ems="10"
                 android:inputType="number"
                 android:maxLength="3"
+                style="@style/AppTheme.Texto"
+                app:backgroundTint="@color/colorSecondaryLigth"
                 android:layout_alignBaseline="@+id/adp_bajan_textView"
                 android:layout_alignBottom="@+id/adp_bajan_textView"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/adp_num_bus_textView" />
 
             <TextView
                 android:id="@+id/adp_suben_textView"
@@ -136,10 +146,14 @@
                 android:ems="10"
                 android:inputType="number"
                 android:maxLength="3"
+                style="@style/AppTheme.Texto"
+                app:backgroundTint="@color/colorSecondaryLigth"
                 android:layout_alignBaseline="@+id/adp_suben_textView"
                 android:layout_alignBottom="@+id/adp_suben_textView"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_alignLeft="@+id/adp_bajan_editText"
+                android:layout_alignStart="@+id/adp_bajan_editText" />
 
             <TextView
                 android:id="@+id/adp_quedan_textView"
@@ -159,12 +173,16 @@
                 android:ems="10"
                 android:inputType="number"
                 android:maxLength="3"
+                style="@style/AppTheme.Texto"
                 android:singleLine="true"
                 android:imeOptions="actionDone"
+                app:backgroundTint="@color/colorSecondaryLigth"
                 android:layout_alignBaseline="@+id/adp_quedan_textView"
                 android:layout_alignBottom="@+id/adp_quedan_textView"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_toRightOf="@+id/adp_salida_button"
+                android:layout_toEndOf="@+id/adp_salida_button" />
 
             <ImageButton
                 android:id="@+id/adp_salida_button"
@@ -182,6 +200,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/salida"
+                style="@style/AppTheme.Texto"
                 android:layout_alignTop="@+id/adp_salida_button"
                 android:layout_alignLeft="@+id/adp_llegada_textView"
                 android:layout_alignStart="@+id/adp_llegada_textView"
@@ -207,10 +226,15 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:text=""
+                style="@style/AppTheme.Texto"
                 android:inputType="textMultiLine"
+                app:backgroundTint="@color/colorSecondaryLigth"
                 android:layout_marginTop="19dp"
                 android:layout_below="@+id/adp_observaciones_TextView"
-                android:layout_centerHorizontal="true" />
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
             <ToggleButton
                 android:id="@+id/adp_observaciones_toggleButton"
@@ -219,10 +243,12 @@
                 android:background="@color/colorObservacion"
                 android:textOff="No"
                 android:textOn="Sí"
+                android:layout_marginLeft="21dp"
+                android:layout_marginStart="21dp"
                 android:layout_alignBaseline="@+id/adp_observaciones_TextView"
                 android:layout_alignBottom="@+id/adp_observaciones_TextView"
-                android:layout_toRightOf="@+id/adp_llegada_textView"
-                android:layout_toEndOf="@+id/adp_llegada_textView" />
+                android:layout_alignLeft="@+id/adp_salida_textView"
+                android:layout_alignStart="@+id/adp_salida_textView" />
 
          </RelativeLayout>
 

@@ -3,6 +3,7 @@ package com.transmilenio.transmisurvey.activites;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -129,6 +130,7 @@ public class BaseFrecOcupacionActivity extends AppCompatActivity {
         sentidos.setAdapter(dataAdaptersentido);
         sentidos.setTitle(Mensajes.MSG_SELECCIONE);
         sentidos.setPositiveButton(Mensajes.MSG_OK);
+        sentidos.setBackgroundColor(Color.rgb(230,230,230));
     }
 
     private List<String> getSentidos() {
@@ -150,6 +152,7 @@ public class BaseFrecOcupacionActivity extends AppCompatActivity {
         estaciones.setAdapter(dataAdapterestaciones);
         estaciones.setTitle(Mensajes.MSG_SELECCIONE);
         estaciones.setPositiveButton(Mensajes.MSG_OK);
+        estaciones.setBackgroundColor(Color.rgb(230,230,230));
     }
 
 

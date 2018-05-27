@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.transmilenio.transmisurvey.activites.FrecBusRegistroActivity">
 
     <TextView
@@ -79,11 +80,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:ems="10"
+                style="@style/AppTheme.Texto"
                 android:layout_above="@+id/frb_codigo_editText"
-                android:layout_alignLeft="@+id/frb_codigo_editText"
-                android:layout_alignStart="@+id/frb_codigo_editText"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_alignLeft="@+id/frb_codigo_editText"
+                android:layout_alignStart="@+id/frb_codigo_editText" />
 
             <TextView
                 android:id="@+id/frb_codigo_view"
@@ -100,24 +102,28 @@
                 android:id="@+id/frb_codigo_editText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/frb_codigo_view"
-                android:layout_alignBottom="@+id/frb_codigo_view"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:ems="10"
                 android:maxLength="3"
-                android:inputType="numberDecimal" />
+                style="@style/AppTheme.Texto"
+                app:backgroundTint="@color/colorSecondaryLigth"
+                android:inputType="numberDecimal"
+                android:layout_alignBaseline="@+id/frb_codigo_view"
+                android:layout_alignBottom="@+id/frb_codigo_view"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
             <TextView
                 android:id="@+id/frb_ocupacion_view"
                 style="@style/AppTheme.Encabezado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/numBus"
                 android:layout_alignBaseline="@+id/frb_ocupacion_editText"
                 android:layout_alignBottom="@+id/frb_ocupacion_editText"
-                android:layout_alignEnd="@+id/frb_hora_paso_view"
-                android:layout_alignRight="@+id/frb_hora_paso_view"
-                android:text="@string/numBus" />
+                android:layout_alignLeft="@+id/frb_codigo_view"
+                android:layout_alignStart="@+id/frb_codigo_view"
+                android:layout_marginLeft="9dp"
+                android:layout_marginStart="9dp" />
 
             <EditText
                 android:id="@+id/frb_ocupacion_editText"
@@ -129,9 +135,13 @@
                 android:layout_marginTop="33dp"
                 android:ems="10"
                 android:maxLength="6"
+                style="@style/AppTheme.Texto"
+                app:backgroundTint="@color/colorSecondaryLigth"
                 android:singleLine="true"
                 android:imeOptions="actionDone"
-                android:inputType="number" />
+                android:inputType="number"
+                android:layout_toRightOf="@+id/frb_ocupacion_view"
+                android:layout_toEndOf="@+id/frb_ocupacion_view" />
 
 
         </RelativeLayout>

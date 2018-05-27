@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryText"
     tools:context="com.transmilenio.transmisurvey.activites.CreacionUsuariosActivity">
 
     <FrameLayout
@@ -17,7 +18,9 @@
 
     <ListView android:layout_width="fill_parent"
         android:layout_height="452dp"
-        android:id="@+id/cu_usuarios_listView">
+        android:id="@+id/cu_usuarios_listView"
+        android:dividerHeight="2px"
+        android:divider="@color/colorPrimaryDark">
     </ListView>
 
     <Button

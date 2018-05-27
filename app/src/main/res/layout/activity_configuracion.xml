@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.transmilenio.transmisurvey.activites.ConfiguracionActivity">
 
     <TextView
@@ -23,20 +24,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/seleccionar"
-        android:layout_marginTop="23dp"
+        style="@style/AppTheme.Texto"
+        android:layout_marginTop="22dp"
         android:layout_below="@+id/di_titulo"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp" />
 
 
     <com.toptoche.searchablespinnerlibrary.SearchableSpinner
         android:id="@+id/di_modo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="18dp"
         android:layout_below="@+id/di_seleccionar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="9dp"
+        android:layout_marginEnd="9dp"
+        android:layout_alignLeft="@+id/di_seleccionar"
+        android:layout_alignStart="@+id/di_seleccionar"/>
 
     <Button
         android:id="@+id/di_sincronizar"

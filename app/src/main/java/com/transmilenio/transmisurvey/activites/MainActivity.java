@@ -4,11 +4,14 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -91,6 +94,11 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
+        int positionOfMenuItem = 0;
+        MenuItem item = menu.getItem(positionOfMenuItem);
+        SpannableString s = new SpannableString("Cerrar Sesion");
+        s.setSpan(new ForegroundColorSpan(Color.BLACK), 0, s.length(), 0);
+        item.setTitle(s);
         return super.onCreateOptionsMenu(menu);
     }
 

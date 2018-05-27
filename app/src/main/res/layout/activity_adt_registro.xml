@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.transmilenio.transmisurvey.activites.RegistroActivity">
 
     <TextView
@@ -71,6 +72,7 @@
                 android:layout_alignTop="@+id/adt_llegada_button"
                 android:layout_marginTop="14dp"
                 android:text="@string/llegada"
+                style="@style/AppTheme.Texto"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
 
@@ -115,6 +117,8 @@
                 android:layout_alignLeft="@+id/adt_estacion_spinner"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                style="@style/AppTheme.Texto"
+                app:backgroundTint="@color/colorSecondaryLigth"
                 android:layout_alignStart="@+id/adt_estacion_spinner"
                 android:ems="10"
                 android:inputType="number"
@@ -127,6 +131,8 @@
                 android:layout_alignLeft="@+id/adt_bajan_editText"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                style="@style/AppTheme.Texto"
+                app:backgroundTint="@color/colorSecondaryLigth"
                 android:layout_alignStart="@+id/adt_bajan_editText"
                 android:layout_below="@+id/adt_bajan_editText"
                 android:ems="10"
@@ -154,6 +160,8 @@
                 android:layout_below="@+id/adt_suben_editText"
                 android:ems="10"
                 android:inputType="number"
+                style="@style/AppTheme.Texto"
+                app:backgroundTint="@color/colorSecondaryLigth"
                 android:singleLine="true"
                 android:imeOptions="actionDone"
                 android:maxLength="3" />
@@ -189,7 +197,8 @@
                 android:layout_marginStart="14dp"
                 android:layout_toEndOf="@+id/adt_salida_button"
                 android:layout_toRightOf="@+id/adt_salida_button"
-                android:text="@string/salida" />
+                android:text="@string/salida"
+                style="@style/AppTheme.Texto"/>
 
             <TextView
                 android:id="@+id/adt_observaciones_TextView"
@@ -210,11 +219,15 @@
                 android:ems="10"
                 android:text=""
                 android:inputType="textMultiLine"
+                style="@style/AppTheme.Texto"
+                app:backgroundTint="@color/colorSecondaryLigth"
                 android:layout_below="@+id/adt_observaciones_toggleButton"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="15dp"
-                android:layout_marginStart="15dp" />
+                android:layout_marginStart="15dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
             <ToggleButton
                 android:id="@+id/adt_observaciones_toggleButton"

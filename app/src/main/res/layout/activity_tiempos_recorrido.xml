@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.transmilenio.transmisurvey.activites.TiemposRecorridoActivity">
 
     <Button
@@ -52,6 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
+            style="@style/AppTheme.Texto"
             android:layout_alignBaseline="@+id/tdr_fecha_textView"
             android:layout_alignBottom="@+id/tdr_fecha_textView"
             android:layout_toRightOf="@+id/tdr_numBus_text"
@@ -109,7 +111,9 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            style="@style/AppTheme.Texto"
+            app:backgroundTint="@color/colorSecondaryLigth"/>
 
         <TextView
             android:id="@+id/tdr_dia_textView"
@@ -117,6 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/tdr_diaSemana_text"
             android:text=""
+            style="@style/AppTheme.Texto"
             android:layout_alignLeft="@+id/tdr_fecha_text"
             android:layout_alignStart="@+id/tdr_fecha_text" />
 
@@ -143,7 +148,9 @@
             android:layout_alignParentStart="true"
             android:layout_marginTop="9dp"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            style="@style/AppTheme.Texto"
+            app:backgroundTint="@color/colorSecondaryLigth"/>
 
     </RelativeLayout>
 

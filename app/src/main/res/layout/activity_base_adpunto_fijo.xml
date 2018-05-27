@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.transmilenio.transmisurvey.activites.BaseADPuntoFijoActivity">
 
     <Button
@@ -53,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
+            style="@style/AppTheme.Texto"
             android:layout_alignBaseline="@+id/adp_fecha_textView"
             android:layout_alignBottom="@+id/adp_fecha_textView"
             android:layout_marginLeft="120dp"
@@ -75,6 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/adp_diaSemana_text"
             android:text=""
+            style="@style/AppTheme.Texto"
             android:layout_alignLeft="@+id/adp_fecha_text"
             android:layout_alignStart="@+id/adp_fecha_text" />
 

@@ -1,6 +1,7 @@
 package com.transmilenio.transmisurvey.activites;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
@@ -286,6 +287,7 @@ public class RegistroActivity extends AppCompatActivity  {
         estacion.setAdapter(dataAdapter);
         estacion.setTitle("Seleccione Uno");
         estacion.setPositiveButton("OK");
+        estacion.setBackgroundColor(Color.rgb(230,230,230));
     }
 
 

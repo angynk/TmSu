@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.transmilenio.transmisurvey.activites.TRecorridoRegistroActivity">
 
     <TextView
@@ -55,16 +56,15 @@
                 style="@style/AppTheme.ButtonObtDatos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
+                android:layout_marginTop="24dp"
+                android:src="@drawable/ic_clock"
                 android:layout_below="@+id/tdr_estacion_spinner"
-                android:layout_marginLeft="60dp"
-                android:layout_marginStart="60dp"
-                android:layout_marginTop="35dp"
-                android:src="@drawable/ic_clock" />
+                android:layout_toRightOf="@+id/tdr_estacion_view"
+                android:layout_toEndOf="@+id/tdr_estacion_view" />
 
             <TextView
                 android:id="@+id/tdr_llegada_textView"
+                style="@style/AppTheme.Texto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/tdr_salida_button"
@@ -77,10 +77,12 @@
                 android:id="@+id/tdr_estacion_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="61dp"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="59dp"
+                android:layout_toRightOf="@+id/tdr_estacion_view"
                 android:layout_toEndOf="@+id/tdr_estacion_view"
-                android:layout_toRightOf="@+id/tdr_estacion_view" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp" />
 
             <TextView
                 android:id="@+id/tdr_estacion_view"
@@ -90,12 +92,11 @@
                 android:layout_above="@+id/tdr_llegada_button"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="9dp"
-                android:layout_marginStart="9dp"
                 android:text="@string/estacion" />
 
             <TextView
                 android:id="@+id/tdr_salida_texView"
+                style="@style/AppTheme.Texto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/tdr_salida_button"
@@ -123,22 +124,22 @@
                 style="@style/AppTheme.Encabezado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
+                android:layout_marginTop="24dp"
+                android:text="@string/button_estacion_zona"
                 android:layout_below="@+id/tdr_salida_button"
-                android:layout_marginTop="37dp"
-                android:text="@string/button_estacion_zona" />
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <ToggleButton
                 android:id="@+id/tdr_observaciones_toggleButton"
                 android:layout_width="60dp"
                 android:layout_height="30dp"
+                android:layout_above="@+id/tdr_observaciones_editText"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:background="@color/colorObservacion"
                 android:textOff="No"
-                android:textOn="Sí"
-                android:layout_above="@+id/tdr_observaciones_editText"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:textOn="Sí" />
 
             <TextView
                 android:id="@+id/tdr_observaciones_TextView"
@@ -153,6 +154,7 @@
 
             <EditText
                 android:id="@+id/tdr_observaciones_editText"
+                style="@style/AppTheme.Texto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/tdr_estacion_view"
@@ -163,7 +165,8 @@
                 android:layout_marginTop="26dp"
                 android:ems="10"
                 android:inputType="textMultiLine"
-                android:text="" />
+                android:text=""
+                app:backgroundTint="@color/colorSecondaryLigth" />
 
             <ImageButton
                 android:id="@+id/tdr_paso_button"
@@ -178,13 +181,14 @@
 
             <TextView
                 android:id="@+id/tdr_paso_TextView"
+                style="@style/AppTheme.Texto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/paso"
-                android:layout_marginBottom="8dp"
                 android:layout_alignBottom="@+id/tdr_paso_button"
+                android:layout_alignEnd="@+id/tdr_salida_texView"
                 android:layout_alignRight="@+id/tdr_salida_texView"
-                android:layout_alignEnd="@+id/tdr_salida_texView" />
+                android:layout_marginBottom="8dp"
+                android:text="@string/paso" />
 
 
         </RelativeLayout>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryText"
     tools:context="com.transmilenio.transmisurvey.activites.SeleccionServicioActivity">
 
     <TextView
@@ -42,6 +43,8 @@
         android:overScrollMode="ifContentScrolls"
         android:scrollbarAlwaysDrawVerticalTrack="true"
         android:scrollbarStyle="insideOverlay"
+        android:dividerHeight="2px"
+        android:divider="@color/colorPrimaryDark"
         />
 
 

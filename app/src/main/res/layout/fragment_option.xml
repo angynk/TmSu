@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.transmilenio.transmisurvey.fragments.OptionFragment"
-    android:background="@color/colorSecondaryLigth"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
+    android:background="@color/colorSecondaryText"
     >
 
     <LinearLayout
@@ -23,25 +23,25 @@
 
             <RelativeLayout
                 android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="0.5">
 
                 <TextView
                     android:id="@+id/ini_encuestasC_textView"
+                    style="@style/AppTheme.AlertasTitulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="20"
-                    style="@style/AppTheme.AlertasTitulo"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:text="20" />
 
                 <TextView
                     android:id="@+id/ini_tituloEncuestasC_textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/txt_encuestasEnviadas"
                     android:layout_below="@+id/ini_encuestasC_textView"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/txt_encuestasEnviadas" />
 
             </RelativeLayout>
 
@@ -79,15 +79,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.05"
-                android:background="#ffffff">
-            >
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
                 android:layout_weight="0.95">
 
                 <ListView
@@ -95,7 +86,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true" />
             </RelativeLayout>
 
         </LinearLayout>

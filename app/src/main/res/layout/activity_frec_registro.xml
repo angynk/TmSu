@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.transmilenio.transmisurvey.activites.FrecRegistroActivity">
 
     <TextView
@@ -52,15 +53,20 @@
 
             <EditText
                 android:id="@+id/fre_codigo_editText"
+                style="@style/AppTheme.Texto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/fre_codigo_view"
                 android:layout_alignBottom="@+id/fre_codigo_view"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:layout_toEndOf="@+id/fre_ocupacion_view"
                 android:ems="10"
                 android:inputType="numberDecimal"
-                android:maxLength="3" />
+                app:backgroundTint="@color/colorSecondaryLigth"
+                android:maxLength="3"
+                android:layout_alignLeft="@+id/fre_ocupacion_editText"
+                android:layout_alignStart="@+id/fre_ocupacion_editText" />
 
             <TextView
                 android:id="@+id/fre_ocupacion_view"
@@ -73,18 +79,23 @@
 
             <EditText
                 android:id="@+id/fre_ocupacion_editText"
+                style="@style/AppTheme.Texto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/fre_codigo_editText"
-                android:layout_marginTop="33dp"
+                android:layout_marginTop="32dp"
                 android:digits="12345"
                 android:ems="10"
                 android:imeOptions="actionDone"
+                app:backgroundTint="@color/colorSecondaryLigth"
                 android:inputType="number"
                 android:maxLength="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:layout_below="@+id/fre_codigo_editText"
+                android:layout_toRightOf="@+id/fre_ocupacion_view"
+                android:layout_marginLeft="11dp"
+                android:layout_marginStart="11dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
 
         </RelativeLayout>

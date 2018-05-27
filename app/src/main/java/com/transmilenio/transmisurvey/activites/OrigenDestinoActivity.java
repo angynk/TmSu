@@ -3,6 +3,7 @@ package com.transmilenio.transmisurvey.activites;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -141,6 +142,7 @@ public class OrigenDestinoActivity extends AppCompatActivity {
         estaciones.setAdapter(dataAdapterservicios);
         estaciones.setTitle(Mensajes.MSG_SELECCIONE);
         estaciones.setPositiveButton(Mensajes.MSG_OK);
+        estaciones.setBackgroundColor(Color.rgb(230,230,230));
 
         tipoEncuesta = (SearchableSpinner) findViewById(R.id.ode_tipo_sepinner);
         List<String> listtipos = getTipos();
@@ -150,6 +152,7 @@ public class OrigenDestinoActivity extends AppCompatActivity {
         tipoEncuesta.setAdapter(dataAdaptertipos);
         tipoEncuesta.setTitle(Mensajes.MSG_SELECCIONE);
         tipoEncuesta.setPositiveButton(Mensajes.MSG_OK);
+        tipoEncuesta.setBackgroundColor(Color.rgb(230,230,230));
     }
 
     private List<String> getTipos() {

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryText"
     tools:context="com.transmilenio.transmisurvey.activites.ListaSurveyEnvioActivity">
 
     <FrameLayout
@@ -19,7 +20,9 @@
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true" />
+            android:layout_alignParentTop="true"
+            android:dividerHeight="2px"
+            android:divider="@color/colorPrimaryDark"/>
 
         <Button
             android:id="@+id/button_enviar_encuestas"

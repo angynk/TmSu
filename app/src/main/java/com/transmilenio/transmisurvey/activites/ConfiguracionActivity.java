@@ -4,6 +4,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -64,6 +67,7 @@ public class ConfiguracionActivity extends AppCompatActivity {
         modos.setAdapter(dataAdapter);
         modos.setTitle("Seleccione Uno");
         modos.setPositiveButton("OK");
+        modos.setBackgroundColor(Color.rgb(230,230,230));
 
         buttonSincronizar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,7 +111,7 @@ public class ConfiguracionActivity extends AppCompatActivity {
 
 
     private void cargarServiciosTemporal(String modo){
-        progressDoalog = new ProgressDialog(ConfiguracionActivity.this);
+        progressDoalog = new ProgressDialog(ConfiguracionActivity.this,R.style.MyAlertDialogStyle);
         progressDoalog.setMessage(Mensajes.MSG_SINCRONIZANDO);
         progressDoalog.setTitle(Mensajes.MSG_CONFIGURACION);
         progressDoalog.setCanceledOnTouchOutside(false);

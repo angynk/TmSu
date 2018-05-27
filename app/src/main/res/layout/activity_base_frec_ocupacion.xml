@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.transmilenio.transmisurvey.activites.BaseFrecOcupacionActivity">
 
     <TextView
@@ -42,6 +43,7 @@
             android:id="@+id/fro_fecha_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/AppTheme.Texto"
             android:layout_alignBaseline="@+id/fro_fecha_textView"
             android:layout_alignBottom="@+id/fro_fecha_textView"
             android:layout_marginLeft="120dp"
@@ -63,6 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
+            style="@style/AppTheme.Texto"
             android:layout_marginLeft="14dp"
             android:layout_marginStart="14dp"
             android:layout_alignBottom="@+id/fro_diaSemana_text"

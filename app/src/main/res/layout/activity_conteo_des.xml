@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.transmilenio.transmisurvey.activites.ConteoDesActivity">
 
     <TextView
@@ -41,6 +42,7 @@
         <TextView
             android:id="@+id/cod_fecha_text"
             android:layout_width="wrap_content"
+            style="@style/AppTheme.Texto"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/cod_fecha_textView"
             android:layout_alignBottom="@+id/cod_fecha_textView"
@@ -65,6 +67,7 @@
             android:text=""
             android:layout_marginLeft="14dp"
             android:layout_marginStart="14dp"
+            style="@style/AppTheme.Texto"
             android:layout_alignBottom="@+id/cod_diaSemana_text"
             android:layout_toRightOf="@+id/cod_fecha_text"
             android:layout_alignParentRight="true"

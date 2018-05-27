@@ -85,7 +85,7 @@ public class SeleccionarSincroActivity extends AppCompatActivity {
     }
 
     public void cargarModos(){
-        progressDoalog = new ProgressDialog(SeleccionarSincroActivity.this);
+        progressDoalog = new ProgressDialog(SeleccionarSincroActivity.this,R.style.MyAlertDialogStyle);
         progressDoalog.setMessage(Mensajes.MSG_SINCRONIZANDO);
         progressDoalog.setTitle(Mensajes.MSG_CONFIGURACION);
         progressDoalog.setCanceledOnTouchOutside(false);

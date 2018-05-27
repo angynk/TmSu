@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.transmilenio.transmisurvey.activites.TransbordosActivity">
 
     <ScrollView
@@ -25,7 +26,7 @@
 
                 <TextView
                     android:id="@+id/trs_origen_textView"
-                    style="@style/AppTheme.Banner"
+                    style="@style/AppTheme.BannerOD"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/trs_origen" />
@@ -34,12 +35,11 @@
                     android:id="@+id/trs_es_ori_sepinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/trs_ser_ori_sepinner"
-                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/trs_origen_textView"
+                    android:layout_toRightOf="@+id/trs_es_ori_textView"
                     android:layout_alignRight="@+id/trs_ser_ori_sepinner"
-                    android:layout_marginTop="34dp"
-                    android:layout_toEndOf="@+id/trs_es_ori_textView"
-                    android:layout_toRightOf="@+id/trs_es_ori_textView" />
+                    android:layout_alignEnd="@+id/trs_ser_ori_sepinner" />
 
                 <TextView
                     android:id="@+id/trs_es_ori_textView"
@@ -96,7 +96,7 @@
 
                 <TextView
                     android:id="@+id/trs_destino_textView"
-                    style="@style/AppTheme.Banner"
+                    style="@style/AppTheme.BannerOD"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -131,7 +131,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="421dp"
+                    android:layout_height="435dp"
                     android:layout_below="@+id/tituloPanel">
 
 
@@ -142,11 +142,12 @@
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_below="@+id/trs_transbordo_textView"
-                        android:text="@string/trs_transbordo_no1" />
+                        android:text="@string/trs_transbordo_no1"
+                        style="@style/AppTheme.Texto"/>
 
                     <TextView
                         android:id="@+id/trs_transbordo_textView"
-                        style="@style/AppTheme.Banner"
+                        style="@style/AppTheme.BannerOD"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -160,28 +161,36 @@
                         style="@style/AppTheme.Encabezado"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="@string/estacion"
                         android:layout_below="@+id/trs_tr1_checkBox"
-                        android:layout_marginTop="13dp"
-                        android:text="@string/estacion" />
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginStart="12dp" />
 
                     <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                         android:id="@+id/trs_es_tr1_sepinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignBottom="@+id/trs_es_tr1_textView"
-                        android:layout_toEndOf="@+id/trs_es_tr2_textView"
-                        android:layout_toRightOf="@+id/trs_es_tr2_textView" />
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="14dp"
+                        android:layout_marginEnd="14dp"
+                        android:layout_toRightOf="@+id/trs_tr1_checkBox"
+                        android:layout_toEndOf="@+id/trs_tr1_checkBox" />
 
                     <TextView
                         android:id="@+id/trs_ser_tr1_textView"
                         style="@style/AppTheme.Encabezado"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/trs_ser_tr2_textView"
-                        android:layout_alignStart="@+id/trs_ser_tr2_textView"
+                        android:layout_marginTop="9dp"
+                        android:text="@string/codigo"
                         android:layout_below="@+id/trs_es_tr1_textView"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/codigo" />
+                        android:layout_alignLeft="@+id/trs_es_tr1_textView"
+                        android:layout_alignStart="@+id/trs_es_tr1_textView" />
 
                     <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                         android:id="@+id/trs_ser_tr1_sepinner"
@@ -197,11 +206,12 @@
                         android:id="@+id/trs_tr2_checkBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/trs_es_tr1_textView"
-                        android:layout_alignStart="@+id/trs_es_tr1_textView"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/trs_transbordo_no2"
+                        style="@style/AppTheme.Texto"
                         android:layout_below="@+id/trs_ser_tr1_sepinner"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/trs_transbordo_no2" />
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
 
                     <TextView
                         android:id="@+id/trs_es_tr2_textView"
@@ -229,11 +239,11 @@
                         style="@style/AppTheme.Encabezado"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="19dp"
+                        android:text="@string/codigo"
                         android:layout_below="@+id/trs_es_tr2_sepinner"
-                        android:layout_marginTop="21dp"
-                        android:text="@string/codigo" />
+                        android:layout_alignLeft="@+id/trs_es_tr2_textView"
+                        android:layout_alignStart="@+id/trs_es_tr2_textView" />
 
                     <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                         android:id="@+id/trs_ser_tr2_sepinner"
@@ -253,11 +263,12 @@
                         android:layout_alignParentStart="true"
                         android:layout_below="@+id/trs_ser_tr2_sepinner"
                         android:layout_marginTop="7dp"
-                        android:text="@string/trs_transbordo_no3" />
+                        android:text="@string/trs_transbordo_no3"
+                        style="@style/AppTheme.Texto"/>
 
                     <TextView
                         android:id="@+id/trs_adicional_textView"
-                        style="@style/AppTheme.Banner"
+                        style="@style/AppTheme.BannerOD"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -293,20 +304,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@+id/trs_modo_lle_textView"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_toRightOf="@+id/trs_modo_lle_textView"
-                        android:layout_toEndOf="@+id/trs_modo_lle_textView" />
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_alignRight="@+id/trs_ser_tr2_sepinner"
+                        android:layout_alignEnd="@+id/trs_ser_tr2_sepinner" />
 
                     <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                         android:id="@+id/trs_num_veces_editText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@+id/trs_can_ser_textView"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_toRightOf="@+id/trs_can_ser_textView"
-                        android:layout_toEndOf="@+id/trs_can_ser_textView" />
+                        android:layout_marginLeft="23dp"
+                        android:layout_marginStart="23dp"
+                        android:layout_alignRight="@+id/trs_modo_lle_sepinner"
+                        android:layout_alignEnd="@+id/trs_modo_lle_sepinner" />
 
                 </RelativeLayout>
 

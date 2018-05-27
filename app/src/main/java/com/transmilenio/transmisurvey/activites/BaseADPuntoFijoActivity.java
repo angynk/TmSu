@@ -3,6 +3,7 @@ package com.transmilenio.transmisurvey.activites;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -82,6 +83,7 @@ public class BaseADPuntoFijoActivity extends AppCompatActivity {
         estaciones.setAdapter(dataAdapterEstaciones);
         estaciones.setTitle(Mensajes.MSG_SELECCIONE);
         estaciones.setPositiveButton(Mensajes.MSG_OK);
+        estaciones.setBackgroundColor(Color.rgb(230,230,230));
 
     }
 

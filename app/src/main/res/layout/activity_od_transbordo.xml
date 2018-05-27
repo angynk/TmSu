@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.transmilenio.transmisurvey.activites.OdTransbordoActivity">
     <ScrollView
         android:layout_width="match_parent"
@@ -23,7 +24,7 @@
 
                 <TextView
                     android:id="@+id/odt_origen_textView"
-                    style="@style/AppTheme.Banner"
+                    style="@style/AppTheme.BannerOD"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/trs_origen" />
@@ -36,8 +37,8 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignRight="@+id/odt_ser_ori_sepinner"
                     android:layout_marginTop="34dp"
-                    android:layout_toEndOf="@+id/odt_es_ori_textView"
-                    android:layout_toRightOf="@+id/odt_es_ori_textView" />
+                    android:layout_toEndOf="@+id/odt_tr3_checkBox"
+                    android:layout_toRightOf="@+id/odt_tr3_checkBox" />
 
                 <TextView
                     android:id="@+id/odt_es_ori_textView"
@@ -68,11 +69,12 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/odt_ser_ori_textView"
                     android:layout_marginRight="8dp"
-                    android:layout_toEndOf="@+id/odt_ser_ori_textView" />
+                    android:layout_toEndOf="@+id/odt_tr3_checkBox"
+                    android:layout_toRightOf="@+id/odt_tr3_checkBox" />
 
                 <TextView
                     android:id="@+id/odt_transbordo_textView"
-                    style="@style/AppTheme.Banner"
+                    style="@style/AppTheme.BannerOD"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/trs_transbordos"
@@ -85,38 +87,43 @@
                     android:id="@+id/odt_tr1_checkBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
+                    android:text="@string/trs_transbordo_no1"
+                    style="@style/AppTheme.Texto"
                     android:layout_below="@+id/odt_transbordo_textView"
-                    android:text="@string/trs_transbordo_no1" />
+                    android:layout_alignLeft="@+id/odt_ser_tr1_textView"
+                    android:layout_alignStart="@+id/odt_ser_tr1_textView" />
 
                 <TextView
                     android:id="@+id/odt_es_tr1_textView"
                     style="@style/AppTheme.Encabezado"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/estacion"
                     android:layout_below="@+id/odt_tr1_checkBox"
-                    android:layout_marginTop="13dp"
-                    android:text="@string/estacion" />
+                    android:layout_alignLeft="@+id/odt_ser_ori_textView"
+                    android:layout_alignStart="@+id/odt_ser_ori_textView" />
 
                 <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/odt_es_tr1_sepinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/odt_es_tr1_textView"
-                    android:layout_toEndOf="@+id/odt_es_tr2_textView"
-                    android:layout_toRightOf="@+id/odt_es_tr2_textView" />
+                    android:layout_alignLeft="@+id/odt_ser_ori_sepinner"
+                    android:layout_alignStart="@+id/odt_ser_ori_sepinner"
+                    android:layout_alignRight="@+id/odt_ser_ori_sepinner"
+                    android:layout_alignEnd="@+id/odt_ser_ori_sepinner" />
 
                 <TextView
                     android:id="@+id/odt_ser_tr1_textView"
                     style="@style/AppTheme.Encabezado"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/odt_ser_tr2_textView"
-                    android:layout_alignStart="@+id/odt_ser_tr2_textView"
+                    android:layout_marginTop="9dp"
+                    android:text="@string/codigo"
                     android:layout_below="@+id/odt_es_tr1_textView"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/codigo" />
+                    android:layout_alignRight="@+id/odt_es_tr1_textView"
+                    android:layout_alignEnd="@+id/odt_es_tr1_textView" />
 
                 <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/odt_ser_tr1_sepinner"
@@ -136,7 +143,8 @@
                     android:layout_alignStart="@+id/odt_es_tr1_textView"
                     android:layout_below="@+id/odt_ser_tr1_sepinner"
                     android:layout_marginTop="8dp"
-                    android:text="@string/trs_transbordo_no2" />
+                    android:text="@string/trs_transbordo_no2"
+                    style="@style/AppTheme.Texto"/>
 
                 <TextView
                     android:id="@+id/odt_es_tr2_textView"
@@ -164,11 +172,11 @@
                     style="@style/AppTheme.Encabezado"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/odt_es_tr2_sepinner"
                     android:layout_marginTop="21dp"
-                    android:text="@string/codigo" />
+                    android:text="@string/codigo"
+                    android:layout_below="@+id/odt_es_tr2_sepinner"
+                    android:layout_alignLeft="@+id/odt_es_tr2_textView"
+                    android:layout_alignStart="@+id/odt_es_tr2_textView" />
 
                 <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/odt_ser_tr2_sepinner"
@@ -184,11 +192,11 @@
                     android:id="@+id/odt_tr3_checkBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
+                    android:text="@string/trs_transbordo_no3"
+                    style="@style/AppTheme.Texto"
                     android:layout_below="@+id/odt_ser_tr2_sepinner"
-                    android:layout_marginTop="7dp"
-                    android:text="@string/trs_transbordo_no3" />
+                    android:layout_alignLeft="@+id/odt_ser_tr2_textView"
+                    android:layout_alignStart="@+id/odt_ser_tr2_textView" />
             </RelativeLayout>
 
             <FrameLayout
@@ -226,11 +234,15 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="14dp"
                         android:text="@string/estacion"
-                        android:layout_below="@+id/odt_destino_textView" />
+                        android:layout_below="@+id/odt_destino_textView"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginStart="14dp" />
 
                     <TextView
                         android:id="@+id/odt_destino_textView"
-                        style="@style/AppTheme.Banner"
+                        style="@style/AppTheme.BannerOD"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -244,11 +256,13 @@
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@+id/odt_es_des_textView"
                         android:layout_toRightOf="@+id/odt_es_des_textView"
-                        android:layout_toEndOf="@+id/odt_es_des_textView" />
+                        android:layout_toEndOf="@+id/odt_es_des_textView"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp" />
 
                     <TextView
                         android:id="@+id/odt_adicional_textView"
-                        style="@style/AppTheme.Banner"
+                        style="@style/AppTheme.BannerOD"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/trs_adicional"

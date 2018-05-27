@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
+        <!--<item name="android:textColor">@color/colorTextButton</item>-->
     </style>
 
     <style name="AppTheme.TextoBanner">
@@ -15,6 +15,14 @@
         <item name="android:color">@color/colorButtonNormal</item>
 
 
+    </style>
+
+    <style name="PopupMenu" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:popupBackground">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
 
     <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Borderless">
@@ -41,6 +49,15 @@
 
     </style>
 
+    <style name="AppTheme.BannerOD" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:background">@color/colorSecondaryText</item>
+        <item name="android:textColor">@color/colorTextButton</item>
+
+    </style>
+
     <style name="AppTheme.AlertasTitulo" >
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">30sp</item>
@@ -50,6 +67,15 @@
     <style name="AppTheme.Encabezado">
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+    </style>
+    <style name="AppTheme.Texto">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+    </style>
+
+    <style name="SpinnerTextViewItem" parent="@android:style/Widget.TextView" >
+        <item name="android:textStyle">normal</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
     </style>
 
     <style name="AppTheme.ButtonDialog" parent="Base.Widget.AppCompat.Button">

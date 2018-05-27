@@ -3,6 +3,7 @@ package com.transmilenio.transmisurvey.activites;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -171,6 +172,7 @@ public class TiemposRecorridoActivity extends AppCompatActivity {
         servicios.setAdapter(dataAdapterservicios);
         servicios.setTitle(Mensajes.MSG_SELECCIONE);
         servicios.setPositiveButton(Mensajes.MSG_OK);
+        servicios.setBackgroundColor(Color.rgb(230,230,230));
 
         if(listservicios.size()>0){
             infoServicios =true;

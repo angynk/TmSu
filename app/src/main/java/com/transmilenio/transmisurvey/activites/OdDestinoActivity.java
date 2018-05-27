@@ -3,6 +3,7 @@ package com.transmilenio.transmisurvey.activites;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -205,6 +206,7 @@ public class OdDestinoActivity extends AppCompatActivity {
         estacionesTr2.setTitle(Mensajes.MSG_SELECCIONE);
         estacionesTr2.setPositiveButton(Mensajes.MSG_OK);
         estacionesTr2.setEnabled(false);
+        estacionesTr2.setBackgroundColor(Color.rgb(230,230,230));
 
         addServiciosTransbordo2();
 
@@ -231,6 +233,7 @@ public class OdDestinoActivity extends AppCompatActivity {
         serviciosTr2.setTitle(Mensajes.MSG_SELECCIONE);
         serviciosTr2.setPositiveButton(Mensajes.MSG_OK);
         serviciosTr2.setEnabled(transbordo2Check.isChecked());
+        serviciosTr2.setBackgroundColor(Color.rgb(230,230,230));
     }
 
     private void listasTransbordo1() {
@@ -243,6 +246,7 @@ public class OdDestinoActivity extends AppCompatActivity {
         estacionesTr1.setTitle(Mensajes.MSG_SELECCIONE);
         estacionesTr1.setPositiveButton(Mensajes.MSG_OK);
         estacionesTr1.setEnabled(false);
+        estacionesTr1.setBackgroundColor(Color.rgb(230,230,230));
 
         addServiciosTransbordo1();
         estacionesTr1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -268,6 +272,7 @@ public class OdDestinoActivity extends AppCompatActivity {
         serviciosTr1.setTitle(Mensajes.MSG_SELECCIONE);
         serviciosTr1.setPositiveButton(Mensajes.MSG_OK);
         serviciosTr1.setEnabled(transbordo1Check.isChecked());
+        serviciosTr1.setBackgroundColor(Color.rgb(230,230,230));
     }
 
     private void listasDestino() {
@@ -281,6 +286,7 @@ public class OdDestinoActivity extends AppCompatActivity {
         estacionesDestino.setPositiveButton(Mensajes.MSG_OK);
         estacionesDestino.setSelection(getPositionEstacion(listestaciones,estacion));
         estacionesDestino.setEnabled(false);
+        estacionesDestino.setBackgroundColor(Color.rgb(230,230,230));
     }
 
     private void listasOrigen() {
@@ -293,6 +299,7 @@ public class OdDestinoActivity extends AppCompatActivity {
         estacionesOrigen.setTitle(Mensajes.MSG_SELECCIONE);
         estacionesOrigen.setPositiveButton(Mensajes.MSG_OK);
         estacionesOrigen.setSelection(getPositionEstacion(listestaciones,estacion));
+        estacionesOrigen.setBackgroundColor(Color.rgb(230,230,230));
         addServiciosOrigen();
 
         estacionesOrigen.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -317,6 +324,7 @@ public class OdDestinoActivity extends AppCompatActivity {
         numRepite.setAdapter(dataAdapterestacionesOrigen);
         numRepite.setTitle(Mensajes.MSG_SELECCIONE);
         numRepite.setPositiveButton(Mensajes.MSG_OK);
+        numRepite.setBackgroundColor(Color.rgb(230,230,230));
     }
 
     private List<String> getNumRepite() {
@@ -350,6 +358,7 @@ public class OdDestinoActivity extends AppCompatActivity {
         serviciosOrigen.setAdapter(dataAdapterserviciosOrigen);
         serviciosOrigen.setTitle(Mensajes.MSG_SELECCIONE);
         serviciosOrigen.setPositiveButton(Mensajes.MSG_OK);
+        serviciosOrigen.setBackgroundColor(Color.rgb(230,230,230));
     }
 
 

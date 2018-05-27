@@ -22,6 +22,7 @@
             android:layout_height="0dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="0.8"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/text_titulo_lista" />
 
         <TextView

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.transmilenio.transmisurvey.activites.ConteoRegistroActivity">
 
     <TextView
@@ -51,6 +52,8 @@
                 android:layout_marginTop="98dp"
                 android:singleLine="true"
                 android:imeOptions="actionDone"
+                style="@style/AppTheme.Texto"
+                app:backgroundTint="@color/colorSecondaryLigth"
                 android:digits="1234567890abmtuksdneABMTUKSDNE"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
@@ -75,6 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:text="@string/despacho"
+                style="@style/AppTheme.Texto"
                 android:layout_alignTop="@+id/cod_despacho_button"
                 android:layout_alignLeft="@+id/cod_num_bus_editText"
                 android:layout_alignStart="@+id/cod_num_bus_editText"
@@ -88,6 +92,7 @@
         android:id="@+id/cod_servicio_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/AppTheme.Texto"
         android:layout_alignBaseline="@+id/cod_serv_textView"
         android:layout_alignBottom="@+id/cod_serv_textView"
         android:layout_alignParentEnd="true"

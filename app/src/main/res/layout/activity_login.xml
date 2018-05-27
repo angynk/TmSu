@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context="com.transmilenio.transmisurvey.activites.LoginActivity"
     android:background="@color/colorMainLogin">
 
@@ -64,7 +65,7 @@
         android:text="@string/button_iniciar"
         android:layout_alignRight="@+id/lg_recordar_switch"
         android:layout_alignEnd="@+id/lg_recordar_switch"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         android:textColor="@color/colorTextButton"/>
 
     <Button
