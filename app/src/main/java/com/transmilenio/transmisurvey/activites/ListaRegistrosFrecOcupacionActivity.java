@@ -31,8 +31,9 @@ public class ListaRegistrosFrecOcupacionActivity extends AppCompatActivity imple
     private FloatingActionButton buttonAdd;
     private Button buttonGuardar;
     private ListView listView;
+    private String nombreEncuesta,modo;
     private RealmList<RegistroFrecOcupacion> registros;
-    private int  idEncuesta, idCuadro ;
+    private int  idEncuesta, idCuadro, numRegistros ;
     private RegistroFrecAdapter adapter;
 
     FragmentManager fm = getSupportFragmentManager();
@@ -72,6 +73,9 @@ public class ListaRegistrosFrecOcupacionActivity extends AppCompatActivity imple
                 Intent intent = new Intent(ListaRegistrosFrecOcupacionActivity.this,FrecRegistroActivity.class);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
+                intent.putExtra(ExtrasID.EXTRA_ID_REGISTROS,  numRegistros);
+                intent.putExtra(ExtrasID.EXTRA_NOMBRE,  nombreEncuesta);
+                intent.putExtra(ExtrasID.EXTRA_MODO,  modo);
                 startActivity(intent);
             }
         });
@@ -91,10 +95,12 @@ public class ListaRegistrosFrecOcupacionActivity extends AppCompatActivity imple
         if(extras != null){
             idEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
             idCuadro = (int) extras.get(ExtrasID.EXTRA_ID_CUADRO);
-//            servicio = (String) extras.get(ExtrasID.EXTRA_ID_SERVICIO);
+            nombreEncuesta = (String) extras.get(ExtrasID.EXTRA_NOMBRE);
+            modo = (String) extras.get(ExtrasID.EXTRA_MODO);
             FOcupacionEncuesta cuadro =  realm.where(FOcupacionEncuesta.class).equalTo("id",idCuadro).findFirst();
             if(cuadro!=null){
                 registros = cuadro.getRegistros();
+                numRegistros = registros.size();
                 registros.addChangeListener(this);
             }
         }

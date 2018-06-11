@@ -6,6 +6,7 @@ public class ExtrasID {
 
     public static String EXTRA_ID_ENCUESTA = "idEncuesta";
     public static String EXTRA_ID_CUADRO = "idCuadro";
+    public static String EXTRA_ID_REGISTROS = "numRegistros";
     public static String EXTRA_ID_SERVICIO = "idServicio";
     public static String EXTRA_ID_ESTACION = "idEstacion";
     public static String EXTRA_ID_ORIGEN = "idTipoOrigen";

@@ -39,8 +39,9 @@ public class FrecRegistroActivity extends AppCompatActivity {
 
     private EditText  ocupacionEditText, codigoEditText;
     private FloatingActionButton buttonCerrar;
-    private int  idEncuesta, idCuadro ;
+    private int  idEncuesta, idCuadro, numRegistros ;
     private FOcupacionEncuesta encuesta;
+    private String nombreEncuesta,modo;
 
     private Realm realm;
 
@@ -66,7 +67,10 @@ public class FrecRegistroActivity extends AppCompatActivity {
         if(extras != null){
             idEncuesta = (int) extras.get(ExtrasID.EXTRA_ID_ENCUESTA);
             idCuadro = (int) extras.get(ExtrasID.EXTRA_ID_CUADRO);
+            numRegistros = (int) extras.get(ExtrasID.EXTRA_ID_REGISTROS);
             encuesta =  realm.where(FOcupacionEncuesta.class).equalTo("id",idCuadro).findFirst();
+            nombreEncuesta = (String) extras.get(ExtrasID.EXTRA_NOMBRE);
+            modo = (String) extras.get(ExtrasID.EXTRA_MODO);
 
         }
     }
@@ -82,10 +86,24 @@ public class FrecRegistroActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     if(agregarRegistro()){
-                        Intent intent = new Intent(FrecRegistroActivity.this,FrecRegistroActivity.class);
-                        intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
-                        intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
-                        startActivity(intent);
+                        numRegistros++;
+                        if(numRegistros>200){
+                            Toast.makeText(FrecRegistroActivity.this,"Continue la encuesta en la siguiente pantalla",Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(FrecRegistroActivity.this,BaseFrecOcupacionActivity.class);
+                            intent.putExtra(ExtrasID.EXTRA_NOMBRE,  nombreEncuesta);
+                            intent.putExtra(ExtrasID.EXTRA_MODO,  modo);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        }else{
+                            Intent intent = new Intent(FrecRegistroActivity.this,FrecRegistroActivity.class);
+                            intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
+                            intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
+                            intent.putExtra(ExtrasID.EXTRA_ID_REGISTROS,  numRegistros);
+                            intent.putExtra(ExtrasID.EXTRA_NOMBRE,  nombreEncuesta);
+                            intent.putExtra(ExtrasID.EXTRA_MODO,  modo);
+                            startActivity(intent);
+                        }
+
                     }
                 }
                 return false;
@@ -114,6 +132,8 @@ public class FrecRegistroActivity extends AppCompatActivity {
                 Intent intent = new Intent(FrecRegistroActivity.this,ListaRegistrosFrecOcupacionActivity.class);
                 intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                 intent.putExtra(ExtrasID.EXTRA_ID_CUADRO,  idCuadro);
+                intent.putExtra(ExtrasID.EXTRA_NOMBRE,  nombreEncuesta);
+                intent.putExtra(ExtrasID.EXTRA_MODO,  modo);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
