@@ -62,10 +62,14 @@
     <string name="txt_zona">Zona</string>
     <string name="txt_sentido">Sentido</string>
     <string name="txt_hora_paso">Hora Paso</string>
+    <string name="txt_continuar_encuesta">¿Desea continuar esta encuesta?</string>
+    <string name="txt_comentario">Comentarios</string>
     <string name="txt_codigo">Codigo</string>
     <string name="txt_ocupacion">Ocupación</string>
     <string name="txt_Modo">Modo</string>
     <string name="txt_Estacion">Estación</string>
+    <string name="txt_Si">Sí</string>
+    <string name="txt_No">No</string>
 
     <string name="hint_usuario">Usuario</string>
     <string name="hint_contrasena">Contraseña</string>

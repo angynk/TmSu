@@ -14,6 +14,7 @@ import android.widget.ListView;
 import com.transmilenio.transmisurvey.R;
 import com.transmilenio.transmisurvey.adapters.RegistroAdapter;
 import com.transmilenio.transmisurvey.adapters.RegistroTRecorridoAdapter;
+import com.transmilenio.transmisurvey.fragments.AlertGuardarComentarios;
 import com.transmilenio.transmisurvey.fragments.AlertGuardarDatos;
 import com.transmilenio.transmisurvey.models.db.RegistroTiempoRecorrido;
 import com.transmilenio.transmisurvey.models.db.TRecorridoEncuesta;
@@ -78,7 +79,7 @@ public class ListaTiemposRecorridoActivity extends AppCompatActivity implements 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                AlertGuardarDatos dFragment = newInstance(idEncuesta);
+                AlertGuardarComentarios dFragment = newInstance(idEncuesta);
                 dFragment.show(fm, Mensajes.MSG_SALIR_ENCUESTA);
                 break;
         }
@@ -110,14 +111,14 @@ public class ListaTiemposRecorridoActivity extends AppCompatActivity implements 
         buttonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertGuardarDatos dFragment = newInstance(idEncuesta);
+                AlertGuardarComentarios dFragment = newInstance(idEncuesta);
                 dFragment.show(fm, Mensajes.MSG_SALIR_ENCUESTA);
             }
         });
     }
 
-    public static AlertGuardarDatos newInstance(int id) {
-        AlertGuardarDatos f = new AlertGuardarDatos();
+    public static AlertGuardarComentarios newInstance(int id) {
+        AlertGuardarComentarios f = new AlertGuardarComentarios();
 
         // Supply num input as an argument.
         Bundle args = new Bundle();
@@ -140,7 +141,7 @@ public class ListaTiemposRecorridoActivity extends AppCompatActivity implements 
 
     @Override
     public void onBackPressed() {
-        AlertGuardarDatos dFragment = newInstance(idEncuesta);
+        AlertGuardarComentarios dFragment = newInstance(idEncuesta);
         dFragment.show(fm, Mensajes.MSG_SALIR_ENCUESTA);
     }
 

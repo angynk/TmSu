@@ -162,6 +162,7 @@ public class ListaSurveyEnvioActivity extends AppCompatActivity implements Realm
         ti_recorrido.setDia_semana(tRecorridoEncuesta.getDia_semana());
         ti_recorrido.setNum_bus(tRecorridoEncuesta.getNum_bus());
         ti_recorrido.setServicio(tRecorridoEncuesta.getServicio());
+        ti_recorrido.setObservacion(tRecorridoEncuesta.getObservacion());
 
         RealmList<RegistroTiempoRecorrido> registroBD = tRecorridoEncuesta.getRegistros();
         List<RegRecorrido> registros = new ArrayList<>();

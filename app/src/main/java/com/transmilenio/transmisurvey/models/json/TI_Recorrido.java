@@ -9,6 +9,7 @@ public class TI_Recorrido {
     private String dia_semana;
     private String servicio;
     private String num_bus;
+    private String observacion;
     private int recorrido;
     private List<RegRecorrido> registros;
 
@@ -53,5 +54,13 @@ public class TI_Recorrido {
 
     public void setRegistros(List<RegRecorrido> registros) {
         this.registros = registros;
+    }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
     }
 }

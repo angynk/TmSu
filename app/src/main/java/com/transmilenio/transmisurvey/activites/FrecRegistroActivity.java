@@ -87,11 +87,12 @@ public class FrecRegistroActivity extends AppCompatActivity {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     if(agregarRegistro()){
                         numRegistros++;
-                        if(numRegistros>200){
-                            Toast.makeText(FrecRegistroActivity.this,"Continue la encuesta en la siguiente pantalla",Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(FrecRegistroActivity.this,BaseFrecOcupacionActivity.class);
+                        if(numRegistros>180){
+//                            Toast.makeText(FrecRegistroActivity.this,"Continue la encuesta en la siguiente pantalla",Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(FrecRegistroActivity.this,ContinuarEncuestaActivity.class);
                             intent.putExtra(ExtrasID.EXTRA_NOMBRE,  nombreEncuesta);
                             intent.putExtra(ExtrasID.EXTRA_MODO,  modo);
+                            intent.putExtra(ExtrasID.EXTRA_ID_ENCUESTA,  idEncuesta);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                         }else{

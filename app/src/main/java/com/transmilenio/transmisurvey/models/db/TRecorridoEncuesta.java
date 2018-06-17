@@ -15,6 +15,7 @@ public class TRecorridoEncuesta extends RealmObject {
     private String dia_semana;
     private String servicio;
     private String num_bus;
+    private String observacion;
     private int recorrido;
 
     private RealmList<RegistroTiempoRecorrido> registros;
@@ -71,5 +72,13 @@ public class TRecorridoEncuesta extends RealmObject {
 
     public void setRecorrido(int recorrido) {
         this.recorrido = recorrido;
+    }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
     }
 }
